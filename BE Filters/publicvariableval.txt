@@ -128,7 +128,7 @@
 5 "getVariable"
 5 "getVariable"
 5 "hasInterface"
-5 "hideObject"
+5 "hideObject" !"\"hideObject\""
 5 "hintC"
 5 "hintS"
 5 "hiveupdateresu"

@@ -14,7 +14,12 @@ createvehicle.txt
 publicvariable.txt
 
 	//5 !="remExField"
-		!"dayz_updateNearbyObjects" !"dayzUpdateVehicle"
+		!"dayz_updateNearbyObjects"
+		
+publicvariableval.txt
+
+	//5 "hideObject"
+		!"\"hideObject\""
 		
 setpos.txt
 
@@ -24,7 +29,7 @@ setpos.txt
 setvariable.txt
 
 	//5 !"USEC_"
-		!"startcombattimer" !"authorizeduid"
+		!"startcombattimer" !"authorizeduid" !"inmotion" !"gatelowered"
 		
 //#### BB 1.3 ####
 

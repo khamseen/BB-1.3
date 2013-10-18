@@ -322,16 +322,6 @@ _playerCombat 	= player;
 		
     if(_allowedExtendedMode)then {
 		finishAction 		= player addAction ["Finish building!", "dayz_code\actions\buildActions\finishBuild.sqf",_object, 1, true, true, "", ""];
-        elevateAction 		= player addAction ["Elevate", "dayz_code\actions\buildActions\elevateObject.sqf",_object, 1, true, true, "", ""];
-        lowerAction 		= player addAction ["Lower", "dayz_code\actions\buildActions\lowerObject.sqf",_object, 1, true, true, "", ""];
-		elevateActionSmall 	= player addAction ["Elevate Slightly", "dayz_code\actions\buildActions\elevateObjectSmall.sqf",_object, 1, true, true, "", ""];
-        lowerActionSmall 	= player addAction ["Lower Slightly", "dayz_code\actions\buildActions\lowerObjectSmall.sqf",_object, 1, true, true, "", ""];
-        rotateAction 		= player addAction ["Rotate", "dayz_code\actions\buildActions\rotateObject.sqf",_object, 1, true, true, "", ""];
-        rotateAction2		= player addAction ["Rotate inverse", "dayz_code\actions\buildActions\rotateObjectInverse.sqf",_object, 1, true, true, "", ""];
-        objectAwayAction 	= player addAction ["Push away", "dayz_code\actions\buildActions\pushObject.sqf",_object, 1, true, true, "", ""];
-        objectNearAction 	= player addAction ["Pull near", "dayz_code\actions\buildActions\pullObject.sqf",_object, 1, true, true, "", ""];
-        objectRightAction 	= player addAction ["Move left", "dayz_code\actions\buildActions\rightObject.sqf",_object, 1, true, true, "", ""];
-        objectLeftAction 	= player addAction ["Move right", "dayz_code\actions\buildActions\leftObject.sqf",_object, 1, true, true, "", ""];
         restablishAction 	= player addAction ["Restablish", "dayz_code\actions\buildActions\restablishObject.sqf",_object, 1, true, true, "", ""];
         attachGroundAction 	= player addAction ["Attach to ground", "dayz_code\actions\buildActions\attachGroundObject.sqf",_object, 1, true, true, "", ""];
     };
@@ -340,17 +330,113 @@ _playerCombat 	= player;
 	player allowdamage true;
 	hint "";
 	if (_allowedExtendedMode) then {
-		cutText ["-Build process started(Previous extended settings saved, use 'restablish action' for default position).  EXTENDED MODE: Move around to re-position, use 'Actions' to adjust\n-Select 'finish build' action when done to see preview after restart", "PLAIN DOWN", 10];
+		cutText ["-Build process started(Previous extended settings saved, use 'restablish action' for default position).  EXTENDED MODE: Select 'finish build' action when done to see preview after restart", "PLAIN DOWN", 10];
 	} else {
 		cutText ["-Build process started (Default).  Move around to re-position\n-Stay still to begin build timer", "PLAIN DOWN", 10];
 	};	
 	//_startingPos = getPos player;  // used to restrict distance of build
 	while {!buildReady} do {
 	if (_allowedExtendedMode) then {
-		hintsilent "-Build process started.  EXTENDED MODE: Move around to re-position, use Actions to adjust\n-Select finish build action when done to see preview after restart";
+		hintsilent "-Build process started.  EXTENDED MODE: Move around to re-position\nControls (NumPad Keys)\n7 and 9 to Rotate\n8 and 5 to Raise/Lower\n4 and 1 to Push/Pull\n2 and 3 to Move Left/Right\nYou can hold SHIFT for slower rotation/lift\n-Select finish build action when done to see preview after restart";
 	} else {
 		hintsilent "-Build process started (Default).  \n-Move around to re-position\n-Stay still to begin build timer";
 	};	
+	
+	//Rotations + Lifting set to keys
+		//Elevate
+		if (DZ_BB_E) then {
+			DZ_BB_E = false;
+			if(objectHeight<objectTopHeight) then {
+				objectHeight= objectHeight + objectIncrement;
+			};
+		};
+		//Lower
+		if (DZ_BB_L) then {
+			DZ_BB_L = false;
+			if(objectHeight>objectLowHeight) then {
+				objectHeight= objectHeight - objectIncrement;
+			};
+		};
+		//Elevate Small
+		if (DZ_BB_Es) then {
+			DZ_BB_Es = false;
+			if(objectHeight<objectTopHeight) then {
+				objectHeight= objectHeight + objectIncrementSmall;
+			};
+		};
+		//Lower Small
+		if (DZ_BB_Ls) then {
+			DZ_BB_Ls = false;
+			if(objectHeight>objectLowHeight) then {
+				objectHeight= objectHeight - objectIncrementSmall;
+			};
+		};
+		//Rotate Left
+		if (DZ_BB_Rl) then {
+			DZ_BB_Rl = false;
+			rotateDir = rotateDir + rotateIncrement;
+			if(rotateDir >= 360) then {
+				rotateDir = 0;
+			};
+			_object setDir (getDir player) + rotateDir ;
+		};
+		//Rotate Right
+		if (DZ_BB_Rr) then {
+			DZ_BB_Rr = false;
+			rotateDir = rotateDir - rotateIncrement;
+			if(rotateDir >= 360) then {
+				rotateDir = 0;
+			};
+			_object setDir (getDir player) + rotateDir ;
+		};
+		//Rotate Left Small
+		if (DZ_BB_Rls) then {
+			DZ_BB_Rls = false;
+			rotateDir = rotateDir + rotateIncrementSmall;
+			if(rotateDir >= 360) then {
+				rotateDir = 0;
+			};
+			_object setDir (getDir player) + rotateDir ;
+		};
+		//Rotate Right Small
+		if (DZ_BB_Rrs) then {
+			DZ_BB_Rrs = false;
+			rotateDir = rotateDir - rotateIncrementSmall;
+			if(rotateDir >= 360) then {
+				rotateDir = 0;
+			};
+			_object setDir (getDir player) + rotateDir ;
+		};
+		//Push Away
+		if (DZ_BB_A) then {
+			DZ_BB_A = false;
+			if(objectDistance<maxObjectDistance) then {
+				objectDistance= objectDistance + 0.5;
+			};
+		};
+		//Pull Near
+		if (DZ_BB_N) then {
+			DZ_BB_N = false;
+			if(objectDistance>minObjectDistance) then {
+				objectDistance= objectDistance - 0.3;
+			};
+		};
+		//Move Right
+		if (DZ_BB_Le) then {
+			DZ_BB_Le = false;
+			if(objectParallelDistance>minObjectDistance) then {
+				objectParallelDistance= objectParallelDistance - 0.5;
+			};
+		};
+		//Move Left
+		if (DZ_BB_Ri) then {
+			DZ_BB_Ri = false;
+			if(objectParallelDistance<maxObjectDistance) then {
+				objectParallelDistance= objectParallelDistance + 0.5;
+			};
+		};
+		
+		
 		_playerCombat = player;
 		_isInCombat = _playerCombat getVariable["startcombattimer",0];
 		_dialog = findDisplay 106;

@@ -1,14 +1,4 @@
 	player removeAction attachGroundAction;
-    player removeAction elevateAction;
-    player removeAction lowerAction;                       
-    player removeAction rotateAction;
-    player removeAction rotateAction2;     
-    player removeAction objectAwayAction;
-    player removeAction objectNearAction;
-    player removeAction objectRightAction;
-    player removeAction objectLeftAction;
     player removeAction finishAction;
     player removeAction restablishAction;
-	player removeAction elevateActionSmall;
-    player removeAction lowerActionSmall;
 buildReady=true;

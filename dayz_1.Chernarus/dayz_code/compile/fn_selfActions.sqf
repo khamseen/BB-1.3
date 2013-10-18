@@ -300,16 +300,6 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		s_player_gather = -1;
 	};
 
-	//Allow player to delete objects
-	if(_isDestructable and _hasToolbox and _canDo) then {
-		if (s_player_deleteBuild < 0) then {
-			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "\z\addons\dayz_code\actions\remove.sqf",_cursorTarget, 1, true, true, "", ""];
-		};
-	} else {
-		player removeAction s_player_deleteBuild;
-		s_player_deleteBuild = -1;
-	};
-
 	//Allow player to force save
 	if((_isVehicle or _isTent or _isStash or _isMediumStash) and _canDo and !_isMan and (damage _cursorTarget < 1)) then {
 		if (s_player_forceSave < 0) then {

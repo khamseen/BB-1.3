@@ -150,7 +150,7 @@ if (isServer and isNil "sm_done") then {
 					//_object setpos [(getposATL _object select 0),(getposATL _object select 1), (getposATL _object select 2)];
 					//_object setpos _pos; or try this, or just let it createvehicle
 				};
-				if (!(typeOf(_object) in allExtendables) && (_object isKindOf "Static") && !(_object isKindOf "TentStorage") && (typeOf(_object) != "USOrdnanceBox_EP1") && typeOf(_object) != "Grave") then {
+				if (!(typeOf(_object) in allExtendables) && (_object isKindOf "Static") && !(_object isKindOf "TentStorage") && typeOf(_object) != "Grave") then {
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
 					//_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
 					//_object setpos [((_object modeltoworld [0,0,0]) select 0),((_object modeltoworld [0,0,0]) select 1), 0];

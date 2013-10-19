@@ -10,6 +10,9 @@ createvehicle.txt
 		
 	//5 "Fort_"
 		!"Fort_RazorWire" !"Land_fort_bagfence_long" !"Land_Fort_Watchtower" !"Land_fort_rampart_EP1"
+		
+	//5 "_SH"
+		!"Land_Ind_Shed_01_main"
 
 publicvariable.txt
 
@@ -29,7 +32,7 @@ setpos.txt
 setvariable.txt
 
 	//5 !"USEC_"
-		!"startcombattimer" !"authorizeduid" !"inmotion" !"gatelowered"
+		!"startcombattimer" !"authorizeduid" !"inmotion" !"gatelowered" !"rooflowered" !"isbomb"
 		
 //#### BB 1.3 ####
 

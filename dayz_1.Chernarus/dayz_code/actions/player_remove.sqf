@@ -93,22 +93,22 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 			};
 	};
 	if (_qtyT > 0) then {
-		for "_i" from 1 to _qtyT do { _result = [player,"ItemTankTrap"] call GLT_addMagazine;  };
+		for "_i" from 1 to _qtyT do { _result = [player,"ItemTankTrap"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyS > 0) then {
-		for "_i" from 1 to _qtyS do { _result = [player,"ItemSandbag"] call GLT_addMagazine;  };
+		for "_i" from 1 to _qtyS do { _result = [player,"ItemSandbag"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyW > 0) then {
-		for "_i" from 1 to _qtyW do { _result = [player,"ItemWire"] call GLT_addMagazine;  };
+		for "_i" from 1 to _qtyW do { _result = [player,"ItemWire"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyL > 0) then {
-		for "_i" from 1 to _qtyL do { _result = [player,"PartWoodPile"] call GLT_addMagazine; };
+		for "_i" from 1 to _qtyL do { _result = [player,"PartWoodPile"] call BIS_fnc_invAdd; };
 	};
 	if (_qtyM > 0) then {
-		for "_i" from 1 to _qtyM do { _result = [player,"PartGeneric"] call GLT_addMagazine;  };
+		for "_i" from 1 to _qtyM do { _result = [player,"PartGeneric"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyG > 0) then {
-		for "_i" from 1 to _qtyG do { _result = [player,"HandGrenade_west"] call GLT_addMagazine;  };
+		for "_i" from 1 to _qtyG do { _result = [player,"HandGrenade_west"] call BIS_fnc_invAdd;  };
 	};
 	cutText [format["Owner refunded for object %1",typeof(_obj)], "PLAIN DOWN",1];
 		PVDZ_obj_Delete = [_objectID,_objectUID];

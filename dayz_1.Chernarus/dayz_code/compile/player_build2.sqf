@@ -507,6 +507,7 @@ _playerCombat 	= player;
 			buildReady=false;
 			_location = _objectPos;//getposATL _object;
 			_dir = _objectDir;//getDir _object;
+			_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
 			cutText [format["AFTER RESTART: This is how the %1 object will look.",_text], "PLAIN DOWN"];
 			sleep 5;
 		};

@@ -1,4 +1,4 @@
-private["_pos"];
+private["_pos","_object","_isBuildable"];
 _pos = _this select 0;
 #include "\z\addons\dayz_server\compile\server_toggle_debug.hpp"
 
@@ -10,10 +10,6 @@ diag_log(format["Updating nearby object at %1",_pos]);
 } forEach nearestObjects [_pos, ["Car", "Helicopter", "Motorcycle", "Ship", "TentStorage", "StashSmall", "StashMedium"], 10];
 
 //####----####----####---- Base Building 1.3 Start ----####----####----####
-private["_object","_pos","_isBuildable"];
-_pos = _this select 0;
-_object = _this select 1;
-_isBuildable = _this select 2;
 if (_isBuildable) then {
 	//diag_log("_isBuildable was called!");
 	//diag_log("CLASSNAME ARRAY: " + str(allbuildables_class) + "";);

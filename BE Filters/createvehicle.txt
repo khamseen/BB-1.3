@@ -85,7 +85,7 @@
 5 "_SMAW"
 5 "_GRAD"
 5 "_SABOT"
-5 "_SH"
+5 "_SH" !"Land_Ind_Shed_01_main"
 5 "KORD"
 5 "DSHKM"
 5 "MK19"

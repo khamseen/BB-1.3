@@ -186,60 +186,10 @@ if (isServer and isNil "sm_done") then {
 				};
 				//gateKeypad = _object addaction ["Defuse", "\z\addons\dayz_server\compile\enterCode.sqf"];
 			};
-			//####Base Building 1.3 correction since we write playerUIDs to inventory database ###
-			if (!(typeOf(_object) in allbuildables_class)) then {
-					if (count _inventory > 0) then {
-						//Add weapons
-						_objWpnTypes = (_inventory select 0) select 0;
-						_objWpnQty = (_inventory select 0) select 1;
-						_countr = 0;					
-						{
-							if (_x == "Crossbow") then { _x = "Crossbow_DZ" }; // Convert Crossbow to Crossbow_DZ
-							_isOK = 	isClass(configFile >> "CfgWeapons" >> _x);
-							if (_isOK) then {
-								_block = 	getNumber(configFile >> "CfgWeapons" >> _x >> "stopThis") == 1;
-								if (!_block) then {
-									_object addWeaponCargoGlobal [_x,(_objWpnQty select _countr)];
-								};
-							};
-							_countr = _countr + 1;
-						} forEach _objWpnTypes; 
-						
-						//Add Magazines
-						_objWpnTypes = (_inventory select 1) select 0;
-						_objWpnQty = (_inventory select 1) select 1;
-						_countr = 0;
-						{
-							if (_x == "BoltSteel") then { _x = "WoodenArrow" }; // Convert BoltSteel to WoodenArrow
-							_isOK = 	isClass(configFile >> "CfgMagazines" >> _x);
-							if (_isOK) then {
-								_block = 	getNumber(configFile >> "CfgMagazines" >> _x >> "stopThis") == 1;
-								if (!_block) then {
-									_object addMagazineCargoGlobal [_x,(_objWpnQty select _countr)];
-								};
-							};
-							_countr = _countr + 1;
-						} forEach _objWpnTypes;
-						//Add Backpacks
-						_objWpnTypes = (_inventory select 2) select 0;
-						_objWpnQty = (_inventory select 2) select 1;
-						_countr = 0;
-						{
-							_isOK = 	isClass(configFile >> "CfgVehicles" >> _x);
-							if (_isOK) then {
-								_block = 	getNumber(configFile >> "CfgVehicles" >> _x >> "stopThis") == 1;
-								if (!_block) then {
-									_object addBackpackCargoGlobal [_x,(_objWpnQty select _countr)];
-								};
-							};
-							_countr = _countr + 1;
-						} forEach _objWpnTypes;
-					};	
-				};
 				//####----####----####---- Base Building 1.3 End ----####----####----####
 				
-				/*//Dont add inventory for traps.
-				if (!(_object isKindOf "TrapItems")) then {
+				//Dont add inventory for traps.
+				if (!(_object isKindOf "TrapItems") && !(typeOf(_object) in allbuildables_class)) then { //##Base Building 1.3 correction added exception to ignore base building items since we store UIDs in Inventory
 					_cargo = _inventory;
 					clearWeaponCargoGlobal  _object;
 					clearMagazineCargoGlobal  _object;
@@ -269,7 +219,7 @@ if (isServer and isNil "sm_done") then {
 							};
 						} forEach _magItemTypes;
 					} forEach _cargo;
-				};*/
+				};
 				
 				if (_object isKindOf "AllVehicles") then {
 					{

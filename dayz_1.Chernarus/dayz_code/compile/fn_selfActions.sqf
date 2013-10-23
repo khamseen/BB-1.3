@@ -32,7 +32,7 @@ _currentSkin = typeOf(player);
 			flag_basePole = nearestObject [player, "FlagCarrierUSA"];
 	// Check mags in player inventory to show build recipe menu	
 	_mags = magazines player;
-	if ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags) then {
+	if ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags || "equip_scrapelectronics" in _mags || "ItemCamoNet" in _mags  || "equip_crate" in _mags || "equip_brick" in _mags || "equip_string" in _mags || "equip_duct_tape" in _mags ) then {
 		hasBuildItem = true;
 	} else { hasBuildItem = false;};
 	//Build Recipe Menu Action

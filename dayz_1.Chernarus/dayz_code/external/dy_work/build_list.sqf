@@ -13,7 +13,7 @@ private["_isDestructable", "_isSimulated","_disableSims","_objectSims","_objectS
 									//[_attachCoords, _startPos, _modDir, _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag, _isExtendable];
 _buildlist = [
 [[1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 1, 1], "FlagCarrierUSA",  			[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, false]], //FlagCarrierUSA 	--39 
-[[0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], "Grave", 						[[0,2.5,.1],[0,2,0], 	0, 	true, true, true, false, true, true, true, false, false, false, false, false]],//Booby Traps --1
+[[0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1], "Grave", 						[[0,2.5,.1],[0,2,0], 	0, 	true, true, true, false, true, true, true, false, false, false, false, false]],//Booby Traps --1
 [[2, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0], "Concrete_Wall_EP1", 			[[0,5,1.75],[0,2,0], 	0, 	true, false, true, false, true, true, false, false, false, false, false, true]],//Gate Concrete Wall --2
 [[0, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 1], "Infostand_2_EP1",				[[0,2.5,.6],[0,2,0], 	0, 	true, false, true, false, true, false, false, false, false, false, false, true]],//Gate Panel w/ KeyPad --3
 [[3, 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "WarfareBDepot",				[[0,18,2], 	[0,15,0], 	90, true, true, false, true, false, false, false, false, true, false, false, true]],//WarfareBDepot --4

@@ -32,7 +32,11 @@ _uid = _worldspace call dayz_objectUID2;
 if (_object isKindOf "TrapItems") then {
 	_key = format["CHILD:308:%1:%2:%3:%4:%5:%6:%7:%8:%9:",dayZ_instance, _class, 0 , _charID, _worldspace, [_object getVariable ["armed", false]], [], 0,_uid];
 } else {
-	_key = format["CHILD:308:%1:%2:%3:%4:%5:%6:%7:%8:%9:",dayZ_instance, _class, 0 , _charID, _worldspace, _inventory, [], 0,_uid];
+	if (typeOf(_object) in allbuildables_class) then {
+		_key = format["CHILD:308:%1:%2:%3:%4:%5:%6:%7:%8:%9:",dayZ_instance, _class, 0 , _charID, _worldspace, [[_uid],_inventory], [], 0,_uid];
+	} else {
+		_key = format["CHILD:308:%1:%2:%3:%4:%5:%6:%7:%8:%9:",dayZ_instance, _class, 0 , _charID, _worldspace, [], [], 0,_uid];
+	};
 };
 //diag_log ("HIVE: WRITE: "+ str(_key));
 _key call server_hiveWrite;

@@ -1,7 +1,7 @@
 /*
 Base Building DayZ by Daimyo
 */
-private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildables","_flagradius","_okToBuild","_allowedExtendedMode","_flagNearest","_flagNearby","_requireFlag","_funcExitScriptCombat","_funcExitScript","_playerCombat","_isSimulated","_isDestructable","_townRange","_longWloop","_medWloop","_smallWloop","_inTown","_inProgress","_modDir","_startPos","_tObjectPos","_buildable","_chosenRecipe","_cnt","_cntLoop","_dialog","_buildCheck","_isInCombat","_playerCombat","_check_town","_eTool","_toolBox","_town_pos","_town_name","_closestTown","_roadAllowed","_toolsNeeded","_inBuilding","_attachCoords","_requirements","_result","_alreadyBuilt","_uidDir","_p1","_p2","_uid","_worldspace","_panelNearest2","_staticObj","_onRoad","_itemL","_itemM","_itemG","_qtyL","_qtyM","_qtyG","_cntLoop","_finished","_checkComplete","_objectTemp","_locationPlayer","_object","_id","_isOk","_text","_mags","_hasEtool","_canDo","_hasToolbox","_inVehicle","_isWater","_onLadder","_building","_medWait","_longWait","_location","_isOk","_dir","_classname","_item","_itemT","_itemS","_itemW","_qtyT","_qtyS","_qtyW"];
+private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildables","_flagradius","_okToBuild","_allowedExtendedMode","_flagNearest","_flagNearby","_requireFlag","_funcExitScriptCombat","_funcExitScript","_playerCombat","_isSimulated","_isDestructable","_townRange","_longWloop","_medWloop","_smallWloop","_inTown","_inProgress","_modDir","_startPos","_tObjectPos","_buildable","_chosenRecipe","_cnt","_cntLoop","_dialog","_buildCheck","_isInCombat","_playerCombat","_check_town","_eTool","_toolBox","_town_pos","_town_name","_closestTown","_roadAllowed","_toolsNeeded","_inBuilding","_attachCoords","_requirements","_result","_alreadyBuilt","_uidDir","_p1","_p2","_uid","_worldspace","_panelNearest2","_staticObj","_onRoad","_itemL","_itemM","_itemG","_qtyL","_qtyM","_qtyG","_cntLoop","_finished","_checkComplete","_objectTemp","_locationPlayer","_object","_id","_isOk","_text","_mags","_hasEtool","_canDo","_hasToolbox","_inVehicle","_isWater","_onLadder","_building","_medWait","_longWait","_location","_isOk","_dir","_classname","_item","_itemT","_itemS","_itemW","_qtyT","_qtyS","_qtyW","_authorizedPUID","_canUseFlag"];
 
 // Location placement declarations
 _locationPlayer = player modeltoworld [0,0,0];
@@ -79,7 +79,7 @@ _playerCombat 	= player;
 		breakOut "exit";
 	};
 	// Do first checks to see if player can build before counting
-	if (procBuild) then {cutText ["Your already building!", "PLAIN DOWN"];call _funcExitScript;};
+	if (procBuild) then {cutText ["You're already building!", "PLAIN DOWN"];call _funcExitScript;};
 	if(_isWater) then {cutText [localize "str_player_26", "PLAIN DOWN"];call _funcExitScript;};
 	if(_onLadder) then {cutText [localize "str_player_21", "PLAIN DOWN"];call _funcExitScript;};
 	if (_inVehicle) then {cutText ["Can't do this in vehicle", "PLAIN DOWN"];call _funcExitScript;};
@@ -194,7 +194,8 @@ _playerCombat 	= player;
 		{
 			if (typeOf(_x) == "FlagCarrierUSA") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				if ((getPlayerUid player) in _authorizedUID && (_classname == "FlagCarrierUSA")) exitWith {
+				_authorizedPUID = _authorizedUID select 1;
+				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierUSA")) exitWith {
 					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
 				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
 				   _flagMarker setMarkerTypeLocal "warning";
@@ -212,7 +213,8 @@ _playerCombat 	= player;
 		{
 			if (typeOf(_x) == "FlagCarrierUSA") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				if ((getPlayerUid player) in _authorizedUID && _x distance player <= 200) then {
+				_authorizedPUID = _authorizedUID select 1;
+				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= 200) then {
 				 _okToBuild = true;	
 				};
 			};
@@ -227,7 +229,8 @@ _playerCombat 	= player;
 		{
 			if (typeOf(_x) == "FlagCarrierUSA") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				if ((getPlayerUid player) in _authorizedUID && (_classname == "FlagCarrierUSA")) then {
+				_authorizedPUID = _authorizedUID select 1;
+				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierUSA")) then {
 					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
 				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
 				   _flagMarker setMarkerTypeLocal "warning";
@@ -236,13 +239,13 @@ _playerCombat 	= player;
 				   sleep 10;
 				   call _funcExitScriptCombat;
 				};
-				if ((getPlayerUid player) in _authorizedUID && _x distance player <= _flagRadius) then {
+				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
 					_flagNearby = true;
 				};
 			};
 		} foreach _allFlags;
 		if (!_flagNearby) then {
-			cutText [format["Either no flag is within %1 meters or you or you have not built a flag pole and claimed your land \nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScriptCombat;
+			cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land \nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScriptCombat;
 		};
 	};
 	
@@ -449,12 +452,13 @@ _playerCombat 	= player;
 
 			//Check if trying to build in other players bases
 			if (_classname != "Grave") then {
-				_okToBuild = true;
+				_okToBuild = true; //This might need removed, had to force it to true just to build a flag in empty territory
 				_allFlags = nearestObjects [player, ["FlagCarrierUSA"], 500];
 				{
 					if (typeOf(_x) == "FlagCarrierUSA") then {
 						_authorizedUID = _x getVariable ["AuthorizedUID", []];
-						if ((getPlayerUid player) in _authorizedUID && _x distance player <= 200) then {
+						_authorizedPUID = _authorizedUID select 1;
+						if ((getPlayerUid player) in _authorizedPUID && _x distance player <= 200) then {
 						 _okToBuild = true;	//This is forced true because we couldn't build flags
 						};
 					};
@@ -468,7 +472,8 @@ _playerCombat 	= player;
 				{
 					if (typeOf(_x) == "FlagCarrierUSA") then {
 						_authorizedUID = _x getVariable ["AuthorizedUID", []];
-						if ((getPlayerUid player in _authorizedUID) && (_x distance player >= _flagRadius) || (_x distance _object >= _flagRadius)) then {
+						_authorizedPUID = _authorizedUID select 1;
+						if ((getPlayerUid player in _authorizedPUID) && (_x distance player >= _flagRadius) || (_x distance _object >= _flagRadius)) then {
 							cutText [format["Build canceled for %1\nYou and or the object need to be within %2 meters of your flag to build.",_text, _flagRadius, _text], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScriptCombat;
 						};
 					};
@@ -794,8 +799,7 @@ _playerCombat 	= player;
 		};
 	_playerUID = [];
 	_playerUID set [count _playerUID, (getPlayerUID player)];
-	// Send to database
-	_object setVariable ["AuthorizedUID", _playerUID, true];
+	_object setVariable ["AuthorizedUID", _playerUID , true];
 	_object setVariable ["characterID",dayz_characterID,true];
 	//dayzPublishObj = [dayz_characterID,_object,[_dir,_location],_classname];
 	PVDZ_obj_Publish = [dayz_characterID,_object,[_dir,_location],_classname,_playerUID];

@@ -1,4 +1,4 @@
-private ["_authorizedUID","_nearbyPanel","_playerUID","_isPanel","_validObject","_validObjectCode","_panelPos","_playerPos","_cnt","_gateAccess","_inVehicle","_soundSource","_panel","_convertInput","_code", "_inputCode", "_validMatch"];
+private ["_authorizedUID","_authorizedPUID","_nearbyPanel","_playerUID","_isPanel","_validObject","_validObjectCode","_panelPos","_playerPos","_cnt","_gateAccess","_inVehicle","_soundSource","_panel","_convertInput","_code", "_inputCode", "_validMatch"];
 _panel = accessedObject;
 _playerPos = getpos player;
 _panelPos = getpos _panel;
@@ -12,10 +12,11 @@ keyCode = _this select 0;
 	// This is only if we are adding/removing playerUIDs and not entering code to operate gate
 	if (addUIDCode) exitWith 
 	{
-		//_authorizedUID = _panel getVariable ["AuthorizedUID", []];
+		_authorizedUID = _panel getVariable ["AuthorizedUID", []];
 		_inputCode = _this select 1;
 		_convertInput =+ _inputCode;
-		[_panel, _convertInput] spawn add_UIDCode;		
+		[_panel, _convertInput] spawn add_UIDCode;	
+		diag_log ("1 Code Compare Complete" + str(_authorizedUID));
 	};
 	if (removeUIDCode) exitWith 
 	{
@@ -79,8 +80,9 @@ if (_validMatch) then {
 		cutText ["### ACCESS GRANTED ###", "PLAIN DOWN"];
 		// Make it so we dont have to keep typing in the damn code!
 		_authorizedUID = _panel getVariable ["AuthorizedUID", []];
-		_authorizedUID set [count _authorizedUID, _playerUID];
-		_panel setVariable ["AuthorizedUID", _authorizedUID, true];
+		_authorizedPUID = _authorizedUID select 1;
+		_authorizedPUID set [count _authorizedPUID, _playerUID];
+		_panel setVariable ["AuthorizedUID", _authorizedPUID, true];
 		PVDZ_veh_Save = [_panel,"gear"];
 		publicVariableServer "PVDZ_veh_Save";
 		if (isServer) then {

@@ -40,9 +40,6 @@ _currentSkin = typeOf(player);
 		if (s_player_recipeMenu < 0) then {
 			s_player_recipeMenu = player addaction [("<t color=""#0074E8"">" + ("Build Recipes") +"</t>"),"buildRecipeBook\build_recipe_dialog.sqf","",5,false,true,"",""];
 		};
-		if (s_player_generalRecipes < 0) then {
-			s_player_generalRecipes = player addaction [("<t color=""#FF9500"">" + ("General Recipes") +"</t>"),"dayz_code\actions\general_recipes.sqf","",5,false,true,"",""];
-		};
 		if (s_player_buildHelp < 0) then {
 			s_player_buildHelp = player addaction [("<t color=""#FF9500"">" + ("Base Building Help") +"</t>"),"dayz_code\actions\build_help.sqf","",5,false,true,"",""];
 		};
@@ -82,7 +79,8 @@ _currentSkin = typeOf(player);
 	};
 		// FlagPole Access (more reliable than cursortarget)
 		_authorizedUID = flag_basePole getVariable ["AuthorizedUID", []];
-		_authorizedGateCodes = ((getPlayerUid player) in _authorizedUID);
+		_authorizedPUID = _authorizedUID select 1;
+		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
 	if ((isNull cursorTarget) && _authorizedGateCodes && player distance flag_basePole <= 10) then { // && _validGateCodes 
 		//_lever = flag_basePole;
 		if (s_player_addFlagAuth < 0) then {
@@ -191,10 +189,12 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	};
 	
 //####----####----####---- Base Building 1.3 Start ----####----####----####
-
+	//Checks for playerUIDs
 	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
-	_authorizedGateCodes = ((getPlayerUid player) in _authorizedUID);
+		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
+		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
 	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", "FlagCarrierUSA"];
+	_adminRemoval = ((getPlayerUID player) in adminSuperAccess);
 	
 	// Operate Gates AND Add Authorization to Gate
 	if ((typeOf(cursortarget) in _codePanels) && _authorizedGateCodes || ((typeOf(cursortarget) in allbuildables_class) && _authorizedGateCodes)) then { // && _validGateCodes 
@@ -246,12 +246,10 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		player removeAction s_player_roofToggle;
 		s_player_roofToggle = -1;
 	};
-	_adminRemoval = ((getPlayerUID player) in adminSuperAccess);
-	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
-	_authorizedGateCodes = ((getPlayerUid player) in _authorizedUID);
+	//Admin check playerUIDs
 	if (_adminRemoval || _authorizedGateCodes && (typeOf(cursortarget) in allbuildables_class)) then {
 		if (s_check_playerUIDs < 0) then {
-			s_check_playerUIDs 	= player addAction ["Get Owner UIDs of Object", "dayz_code\actions\adminActions\check_playerUIDs.sqf",cursorTarget, 1, false, true, "", ""];
+			s_check_playerUIDs 	= player addAction ["ADMIN: Get Owner UIDs of Object", "dayz_code\actions\adminActions\check_playerUIDs.sqf",cursorTarget, 1, false, true, "", ""];
 		};
 	} else {
 		player removeAction s_check_playerUIDs;
@@ -495,6 +493,8 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	s_player_codeObject = -1;
 	player removeAction s_player_enterCode;
 	s_player_enterCode = -1;
+	player removeAction s_player_deleteBuildOld; //Added for standard Buildables with 1.8
+	s_player_deleteBuildOld = -1;
 //####----####----####---- Base Building 1.3 End ----####----####----####
 	//Others
 	player removeAction s_player_forceSave;

@@ -1,4 +1,4 @@
-private["_authorizedUID","_isBomb","_vehiclePlayer","_inVehicle","_hasBlown","_timeLeft","_bombList","_bomb","_timer","_cnt","_arrayTotal","_dir","_pos","_objectID","_objectUID","_detonate"];
+private["_authorizedUID","_authorizedPUID","_isBomb","_vehiclePlayer","_inVehicle","_hasBlown","_timeLeft","_bombList","_bomb","_timer","_cnt","_arrayTotal","_dir","_pos","_objectID","_objectUID","_detonate"];
 /*player = _this select 0;
 if (isPlayer player) then {
 player = player;
@@ -16,8 +16,9 @@ while {true} do {
 		{	
 				_bomb = _x;
 				_authorizedUID = _bomb getVariable ["AuthorizedUID", []];
+				_authorizedPUID = _authorizedUID select 1;
 				_isBomb = _bomb getVariable ["isBomb", 0];
-			if (!procBuild && _isBomb == 1 && !((getplayerUID player) in _authorizedUID)) then {
+			if (!procBuild && _isBomb == 1 && !((getplayerUID player) in _authorizedPUID)) then {
 				_dir = direction _bomb;
 				_pos = [(getposATL _bomb select 0),(getposATL _bomb select 1), (getposATL _bomb select 2) + 1.12];
 				_objectID = _bomb getVariable["ObjectID","0"];

@@ -4,7 +4,7 @@ This script prevents players from exiting vehicles into a wall and glitching
 through the wall in order to get into a player made base.
 */
 
-private["_inBase","_wallRange","_wallType","_inVehicle","_walltypes","_wall","_vehPos","_nearestVeh","_nearestVehs","_isVehicle"];
+private["_inBase","_wallRange","_wallType","_inVehicle","_walltypes","_wall","_vehPos","_nearestVeh","_nearestVehs","_isVehicle","_authorizedPUID"];
 if (animationstate player == "acrgpknlmstpsnonwnondnon_amovpercmstpsnonwnondnon_getoutlow" || animationstate player == "acrgpknlmstpsnonwnondnon_amovpercmstpsraswrfldnon_getoutlow" || animationstate player == "acrgpknlmstpsnonwnondnon_amovpercmstpsraswpstdnon_getoutlow") then {
 _inVehicle = (vehicle player != player);
 _isVehicle = (vehicle player);
@@ -16,7 +16,8 @@ _wallRange = 10;
 		if (count _flagPoles > 0) then {
 			{
 				_checkBase = _x getVariable ["AuthorizedUID", []];
-				if ((getPlayerUID player) in _checkBase) exitWith {
+				_authorizedPUID = _checkBase select 1; //Select the playerUIDs only from array
+				if ((getPlayerUID player) in _authorizedPUID) exitWith {
 					_inBase = true;
 				};
 			

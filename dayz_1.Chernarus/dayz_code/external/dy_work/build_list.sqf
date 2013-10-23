@@ -53,7 +53,7 @@ _buildlist = [
 [[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1], "Land_vez",  					[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, true, false, false, false, true, false, false, true]], //Land_vez 	--38
 //Part of me wishes I could add this one but it would be too crazy knowing my server
 //[[4, 1, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_A_Minaret_Porto_EP1",  	[[0,10,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, false, true, false, false, true]], //40 Land_A_Minaret_Porto_EP1
-[[4, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_Ind_Shed_01_main",  		[[0,10,1], 	[0,10,0], 	0, 	true, false, false, true, true, false, false, true, false, false, false, true]], //Land_Ind_Shed_01_main --41
+[[4, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0], "Land_Ind_Shed_01_main",  		[[0,10,1], 	[0,10,0], 	0, 	true, false, false, true, true, false, false, true, false, false, false, true]], //Land_Ind_Shed_01_main --41
 [[1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0], "Land_Fire_barrel",  			[[0,3,0.6], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, true]], //Land_Fire_barrel 	--42 
 [[0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_WoodenRamp",  			[[0,5,0.4], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, false, false, true]], //Land_WoodenRamp 	--43 
 //[[6, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_11_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_11_EP1 	--45 

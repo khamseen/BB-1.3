@@ -81,12 +81,14 @@ _object_inventory = {
 	private["_inventory","_previous","_key"];
 	if (typeOf(_object) in allbuildables_class) then
 	{
-		_inventory = _object getVariable ["AuthorizedUID", []];
-		//_authorizedUID = _object getVariable ["AuthorizedUID", []];
+		_inventory = _object getVariable ["AuthorizedUID", []]; //Shouldn't need to specify which array since it's all being updated here
+		_authorizedOUID = (_inventory select 0) select 0;
+		//diag_log ("5 server_updateObject what's about to be written to DB OUID" + str(_authorizedOUID));
+		//diag_log ("5 server_updateObject what's about to be written to DB inventory" + str(_inventory));
 		
 		//[[_authorizedUID],[_baseGuardProperties],[_other]];
 			if (_objectID == "0") then {
-				_key = format["CHILD:309:%1:%2:",_uid,_inventory];
+				_key = format["CHILD:309:%1:%2:",_authorizedOUID,_inventory]; //was _uid,_inventory
 			} else {
 				_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
 			};

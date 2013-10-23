@@ -1,6 +1,7 @@
-private["_authorizedUID","_flagRaduis","_attackAllToggle","_tGuard","_isBaseGuard","_flag","_nearestGuards","_friendlyPlayers"];
+private["_authorizedUID","_authorizedPUID","_flagRaduis","_attackAllToggle","_tGuard","_isBaseGuard","_flag","_nearestGuards","_friendlyPlayers"];
 _flag = _this select 3;
 _authorizedUID = _flag getVariable ["AuthorizedUID", []];
+_authorizedPUID = _authorizedUID select 1;
 _flagRaduis = 200;
 _isBaseGuard = false;
 if (!(isNull _flag)) then {
@@ -19,7 +20,7 @@ if (count _nearestGuards > 0) then {
 					if (_x in _friendlyPlayers) exitWith {
 						_isBaseGuard = true; // Guard is part of the base owners guards
 					};		
-				} foreach _authorizedUID;
+				} foreach _authorizedPUID;
 				// Toggle his attack mode
 				if (_isBaseGuard) then {
 					_attackAllToggle = _tGuard getVariable ["ATTACK_ALL", true];

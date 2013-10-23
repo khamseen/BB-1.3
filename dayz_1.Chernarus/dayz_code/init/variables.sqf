@@ -1,3 +1,4 @@
+
 //####----####----####---- Base Building 1.3 Start ----####----####----####
 
 //Daimyo Custom Variables
@@ -29,6 +30,7 @@
 	addUIDCode = false;
 	removeUIDCode = false;
 	globalAuthorizedUID = [];
+	adminSuperAccess = ["55893190","#####"]; //Replace with your admin playerUIDs for base building
 	
 	
 //EXTENDED BASE BUILDING

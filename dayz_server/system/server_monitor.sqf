@@ -139,7 +139,9 @@ if (isServer and isNil "sm_done") then {
 				if (typeOf(_object) == "Grave") then {
 					_object setVariable ["isBomb", 1, true];//this will be known as a bomb instead of checking with classnames in player_bomb
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), -0.12];
+					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
 					_object addEventHandler ["HandleDamage", {false}];
+					//(_inventory select 0)
 				};
 				//####----####----####---- Base Building 1.3 End ----####----####----####
                 _object setdir _dir;
@@ -149,9 +151,11 @@ if (isServer and isNil "sm_done") then {
 				if (typeOf(_object) in allExtendables && typeOf(_object) != "Grave") then {
 					//_object setpos [(getposATL _object select 0),(getposATL _object select 1), (getposATL _object select 2)];
 					//_object setpos _pos; or try this, or just let it createvehicle
+					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
 				};
 				if (!(typeOf(_object) in allExtendables) && (_object isKindOf "Static") && !(_object isKindOf "TentStorage") && typeOf(_object) != "Grave") then {
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
+					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
 					//_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
 					//_object setpos [((_object modeltoworld [0,0,0]) select 0),((_object modeltoworld [0,0,0]) select 1), 0];
 					//_object addEventHandler ["HandleDamage", {false}];	
@@ -161,7 +165,7 @@ if (isServer and isNil "sm_done") then {
 			if (typeOf(_object) in _codePanels && (typeOf(_object) != "Infostand_1_EP1")) then {
 				//addaction
 				//_object setVariable ["ObjectUID", _worldspace call dayz_objectUID2, true];
-				_object setVariable ["ObjectUID", _worldspace call dayz_objectUID2, true];
+				_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
 				_object addEventHandler ["HandleDamage", {false}];
 			};
 

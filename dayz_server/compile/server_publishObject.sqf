@@ -41,6 +41,13 @@ if (_object isKindOf "TrapItems") then {
 //diag_log ("HIVE: WRITE: "+ str(_key));
 _key call server_hiveWrite;
 
+if (typeOf(_object) in allbuildables_class) then { //Forces the variable to be updated so server doesn't need to be restarted to allow interaction
+	_updatedAuthorizedUID = ([[_uid],_inventory]);
+	//diag_log ("Publishing, what's going to be written OUID," + str(_uid));
+	//diag_log ("Publishing, what's going to be written PUID," + str(_inventory));
+	//diag_log ("Publishing, what's going to be written whole UID," + str(_updatedAuthorizedUID));
+	_object setVariable ["AuthorizedUID", _updatedAuthorizedUID, true]; //sets variable with full useable array
+};
 _object setVariable ["ObjectUID", _uid,true];
 
 if (_object isKindOf "TentStorage" || _object isKindOf "CamoNet_DZ") then {

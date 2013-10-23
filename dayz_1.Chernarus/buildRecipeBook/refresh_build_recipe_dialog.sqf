@@ -1,4 +1,4 @@
-ï»¿_recipe = allBuildables select currentBuildRecipe;
+_recipe = allBuildables select currentBuildRecipe;
 
 _requeriments = [];
 _classname = "";

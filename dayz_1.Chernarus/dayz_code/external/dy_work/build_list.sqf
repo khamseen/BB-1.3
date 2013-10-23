@@ -9,76 +9,76 @@ Check comments below for more info on parameters
 private["_isDestructable", "_isSimulated","_disableSims","_objectSims","_objectSim","_requirements","_attachCoords","_isStructure","_structure","_startPos","_modDir","_toolBox","_eTool","_wallType","_medWait","_inBuilding","_longWait","_roadAllowed","_removable","_buildlist","_build_townsrestrict","_isSimulated","_isDestructable","_requireFlag","_inTown"];
 // Count is 34
 // Info on Parameters (Copy and Paste to add more recipes and their requirments!):
-//[TankTrap, SandBags, Wires, Logs, Scrap Metal, Grenades], "Classname", [_attachCoords, _startPos, _modDir, _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
+//[TankTrap, SandBags, Wires, Logs, Scrap Metal, Grenades, scrapelectronics, crate, camonets, bricks, string, duct tape], "Classname", [_attachCoords, _startPos, _modDir, _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
 									//[_attachCoords, _startPos, _modDir, _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag, _isExtendable];
 _buildlist = [
-[[0, 1, 0, 0, 1, 1], "Grave", 						[[0,2.5,.1],[0,2,0], 	0, 	true, true, true, false, true, true, true, false, false, false, false, false]],//Booby Traps --1
-[[2, 0, 0, 3, 1, 0], "Concrete_Wall_EP1", 			[[0,5,1.75],[0,2,0], 	0, 	true, false, true, false, true, true, false, false, false, false, false, true]],//Gate Concrete Wall --2
-[[1, 0, 1, 0, 1, 0], "Infostand_2_EP1",				[[0,2.5,.6],[0,2,0], 	0, 	true, false, true, false, true, false, false, false, false, false, false, true]],//Gate Panel w/ KeyPad --3
-[[3, 3, 2, 2, 0, 0], "WarfareBDepot",				[[0,18,2], 	[0,15,0], 	90, true, true, false, true, false, false, false, false, true, false, false, true]],//WarfareBDepot --4
-[[4, 1, 2, 2, 0, 0], "Base_WarfareBBarrier10xTall", [[0,10,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, false, false, false, false, true]],//Base_WarfareBBarrier10xTall --5 
-[[2, 1, 2, 1, 0, 0], "WarfareBCamp",				[[0,12,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, false, true, false, false, true]],//WarfareBCamp --6
-[[2, 1, 1, 1, 0, 0], "Base_WarfareBBarrier10x", 	[[0,10,.6], [0,10,0], 	0, 	true, true, false, true, false, false, false, false, false, false, false, true]],//Base_WarfareBBarrier10x --7
-[[2, 2, 0, 2, 0, 0], "Land_fortified_nest_big", 	[[0,12,1], 	[2,8,0], 	180,true, true, false, true, false, false, false, false, true, false, false, true]],//Land_fortified_nest_big --8
-[[2, 1, 2, 2, 0, 0], "Land_Fort_Watchtower",		[[0,10,2.2],[0,8,0], 	90, true, true, false, true, false, false, false, false, true, false, false, true]],//Land_Fort_Watchtower --9
-[[1, 3, 0, 2, 0, 0], "Land_fort_rampart_EP1", 		[[0,7,.2], 	[0,8,0], 	0, 	true, true, false, true, true, false, false, true, false, false, false, true]],//Land_fort_rampart_EP1 --10
-[[2, 1, 1, 0, 0, 0], "Land_HBarrier_large", 		[[0,7,1], 	[0,4,0], 	0, 	true, true, true, false, true, false, false, false, false, false, false, false]],//Land_HBarrier_large --11
-[[2, 1, 0, 1, 0, 0], "Land_fortified_nest_small",	[[0,7,1], 	[0,3,0], 	90, true, true, true, false, true, false, false, false, true, false, false, false]],//Land_fortified_nest_small --12
-[[0, 1, 1, 0, 0, 0], "Land_BagFenceRound",			[[0,4,.5], 	[0,2,0], 	180,true, true, false, false, true, false, false, true, false, false, false, false]],//Land_BagFenceRound --13
-[[0, 1, 0, 0, 0, 0], "Land_fort_bagfence_long", 	[[0,4,.3], 	[0,2,0], 	0, 	true, true, false, false, true, false, false, true, false, false, false, false]],//Land_fort_bagfence_long --14
-[[6, 0, 0, 0, 2, 0], "Land_Misc_Cargo2E",			[[0,7,2.6], [0,5,0], 	90, true, false, false, true, true, false, false, false, false, false, false, true]],//Land_Misc_Cargo2E --15
-[[5, 0, 0, 0, 1, 0], "Misc_Cargo1Bo_military",		[[0,7,1.3], [0,5,0], 	90, true, false, false, true, true, false, false, false, false, false, false, true]],//Misc_Cargo1Bo_military --16
-[[3, 0, 0, 0, 1, 0], "Ins_WarfareBContructionSite",	[[0,7,1.3], [0,5,0], 	90, true, false, false, true, true, false, false, false, false, false, false, true]],//Ins_WarfareBContructionSite --17
-[[1, 1, 0, 2, 1, 0], "Land_pumpa",					[[0,3,.4], 	[0,3,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, false]],//Land_pumpa --18
-[[1, 0, 0, 0, 0, 0], "Land_CncBlock",				[[0,3,.4], 	[0,2,0], 	0, 	true, false, false, false, true, true, true, true, false, false, false, false]],//Land_CncBlock --19
-[[2, 0, 0, 0, 1, 0], "Hhedgehog_concrete",			[[0,5,.6], 	[0,4,0], 	0, 	true, true, false, true, false, true, false, false, false, false, false, false]],//Hhedgehog_concrete --20
-[[1, 0, 0, 0, 2, 0], "Misc_cargo_cont_small_EP1",	[[0,5,1.3], [0,4,0], 	90, true, false, false, false, true, false, false, true, false, false, false, false]],//Misc_cargo_cont_small_EP1 --21
-[[1, 0, 0, 2, 0, 0], "Land_prebehlavka",			[[0,6,.7], 	[0,3,0], 	90, true, false, false, false, true, false, false, true, false, true, true, true]],//Land_prebehlavka(Ramp) --22
-[[2, 0, 0, 0, 0, 0], "Fence_corrugated_plate",		[[0,4,.6], 	[0,3,0], 	0,	true, true, true, false, true, false, false, false, false, false, false, true]],//Fence_corrugated_plate --23
-[[2, 0, 1, 0, 0, 0], "ZavoraAnim", 					[[0,5,4.0], [0,5,0], 	0, 	true, false, false, false, false, true, false, true, false, true, true, false]],//ZavoraAnim --24
-[[0, 0, 3, 1, 1, 0], "Land_tent_east", 				[[0,8,1.7], [0,6,0], 	0, 	true, false, false, true, false, false, false, false, true, true, true, false]],//Land_tent_east --25
-[[0, 0, 6, 0, 1, 0], "Land_CamoNetB_EAST",			[[0,10,2], 	[0,10,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_CamoNetB_EAST --26
-[[0, 0, 5, 0, 1, 0], "Land_CamoNetB_NATO", 			[[0,10,2], 	[0,10,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_CamoNetB_NATO --27
-[[0, 0, 4, 0, 1, 0], "Land_CamoNetVar_EAST",		[[0,10,1.2],[0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, true]],//Land_CamoNetVar_EAST --28
-[[0, 0, 3, 0, 1, 0], "Land_CamoNetVar_NATO", 		[[0,10,1.2],[0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, true]],//Land_CamoNetVar_NATO --29
-[[0, 0, 2, 0, 1, 0], "Land_CamoNet_EAST",			[[0,8,1.2], [0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, false]],//Land_CamoNet_EAST --30
-[[0, 0, 1, 0, 1, 0], "Land_CamoNet_NATO",			[[0,8,1.2], [0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, false]],//Land_CamoNet_NATO --31
-[[0, 0, 2, 2, 0, 0], "Fence_Ind_long",				[[0,5,.6], 	[-4,1.5,0], 0, 	true, false, true, false, true, false, false, true, false, true, true, false]], //Fence_Ind_long --32
-[[0, 0, 2, 0, 0, 0], "Fort_RazorWire",				[[0,5,.8], 	[0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, false]],//Fort_RazorWire --33
-[[0, 0, 1, 0, 0, 0], "Fence_Ind",  					[[0,4,.7], 	[0,2,0], 	0, 	true, false, false, false, true, false, true, true, false, true, true, false]], //Fence_Ind 	
-[[2, 1, 2, 2, 1, 0], "Land_sara_hasic_zbroj",  		[[0,10,1], 	[0,12,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_sara_hasic_zbroj
-[[2, 1, 1, 1, 1, 0], "Land_Shed_wooden",  			[[0,8,1], 	[0,10,0], 	0, 	true, true, true, true, true, false, false, false, true, false, false, true]], //Land_Shed_wooden 	
-[[2, 1, 0, 3, 1, 0], "Land_Barrack2",  				[[0,10,1], 	[0,12,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_Barrack2 
-[[2, 0, 0, 0, 2, 0], "Land_vez",  					[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, true, false, false, false, true, false, false, true]], //Land_vez 	--38
-[[3, 0, 1, 0, 2, 0], "FlagCarrierUSA",  			[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, false]], //FlagCarrierUSA 	--39 
-[[4, 1, 1, 0, 2, 0], "Land_A_Minaret_Porto_EP1",  	[[0,10,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, false, true, false, false, true]], //40 Land_A_Minaret_Porto_EP1
-[[4, 0, 0, 0, 2, 0], "Land_Ind_Shed_01_main",  		[[0,10,1], 	[0,10,0], 	0, 	true, false, false, true, true, false, false, true, false, false, false, true]], //Land_Ind_Shed_01_main --41
-[[1, 0, 0, 0, 1, 0], "Land_Fire_barrel",  			[[0,3,0.6], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, true]], //Land_Fire_barrel 	--42 
-[[0, 1, 0, 2, 0, 0], "Land_WoodenRamp",  			[[0,5,0.4], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, false, false, true]], //Land_WoodenRamp 	--43 
-[[9, 0, 3, 0, 0, 0], "Land_House_C_4_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_4_EP1 	--44 
-[[6, 2, 2, 1, 0, 0], "Land_House_C_11_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_11_EP1 	--45 
-[[9, 1, 2, 0, 0, 0], "Land_House_K_6_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_6_EP1 	--46 
-[[6, 1, 3, 1, 0, 0], "Land_House_K_7_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_7_EP1 	--47 
-[[7, 2, 3, 0, 0, 0], "Land_House_C_9_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_9_EP1 	--48 
-[[10, 0, 2, 0, 0, 0], "Land_House_C_10_EP1",  		[[0,25,2], [0,25,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_10_EP1 	--49 
-[[6, 3, 1, 1, 0, 0], "Land_House_C_12_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_12_EP1 	--50 
-[[5, 2, 3, 1, 0, 0], "Land_House_C_5_V3_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_5_V3_EP1 	--51 
-[[10, 1, 1, 0, 0, 0], "Land_House_C_3_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_3_EP1 	--52 
-[[4, 2, 1, 1, 1, 0], "Land_House_L_4_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_4_EP1 	--53 
-[[3, 3, 1, 1, 1, 0], "Land_House_L_6_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_6_EP1 	--54 
-[[3, 2, 3, 2, 0, 0], "Land_House_L_7_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_7_EP1 	--55 
-[[5, 3, 2, 1, 0, 0], "Land_House_L_8_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_8_EP1 	--56 
-[[2, 1, 1, 4, 0, 0], "Land_House_L_1_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_1_EP1 	--57 
-[[4, 1, 2, 1, 1, 0], "Land_House_C_5_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_5_EP1 	--58 
-[[8, 2, 2, 0, 0, 0], "Land_House_C_2_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_2_EP1 	--59 
-[[5, 1, 0, 0, 2, 0], "Land_ConcreteRamp",  			[[0,12,0.5],[0,12,0], 	0, 	true, true, true, true, false, true, false, true, false, false, false, true]], //Land_ConcreteRamp 	--60 
-[[3, 1, 0, 0, 1, 0], "RampConcrete",  				[[0,10,0.5],[0,10,0], 	0, 	true, true, true, false, false, true, false, true, false, false, false, true]], //RampConcrete 	--61
-[[0, 1, 0, 3, 0, 0], "HeliH",  						[[0,8,0.5], [0,8,0], 	0, 	false, false, false, false, true, false, false, false, false, true, false, true]], //HeliH 	--62 
-[[0, 1, 0, 1, 0, 0], "HeliHCivil",  				[[0,8,0.5], [0,8,0], 	0, 	false, false, false, false, true, false, false, false, false, true, false, true]], //HeliHCivil 	--63 
-[[1, 0, 0, 4, 0, 0], "Land_Campfire",  				[[0,5,0.5], [0,5,0], 	0, 	false, false, false, false, true, false, true, true, false, false, false, false]], //Land_Campfire 	--64 
-[[3, 0, 0, 0, 2, 0], "Land_ladder",  				[[0,5,0.8], [0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder 	--65 
-[[4, 0, 0, 0, 1, 0], "Land_ladder_half",  			[[0,5,1], 	[0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder_half 	--66 
-[[3, 0, 1, 2, 1, 0], "Land_Misc_Scaffolding",  		[[0,12,0.5],[0,12,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding 	--67 *** Remember that the last element in array does not get comma ***
+[[1, 0, 1, 0, 2, 0, 1, 0, 0, 0, 1, 1], "FlagCarrierUSA",  			[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, false]], //FlagCarrierUSA 	--39 
+[[0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0], "Grave", 						[[0,2.5,.1],[0,2,0], 	0, 	true, true, true, false, true, true, true, false, false, false, false, false]],//Booby Traps --1
+[[2, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0], "Concrete_Wall_EP1", 			[[0,5,1.75],[0,2,0], 	0, 	true, false, true, false, true, true, false, false, false, false, false, true]],//Gate Concrete Wall --2
+[[0, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 1], "Infostand_2_EP1",				[[0,2.5,.6],[0,2,0], 	0, 	true, false, true, false, true, false, false, false, false, false, false, true]],//Gate Panel w/ KeyPad --3
+[[3, 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "WarfareBDepot",				[[0,18,2], 	[0,15,0], 	90, true, true, false, true, false, false, false, false, true, false, false, true]],//WarfareBDepot --4
+[[4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Base_WarfareBBarrier10xTall", [[0,10,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, false, false, false, false, true]],//Base_WarfareBBarrier10xTall --5 
+[[2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "WarfareBCamp",				[[0,12,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, false, true, false, false, true]],//WarfareBCamp --6
+[[2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Base_WarfareBBarrier10x", 	[[0,10,.6], [0,10,0], 	0, 	true, true, false, true, false, false, false, false, false, false, false, true]],//Base_WarfareBBarrier10x --7
+[[2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fortified_nest_big", 	[[0,12,1], 	[2,8,0], 	180,true, true, false, true, false, false, false, false, true, false, false, true]],//Land_fortified_nest_big --8
+[[2, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_Fort_Watchtower",		[[0,10,2.2],[0,8,0], 	90, true, true, false, true, false, false, false, false, true, false, false, true]],//Land_Fort_Watchtower --9
+[[1, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fort_rampart_EP1", 		[[0,7,.2], 	[0,8,0], 	0, 	true, true, false, true, true, false, false, true, false, false, false, true]],//Land_fort_rampart_EP1 --10
+[[2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_HBarrier_large", 		[[0,7,1], 	[0,4,0], 	0, 	true, true, true, false, true, false, false, false, false, false, false, false]],//Land_HBarrier_large --11
+[[2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fortified_nest_small",	[[0,7,1], 	[0,3,0], 	90, true, true, true, false, true, false, false, false, true, false, false, false]],//Land_fortified_nest_small --12
+[[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_BagFenceRound",			[[0,4,.5], 	[0,2,0], 	180,true, true, false, false, true, false, false, true, false, false, false, false]],//Land_BagFenceRound --13
+[[0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fort_bagfence_long", 	[[0,4,.3], 	[0,2,0], 	0, 	true, true, false, false, true, false, false, true, false, false, false, false]],//Land_fort_bagfence_long --14
+[[6, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_Misc_Cargo2E",			[[0,7,2.6], [0,5,0], 	90, true, false, false, true, true, false, false, false, false, false, false, true]],//Land_Misc_Cargo2E --15
+[[5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Misc_Cargo1Bo_military",		[[0,7,1.3], [0,5,0], 	90, true, false, false, true, true, false, false, false, false, false, false, true]],//Misc_Cargo1Bo_military --16
+[[3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Ins_WarfareBContructionSite",	[[0,7,1.3], [0,5,0], 	90, true, false, false, true, true, false, false, false, false, false, false, true]],//Ins_WarfareBContructionSite --17
+[[1, 1, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0], "Land_pumpa",					[[0,3,.4], 	[0,3,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, false]],//Land_pumpa --18
+[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_CncBlock",				[[0,3,.4], 	[0,2,0], 	0, 	true, false, false, false, true, true, true, true, false, false, false, false]],//Land_CncBlock --19
+[[2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Hhedgehog_concrete",			[[0,5,.6], 	[0,4,0], 	0, 	true, true, false, true, false, true, false, false, false, false, false, false]],//Hhedgehog_concrete --20
+[[1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Misc_cargo_cont_small_EP1",	[[0,5,1.3], [0,4,0], 	90, true, false, false, false, true, false, false, true, false, false, false, false]],//Misc_cargo_cont_small_EP1 --21
+[[1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_prebehlavka",			[[0,6,.7], 	[0,3,0], 	90, true, false, false, false, true, false, false, true, false, true, true, true]],//Land_prebehlavka(Ramp) --22
+[[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_corrugated_plate",		[[0,4,.6], 	[0,3,0], 	0,	true, true, true, false, true, false, false, false, false, false, false, true]],//Fence_corrugated_plate --23
+[[2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ZavoraAnim", 					[[0,5,4.0], [0,5,0], 	0, 	true, false, false, false, false, true, false, true, false, true, true, false]],//ZavoraAnim --24
+[[0, 0, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0], "Land_tent_east", 				[[0,8,1.7], [0,6,0], 	0, 	true, false, false, true, false, false, false, false, true, true, true, false]],//Land_tent_east --25
+[[0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0], "Land_CamoNetB_EAST",			[[0,10,2], 	[0,10,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_CamoNetB_EAST --26
+[[0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0], "Land_CamoNetB_NATO", 			[[0,10,2], 	[0,10,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_CamoNetB_NATO --27
+[[0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0], "Land_CamoNetVar_EAST",		[[0,10,1.2],[0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, true]],//Land_CamoNetVar_EAST --28
+[[0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0], "Land_CamoNetVar_NATO", 		[[0,10,1.2],[0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, true]],//Land_CamoNetVar_NATO --29
+[[0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0], "Land_CamoNet_EAST",			[[0,8,1.2], [0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, false]],//Land_CamoNet_EAST --30
+[[0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0], "Land_CamoNet_NATO",			[[0,8,1.2], [0,7,0], 	0, 	true, false, true, false, false, false, false, true, false, true, true, false]],//Land_CamoNet_NATO --31
+[[0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_Ind_long",				[[0,5,.6], 	[-4,1.5,0], 0, 	true, false, true, false, true, false, false, true, false, true, true, false]], //Fence_Ind_long --32
+[[0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fort_RazorWire",				[[0,5,.8], 	[0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, false]],//Fort_RazorWire --33
+[[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_Ind",  					[[0,4,.7], 	[0,2,0], 	0, 	true, false, false, false, true, false, true, true, false, true, true, false]], //Fence_Ind 	
+[[2, 1, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0], "Land_sara_hasic_zbroj",  		[[0,10,1], 	[0,12,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_sara_hasic_zbroj
+[[2, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 1], "Land_Shed_wooden",  			[[0,8,1], 	[0,10,0], 	0, 	true, true, true, true, true, false, false, false, true, false, false, true]], //Land_Shed_wooden 	
+[[1, 1, 1, 0, 0, 0, 0, 0, 1, 3, 1, 0], "Land_Barrack2",  				[[0,10,1], 	[0,12,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_Barrack2 
+[[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1], "Land_vez",  					[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, true, false, false, false, true, false, false, true]], //Land_vez 	--38
+//Part of me wishes I could add this one but it would be too crazy knowing my server
+//[[4, 1, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_A_Minaret_Porto_EP1",  	[[0,10,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, false, true, false, false, true]], //40 Land_A_Minaret_Porto_EP1
+[[4, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_Ind_Shed_01_main",  		[[0,10,1], 	[0,10,0], 	0, 	true, false, false, true, true, false, false, true, false, false, false, true]], //Land_Ind_Shed_01_main --41
+[[1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0], "Land_Fire_barrel",  			[[0,3,0.6], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, true]], //Land_Fire_barrel 	--42 
+[[0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_WoodenRamp",  			[[0,5,0.4], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, false, false, true]], //Land_WoodenRamp 	--43 
+//[[6, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_11_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_11_EP1 	--45 
+//[[9, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_K_6_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_6_EP1 	--46 
+//[[6, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_K_7_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_7_EP1 	--47 
+//[[7, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_9_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_9_EP1 	--48 
+//[[10, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_10_EP1",  		[[0,25,2], [0,25,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_10_EP1 	--49 
+//[[6, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_12_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_12_EP1 	--50 
+//[[5, 2, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_5_V3_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_5_V3_EP1 	--51 
+//[[10, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_3_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_3_EP1 	--52 
+//[[4, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0], "Land_House_L_4_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_4_EP1 	--53 
+//[[3, 3, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0], "Land_House_L_6_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_6_EP1 	--54 
+//[[3, 2, 3, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_L_7_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_7_EP1 	--55 
+//[[5, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_L_8_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_8_EP1 	--56 
+[[1, 1, 1, 1, 0, 0, 0, 1, 0, 4, 1, 1], "Land_House_L_1_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_L_1_EP1 	--57 
+//[[4, 1, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_5_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_5_EP1 	--58 
+//[[8, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_2_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_2_EP1 	--59 
+[[5, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_ConcreteRamp",  			[[0,12,0.5],[0,12,0], 	0, 	true, true, true, true, false, true, false, true, false, false, false, true]], //Land_ConcreteRamp 	--60 
+[[3, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "RampConcrete",  				[[0,10,0.5],[0,10,0], 	0, 	true, true, true, false, false, true, false, true, false, false, false, true]], //RampConcrete 	--61
+[[0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0], "HeliH",  						[[0,8,0.5], [0,8,0], 	0, 	false, false, false, false, true, false, false, false, false, true, false, true]], //HeliH 	--62 
+[[0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], "HeliHCivil",  				[[0,8,0.5], [0,8,0], 	0, 	false, false, false, false, true, false, false, false, false, true, false, true]], //HeliHCivil 	--63 
+[[1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0], "Land_Campfire",  				[[0,5,0.5], [0,5,0], 	0, 	false, false, false, false, true, false, true, true, false, false, false, false]], //Land_Campfire 	--64 
+[[3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_ladder",  				[[0,5,0.8], [0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder 	--65 
+[[4, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Land_ladder_half",  			[[0,5,1], 	[0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder_half 	--66 
+[[3, 0, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0], "Land_Misc_Scaffolding",  		[[0,12,0.5],[0,12,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding 	--67 *** Remember that the last element in array does not get comma ***
 ];																	// _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
 
 

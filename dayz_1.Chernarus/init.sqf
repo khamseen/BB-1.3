@@ -135,6 +135,6 @@ if (!isNil "dayZ_serverName") then {
 };
 
 if (dayz_REsec == 1) then {
-#include "\z\addons\dayz_code\system\REsec.sqf"
+#include "REsec\REsec.sqf"
 };
 

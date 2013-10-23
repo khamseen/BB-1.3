@@ -1,4 +1,4 @@
-private["_playerPos","_adminRemoval","_authorizedGateCodes","_authorizedUID","_playerNearby","_func_ownerRemove","_qtyS","_qtyW","_qtyL","_qtyM","_qtyG","_qtyT","_removable","_eTool","_result","_building","_dialog","_classname","_requirements","_objectID","_objectUID","_obj","_cnt","_id","_tblProb","_locationPlayer","_randNum2","_smallWloop","_medWloop","_longWloop","_wait","_longWait","_medWait","_highP","_medP","_lowP","_failRemove","_canRemove","_randNum","_text","_dir","_pos","_isWater","_inVehicle","_onLadder","_hasToolbox","_canDo","_hasEtool"];
+private["_playerPos","_adminRemoval","_authorizedGateCodes","_authorizedUID","_authorizedOUID","_authorizedPUID","_playerNearby","_func_ownerRemove","_qtyS","_qtyW","_qtyL","_qtyM","_qtyG","_qtyT","_removable","_eTool","_result","_building","_dialog","_classname","_requirements","_objectID","_objectUID","_obj","_cnt","_id","_tblProb","_locationPlayer","_randNum2","_smallWloop","_medWloop","_longWloop","_wait","_longWait","_medWait","_highP","_medP","_lowP","_failRemove","_canRemove","_randNum","_text","_dir","_pos","_isWater","_inVehicle","_onLadder","_hasToolbox","_canDo","_hasEtool"];
 disableserialization;
 player removeAction s_player_deleteCamoNet;
 s_player_deleteCamoNet = -1;
@@ -16,7 +16,8 @@ cutText [format["You can only disarm %1 to remove it",_text], "PLAIN DOWN",1];re
 // Get ObjectID or UID
 if (!isNull _obj) then {
 _objectID = _obj getVariable["ObjectID","0"];
-_objectUID = _obj getVariable["ObjectUID","0"];
+_authorizedUID = _obj getVariable ["AuthorizedUID", []]; //Retrieve the object's stored array
+_authorizedOUID = (_authorizedUID select 0) select 0; //Get the objectUID from the array so it doesn't miscalculate
 };
 // Anti dupe 
 _playerNearby = (nearestObjects [player, ["AllPlayers","CAManBase"], 12] select 0);
@@ -38,7 +39,8 @@ _hasToolbox 	= 	"ItemToolbox" in items player;
 _canDo 			= (!r_drag_sqf and !r_player_unconscious and !_onLadder); //USE!!
 _hasEtool 		= 	"ItemEtool" in weapons player;
 _authorizedUID = _obj getVariable ["AuthorizedUID", []];
-_authorizedGateCodes = ((getPlayerUid player) in _authorizedUID);
+_authorizedPUID = _authorizedUID select 1; //Defines only the second element of the array which contains playerUIDs
+_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
 _adminRemoval = ((getPlayerUID player) in adminSuperAccess);	
 	
 //Booleans
@@ -111,7 +113,7 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 		for "_i" from 1 to _qtyG do { _result = [player,"HandGrenade_west"] call BIS_fnc_invAdd;  };
 	};
 	cutText [format["Owner refunded for object %1",typeof(_obj)], "PLAIN DOWN",1];
-		PVDZ_obj_Delete = [_objectID,_objectUID];
+		PVDZ_obj_Delete = [_objectID,_authorizedOUID];
 	publicVariableServer "PVDZ_obj_Delete";
 	if (isServer) then { 
 		PVDZ_obj_Delete call server_deleteObj; 
@@ -138,7 +140,8 @@ if (_adminRemoval) then {
 
 //Owner ID or PlayerUID removal
 _playerPos = getPosATL player;
-if ( _ownerID == dayz_characterID || _authorizedGateCodes && typeof(_obj) != "FlagCarrierUSA") then { 
+//if ( _ownerID == dayz_characterID || _authorizedGateCodes && typeof(_obj) != "FlagCarrierUSA") then { 
+if (_authorizedGateCodes && typeof(_obj) != "FlagCarrierUSA") then { 
 	_cnt = 5;
 	while {true} do {
 		cutText [format["Removing object %1 in %2 seconds.\nMove position to cancel",typeOf(_obj), _cnt], "PLAIN DOWN",1];
@@ -153,7 +156,8 @@ if ( _ownerID == dayz_characterID || _authorizedGateCodes && typeof(_obj) != "Fl
 	};
 };
 // Flag removal special
-if (typeOf(_obj) == "FlagCarrierUSA" && (_ownerID == dayz_characterID || _authorizedGateCodes)) then {
+//if (typeOf(_obj) == "FlagCarrierUSA" && (_ownerID == dayz_characterID || _authorizedGateCodes)) then {
+if (typeOf(_obj) == "FlagCarrierUSA" && (_authorizedGateCodes)) then {
 	_baseObjects = nearestObjects [_obj, ["allbuildables_class"],  200];
 	if (count _baseObjects > 0) then {
 		cutText [format["You need to remove all existing base objects in %1 meters in order to move your base and delete your bases flagpole",_flagRaduis], "PLAIN DOWN",1];
@@ -373,7 +377,7 @@ switch (true) do
 //Player removes object successfully
 if (!isNull _obj) then {
 cutText [format["You removed a %1 successfully!",_text], "PLAIN DOWN"];
-	PVDZ_obj_Delete = [_objectID,_objectUID];
+	PVDZ_obj_Delete = [_objectID,_authorizedOUID];
 	publicVariableServer "PVDZ_obj_Delete";
 if (isServer) then { 
 	PVDZ_obj_Delete call server_deleteObj; 

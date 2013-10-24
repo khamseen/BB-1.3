@@ -1,0 +1,33 @@
+Things to Do
+
+//enterCodeAdd.sqf
+Change the Hint window to something more appealing
+
+//enterCodeRemove.sqf
+Change the Hint window to something more appealing
+
+//add_UIDCode.sqf
+Change the Hint window to something more appealing
+
+//remove_UIDCode.sqf
+Change the Hint window to something more appealing
+
+//give_gateAccess.sqf
+Change the Hint window to something more appealing
+
+//Keybinds
+Look at different ways of implementing keybinds, hopefully we can find a way to do it without having to include every dayz version specific keybind from compiles. 
+
+//Player_build2.sqf
+May not need seperate sections for building placement section?
+Loop the animation so people are aware they are still building.
+
+//player_build.sqf
+Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets. 
+
+//Sarge AI
+Test with new array system to make sure it still works as intended
+Setup a master variable to enable/disable all AI functionality and control options
+
+//fn_selfActions.sqf
+Revise some of the options so they are neater

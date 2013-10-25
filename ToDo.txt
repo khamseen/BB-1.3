@@ -1,26 +1,35 @@
 Things to Do
 
+//-------------------------- DONE --------------------------
 //enterCodeAdd.sqf
-Change the Hint window to something more appealing
+Change the Hint window to something more appealing (Done)
 
 //enterCodeRemove.sqf
-Change the Hint window to something more appealing
+Change the Hint window to something more appealing (Done)
 
 //add_UIDCode.sqf
-Change the Hint window to something more appealing
+Change the Hint window to something more appealing (Done)
 
 //remove_UIDCode.sqf
-Change the Hint window to something more appealing
+Change the Hint window to something more appealing (Done)
 
 //give_gateAccess.sqf
-Change the Hint window to something more appealing
+Change the Hint window to something more appealing (Done)
+
+//Player_build2.sqf
+May not need seperate sections for building placement section? (Done)
+Loop the animation so people are aware they are still building. (Done)
+
+//fn_selfActions.sqf
+Revise some of the options so they are neater (Done)
+
+//Flag change
+Change flag to something less specific, since we're not all American (Done)
+
+//----------------------- Still Need Looked At --------------------
 
 //Keybinds
 Look at different ways of implementing keybinds, hopefully we can find a way to do it without having to include every dayz version specific keybind from compiles. 
-
-//Player_build2.sqf
-May not need seperate sections for building placement section?
-Loop the animation so people are aware they are still building.
 
 //player_build.sqf
 Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets. 
@@ -28,9 +37,3 @@ Stop people being able to build standard tank traps, sand bag walls, wire fences
 //Sarge AI
 Test with new array system to make sure it still works as intended
 Setup a master variable to enable/disable all AI functionality and control options
-
-//fn_selfActions.sqf
-Revise some of the options so they are neater
-
-//Flag change
-have flag calls taken from a variable, which can be changed in variable.sqf to easily allow servers to change flag type. 

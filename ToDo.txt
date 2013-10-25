@@ -31,3 +31,6 @@ Setup a master variable to enable/disable all AI functionality and control optio
 
 //fn_selfActions.sqf
 Revise some of the options so they are neater
+
+//Flag change
+have flag calls taken from a variable, which can be changed in variable.sqf to easily allow servers to change flag type. 

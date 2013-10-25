@@ -9,20 +9,26 @@ private ["_cntBases","_isOk","_allFlags","_panel","_convertInput","_authorizedPU
 	if ((toString _convertInput) in _authorizedPUID) exitWith 
 	{
 		CODEINPUT = [];
-		cuttext [format["PlayerUID %1 already in\nobject %2\n with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)],"PLAIN DOWN",1];
-		hint format["PlayerUID %1 already in\nobject %2\n with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)];
+		//cuttext [format["PlayerUID %1 already in\nobject %2\n with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)],"PLAIN DOWN",1];
+		//hint format["PlayerUID %1 already in\nobject %2\n with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)];
+		hintsilent parseText format ["
+		<t align='center' color='#FF0000'>ERROR</t><br/><br/>
+		<t align='center'>Player UID %1 already has access to object</t><br/>
+		<t align='center'>%2</t><br/><br/>
+		<t align='left'>Object UID:</t>	<t align='right'>%3</t><br/>
+		",(toString _convertInput), typeOf(_panel), str(keyCode)];
 	};
 	_cntBases = 0;
-	_allFlags = nearestObjects [player, ["FlagCarrierUSA"], 24000];
+	_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 24000];
 	{
-		if (typeOf(_x) == "FlagCarrierUSA") then {
+		if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 			_authorizedUID = _x getVariable ["AuthorizedUID", []];
 			_authorizedOUID = _authorizedUID select 0;
 			_authorizedPUID = _authorizedUID select 1;
 				//diag_log ("3 add_UIDCode flag checks whole UID" + str(_authorizedUID));
 				//diag_log ("3 add_UIDCode flag checks OUID" + str(_authorizedOUID));
 				//diag_log ("3 add_UIDCode flag checks PUID" + str(_authorizedPUID));
-			if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == "FlagCarrierUSA")) exitWith {
+			if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == "FlagCarrierBIS_EP1")) exitWith {
 				_isOk = false;
 				_cntBases = _cntBases + 1;
 			};
@@ -30,8 +36,12 @@ private ["_cntBases","_isOk","_allFlags","_panel","_convertInput","_authorizedPU
 		if (!_isOk) exitWith {};
 	} foreach _allFlags;
 	if (!_isOk && _cntBases <= 3) exitWith {
-		cuttext [format["PlayerUID %1 already used on 3 flags!", (toString _convertInput)],"PLAIN DOWN",1];
-		hint format["PlayerUID %1 already used on 3 flags!", (toString _convertInput)];
+		//cuttext [format["PlayerUID %1 already used on 3 flags!", (toString _convertInput)],"PLAIN DOWN",1];
+		//hint format["PlayerUID %1 already used on 3 flags!", (toString _convertInput)];
+		hintsilent parseText format ["
+		<t align='center' color='#FF0000'>ERROR</t><br/><br/>
+		<t align='center'>Player UID %1 already used on 3 flags!</t><br/>
+		",(toString _convertInput)];
 	};
 	_authorizedUID = _panel getVariable ["AuthorizedUID", []]; //Get's whole array stored for object
 	_authorizedOUID = _authorizedUID select 0; //Sets objectUID as first element
@@ -49,7 +59,13 @@ private ["_cntBases","_isOk","_allFlags","_panel","_convertInput","_authorizedPU
 	if (isServer) then {
 		PVDZ_veh_Save call server_updateObject;
 	};
-	hint format["PlayerUID %1 access granted to\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)];
+	//hint format["PlayerUID %1 access granted to\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)];
+	hintsilent parseText format ["
+	<t align='center' color='#00FF3C'>SUCCESS</t><br/><br/>
+	<t align='center'>Player UID %1 access granted to object</t>
+	<t align='center'>%2</t><br/><br/><br/>
+	<t align='left'>Object UID:</t>	<t align='right'>%3</t><br/>
+	",(toString _convertInput), typeOf(_panel), str(keyCode)];
 	sleep 10;
 	hint "";
 	//cuttext [format["PlayerUID %1 access granted to\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)],"PLAIN DOWN",1];

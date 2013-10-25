@@ -70,7 +70,7 @@ INSERT INTO `deployable` (`id`, `class_name`) VALUES
 (62, 'Land_Shed_wooden'),
 (63, 'Land_Barrack2'),
 (64, 'Land_vez'),
-(65, 'FlagCarrierUSA'),
+(65, 'FlagCarrierBIS_EP1'),
 (66, 'Land_A_Minaret_Porto_EP1'),
 (67, 'Land_Ind_Shed_01_main'),
 (68, 'Land_Fire_barrel'),

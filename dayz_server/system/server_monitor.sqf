@@ -161,7 +161,7 @@ if (isServer and isNil "sm_done") then {
 					//_object addEventHandler ["HandleDamage", {false}];	
 				};
 			//Set Variable
-			_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", "FlagCarrierUSA"];
+			_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", "FlagCarrierBIS_EP1"];
 			if (typeOf(_object) in _codePanels && (typeOf(_object) != "Infostand_1_EP1")) then {
 				//addaction
 				//_object setVariable ["ObjectUID", _worldspace call dayz_objectUID2, true];

@@ -20,7 +20,7 @@ class Build_Recipe_Dialog
 	      text = "";
             x = 0.29375 * safezoneW + safezoneX;
             y = 0.224947 * safezoneH + safezoneY;
-            w = 0.411042 * safezoneW;
+            w = 0.511042 * safezoneW;
             h = 0.547125 * safezoneH;
          };
     
@@ -30,14 +30,14 @@ class Build_Recipe_Dialog
             text = "Base Building Recipe Book";
             x = 0.29375 * safezoneW + safezoneX;
             y = 0.224947 * safezoneH + safezoneY;
-            w = 0.411042 * safezoneW;
+            w = 0.511042 * safezoneW;
             h = 0.547125 * safezoneH;
         };
         class ObjectImage: RscPicture
         {
             idc = 1200;
             text = "#(argb,8,8,3)color(1,1,1,1)";
-            x = 0.522981 * safezoneW + safezoneX;
+            x = 0.622981 * safezoneW + safezoneX;
             y = 0.334363 * safezoneH + safezoneY;
             w = 0.162083 * safezoneW;
             h = 0.30952 * safezoneH;
@@ -108,13 +108,81 @@ class Build_Recipe_Dialog
             h = 0.0315319 * safezoneH;
             tooltip = "Grenades";
         };
+		class ElectronicsImage: RscPicture
+        {
+            idc = 1210;
+            text = "\z\addons\dayz_communityassets\pictures\scrapelectronics.paa";
+            //text = "buildRecipeBook\images\grenade.paa";
+            x = 0.384086 * safezoneW + safezoneX;
+            y = 0.334968 * safezoneH + safezoneY;
+            w = 0.019375 * safezoneW;
+            h = 0.0315319 * safezoneH;
+            tooltip = "Scrap Electronics";
+        };
+		class CrateImage: RscPicture
+        {
+            idc = 1211;
+            text = "\z\addons\dayz_communityassets\pictures\equip_crate.paa";
+            //text = "buildRecipeBook\images\grenade.paa";
+            x = 0.384086 * safezoneW + safezoneX;
+            y = 0.389979 * safezoneH + safezoneY;
+            w = 0.019375 * safezoneW;
+            h = 0.0315319 * safezoneH;
+            tooltip = "Supply Crate";
+        };
+		class CamonetImage: RscPicture
+        {
+            idc = 1212;
+            text = "dayz_equip\textures\equip_tentbag_CA.paa";
+            //text = "buildRecipeBook\images\grenade.paa";
+            x = 0.384086 * safezoneW + safezoneX;
+            y = 0.444989 * safezoneH + safezoneY;
+            w = 0.019375 * safezoneW;
+            h = 0.0315319 * safezoneH;
+            tooltip = "CamoNet";
+        };
+		class BrickImage: RscPicture
+        {
+            idc = 1213;
+            text = "\z\addons\dayz_communityassets\pictures\equip_brick.paa";
+            //text = "buildRecipeBook\images\grenade.paa";
+            x = 0.384086 * safezoneW + safezoneX;
+            y = 0.5 * safezoneH + safezoneY;
+            w = 0.019375 * safezoneW;
+            h = 0.0315319 * safezoneH;
+            tooltip = "Brick";
+        };
+		
+		class StringImage: RscPicture
+        {
+            idc = 1214;
+            text = "\z\addons\dayz_communityassets\pictures\equip_string_ca.paa";
+            //text = "buildRecipeBook\images\grenade.paa";
+            x = 0.384086 * safezoneW + safezoneX;
+            y = 0.555011 * safezoneH + safezoneY;
+            w = 0.019375 * safezoneW;
+            h = 0.0315319 * safezoneH;
+            tooltip = "String";
+        };
+		class DuctTapeImage: RscPicture
+        {
+            idc = 1215;
+            text = "\z\addons\dayz_communityassets\pictures\equip_duct_tape.paa";
+            //text = "buildRecipeBook\images\grenade.paa";
+            x = 0.384086 * safezoneW + safezoneX;
+            y = 0.610021 * safezoneH + safezoneY;
+            w = 0.019375 * safezoneW;
+            h = 0.0315319 * safezoneH;
+            tooltip = "Duct Tape";
+        };
+		
         class ClassNameFrame: RscFrame
         {
             idc = 1801;
             text = "Materials needed:";
             x = 0.300195 * safezoneW + safezoneX;
             y = 0.29371 * safezoneH + safezoneY;
-            w = 0.398542 * safezoneW;
+            w = 0.498542 * safezoneW;
             h = 0.37526 * safezoneH;
         };
         class TankQtyText: RscText
@@ -170,7 +238,64 @@ class Build_Recipe_Dialog
             y = 0.610021 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
+        };	
+		class ElectronicsQty: RscText
+        {
+            idc = 1019;
+            text = "1";
+            x = 0.409867 * safezoneW + safezoneX;
+            y = 0.334968 * safezoneH + safezoneY;
+            w = 0.050625 * safezoneW;
+            h = 0.0277753 * safezoneH;
         };
+		class CrateQty: RscText
+        {
+            idc = 1020;
+            text = "1";
+            x = 0.409867 * safezoneW + safezoneX;
+			y = 0.389979 * safezoneH + safezoneY;         
+			w = 0.050625 * safezoneW;
+            h = 0.0277753 * safezoneH;
+        };           
+
+		class CamoNetQty: RscText
+        {
+            idc = 1021;
+            text = "1";
+            x = 0.409867 * safezoneW + safezoneX;
+            y = 0.444989 * safezoneH + safezoneY;
+            w = 0.050625 * safezoneW;
+            h = 0.0277753 * safezoneH;
+        };
+		class BrickQty: RscText
+        {
+            idc = 1022;
+            text = "1";
+            x = 0.409867 * safezoneW + safezoneX;
+            y = 0.5 * safezoneH + safezoneY;
+            w = 0.050625 * safezoneW;
+            h = 0.0277753 * safezoneH;
+        };	
+		
+		class StringQty: RscText
+        {
+            idc = 1023;
+            text = "1";
+            x = 0.409867 * safezoneW + safezoneX;
+            y = 0.555011 * safezoneH + safezoneY;
+            w = 0.050625 * safezoneW;
+            h = 0.0277753 * safezoneH;
+        };
+		class DuctTapeQty: RscText
+        {
+            idc = 1024;
+            text = "1";
+            x = 0.409867 * safezoneW + safezoneX;
+            y = 0.610021 * safezoneH + safezoneY;
+            w = 0.050625 * safezoneW;
+            h = 0.0277753 * safezoneH;
+        };	
+		
         class PrevButton: RscButton
         {
             idc = 1603;
@@ -225,7 +350,7 @@ class Build_Recipe_Dialog
         {
             idc = 1802;
             text = "Requeriments";
-            x = 0.39043 * safezoneW + safezoneX;
+            x = 0.49043 * safezoneW + safezoneX;
             y = 0.334968 * safezoneH + safezoneY;
             w = 0.12198 * safezoneW;
             h = 0.302945 * safezoneH;
@@ -235,7 +360,7 @@ class Build_Recipe_Dialog
             idc = 1207;
             text = "dayz_equip\textures\equip_toolbox_CA.paa";
             //text = "buildRecipeBook\images\toolbox.paa";
-            x = 0.409766 * safezoneW + safezoneX;
+            x = 0.509766 * safezoneW + safezoneX;
             y = 0.362474 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
@@ -246,7 +371,7 @@ class Build_Recipe_Dialog
             idc = 1208;
             text = "dayz_equip\textures\equip_etool_CA.paa";
            // text = "buildRecipeBook\images\etool.paa";
-            x = 0.409766 * safezoneW + safezoneX;
+            x = 0.509766 * safezoneW + safezoneX;
             y = 0.403732 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
@@ -256,7 +381,7 @@ class Build_Recipe_Dialog
         {
             idc = 1209;
             text = "buildRecipeBook\images\timer.paa";
-            x = 0.409766 * safezoneW + safezoneX;
+            x = 0.509766 * safezoneW + safezoneX;
             y = 0.444989 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
@@ -266,7 +391,7 @@ class Build_Recipe_Dialog
         {
             idc = 1007;
             text = "In Building:";
-            x = 0.396875 * safezoneW + safezoneX;
+            x = 0.496875 * safezoneW + safezoneX;
             y = 0.486247 * safezoneH + safezoneY;
             w = 0.0542709 * safezoneW;
             h = 0.0249579 * safezoneH;
@@ -275,7 +400,7 @@ class Build_Recipe_Dialog
         {
             idc = 1008;
             text = "On Road:";
-            x = 0.396875 * safezoneW + safezoneX;
+            x = 0.496875 * safezoneW + safezoneX;
             y = 0.513753 * safezoneH + safezoneY;
             w = 0.0542709 * safezoneW;
             h = 0.0249579 * safezoneH;
@@ -284,7 +409,7 @@ class Build_Recipe_Dialog
         {
             idc = 1009;
             text = "In Town:";
-            x = 0.396875 * safezoneW + safezoneX;
+            x = 0.496875 * safezoneW + safezoneX;
             y = 0.541258 * safezoneH + safezoneY;
             w = 0.0542709 * safezoneW;
             h = 0.0249579 * safezoneH;
@@ -293,7 +418,7 @@ class Build_Recipe_Dialog
         {
             idc = 1010;
             text = "Removable:";
-            x = 0.396875 * safezoneW + safezoneX;
+            x = 0.496875 * safezoneW + safezoneX;
             y = 0.568763 * safezoneH + safezoneY;
             w = 0.0542709 * safezoneW;
             h = 0.0249579 * safezoneH;
@@ -302,7 +427,7 @@ class Build_Recipe_Dialog
         {
             idc = 1014;
             text = "building";
-            x = 0.461328 * safezoneW + safezoneX;
+            x = 0.561328 * safezoneW + safezoneX;
             y = 0.486247 * safezoneH + safezoneY;
             w = 0.0297918 * safezoneW;
             h = 0.0221405 * safezoneH;
@@ -311,7 +436,7 @@ class Build_Recipe_Dialog
         {
             idc = 1011;
             text = "etool";
-            x = 0.461328 * safezoneW + safezoneX;
+            x = 0.561328 * safezoneW + safezoneX;
             y = 0.513753 * safezoneH + safezoneY;
             w = 0.0297918 * safezoneW;
             h = 0.0221405 * safezoneH;
@@ -320,7 +445,7 @@ class Build_Recipe_Dialog
         {
             idc = 1012;
             text = "False";
-            x = 0.461328 * safezoneW + safezoneX;
+            x = 0.561328 * safezoneW + safezoneX;
             y = 0.541258 * safezoneH + safezoneY;
             w = 0.0297918 * safezoneW;
             h = 0.0221405 * safezoneH;
@@ -329,7 +454,7 @@ class Build_Recipe_Dialog
         {
             idc = 1013;
             text = "False";
-            x = 0.461328 * safezoneW + safezoneX;
+            x = 0.561328 * safezoneW + safezoneX;
             y = 0.568763 * safezoneH + safezoneY;
             w = 0.0297918 * safezoneW;
             h = 0.0221405 * safezoneH;
@@ -338,7 +463,7 @@ class Build_Recipe_Dialog
         {
             idc = 1018;
             text = "Chance: 30% (50% lt)";
-            x = 0.397396 * safezoneW + safezoneX;
+            x = 0.497396 * safezoneW + safezoneX;
             y = 0.60002 * safezoneH + safezoneY;
             w = 0.0959376 * safezoneW;
             h = 0.0221405 * safezoneH;
@@ -348,7 +473,7 @@ class Build_Recipe_Dialog
         {
             idc = 1015;
             text = "False";
-            x = 0.461328 * safezoneW + safezoneX;
+            x = 0.561328 * safezoneW + safezoneX;
             y = 0.444989 * safezoneH + safezoneY;
             w = 0.0297918 * safezoneW;
             h = 0.0221405 * safezoneH;
@@ -357,7 +482,7 @@ class Build_Recipe_Dialog
         {
             idc = 1016;
             text = "False";
-            x = 0.461328 * safezoneW + safezoneX;
+            x = 0.561328 * safezoneW + safezoneX;
             y = 0.403732 * safezoneH + safezoneY;
             w = 0.0297918 * safezoneW;
             h = 0.0221405 * safezoneH;
@@ -366,14 +491,13 @@ class Build_Recipe_Dialog
         {
             idc = 1017;
             text = "False";
-            x = 0.461328 * safezoneW + safezoneX;
+            x = 0.561328 * safezoneW + safezoneX;
             y = 0.362474 * safezoneH + safezoneY;
             w = 0.0297918 * safezoneW;
             h = 0.0221405 * safezoneH;
         };
     };
 };
-
 
 
 

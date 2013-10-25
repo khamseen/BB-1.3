@@ -1,4 +1,4 @@
-private["_playerPos","_adminRemoval","_authorizedGateCodes","_authorizedUID","_authorizedOUID","_authorizedPUID","_playerNearby","_func_ownerRemove","_qtyS","_qtyW","_qtyL","_qtyM","_qtyG","_qtyT","_removable","_eTool","_result","_building","_dialog","_classname","_requirements","_objectID","_objectUID","_obj","_cnt","_id","_tblProb","_locationPlayer","_randNum2","_smallWloop","_medWloop","_longWloop","_wait","_longWait","_medWait","_highP","_medP","_lowP","_failRemove","_canRemove","_randNum","_text","_dir","_pos","_isWater","_inVehicle","_onLadder","_hasToolbox","_canDo","_hasEtool"];
+private["_playerPos","_adminRemoval","_authorizedGateCodes","_authorizedUID","_authorizedOUID","_authorizedPUID","_playerNearby","_func_ownerRemove","_qtyE","_qtyCr","_qtyC","_qtyB","_qtySt","_qtyDT","_qtyS","_qtyW","_qtyL","_qtyM","_qtyG","_qtyT","_removable","_eTool","_result","_building","_dialog","_classname","_requirements","_objectID","_objectUID","_obj","_cnt","_id","_tblProb","_locationPlayer","_randNum2","_smallWloop","_medWloop","_longWloop","_wait","_longWait","_medWait","_highP","_medP","_lowP","_failRemove","_canRemove","_randNum","_text","_dir","_pos","_isWater","_inVehicle","_onLadder","_hasToolbox","_canDo","_hasEtool"];
 disableserialization;
 player removeAction s_player_deleteCamoNet;
 s_player_deleteCamoNet = -1;
@@ -67,6 +67,12 @@ _qtyW = 0;
 _qtyL = 0;
 _qtyM = 0;
 _qtyG = 0;
+_qtyE = 0;
+_qtyCr = 0;
+_qtyC = _0;
+_qtyB = 0;
+_qtySt = 0;
+_qtyDT = 0;	
 // Do percentages
 _randNum = round(random 100);
 _randNum2 = round(random 100);
@@ -92,6 +98,12 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 				_qtyL = _recipe select 3;
 				_qtyM = _recipe select 4;
 				_qtyG = _recipe select 5;
+				_qtyE= _recipe select 6;
+				_qtyCr= _recipe select 7;
+				_qtyC= _recipe select 8;
+				_qtyB= _recipe select 9;
+				_qtySt= _recipe select 10;
+				_qtyDT = _recipe select 11;	
 			};
 	};
 	if (_qtyT > 0) then {
@@ -112,6 +124,24 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 	if (_qtyG > 0) then {
 		for "_i" from 1 to _qtyG do { _result = [player,"HandGrenade_west"] call BIS_fnc_invAdd;  };
 	};
+	if (_qtyE > 0) then {
+		for "_i" from 1 to _qtyE do { _result = [player,"equip_scrapelectronics"] call BIS_fnc_invAdd;  };
+	};
+	if (_qtyCr > 0) then {
+		for "_i" from 1 to _qtyCr do { _result = [player,"ItemCamoNet"] call BIS_fnc_invAdd;  };
+	};
+	if (_qtyC > 0) then {
+		for "_i" from 1 to _qtyC do { _result = [player,"equip_crate"] call BIS_fnc_invAdd;  };
+	};	
+	if (_qtyB > 0) then {
+		for "_i" from 1 to _qtyB do { _result = [player,"equip_brick"] call BIS_fnc_invAdd;  };
+	};		
+	if (_qtySt > 0) then {
+		for "_i" from 1 to _qtySt do { _result = [player,"equip_string"] call BIS_fnc_invAdd;  };
+	};	
+	if (_qtyDT > 0) then {
+		for "_i" from 1 to _qtyDT do { _result = [player,"equip_duct_tape"] call BIS_fnc_invAdd;  };
+	};	
 	cutText [format["Owner refunded for object %1",typeof(_obj)], "PLAIN DOWN",1];
 		PVDZ_obj_Delete = [_objectID,_authorizedOUID];
 	publicVariableServer "PVDZ_obj_Delete";

@@ -26,6 +26,9 @@ Revise some of the options so they are neater (Done)
 //Flag change
 Change flag to something less specific, since we're not all American (Done)
 
+//Build List
+Merge into file
+
 //----------------------- Still Need Looked At --------------------
 
 //Keybinds
@@ -37,3 +40,6 @@ Stop people being able to build standard tank traps, sand bag walls, wire fences
 //Sarge AI
 Test with new array system to make sure it still works as intended
 Setup a master variable to enable/disable all AI functionality and control options
+
+//Build List
+Finalise recipies and build items

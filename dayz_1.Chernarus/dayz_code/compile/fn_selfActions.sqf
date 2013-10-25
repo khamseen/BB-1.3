@@ -29,7 +29,7 @@ _currentSkin = typeOf(player);
 			camoNetB_Nato = nearestObject [player, "Land_CamoNetB_NATO"];
 			camoNetVar_Nato = nearestObject [player, "Land_CamoNetVar_NATO"];
 			camoNet_Nato = nearestObject [player, "Land_CamoNet_NATO"];
-			flag_basePole = nearestObject [player, "FlagCarrierUSA"];
+			flag_basePole = nearestObject [player, "FlagCarrierBIS_EP1"];
 	// Check mags in player inventory to show build recipe menu	
 	_mags = magazines player;
 	if ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags) then {
@@ -84,10 +84,10 @@ _currentSkin = typeOf(player);
 	if ((isNull cursorTarget) && _authorizedGateCodes && player distance flag_basePole <= 10) then { // && _validGateCodes 
 		//_lever = flag_basePole;
 		if (s_player_addFlagAuth < 0) then {
-			s_player_addFlagAuth = player addAction ["FlagPole: Enter friendly playerUIDs to Gain Permanent Base Building Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", flag_basePole, 1, false, true, "", ""];
+			s_player_addFlagAuth = player addAction ["FlagPole: Add Player UIDs for Base Building Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", flag_basePole, 1, false, true, "", ""];
 		};
 		if (s_player_removeFlagAuth < 0) then {
-			s_player_removeFlagAuth = player addaction [("<t color=""#F01313"">" + ("FlagPole: Enter playerUIDs to Remove Permanent Base Building Access") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", flag_basePole, 1, false, true, "", ""];
+			s_player_removeFlagAuth = player addaction [("<t color=""#F01313"">" + ("FlagPole: Remove Player UIDs") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", flag_basePole, 1, false, true, "", ""];
 		};
 		if (s_player_removeFlag < 0) then {
 			s_player_removeFlag = player addaction [("<t color=""#F01313"">" + ("Permanently Remove Flag (restrictions apply)") +"</t>"),"dayz_code\actions\player_remove.sqf", flag_basePole,1,false,true,"",""];
@@ -193,7 +193,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
 		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
 		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
-	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", "FlagCarrierUSA"];
+	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", "FlagCarrierBIS_EP1"];
 	_adminRemoval = ((getPlayerUID player) in adminSuperAccess);
 	
 	// Operate Gates AND Add Authorization to Gate
@@ -215,11 +215,11 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 			s_player_giveBaseOwnerAccess = player addAction ["Give all base owners (from flagpole) access to object/gate", "dayz_code\external\keypad\fnc_keyPad\functions\give_gateAccess.sqf", _lever, 1, false, true, "", ""];
 		};
 		if (s_player_addGateAuthorization < 0) then {
-			s_player_addGateAuthorization = player addAction ["Enter Friendly Player UIDs to Gain Permanent Gate/Object Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", _lever, 1, false, true, "", ""];
+			s_player_addGateAuthorization = player addAction ["Add Player UIDs to Grant Gate/Object Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", _lever, 1, false, true, "", ""];
 		};
 		if (s_player_removeGateAuthorization < 0) then {
-				//s_player_removeGateAuthorization = player addAction ["Enter Player UIDs to Remove Permanent Gate Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
-				s_player_removeGateAuthorization = player addaction [("<t color=""#F01313"">" + ("Enter Player UIDs to Remove Permanent Gate/Object Access") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
+				//s_player_removeGateAuthorization = player addAction ["Remove Player UIDs from Gate/Object Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
+				s_player_removeGateAuthorization = player addaction [("<t color=""#F01313"">" + ("Remove Player UIDs from Gate/Object Access") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
 		};
 	} else {
 		player removeAction s_player_giveBaseOwnerAccess;
@@ -493,8 +493,6 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	s_player_codeObject = -1;
 	player removeAction s_player_enterCode;
 	s_player_enterCode = -1;
-	player removeAction s_player_deleteBuildOld; //Added for standard Buildables with 1.8
-	s_player_deleteBuildOld = -1;
 //####----####----####---- Base Building 1.3 End ----####----####----####
 	//Others
 	player removeAction s_player_forceSave;

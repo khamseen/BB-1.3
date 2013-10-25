@@ -12,7 +12,7 @@ _inBase = false;
 _wallRange = 10;
 //_nearBool = true;
 		//Check objects from global wallarray via build_list.sqf
-		_flagPoles = nearestObjects [player, ["FlagCarrierUSA"], 300];
+		_flagPoles = nearestObjects [player, ["FlagCarrierBIS_EP1"], 300];
 		if (count _flagPoles > 0) then {
 			{
 				_checkBase = _x getVariable ["AuthorizedUID", []];

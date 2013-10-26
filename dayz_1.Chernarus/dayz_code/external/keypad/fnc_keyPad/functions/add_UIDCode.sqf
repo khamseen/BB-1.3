@@ -28,14 +28,14 @@ private ["_cntBases","_isOk","_allFlags","_panel","_convertInput","_authorizedPU
 				//diag_log ("3 add_UIDCode flag checks whole UID" + str(_authorizedUID));
 				//diag_log ("3 add_UIDCode flag checks OUID" + str(_authorizedOUID));
 				//diag_log ("3 add_UIDCode flag checks PUID" + str(_authorizedPUID));
-			if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == "FlagCarrierBIS_EP1")) exitWith {
+			if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == "FlagCarrierBIS_EP1")) then {
 				//_isOk = false;
 				_cntBases = _cntBases + 1;
 			};
 		};
-		if (!_isOk) exitWith {};
+		//if (!_isOk) exitWith {};
 	} foreach _allFlags;
-	if (!_isOk && _cntBases <= 3) exitWith {
+	if (_cntBases >= 3) exitWith {
 		//cuttext [format["PlayerUID %1 already used on 3 flags!", (toString _convertInput)],"PLAIN DOWN",1];
 		//hint format["PlayerUID %1 already used on 3 flags!", (toString _convertInput)];
 		hintsilent parseText format ["

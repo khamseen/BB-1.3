@@ -24,6 +24,9 @@ publicvariableval.txt
 	//5 "hideObject"
 		!"\"hideObject\""
 		
+	//5 bis_
+		!"FlagCarrierBIS_EP1"
+		
 setpos.txt
 
 	//5 ""

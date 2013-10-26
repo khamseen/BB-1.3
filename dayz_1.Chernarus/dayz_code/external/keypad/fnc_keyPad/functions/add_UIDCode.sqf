@@ -29,7 +29,7 @@ private ["_cntBases","_isOk","_allFlags","_panel","_convertInput","_authorizedPU
 				//diag_log ("3 add_UIDCode flag checks OUID" + str(_authorizedOUID));
 				//diag_log ("3 add_UIDCode flag checks PUID" + str(_authorizedPUID));
 			if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == "FlagCarrierBIS_EP1")) exitWith {
-				_isOk = false;
+				//_isOk = false;
 				_cntBases = _cntBases + 1;
 			};
 		};

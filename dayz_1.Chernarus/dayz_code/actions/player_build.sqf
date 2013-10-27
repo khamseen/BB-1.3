@@ -13,9 +13,10 @@ _text = getText (configFile >> "CfgVehicles" >> _classname >> "displayName");
 _onLadder =		(getNumber (configFile >> "CfgMovesMaleSdr" >> "States" >> (animationState player) >> "onLadder")) == 1;
 _isWater = 		(surfaceIsWater (getPosATL player)) or dayz_isSwimming;
 
-if (_object isKindOf "Wire_cat1" || _object isKindOf "Hedgehog_DZ" || _object isKindOf "Sandbag1_DZ" || _object isKindOf "CamoNet_DZ") exitWith {
+if (_classname == "Wire_cat1" || _classname == "Hedgehog_DZ" || _classname == "Sandbag1_DZ" || _classname == "CamoNet_DZ") exitWith {
 	r_action_count = 0;
-	cutText [format["Please use base building options for this item."], "PLAIN DOWN"];
+	call player_build2;
+	//cutText [format["Please use base building options for this item."], "PLAIN DOWN"];
 };
 
 if(_isWater) exitWith {

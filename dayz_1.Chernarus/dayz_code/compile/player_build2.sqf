@@ -228,24 +228,25 @@ _playerCombat 	= player;
 	//One flag per base
 	if (_classname == "FlagCarrierBIS_EP1") then { 
 		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
-		_flagcount = 0;
+
 		{
 			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) then {
-					_flagcount = _flagcount + 1;
-					_flagMarker = createMarkerLocal ["Flag Position",position _x];       
+				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) exitWith {
+					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
+
+				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
 				   _flagMarker setMarkerTypeLocal "warning";
 				   _flagMarker setMarkerColorLocal("ColorBlack");
 				   _flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
-				   if (_flagcount > 3) then {
-					   cutText [format["Your playerUID is already registered to three flagpoles, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
-					   sleep 10;
-					   call _funcExitScriptCombat;
-				   };
+
+
+				   sleep 10;
+				   call _funcExitScriptCombat;
 				};
 			};
+
 		} foreach _allFlags;
 	};
 	//Dont allow players to build in others bases
@@ -266,52 +267,32 @@ _playerCombat 	= player;
 	
 	//Check Requirements
 	if (_requireFlag) then {
-	
+
 		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
-		_flagcount = 0;
+
 		{
 			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
 				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) then {
-					_flagcount = _flagcount + 1;
-					_flagMarker = createMarkerLocal ["Flag Position",position _x];       
+					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
+
+				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
 				   _flagMarker setMarkerTypeLocal "warning";
 				   _flagMarker setMarkerColorLocal("ColorBlack");
 				   _flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
-				   if (_flagcount > 3) then {
-					   cutText [format["Your playerUID is already registered to three flagpoles, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
-					   sleep 10;
-					   call _funcExitScriptCombat;
-				   };
+
+
+				   sleep 10;
+				   call _funcExitScriptCombat;
 				};
 				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
 					_flagNearby = true;
 				};
 			};
+
 		} foreach _allFlags;
-	
-	
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
-		_flagcount = 0;
-		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
-				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) then {
-					_flagcount = _flagcount + 1;
-					_flagMarker = createMarkerLocal ["Flag Position",position _x];       
-				   _flagMarker setMarkerTypeLocal "warning";
-				   _flagMarker setMarkerColorLocal("ColorBlack");
-				   _flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
-				   if (_flagcount > 3) then {
-					   cutText [format["Your playerUID is already registered to three flagpoles, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
-					   sleep 10;
-					   call _funcExitScriptCombat;
-				   };
-				};
-			};
-		} foreach _allFlags;
+
 		if (!_flagNearby) then {
 			cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land \nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScriptCombat;
 		};

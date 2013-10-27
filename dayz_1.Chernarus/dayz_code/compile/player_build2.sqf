@@ -284,9 +284,9 @@ _playerCombat 	= player;
 					   sleep 10;
 					   call _funcExitScriptCombat;
 				   };
-					if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
-						_flagNearby = true;
-					};
+				};
+				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
+					_flagNearby = true;
 				};
 			};
 		} foreach _allFlags;
@@ -942,4 +942,3 @@ _playerCombat 	= player;
 	
 	player allowdamage true;
 	procBuild = false;_playerCombat setVariable["startcombattimer", 1, true];
-a

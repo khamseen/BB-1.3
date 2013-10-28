@@ -168,10 +168,20 @@ if (_adminRemoval) then {
 	};
 };
 
+// Flag removal special
+//if (typeOf(_obj) == "FlagCarrierBIS_EP1" && (_ownerID == dayz_characterID || _authorizedGateCodes)) then {
+if (typeOf(_obj) == "FlagCarrierBIS_EP1" && (_authorizedGateCodes)) then {
+	_baseObjects = nearestObjects [_obj, ["allbuildables_class"],  200];
+	if (count _baseObjects > 0) then {
+		cutText [format["You need to remove all existing base objects in %1 meters in order to move your base and delete your bases flagpole",_flagRaduis], "PLAIN DOWN",1];
+		breakOut "exit";
+	};
+};
+
 //Owner ID or PlayerUID removal
 _playerPos = getPosATL player;
 //if ( _ownerID == dayz_characterID || _authorizedGateCodes && typeof(_obj) != "FlagCarrierBIS_EP1") then { 
-if (_authorizedGateCodes && typeof(_obj) != "FlagCarrierBIS_EP1") then { 
+if (_authorizedGateCodes) then { 
 	_cnt = 5;
 	while {true} do {
 		cutText [format["Removing object %1 in %2 seconds.\nMove position to cancel",typeOf(_obj), _cnt], "PLAIN DOWN",1];
@@ -183,15 +193,6 @@ if (_authorizedGateCodes && typeof(_obj) != "FlagCarrierBIS_EP1") then {
 		if (_cnt <= 0) exitwith {call _func_ownerRemove;};
 		sleep 1;
 		_cnt = _cnt - 1;	
-	};
-};
-// Flag removal special
-//if (typeOf(_obj) == "FlagCarrierBIS_EP1" && (_ownerID == dayz_characterID || _authorizedGateCodes)) then {
-if (typeOf(_obj) == "FlagCarrierBIS_EP1" && (_authorizedGateCodes)) then {
-	_baseObjects = nearestObjects [_obj, ["allbuildables_class"],  200];
-	if (count _baseObjects > 0) then {
-		cutText [format["You need to remove all existing base objects in %1 meters in order to move your base and delete your bases flagpole",_flagRaduis], "PLAIN DOWN",1];
-		breakOut "exit";
 	};
 };
 

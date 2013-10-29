@@ -58,11 +58,18 @@ _buildlist = [
 [[1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0], "Land_Fire_barrel",  			[[0,3,0.6], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, true]], //Land_Fire_barrel 	--42 
 [[0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_WoodenRamp",  			[[0,5,0.4], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, false, false, true]], //Land_WoodenRamp 	--43 
 
+[[6, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_Ind_TankSmall2_EP1",  		[[0,6,1.3], [0,5,1.3], 	90, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_11_EP1 	--45 
 //[[6, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_11_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_11_EP1 	--45 
+[[9, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "PowerGenerator_EP1",  		[[0,5,0.9], [0,5,0.9], 	90, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_6_EP1 	--46 
 //[[9, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_K_6_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_6_EP1 	--46 
+[[6, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_Ind_IlluminantTower",  		[[0,10,9.6], [0,10,9.6], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_7_EP1 	--47 
 //[[6, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_K_7_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_K_7_EP1 	--47 
+//Sadly the castle can only be removed from the inside, which isn't practical
+//[[7, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_A_Castle_Bergfrit",  		[[0,20,16.6], [0,20,16.6], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_9_EP1 	--48 
 //[[7, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_9_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_9_EP1 	--48 
+[[10, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_A_Castle_Stairs_A",  		[[-5,10,3.5], [-5,10,3.5], 	90, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_10_EP1 	--49 
 //[[10, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_10_EP1",  		[[0,25,2], [0,25,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_10_EP1 	--49 
+[[6, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_A_Castle_Gate",  		[[0,20,6], [0,20,6], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_12_EP1 	--50 
 //[[6, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_12_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_12_EP1 	--50 
 //[[5, 2, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_5_V3_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_5_V3_EP1 	--51 
 //[[10, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_House_C_3_EP1",  		[[0,20,2], [0,20,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, true]], //Land_House_C_3_EP1 	--52 
@@ -88,7 +95,7 @@ allExtendables = ["Concrete_Wall_EP1","Infostand_2_EP1","Land_HBarrier_large","L
 					"Land_Misc_Cargo2E","Misc_Cargo1Bo_military","Ins_WarfareBContructionSite","Land_CncBlock","Misc_cargo_cont_small_EP1","Land_prebehlavka",
 					"Fence_corrugated_plate","Land_CamoNet_EAST","Land_CamoNet_NATO","Fence_Ind_long","Fort_RazorWire","Fence_Ind","Land_Shed_wooden","Land_vez",
 					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_Campfire","Land_ladder","Land_ladder_half",
-					"Land_Misc_Scaffolding"];
+					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A","Land_A_Castle_Gate"];
 
 // Build allremovables array for remove action
 for "_i" from 0 to ((count _buildlist) - 1) do

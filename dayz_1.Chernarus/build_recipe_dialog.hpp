@@ -1,29 +1,29 @@
-﻿//$[1.03,[[0,0,1,1],0.03125,0.05],[1800,"RecipeFrame",[1,"Base Building Recipe Book",["0.29375 * safezoneW + safezoneX","0.224947 * safezoneH + safezoneY","0.411042 * safezoneW","0.547125 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1200,"ObjectImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.506315 * safezoneW + safezoneX","0.34939 * safezoneH + safezoneY","0.150625 * safezoneW","0.275711 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1201,"TankImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1202,"SandImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Sand Bags"],[]],[1203,"WireImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wire Fence"],[]],[1204,"LogImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wood"],[]],[1205,"ScrapImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Scrap Metal"],[]],[1206,"GrenadeImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Grenades"],[]],[1801,"ClassNameFrame",[1,"Materials needed:",["0.306641 * safezoneW + safezoneX","0.29371 * safezoneH + safezoneY","0.385 * safezoneW","0.366808 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1000,"TankQtyText",[1,"x 1",["0.39043 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1001,"WiresQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1002,"SandQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1003,"LogsQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1004,"ScrapQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1005,"GrenadeQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1603,"PrevButton",[1,"Previous Page",["0.306641 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1006,"ClassNameText",[1,"CLASS NAME ",["0.313086 * safezoneW + safezoneX","0.252452 * safezoneH + safezoneY","0.377474 * safezoneW","0.0175092 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1604,"NextButton",[1,"Next Page",["0.603125 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1600,"ShowButton",[1,"Show This",["0.416211 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1601,"ShowListButton",[1,"Show List",["0.506445 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]]]
-
+//$[1.03,[[0,0,1,1],0.03125,0.05],[1800,"RecipeFrame",[1,"Base Building Recipe Book",["0.29375 * safezoneW + safezoneX","0.224947 * safezoneH + safezoneY","0.411042 * safezoneW","0.547125 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1200,"ObjectImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.506315 * safezoneW + safezoneX","0.34939 * safezoneH + safezoneY","0.150625 * safezoneW","0.275711 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1201,"TankImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1202,"SandImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Sand Bags"],[]],[1203,"WireImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wire Fence"],[]],[1204,"LogImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wood"],[]],[1205,"ScrapImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Scrap Metal"],[]],[1206,"GrenadeImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.351758 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Grenades"],[]],[1801,"ClassNameFrame",[1,"Materials needed:",["0.306641 * safezoneW + safezoneX","0.29371 * safezoneH + safezoneY","0.385 * safezoneW","0.366808 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1000,"TankQtyText",[1,"x 1",["0.39043 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1001,"WiresQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1002,"SandQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1003,"LogsQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1004,"ScrapQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1005,"GrenadeQty",[1,"1",["0.39043 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1603,"PrevButton",[1,"Previous Page",["0.306641 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1006,"ClassNameText",[1,"CLASS NAME ",["0.313086 * safezoneW + safezoneX","0.252452 * safezoneH + safezoneY","0.377474 * safezoneW","0.0175092 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1604,"NextButton",[1,"Next Page",["0.603125 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1600,"ShowButton",[1,"Show This",["0.416211 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1601,"ShowListButton",[1,"Show List",["0.506445 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]]]
+ 
 //$[1.03,[[0,0,1,1],0.03125,0.05],[1800,"RecipeFrame",[1,"Base Building Recipe Book",["0.29375 * safezoneW + safezoneX","0.224947 * safezoneH + safezoneY","0.411042 * safezoneW","0.547125 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1200,"ObjectImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.522981 * safezoneW + safezoneX","0.334363 * safezoneH + safezoneY","0.162083 * safezoneW","0.30952 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1201,"TankImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1202,"SandImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Sand Bags"],[]],[1203,"WireImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wire Fence"],[]],[1204,"LogImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wood"],[]],[1205,"ScrapImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Scrap Metal"],[]],[1206,"GrenadeImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Grenades"],[]],[1801,"ClassNameFrame",[1,"Materials needed:",["0.300195 * safezoneW + safezoneX","0.29371 * safezoneH + safezoneY","0.398542 * safezoneW","0.37526 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1000,"TankQtyText",[1,"x 1",["0.338867 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1001,"WiresQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1002,"SandQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1003,"LogsQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1004,"ScrapQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1005,"GrenadeQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1603,"PrevButton",[1,"Previous Page",["0.306641 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1006,"ClassNameText",[1,"CLASS NAME ",["0.313086 * safezoneW + safezoneX","0.252452 * safezoneH + safezoneY","0.377474 * safezoneW","0.0175092 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1604,"NextButton",[1,"Next Page",["0.603125 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1600,"ShowButton",[1,"Show This",["0.416211 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1601,"ShowListButton",[1,"Show List",["0.506445 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1802,"ReqFrame",[1,"Requeriments",["0.39043 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.12198 * safezoneW","0.302945 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1207,"ToolboxImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.409766 * safezoneW + safezoneX","0.362474 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1208,"EToolImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.409766 * safezoneW + safezoneX","0.403732 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1209,"TimeImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.409766 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1007,"InBuildingText",[1,"In Building:",["0.396875 * safezoneW + safezoneX","0.486247 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1008,"OnRoadText",[1,"On Road:",["0.396875 * safezoneW + safezoneX","0.513753 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1009,"",[1,"In Town:",["0.396875 * safezoneW + safezoneX","0.541258 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1010,"RemText",[1,"Removable:",["0.396875 * safezoneW + safezoneX","0.568763 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1014,"building",[1,"False",["0.461328 * safezoneW + safezoneX","0.486247 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1011,"road",[1,"False",["0.461328 * safezoneW + safezoneX","0.513753 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1012,"town",[1,"False",["0.461328 * safezoneW + safezoneX","0.541258 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1013,"removable",[1,"False",["0.461328 * safezoneW + safezoneX","0.568763 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1015,"time",[1,"False",["0.461328 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1016,"etool",[1,"False",["0.461328 * safezoneW + safezoneX","0.403732 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1017,"toolbox",[1,"False",["0.461328 * safezoneW + safezoneX","0.362474 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]]]
-
+ 
 //$[1.03,[[0,0,1,1],0.03125,0.05],[1800,"RecipeFrame",[1,"Base Building Recipe Book",["0.29375 * safezoneW + safezoneX","0.224947 * safezoneH + safezoneY","0.411042 * safezoneW","0.547125 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1200,"ObjectImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.522981 * safezoneW + safezoneX","0.334363 * safezoneH + safezoneY","0.162083 * safezoneW","0.30952 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1201,"TankImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1202,"SandImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Sand Bags"],[]],[1203,"WireImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wire Fence"],[]],[1204,"LogImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Wood"],[]],[1205,"ScrapImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Scrap Metal"],[]],[1206,"GrenadeImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.313086 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Grenades"],[]],[1801,"ClassNameFrame",[1,"Materials needed:",["0.300195 * safezoneW + safezoneX","0.29371 * safezoneH + safezoneY","0.398542 * safezoneW","0.37526 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1000,"TankQtyText",[1,"x 1",["0.338867 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1001,"WiresQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1002,"SandQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.389979 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1003,"LogsQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.5 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1004,"ScrapQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.555011 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1005,"GrenadeQty",[1,"1",["0.338867 * safezoneW + safezoneX","0.610021 * safezoneH + safezoneY","0.050625 * safezoneW","0.0277753 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1603,"PrevButton",[1,"Previous Page",["0.306641 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1006,"ClassNameText",[1,"CLASS NAME ",["0.313086 * safezoneW + safezoneX","0.252452 * safezoneH + safezoneY","0.377474 * safezoneW","0.0175092 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1604,"NextButton",[1,"Next Page",["0.603125 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0886457 * safezoneW","0.0521932 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1600,"ShowButton",[1,"Show This",["0.416211 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1601,"ShowListButton",[1,"Show List",["0.506445 * safezoneW + safezoneX","0.692537 * safezoneH + safezoneY","0.0751041 * safezoneW","0.051254 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1802,"ReqFrame",[1,"Requeriments",["0.39043 * safezoneW + safezoneX","0.334968 * safezoneH + safezoneY","0.12198 * safezoneW","0.302945 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1207,"ToolboxImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.409766 * safezoneW + safezoneX","0.362474 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1208,"EToolImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.409766 * safezoneW + safezoneX","0.403732 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1209,"TimeImage",[1,"#(argb,8,8,3)color(1,1,1,1)",["0.409766 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.019375 * safezoneW","0.0315319 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"Tank Trap"],[]],[1007,"InBuildingText",[1,"In Building:",["0.396875 * safezoneW + safezoneX","0.486247 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1008,"OnRoadText",[1,"On Road:",["0.396875 * safezoneW + safezoneX","0.513753 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1009,"",[1,"In Town:",["0.396875 * safezoneW + safezoneX","0.541258 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1010,"RemText",[1,"Removable:",["0.396875 * safezoneW + safezoneX","0.568763 * safezoneH + safezoneY","0.0542709 * safezoneW","0.0249579 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1014,"building",[1,"False",["0.461328 * safezoneW + safezoneX","0.486247 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1011,"road",[1,"False",["0.461328 * safezoneW + safezoneX","0.513753 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1012,"town",[1,"False",["0.461328 * safezoneW + safezoneX","0.541258 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1013,"removable",[1,"False",["0.461328 * safezoneW + safezoneX","0.568763 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1015,"time",[1,"False",["0.461328 * safezoneW + safezoneX","0.444989 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1016,"etool",[1,"False",["0.461328 * safezoneW + safezoneX","0.403732 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1017,"toolbox",[1,"False",["0.461328 * safezoneW + safezoneX","0.362474 * safezoneH + safezoneY","0.0297918 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]],[1018,"chance",[1,"Chance: 30% (70% lt)",["0.397396 * safezoneW + safezoneX","0.60002 * safezoneH + safezoneY","0.0959376 * safezoneW","0.0221405 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],""],[]]]
-
+ 
 class Build_Recipe_Dialog
 {
     idd = -1;
     onLoad="uiNamespace setVariable ['Build_Recipe_Dialog', _this select 0]";
     movingenable = true;
     onUnLoad="uiNamespace setVariable ['Build_Recipe_Dialog', nil]";
-    
+   
     class Controls
     {
-
+ 
          class DialogBox: BOX
          {
-	      idc = -1;
-	      text = "";
+              idc = -1;
+              text = "";
             x = 0.29375 * safezoneW + safezoneX;
             y = 0.224947 * safezoneH + safezoneY;
             w = 0.511042 * safezoneW;
             h = 0.547125 * safezoneH;
          };
-    
+   
         class RecipeFrame: RscFrame
         {
             idc = 1800;
@@ -53,7 +53,7 @@ class Build_Recipe_Dialog
             h = 0.0315319 * safezoneH;
             tooltip = "Tank Trap";
         };
-		class WireImage: RscPicture
+                class WireImage: RscPicture
         {
             idc = 1202;
             //text = "buildRecipeBook\images\wirefencekit.paa";
@@ -108,74 +108,74 @@ class Build_Recipe_Dialog
             h = 0.0315319 * safezoneH;
             tooltip = "Grenades";
         };
-		class ElectronicsImage: RscPicture
+                class ElectronicsImage: RscPicture
         {
             idc = 1210;
             text = "\z\addons\dayz_communityassets\pictures\scrapelectronics.paa";
             //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.384086 * safezoneW + safezoneX;
+            x = 0.404086 * safezoneW + safezoneX;
             y = 0.334968 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
             tooltip = "Scrap Electronics";
         };
-		class CrateImage: RscPicture
+                class CrateImage: RscPicture
         {
             idc = 1211;
             text = "\z\addons\dayz_communityassets\pictures\equip_crate.paa";
             //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.384086 * safezoneW + safezoneX;
+            x = 0.404086 * safezoneW + safezoneX;
             y = 0.389979 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
             tooltip = "Supply Crate";
         };
-		class CamonetImage: RscPicture
+                class CamonetImage: RscPicture
         {
             idc = 1212;
             text = "dayz_equip\textures\equip_tentbag_CA.paa";
             //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.384086 * safezoneW + safezoneX;
+            x = 0.404086 * safezoneW + safezoneX;
             y = 0.444989 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
             tooltip = "CamoNet";
         };
-		class BrickImage: RscPicture
+                class BrickImage: RscPicture
         {
             idc = 1213;
             text = "\z\addons\dayz_communityassets\pictures\equip_brick.paa";
             //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.384086 * safezoneW + safezoneX;
+            x = 0.404086 * safezoneW + safezoneX;
             y = 0.5 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
             tooltip = "Brick";
         };
-		
-		class StringImage: RscPicture
+               
+                class StringImage: RscPicture
         {
             idc = 1214;
             text = "\z\addons\dayz_communityassets\pictures\equip_string_ca.paa";
             //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.384086 * safezoneW + safezoneX;
+            x = 0.404086 * safezoneW + safezoneX;
             y = 0.555011 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
             tooltip = "String";
         };
-		class DuctTapeImage: RscPicture
+                class DuctTapeImage: RscPicture
         {
             idc = 1215;
             text = "\z\addons\dayz_communityassets\pictures\equip_duct_tape.paa";
             //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.384086 * safezoneW + safezoneX;
+            x = 0.404086 * safezoneW + safezoneX;
             y = 0.610021 * safezoneH + safezoneY;
             w = 0.019375 * safezoneW;
             h = 0.0315319 * safezoneH;
             tooltip = "Duct Tape";
         };
-		
+               
         class ClassNameFrame: RscFrame
         {
             idc = 1801;
@@ -238,64 +238,64 @@ class Build_Recipe_Dialog
             y = 0.610021 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
-        };	
-		class ElectronicsQty: RscText
+        };     
+                class ElectronicsQty: RscText
         {
             idc = 1019;
             text = "1";
-            x = 0.409867 * safezoneW + safezoneX;
+            x = 0.429867 * safezoneW + safezoneX;
             y = 0.334968 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
         };
-		class CrateQty: RscText
+                class CrateQty: RscText
         {
             idc = 1020;
             text = "1";
-            x = 0.409867 * safezoneW + safezoneX;
-			y = 0.389979 * safezoneH + safezoneY;         
-			w = 0.050625 * safezoneW;
+            x = 0.429867 * safezoneW + safezoneX;
+                        y = 0.389979 * safezoneH + safezoneY;        
+                        w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
-        };           
-
-		class CamoNetQty: RscText
+        };          
+ 
+                class CamoNetQty: RscText
         {
             idc = 1021;
             text = "1";
-            x = 0.409867 * safezoneW + safezoneX;
+            x = 0.429867 * safezoneW + safezoneX;
             y = 0.444989 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
         };
-		class BrickQty: RscText
+                class BrickQty: RscText
         {
             idc = 1022;
             text = "1";
-            x = 0.409867 * safezoneW + safezoneX;
+            x = 0.429867 * safezoneW + safezoneX;
             y = 0.5 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
-        };	
-		
-		class StringQty: RscText
+        };     
+               
+                class StringQty: RscText
         {
             idc = 1023;
             text = "1";
-            x = 0.409867 * safezoneW + safezoneX;
+            x = 0.429867 * safezoneW + safezoneX;
             y = 0.555011 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
         };
-		class DuctTapeQty: RscText
+                class DuctTapeQty: RscText
         {
             idc = 1024;
             text = "1";
-            x = 0.409867 * safezoneW + safezoneX;
+            x = 0.429867 * safezoneW + safezoneX;
             y = 0.610021 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;
-        };	
-		
+        };     
+               
         class PrevButton: RscButton
         {
             idc = 1603;
@@ -345,7 +345,7 @@ class Build_Recipe_Dialog
             h = 0.051254 * safezoneH;
             action = "closeDialog 0;_nil=[]ExecVM 'buildRecipeBook\build_recipe_list_dialog.sqf'";
         };
-        
+       
         class ReqFrame: RscFrame
         {
             idc = 1802;
@@ -468,7 +468,7 @@ class Build_Recipe_Dialog
             w = 0.0959376 * safezoneW;
             h = 0.0221405 * safezoneH;
         };
-
+ 
         class time: RscText
         {
             idc = 1015;
@@ -498,30 +498,3 @@ class Build_Recipe_Dialog
         };
     };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

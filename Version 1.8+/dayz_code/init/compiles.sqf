@@ -64,7 +64,7 @@ getNetting = {
 	_obj
 };
 
-//Testing Key Binds for Placement
+//Keybinds (need to specify all keybinds, including the added keys for base building)
 	dayz_spaceInterrupt = {
 		private "_handled";
 		_dikCode = _this select 1;

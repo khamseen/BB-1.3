@@ -104,5 +104,10 @@ STEP 4 (Modifying fn_selfActions.sqf)
 If you do NOT already have a custom fn_selfActions.sqf, no further action is required.
 
 If you DO already have a custom fn_selfActions.sqf, refer to the fn_selfActions ReadMe for instructions.
+Then open dayz_mission\dayz_code\init\compiles.sqf
+
+Find this and delete it
+//Custom Self Actions File
+fnc_usec_selfActions = compile preprocessFileLineNumbers "dayz_code\compile\fn_selfActions.sqf";
 
 Now refer to 1.8 DayZ_Server ReadMe.txt

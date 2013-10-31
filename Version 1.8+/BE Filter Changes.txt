@@ -1,4 +1,6 @@
-//################### Base Building 1.2 ##############################
+//################### Base Building 1.3 ##############################
+
+**Lines marked with // tell you what line to add the exceptions to, do not just comment these lines out!!**
 
 createvehicle.txt
 
@@ -36,8 +38,6 @@ setvariable.txt
 
 	//5 !"USEC_"
 		!"startcombattimer" !"authorizeduid" !"inmotion" !"gatelowered" !"rooflowered" !"isbomb"
-		
-//#### BB 1.3 ####
 
 mpeventhandler.txt
 		

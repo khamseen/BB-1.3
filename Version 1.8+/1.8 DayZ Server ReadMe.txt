@@ -1,6 +1,6 @@
 All of these edits are to be made in the dayz_server.pbo
 
-STEP 1 (Modifying compile\server_publishObject.sqf)
+****STEP 1 (Modifying compile\server_publishObject.sqf)****
 
 Find
 
@@ -65,7 +65,7 @@ if (typeOf(_object) in allbuildables_class) then { //Forces the variable to be u
 	
 Save and Close	
 
-STEP 2 (Modifying compile\server_updateNearbyObjects.sqf)
+****STEP 2 (Modifying compile\server_updateNearbyObjects.sqf)****
 
 Find
 
@@ -86,7 +86,7 @@ _isBuildable = false;
 
 Save and Close
 
-STEP 3 (Modifying compile\server_updateObject.sqf)
+****STEP 3 (Modifying compile\server_updateObject.sqf)****
 
 Find
 
@@ -137,7 +137,7 @@ _object_inventory = {
 
 Save and Close
 
-STEP 4 (Modifying init\server_functions.sqf)
+****STEP 4 (Modifying init\server_functions.sqf)****
 
 Find
 
@@ -299,7 +299,7 @@ This Area is for extra arrays that need to be built, some using above arrays
 
 Save and Close
 
-STEP 5 (Modifying system\server_monitor.sqf)
+****STEP 5 (Modifying system\server_monitor.sqf)****
 
 Find
 
@@ -400,4 +400,4 @@ Change that to
 				
 Save and Close
 
-Now reference the BE Filter Changes.txt
+****Now reference the BE Filter Changes.txt****

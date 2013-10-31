@@ -1,6 +1,6 @@
 All of these edits are to be made in the dayz_mission.pbo (mission file name may vary)
 
-STEP 1 (Copying Files)
+****STEP 1 (Copying Files)****
 
 First, unpack your mission file.
 Now from the Base Building zip, copy over the following
@@ -11,8 +11,8 @@ build_recipe_dialog.hpp			(File)
 build_recipe_dialog_list.hpp	(File)
 defines.hpp						(File)
 
-STEP 2 (Modifying init.sqf)
-A
+****STEP 2 (Modifying init.sqf)****
+**A**
 Open init.sqf and find
 	progressLoadingScreen 1.0;
 	
@@ -21,7 +21,7 @@ Directly ABOVE that, add
 	call compile preprocessFileLineNumbers "dayz_code\init\compiles.sqf";							//Compile custom compiles
 	call compile preprocessFileLineNumbers "dayz_code\init\settings.sqf";							//Initialize custom clientside settings
 
-B
+**B**
 If you use RESec find (if you don't use it, you can skip this)
 	if (dayz_REsec == 1) then {
 	#include "\z\addons\dayz_code\system\REsec.sqf"
@@ -33,8 +33,9 @@ And change it to
 	};
 Save and close
 
-STEP 3 (Modifying description.ext)
-Open description.ext and remove ALL of this
+****STEP 3 (Modifying description.ext)****
+
+Remove ALL of this
 
 ###REMOVE START###
 class RscText
@@ -96,11 +97,11 @@ class RscProgressNotFreeze
 	h = 0.039216;
 	texture = "#(argb,8,8,3)color(0,0,0,0)";
 };
-
 ###REMOVE END####
+
 Save and close
 
-STEP 4 (Modifying fn_selfActions.sqf)
+****STEP 4 (Modifying fn_selfActions.sqf)****
 If you do NOT already have a custom fn_selfActions.sqf, no further action is required.
 
 If you DO already have a custom fn_selfActions.sqf, refer to the fn_selfActions ReadMe for instructions.
@@ -110,4 +111,4 @@ Find this and delete it
 //Custom Self Actions File
 fnc_usec_selfActions = compile preprocessFileLineNumbers "dayz_code\compile\fn_selfActions.sqf";
 
-Now refer to 1.8 DayZ_Server ReadMe.txt
+****Now refer to 1.8 DayZ_Server ReadMe.txt****

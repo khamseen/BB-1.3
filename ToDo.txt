@@ -27,19 +27,40 @@ Revise some of the options so they are neater (Done)
 Change flag to something less specific, since we're not all American (Done)
 
 //Build List
-Merge into file
+Merge into file (Done)
+
+//player_build.sqf
+Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets. (Done)
+
+//ReadMe
+Put together a readme for 1.8 (Done)
+
+//Removal
+Address problem with removing extendable objects. You can't remove things unless you can target them with the cursor. (Think this is ok, since we have castle stairs and scaffolding to use for height)
 
 //----------------------- Still Need Looked At --------------------
 
 //Keybinds
 Look at different ways of implementing keybinds, hopefully we can find a way to do it without having to include every dayz version specific keybind from compiles. 
 
-//player_build.sqf
-Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets. 
-
 //Sarge AI
-Test with new array system to make sure it still works as intended
 Setup a master variable to enable/disable all AI functionality and control options
 
 //Build List
 Finalise recipies and build items
+Add replacements for old buildables: tank traps, sand bag walls, wire fences, and camo nets.
+
+//ReadMe
+Put together a readme for older versions
+Put together a readme for Epoch
+
+//Backwards Compatability
+Create duplicate files and change public variables, build list requirements etc to pre 1.8
+
+//------------------ Would Be Nice ------------------------
+
+//Sarge AI
+Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it)
+
+//Lighting
+Try to implement toggle tower lights with generator

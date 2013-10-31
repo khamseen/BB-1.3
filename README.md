@@ -56,7 +56,7 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 6. Now youll have **YOUR server file** and **YOURWORLD mission file** unpbo'd<br>
 
 ##Part 1 - The Basics:
-- Download the master branch from [https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip](https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip)<br>
+- Download the master branch from [https://github.com/khamseen/BlargHonk/archive/master.zip](https://github.com/khamseen/BlargHonk/archive/master.zip)<br>
 
 - Extract to folder of your choice.<br>
 

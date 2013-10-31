@@ -60,14 +60,14 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 
 - Extract to folder of your choice.<br>
 
-- Inside you'll find folders for specific versions of DayZ (Only pay attention to the folder for the version you are running)<br>
-<br><br>
+- Inside you'll find folders for specific versions of DayZ (Only pay attention to the folder for the version you are running)<br><br>
+
 
 ##Part 2 - dayz\_1.world folder:
 
 - Inside your version specific folder, follow the instructions in DayZ Mission ReadMe.txt<br>
 
-##Part 3 - dayz\server folder:
+##Part 3 - dayz\_server folder:
 
 - Inside your version specific folder, follow the instructions in DayZ Server ReadMe.txt<br>
 

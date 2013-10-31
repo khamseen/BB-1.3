@@ -34,8 +34,15 @@ And change it to
 Save and close
 
 ****STEP 3 (Modifying description.ext)****
+At the very top of the file, add
 
-Remove ALL of this
+//####----####---- Base Building Start ----####----####
+#include "defines.hpp"
+#include "build_recipe_dialog.hpp"
+#include "build_recipe_list_dialog.hpp"
+//####----####---- Base Building End ----####----####
+
+Then, remove ALL of this
 
 ###REMOVE START###
 class RscText

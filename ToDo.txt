@@ -38,24 +38,22 @@ Put together a readme for 1.8 (Done)
 //Removal
 Address problem with removing extendable objects. You can't remove things unless you can target them with the cursor. (Think this is ok, since we have castle stairs and scaffolding to use for height)
 
+//Backwards Compatability
+Create duplicate files and change public variables, build list requirements etc to pre 1.8 (Done, Generic Version)
 //----------------------- Still Need Looked At --------------------
-
-//Keybinds
-Look at different ways of implementing keybinds, hopefully we can find a way to do it without having to include every dayz version specific keybind from compiles. 
 
 //Sarge AI
 Setup a master variable to enable/disable all AI functionality and control options
 
 //Build List
-Finalise recipies and build items
+Finalise recipes and build items
 Add replacements for old buildables: tank traps, sand bag walls, wire fences, and camo nets.
 
-//ReadMe
+//ReadMe + Install Stuff
 Put together a readme for older versions
 Put together a readme for Epoch
-
-//Backwards Compatability
-Create duplicate files and change public variables, build list requirements etc to pre 1.8
+Alter generic version readme to explain how to add keybinds from compiles.sqf
+Provide 'new install' and 'update install' SQL scripts to avoid deployable IDs being changed
 
 //------------------ Would Be Nice ------------------------
 
@@ -64,3 +62,6 @@ Test with new array system to make sure it still works as intended (Daimyo's Sar
 
 //Lighting
 Try to implement toggle tower lights with generator
+
+//Keybinds
+Look at different ways of implementing keybinds, hopefully we can find a way to do it without having to include every dayz version specific keybind from compiles. (Doesn't appear possible)

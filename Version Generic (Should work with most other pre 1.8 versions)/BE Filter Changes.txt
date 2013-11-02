@@ -23,6 +23,9 @@ publicvariable.txt
 
 	//5 ""
 		!"dayz_updateNearbyObjects"
+	
+	//5 "remExFP"
+		!"\"remExFP\" = [,<NULL-object>,\"per\",\"hideObject\",true]"
 		
 publicvariableval.txt
 

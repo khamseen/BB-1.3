@@ -25,7 +25,7 @@ publicvariable.txt
 		!"dayz_updateNearbyObjects"
 	
 	//5 "remExFP"
-		!"\"remExFP\" = [,<NULL-object>,\"per\",\"hideObject\",true]"
+		Change this to a 1. Not the best solution but can't get a working filter at this point. 
 		
 publicvariableval.txt
 
@@ -58,3 +58,5 @@ scripts.txt
 
 	//5 createVehicle
 		!"_detonate = \"grenade\" createVehicle _pos;" !"_object = createVehicle [_classname, _location, [], 0, \"NONE\"];"
+		
+****Now follow the instructions for updating your SQL Database****

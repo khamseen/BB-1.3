@@ -3,7 +3,7 @@
 fnc_usec_selfActions = compile preprocessFileLineNumbers "dayz_code\compile\fn_selfActions.sqf";
 
 //Base Building 1.3 Specific Compiles
-player_build 			= compile preprocessFileLineNumbers "dayz_code\actions\player_build.sqf";
+player_build 			= compile preprocessFileLineNumbers "dayz_code\compile\player_build.sqf";
 antiWall 				= compile preprocessFileLineNumbers "dayz_code\compile\antiWall.sqf";
 anti_discWall 			= compile preprocessFileLineNumbers "dayz_code\compile\anti_discWall.sqf";
 refresh_build_recipe_dialog 		= compile preprocessFileLineNumbers "buildRecipeBook\refresh_build_recipe_dialog.sqf";

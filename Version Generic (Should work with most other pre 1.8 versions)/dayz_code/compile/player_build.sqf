@@ -1,7 +1,7 @@
 /*
 Base Building DayZ by Daimyo
 */
-private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildables","_flagradius","_okToBuild","_allowedExtendedMode","_flagNearest","_flagNearby","_requireFlag","_funcExitScriptCombat","_funcExitScript","_playerCombat","_isSimulated","_isDestructable","_townRange","_longWloop","_medWloop","_smallWloop","_inTown","_inProgress","_modDir","_startPos","_tObjectPos","_buildable","_chosenRecipe","_cnt","_cntLoop","_dialog","_buildCheck","_isInCombat","_playerCombat","_check_town","_eTool","_toolBox","_town_pos","_town_name","_closestTown","_roadAllowed","_toolsNeeded","_inBuilding","_attachCoords","_requirements","_result","_alreadyBuilt","_uidDir","_p1","_p2","_uid","_worldspace","_panelNearest2","_staticObj","_onRoad","_itemL","_itemM","_itemG","_qtyL","_qtyM","_qtyG","_cntLoop","_finished","_checkComplete","_objectTemp","_locationPlayer","_object","_id","_isOk","_text","_mags","_hasEtool","_canDo","_hasToolbox","_inVehicle","_isWater","_onLadder","_building","_medWait","_longWait","_location","_isOk","_dir","_classname","_item","_itemT","_itemS","_itemW","_qtyT","_qtyS","_qtyW","_qtyE","_qtyCr","_qtyC","_qtyB","_qtySt","_qtyDT","_itemE","_itemCr","_itemC","_itemB","_itemSt","_itemDT","_authorizedPUID","_canUseFlag"];
+private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildables","_flagradius","_okToBuild","_allowedExtendedMode","_flagNearest","_flagNearby","_requireFlag","_funcExitScriptCombat","_funcExitScript","_playerCombat","_isSimulated","_isDestructable","_townRange","_longWloop","_medWloop","_smallWloop","_inTown","_inProgress","_modDir","_startPos","_tObjectPos","_buildable","_chosenRecipe","_cnt","_cntLoop","_dialog","_buildCheck","_isInCombat","_playerCombat","_check_town","_eTool","_toolBox","_town_pos","_town_name","_closestTown","_roadAllowed","_toolsNeeded","_inBuilding","_attachCoords","_requirements","_result","_alreadyBuilt","_uidDir","_p1","_p2","_uid","_worldspace","_panelNearest2","_staticObj","_onRoad","_itemL","_itemM","_itemG","_qtyL","_qtyM","_qtyG","_cntLoop","_finished","_checkComplete","_objectTemp","_locationPlayer","_object","_id","_isOk","_text","_mags","_hasEtool","_canDo","_hasToolbox","_inVehicle","_isWater","_onLadder","_building","_medWait","_longWait","_location","_isOk","_dir","_classname","_item","_itemT","_itemS","_itemW","_qtyT","_qtyS","_qtyW","_authorizedPUID","_canUseFlag"];
 
 // Location placement declarations
 _locationPlayer = player modeltoworld [0,0,0];
@@ -138,42 +138,6 @@ _playerCombat 	= player;
 			_buildables set [count _buildables, _qtyG]; 
 			_itemG = "HandGrenade_West";
 		} else { _qtyG = 0; _buildables set [count _buildables, _qtyG]; };
-
-		if ("equip_scrapelectronics" in _mags) then {
-			_qtyE = {_x == "equip_scrapelectronics"} count magazines player;
-			_buildables set [count _buildables, _qtyE]; 
-			_itemE = "equip_scrapelectronics";
-		} else { _qtyE = 0; _buildables set [count _buildables, _qtyE]; };
-		
-		if ("ItemCamoNet" in _mags) then {
-			_qtyC = {_x == "ItemCamoNet"} count magazines player;
-			_buildables set [count _buildables, _qtyC]; 
-			_itemC = "ItemCamoNet";
-		} else { _qtyC = 0; _buildables set [count _buildables, _qtyC]; };
-		
-		if ("equip_crate" in _mags) then {
-			_qtyCr = {_x == "equip_crate"} count magazines player;
-			_buildables set [count _buildables, _qtyCr]; 
-			_itemCr = "equip_crate";
-		} else { _qtyCr = 0; _buildables set [count _buildables, _qtyCr]; };
-		
-		if ("equip_brick" in _mags) then {
-			_qtyB = {_x == "equip_brick"} count magazines player;
-			_buildables set [count _buildables, _qtyB]; 
-			_itemB = "equip_brick";
-		} else { _qtyB = 0; _buildables set [count _buildables, _qtyB]; };
-		
-		if ("equip_string" in _mags) then {
-			_qtySt = {_x == "equip_string"} count magazines player;
-			_buildables set [count _buildables, _qtySt]; 
-			_itemSt = "equip_string";
-		} else { _qtySt = 0; _buildables set [count _buildables, _qtySt]; };
-		
-		if ("equip_duct_tape" in _mags) then {
-			_qtyDT = {_x == "equip_duct_tape"} count magazines player;
-			_buildables set [count _buildables, _qtyDT]; 
-			_itemDt = "equip_duct_tape";
-		} else { _qtyDT = 0; _buildables set [count _buildables, _qtyDT]; };
 	
 	/*-- Add another item for recipe here by changing _qtyI, "Item_Classname", and add recipe into build_list.sqf array!
 		Dont forget to add recipe to recipelist so your players can know how to make object via recipe
@@ -746,36 +710,6 @@ _playerCombat 	= player;
 			_buildables set [count _buildables, _qtyG]; 
 		} else { _qtyG = 0; _buildables set [count _buildables, _qtyG]; };
 
-		if ("equip_scrapelectronics" in _mags) then {
-			_qtyE = {_x == "equip_scrapelectronics"} count magazines player;
-			_buildables set [count _buildables, _qtyE]; 
-		} else { _qtyE = 0; _buildables set [count _buildables, _qtyE]; };
-		
-		if ("ItemCamoNet" in _mags) then {
-			_qtyC = {_x == "ItemCamoNet"} count magazines player;
-			_buildables set [count _buildables, _qtyC]; 
-		} else { _qtyC = 0; _buildables set [count _buildables, _qtyC]; };
-		
-		if ("equip_crate" in _mags) then {
-			_qtyCr = {_x == "equip_crate"} count magazines player;
-			_buildables set [count _buildables, _qtyCr]; 
-		} else { _qtyCr = 0; _buildables set [count _buildables, _qtyCr]; };
-
-		if ("equip_brick" in _mags) then {
-			_qtyB = {_x == "equip_brick"} count magazines player;
-			_buildables set [count _buildables, _qtyB]; 
-		} else { _qtyB = 0; _buildables set [count _buildables, _qtyB]; };
-		
-		if ("equip_string" in _mags) then {
-			_qtySt = {_x == "equip_string"} count magazines player;
-			_buildables set [count _buildables, _qtySt]; 
-		} else { _qtySt = 0; _buildables set [count _buildables, _qtySt]; };
-		
-		if ("equip_duct_tape" in _mags) then {
-			_qtyDT = {_x == "equip_duct_tape"} count magazines player;
-			_buildables set [count _buildables, _qtyDT]; 
-		} else { _qtyDT = 0; _buildables set [count _buildables, _qtyDT]; };
-		
 	// Check if it matches again
 	disableUserInput true;
 	cutText ["Keyboard disabled while confirm recipes\n -Anti-Dupe", "PLAIN DOWN"];
@@ -860,45 +794,6 @@ _playerCombat 	= player;
 				player removeMagazine _itemM;
 			};
 		};
-		if (_qtyE > 0) then {
-			for "_i" from 0 to _qtyE do
-			{
-				player removeMagazine _itemE;
-			};
-		};
-		if (_qtyC > 0) then {
-			for "_i" from 0 to _qtyC do
-			{
-				player removeMagazine _itemC;
-			};
-		};
-		if (_qtyCr > 0) then {
-			for "_i" from 0 to _qtyCr do
-			{
-				player removeMagazine _itemCR;
-			};
-		};
-		if (_qtyB > 0) then {
-			for "_i" from 0 to _qtyB do
-			{
-				player removeMagazine _itemB;
-			};
-		};
-		
-		if (_qtySt > 0) then {
-			for "_i" from 0 to _qtySt do
-			{
-				player removeMagazine _itemSt;
-			};
-		};
-		
-		if (_qtyDT > 0) then {
-			for "_i" from 0 to _qtyDT do
-			{
-				player removeMagazine _itemDt;
-			};
-		};
-		
 		//Grenade only is needed when building booby trap
 		if (_qtyG > 0 && _classname == "Grave") then {
 			for "_i" from 0 to _qtyG do

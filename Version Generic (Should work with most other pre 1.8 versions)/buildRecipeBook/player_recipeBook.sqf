@@ -7,7 +7,7 @@ _recipeBook = [];
     _requeriments_string="";
     _i =0;
     {
-        _letters=["T","S","W","L","M","G","E","Cr","C","B","St","DT"];
+        _letters=["T","S","W","L","M","G"];
         _qty="";
         _letter="";
         _qty_letter="";
@@ -34,5 +34,5 @@ buildRecipeBook = _recipeBook;
 
 
 
-"[TankTrap, SandBags, Wires, Logs, Scrap Metal, Grenades, ScrapElectronics, SupplyCrate, CamoNet ,Brick, String, DuctTape]" hintC buildRecipeBook;
+"[TankTrap, SandBags, Wires, Logs, Scrap Metal, Grenades]" hintC buildRecipeBook;
 //[] call BIS_fnc_GUIeditor;

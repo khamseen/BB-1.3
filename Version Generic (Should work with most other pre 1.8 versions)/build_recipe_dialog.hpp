@@ -108,73 +108,6 @@ class Build_Recipe_Dialog
             h = 0.0315319 * safezoneH;
             tooltip = "Grenades";
         };
-                class ElectronicsImage: RscPicture
-        {
-            idc = 1210;
-            text = "\z\addons\dayz_communityassets\pictures\scrapelectronics.paa";
-            //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.404086 * safezoneW + safezoneX;
-            y = 0.334968 * safezoneH + safezoneY;
-            w = 0.019375 * safezoneW;
-            h = 0.0315319 * safezoneH;
-            tooltip = "Scrap Electronics";
-        };
-                class CrateImage: RscPicture
-        {
-            idc = 1211;
-            text = "\z\addons\dayz_communityassets\pictures\equip_crate.paa";
-            //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.404086 * safezoneW + safezoneX;
-            y = 0.389979 * safezoneH + safezoneY;
-            w = 0.019375 * safezoneW;
-            h = 0.0315319 * safezoneH;
-            tooltip = "Supply Crate";
-        };
-                class CamonetImage: RscPicture
-        {
-            idc = 1212;
-            text = "dayz_equip\textures\equip_tentbag_CA.paa";
-            //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.404086 * safezoneW + safezoneX;
-            y = 0.444989 * safezoneH + safezoneY;
-            w = 0.019375 * safezoneW;
-            h = 0.0315319 * safezoneH;
-            tooltip = "CamoNet";
-        };
-                class BrickImage: RscPicture
-        {
-            idc = 1213;
-            text = "\z\addons\dayz_communityassets\pictures\equip_brick.paa";
-            //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.404086 * safezoneW + safezoneX;
-            y = 0.5 * safezoneH + safezoneY;
-            w = 0.019375 * safezoneW;
-            h = 0.0315319 * safezoneH;
-            tooltip = "Brick";
-        };
-               
-                class StringImage: RscPicture
-        {
-            idc = 1214;
-            text = "\z\addons\dayz_communityassets\pictures\equip_string_ca.paa";
-            //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.404086 * safezoneW + safezoneX;
-            y = 0.555011 * safezoneH + safezoneY;
-            w = 0.019375 * safezoneW;
-            h = 0.0315319 * safezoneH;
-            tooltip = "String";
-        };
-                class DuctTapeImage: RscPicture
-        {
-            idc = 1215;
-            text = "\z\addons\dayz_communityassets\pictures\equip_duct_tape.paa";
-            //text = "buildRecipeBook\images\grenade.paa";
-            x = 0.404086 * safezoneW + safezoneX;
-            y = 0.610021 * safezoneH + safezoneY;
-            w = 0.019375 * safezoneW;
-            h = 0.0315319 * safezoneH;
-            tooltip = "Duct Tape";
-        };
                
         class ClassNameFrame: RscFrame
         {
@@ -235,62 +168,6 @@ class Build_Recipe_Dialog
             idc = 1005;
             text = "1";
             x = 0.338867 * safezoneW + safezoneX;
-            y = 0.610021 * safezoneH + safezoneY;
-            w = 0.050625 * safezoneW;
-            h = 0.0277753 * safezoneH;
-        };     
-                class ElectronicsQty: RscText
-        {
-            idc = 1019;
-            text = "1";
-            x = 0.429867 * safezoneW + safezoneX;
-            y = 0.334968 * safezoneH + safezoneY;
-            w = 0.050625 * safezoneW;
-            h = 0.0277753 * safezoneH;
-        };
-                class CrateQty: RscText
-        {
-            idc = 1020;
-            text = "1";
-            x = 0.429867 * safezoneW + safezoneX;
-                        y = 0.389979 * safezoneH + safezoneY;        
-                        w = 0.050625 * safezoneW;
-            h = 0.0277753 * safezoneH;
-        };          
- 
-                class CamoNetQty: RscText
-        {
-            idc = 1021;
-            text = "1";
-            x = 0.429867 * safezoneW + safezoneX;
-            y = 0.444989 * safezoneH + safezoneY;
-            w = 0.050625 * safezoneW;
-            h = 0.0277753 * safezoneH;
-        };
-                class BrickQty: RscText
-        {
-            idc = 1022;
-            text = "1";
-            x = 0.429867 * safezoneW + safezoneX;
-            y = 0.5 * safezoneH + safezoneY;
-            w = 0.050625 * safezoneW;
-            h = 0.0277753 * safezoneH;
-        };     
-               
-                class StringQty: RscText
-        {
-            idc = 1023;
-            text = "1";
-            x = 0.429867 * safezoneW + safezoneX;
-            y = 0.555011 * safezoneH + safezoneY;
-            w = 0.050625 * safezoneW;
-            h = 0.0277753 * safezoneH;
-        };
-                class DuctTapeQty: RscText
-        {
-            idc = 1024;
-            text = "1";
-            x = 0.429867 * safezoneW + safezoneX;
             y = 0.610021 * safezoneH + safezoneY;
             w = 0.050625 * safezoneW;
             h = 0.0277753 * safezoneH;

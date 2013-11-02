@@ -13,12 +13,6 @@ _recipeQtyW= _requeriments select 2;
 _recipeQtyL= _requeriments select 3;
 _recipeQtyM= _requeriments select 4;
 _recipeQtyG= _requeriments select 5;
-_recipeQtyE= _requeriments select 6;
-_recipeQtyCr= _requeriments select 7;
-_recipeQtyC= _requeriments select 8;
-_recipeQtyB= _requeriments select 9;
-_recipeQtySt= _requeriments select 10;
-_recipeQtyDT= _requeriments select 11;
 
 
 // Count mags in player inventory and add to an array
@@ -29,12 +23,6 @@ _qtyW=0;
 _qtyL=0;
 _qtyM=0;
 _qtyG=0;
-_qtyE=0;
-_qtyCr=0;
-_qtyC=0;
-_qtyB=0;
-_qtySt=0;
-_qtyDT=0;
 
 
 _buildables = [];
@@ -74,42 +62,6 @@ if ("HandGrenade_West" in _mags) then {
     _buildables set [count _buildables, _qtyG]; 
     _itemG = "HandGrenade_West";
 } else { _qtyG = 0; _buildables set [count _buildables, _qtyG]; };
-
-if ("equip_scrapelectronics" in _mags) then {
-	_qtyE = {_x == "equip_scrapelectronics"} count magazines player;
-	_buildables set [count _buildables, _qtyE]; 
-	_itemE = "equip_scrapelectronics";
-} else { _qtyE = 0; _buildables set [count _buildables, _qtyE]; };
-
-if ("ItemCamoNet" in _mags) then {
-	_qtyC = {_x == "ItemCamoNet"} count magazines player;
-	_buildables set [count _buildables, _qtyC]; 
-	_itemC = "ItemCamoNet";
-} else { _qtyC = 0; _buildables set [count _buildables, _qtyC]; };
-
-if ("equip_crate" in _mags) then {
-	_qtyCr = {_x == "equip_crate"} count magazines player;
-	_buildables set [count _buildables, _qtyCr]; 
-	_itemCr = "equip_crate";
-} else { _qtyCr = 0; _buildables set [count _buildables, _qtyCr]; };
-
-if ("equip_brick" in _mags) then {
-	_qtyB = {_x == "equip_brick"} count magazines player;
-	_buildables set [count _buildables, _qtyB]; 
-	_itemB = "equip_brick";
-} else { _qtyB = 0; _buildables set [count _buildables, _qtyB]; };
-
-if ("equip_string" in _mags) then {
-	_qtySt = {_x == "equip_string"} count magazines player;
-	_buildables set [count _buildables, _qtySt]; 
-	_itemSt = "equip_string";
-} else { _qtySt = 0; _buildables set [count _buildables, _qtySt]; };
-
-if ("equip_duct_tape" in _mags) then {
-	_qtyDT = {_x == "equip_duct_tape"} count magazines player;
-	_buildables set [count _buildables, _qtyDT]; 
-	_itemB = "equip_duct_tape";
-} else { _qtyDT = 0; _buildables set [count _buildables, _qtyDT]; };
 
 _result = false;
 _result = [_requeriments,_buildables] call BIS_fnc_areEqual;
@@ -189,12 +141,7 @@ if (!_result) then {
     (Build_Recipe_Dialog displayCtrl 1003) ctrlSetText format["x%1  (%2)",_recipeQtyL,_qtyL];
     (Build_Recipe_Dialog displayCtrl 1004) ctrlSetText format["x%1  (%2)",_recipeQtyM,_qtyM];
     (Build_Recipe_Dialog displayCtrl 1005) ctrlSetText format["x%1  (%2)",_recipeQtyG,_qtyG];
-	(Build_Recipe_Dialog displayCtrl 1019) ctrlSetText format["x%1  (%2)",_recipeQtyE,_qtyE];
-	(Build_Recipe_Dialog displayCtrl 1020) ctrlSetText format["x%1  (%2)",_recipeQtyCr,_qtyCr];
-	(Build_Recipe_Dialog displayCtrl 1021) ctrlSetText format["x%1  (%2)",_recipeQtyC,_qtyC];
-	(Build_Recipe_Dialog displayCtrl 1022) ctrlSetText format["x%1  (%2)",_recipeQtyB,_qtyB];
-	(Build_Recipe_Dialog displayCtrl 1023) ctrlSetText format["x%1  (%2)",_recipeQtySt,_qtySt];
-	(Build_Recipe_Dialog displayCtrl 1024) ctrlSetText format["x%1  (%2)",_recipeQtyDT,_qtyDT];
+
     
     //Set Image
     (Build_Recipe_Dialog displayCtrl 1200) ctrlSetText format["buildRecipeBook\images\buildable\%1.jpg",_classname];

@@ -56,7 +56,7 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 6. Now youll have **YOUR server file** and **YOURWORLD mission file** unpbo'd<br>
 
 ##Part 1 - The Basics:
-- Download the master branch from [https://github.com/khamseen/BlargHonk/archive/master.zip](https://github.com/khamseen/BlargHonk/archive/master.zip)<br>
+- Download the master branch from [https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip](https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip)<br>
 
 - Extract to folder of your choice.<br>
 
@@ -79,7 +79,8 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 
 - In MYSQL Workbench (or whatever you use to manage DB): <br>
 - Set your default schema (the database you want to execute scripts on) <br>
-- Inside your version specific folder, select either the 'reality_basebuilding.sql' or 'hive_basebuilding.sql' file and execute it <br><br>
+- If you are updating from Base Building 1.2, then select either 'updateInstall_reality_basebuilding.sql' or 'updateInstall_hive_basebuilding.sql' and execute it<br>
+- If you are doing a fresh install, select either 'newInstall_reality_basebuilding.sql' or 'newInstall_hive_basebuilding.sql' and execute it<br><br>
 
 
 ###Enjoy Building your new base!

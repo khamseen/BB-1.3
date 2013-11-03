@@ -50,16 +50,17 @@ Put together a readme for Epoch (Done)
 Alter generic version readme to explain how to add keybinds from compiles.sqf (Done)
 Provide 'new install' and 'update install' SQL scripts to avoid deployable IDs being changed (Done)
 Combine the 'update install' DB additions with the 'update to 1.3' script so they still only have one script to run (Done)
+Hive SQL scripts still need sorted (Done)
 
 //----------------------- Still Need Looked At --------------------
 
 //Build List
 Finalise recipes and build items
 Add replacements for old buildables: tank traps, sand bag walls, wire fences, and camo nets.
+Check all new 1.8 items as they don't seem to be registering
 
 //ReadMe + Install Stuff
 Put together a readme for Overwatch
-Hive SQL scripts still need sorted
 
 //------------------ Would Be Nice ------------------------
 

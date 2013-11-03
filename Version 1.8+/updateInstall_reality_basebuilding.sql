@@ -18,14 +18,15 @@ CREATE TABLE IF NOT EXISTS `instance_deployable_old` (
   KEY `idx1_instance_deployable_old` (`deployable_id`),
   KEY `idx2_instance_deployable_old` (`owner_id`),
   KEY `idx3_instance_deployable_old` (`instance_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT AUTO_INCREMENT=1 ;
 
 --
 -- Copies all data to the new table from the existing one
 --
 INSERT INTO instance_deployable_old
 SELECT *
-FROM instance_deployable;
+FROM instance_deployable
+WHERE deployable_id >= 6 and deployable_id <= 52;
 
 --
 -- Removes the Base Building 1.2 items from the original table
@@ -36,13 +37,10 @@ WHERE deployable_id >= 6 and deployable_id <= 52;
 --
 -- Copies Base Building items from the new table, to the original with the new array system
 --
-insert INTO instance_deployable
-  (id, unique_id,  deployable_id, owner_id, instance_id, worldspace, inventory, last_updated,
-  created, Hitpoints, Fuel, Damage)
-  
-  select   instance_deployable_old.id, instance_deployable_old.unique_id,  deployable_id, owner_id, instance_id, instance_deployable_old.worldspace, CONCAT("[[""", instance_deployable_old.unique_id, """],[""", survivor.unique_id, """]]" ), instance_deployable_old.last_updated,
-  created, Hitpoints, Fuel, Damage from instance_deployable_old
-    inner join survivor on instance_deployable_old.owner_id = survivor.id
+INSERT INTO `instance_deployable`(`id`, `unique_id`, `deployable_id`, `owner_id`, `instance_id`, `worldspace`, `inventory`, `last_updated`, `created`, `Hitpoints`, `Fuel`, `Damage`)
+SELECT d.id, d.unique_id, d.deployable_id, d.owner_id, d.instance_id, d.worldspace, CONCAT("[[""", d.unique_id, """],[""", s.unique_id, """]]" ), d.last_updated, d.created, d.Hitpoints, d.Fuel, d.Damage
+FROM instance_deployable_old d
+INNER JOIN survivor s ON d.owner_id = s.id
 WHERE deployable_id >= 6 and deployable_id <= 52;
 
 --

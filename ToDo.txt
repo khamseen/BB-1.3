@@ -40,20 +40,25 @@ Address problem with removing extendable objects. You can't remove things unless
 
 //Backwards Compatability
 Create duplicate files and change public variables, build list requirements etc to pre 1.8 (Done, Generic Version)
-//----------------------- Still Need Looked At --------------------
 
 //Sarge AI
-Setup a master variable to enable/disable all AI functionality and control options
+Setup a master variable to enable/disable all AI functionality and control options (Done)
+
+//ReadMe + Install Stuff
+Put together a readme for older versions (Done)
+Put together a readme for Epoch (Done)
+Alter generic version readme to explain how to add keybinds from compiles.sqf (Done)
+Provide 'new install' and 'update install' SQL scripts to avoid deployable IDs being changed (Done)
+Combine the 'update install' DB additions with the 'update to 1.3' script so they still only have one script to run (Done)
+
+//----------------------- Still Need Looked At --------------------
 
 //Build List
 Finalise recipes and build items
 Add replacements for old buildables: tank traps, sand bag walls, wire fences, and camo nets.
 
 //ReadMe + Install Stuff
-Put together a readme for older versions
-Put together a readme for Epoch
-Alter generic version readme to explain how to add keybinds from compiles.sqf
-Provide 'new install' and 'update install' SQL scripts to avoid deployable IDs being changed
+Hive SQL scripts still need sorted
 
 //------------------ Would Be Nice ------------------------
 

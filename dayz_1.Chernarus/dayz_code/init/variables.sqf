@@ -31,6 +31,7 @@
 	removeUIDCode = false;
 	globalAuthorizedUID = [];
 	adminSuperAccess = ["55893190","#####"]; //Replace with your admin playerUIDs for base building
+	AIGuards = 0; //Sarge AI Base Guard (Currently not working)/ 1 = Enabled // 0 = Disabled
 	
 	
 //EXTENDED BASE BUILDING

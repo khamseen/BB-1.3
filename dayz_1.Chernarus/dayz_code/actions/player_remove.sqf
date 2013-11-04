@@ -69,7 +69,7 @@ _qtyM = 0;
 _qtyG = 0;
 _qtyE = 0;
 _qtyCr = 0;
-_qtyC = _0;
+_qtyC = 0;
 _qtyB = 0;
 _qtySt = 0;
 _qtyDT = 0;	
@@ -128,10 +128,10 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 		for "_i" from 1 to _qtyE do { _result = [player,"equip_scrapelectronics"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyCr > 0) then {
-		for "_i" from 1 to _qtyCr do { _result = [player,"ItemCamoNet"] call BIS_fnc_invAdd;  };
+		for "_i" from 1 to _qtyCr do { _result = [player,"equip_crate"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyC > 0) then {
-		for "_i" from 1 to _qtyC do { _result = [player,"equip_crate"] call BIS_fnc_invAdd;  };
+		for "_i" from 1 to _qtyC do { _result = [player,"ItemCamoNet"] call BIS_fnc_invAdd;  };
 	};	
 	if (_qtyB > 0) then {
 		for "_i" from 1 to _qtyB do { _result = [player,"equip_brick"] call BIS_fnc_invAdd;  };

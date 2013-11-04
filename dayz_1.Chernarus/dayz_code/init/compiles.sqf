@@ -20,6 +20,8 @@ getNetting = {
 			case(camoNetB_East distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetB_East;
+				_authorizedUID = _obj getVariable ["AuthorizedUID", []];
+				_authorizedOUID = (_authorizedUID select 0) select 0;
 				//_objectID = _obj getVariable["ObjectID","0"];
 				//_objectUID = _obj getVariable["ObjectUID","0"];
 				//_ownerID = _obj getVariable ["characterID","0"];
@@ -27,6 +29,8 @@ getNetting = {
 			case(camoNetVar_East distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetVar_East;
+				_authorizedUID = _obj getVariable ["AuthorizedUID", []];
+				_authorizedOUID = (_authorizedUID select 0) select 0;
 				//_objectID = _obj getVariable["ObjectID","0"];
 				//_objectUID = _obj getVariable["ObjectUID","0"];
 				//_ownerID = _obj getVariable ["characterID","0"];
@@ -34,6 +38,8 @@ getNetting = {
 			case(camoNet_East distance player < 10 && isNull _obj):
 			{
 				_obj = camoNet_East;
+				_authorizedUID = _obj getVariable ["AuthorizedUID", []];
+				_authorizedOUID = (_authorizedUID select 0) select 0;
 				//_objectID = _obj getVariable["ObjectID","0"];
 				//_objectUID = _obj getVariable["ObjectUID","0"];
 				//_ownerID = _obj getVariable ["characterID","0"];
@@ -41,6 +47,8 @@ getNetting = {
 			case(camoNetB_Nato distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetB_Nato;
+				_authorizedUID = _obj getVariable ["AuthorizedUID", []];
+				_authorizedOUID = (_authorizedUID select 0) select 0;
 				//_objectID = _obj getVariable["ObjectID","0"];
 				//_objectUID = _obj getVariable["ObjectUID","0"];
 				//_ownerID = _obj getVariable ["characterID","0"];
@@ -48,6 +56,8 @@ getNetting = {
 			case(camoNetVar_Nato distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetVar_Nato;
+				_authorizedUID = _obj getVariable ["AuthorizedUID", []];
+				_authorizedOUID = (_authorizedUID select 0) select 0;
 				//_objectID = _obj getVariable["ObjectID","0"];
 				//_objectUID = _obj getVariable["ObjectUID","0"];
 				//_ownerID = _obj getVariable ["characterID","0"];
@@ -55,6 +65,8 @@ getNetting = {
 			case(camoNet_Nato distance player < 10 && isNull _obj):
 			{
 				_obj = camoNet_Nato;
+				_authorizedUID = _obj getVariable ["AuthorizedUID", []];
+				_authorizedOUID = (_authorizedUID select 0) select 0;
 				//_objectID = _obj getVariable["ObjectID","0"];
 				//_objectUID = _obj getVariable["ObjectUID","0"];
 				//_ownerID = _obj getVariable ["characterID","0"];

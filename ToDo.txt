@@ -1,6 +1,29 @@
 Things to Do
+//----------------------- Still Need Looked At --------------------
+
+//General
+Flag count check
+Camo Net removal option not showing
+
+//Build List
+Finalise recipes and build items
+
+//ReadMe + Install Stuff
+Put together a readme for Overwatch
+
+//------------------ Would Be Nice ------------------------
+
+//Sarge AI
+Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it)
+
+//Lighting
+Try to implement toggle tower lights with generator
+
+//Keybinds
+Look at different ways of implementing keybinds, hopefully we can find a way to do it without having to include every dayz version specific keybind from compiles. (Doesn't appear possible)
 
 //-------------------------- DONE --------------------------
+
 //enterCodeAdd.sqf
 Change the Hint window to something more appealing (Done)
 
@@ -52,23 +75,6 @@ Provide 'new install' and 'update install' SQL scripts to avoid deployable IDs b
 Combine the 'update install' DB additions with the 'update to 1.3' script so they still only have one script to run (Done)
 Hive SQL scripts still need sorted (Done)
 
-//----------------------- Still Need Looked At --------------------
-
 //Build List
-Finalise recipes and build items
-Add replacements for old buildables: tank traps, sand bag walls, wire fences, and camo nets.
-Check all new 1.8 items as they don't seem to be registering
-
-//ReadMe + Install Stuff
-Put together a readme for Overwatch
-
-//------------------ Would Be Nice ------------------------
-
-//Sarge AI
-Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it)
-
-//Lighting
-Try to implement toggle tower lights with generator
-
-//Keybinds
-Look at different ways of implementing keybinds, hopefully we can find a way to do it without having to include every dayz version specific keybind from compiles. (Doesn't appear possible)
+Check all new 1.8 items as they don't seem to be registering (Done)
+Add replacements for old buildables: tank traps, sand bag walls, wire fences, (and CamoNets 1.8 only) (Done)

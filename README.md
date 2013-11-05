@@ -24,7 +24,7 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 
 - Optimizations to code and functionality<br>
 - Enhanced building placement mechanic<br>
-- Expanded build recipe menu (new item requirements)<br>
+- Expanded build recipe menu (new item requirements, 1.8+ only!)<br>
 - No more entering codes, they've been replaced by a one time entry of player UIDs<br>
 - No more broken removals (we now store the object UID in an array, so they can always be removed)<br>
 - Booby Traps work! They will now only detonate with players who aren't marked as friendly<br>

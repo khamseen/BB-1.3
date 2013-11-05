@@ -29,7 +29,7 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 - No more broken removals (we now store the object UID in an array, so they can always be removed)<br>
 - Booby Traps work! They will now only detonate with players who aren't marked as friendly<br>
 - Base Flags, build a flag and you and your friends can build within a 200 metre radius<br>
-- Shared ownership, you can share the stored flag player UIDS with any base building item you own, your friends can then use/remove that item as if it was theirs<br>
+- Shared ownership, you can share the stored flag player UIDs with any base building item you own, your friends can then use/remove that item as if it was theirs<br>
 - Roofs! There is now a roof option to build, these can be toggled on/off like the gates<br>
 - Lights! Place barrels around your base and toggle them on/off to light it up at night<br>
 <br><br>
@@ -56,7 +56,7 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 6. Now youll have **YOUR server file** and **YOURWORLD mission file** unpbo'd<br>
 
 ##Part 1 - The Basics:
-- Download the master branch from [https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip](https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip)<br>
+- Download the master branch from [https://github.com/khamseen/BlargHonk/archive/master.zip](https://github.com/khamseen/BlargHonk/archive/master.zip)<br>
 
 - Extract to folder of your choice.<br>
 

@@ -1,7 +1,7 @@
 All of these edits are to be made in the dayz_server.pbo
 
 ****STEP 1 (Modifying compile\server_publishObject.sqf)****
-
+**A**
 Find
 
 _charID =		_this select 0;
@@ -22,6 +22,7 @@ if (count _this > 4) then {
 	};
 };
 
+**B**
 Now Find
 
 if (!(_object isKindOf "Building")) exitWith {
@@ -33,7 +34,8 @@ Change that to
 //if (!(_object isKindOf "Building")) exitWith {
 //	deleteVehicle _object;
 //};
-	
+
+**C**
 Then Find
 
 //Send request
@@ -62,11 +64,12 @@ _key call server_hiveWrite;
 if (typeOf(_object) in allbuildables_class) then { //Forces the variable to be updated so server doesn't need to be restarted to allow interaction
 	_updatedAuthorizedUID = ([[_uid],_inventory]);
 	_object setVariable ["AuthorizedUID", _updatedAuthorizedUID, true]; //sets variable with full useable array
+};
 	
 Save and Close	
 
 ****STEP 2 (Modifying compile\server_updateNearbyObjects.sqf)****
-
+**A**
 Find
 
 private["_pos"];
@@ -75,6 +78,7 @@ Change that to
 
 private["_pos","_object","_isBuildable"];
 
+**B**
 Then, at the bottom of the file, add this
 
 //####----####----####---- Base Building 1.3 Start ----####----####----####
@@ -99,37 +103,41 @@ Change that to
 //####----####----####---- Base Building 1.3 Start ----####----####----####
 _object_inventory = {
 	private["_inventory","_previous","_key"];
-	if (typeOf(_object) in allbuildables_class) then
-	{
-		_inventory = _object getVariable ["AuthorizedUID", []]; //Shouldn't need to specify which array since it's all being updated here
-		_authorizedOUID = (_inventory select 0) select 0;
-		//diag_log ("5 server_updateObject what's about to be written to DB OUID" + str(_authorizedOUID));
-		//diag_log ("5 server_updateObject what's about to be written to DB inventory" + str(_inventory));
-		
-		//[[_authorizedUID],[_baseGuardProperties],[_other]];
-			if (_objectID == "0") then {
-				_key = format["CHILD:309:%1:%2:",_authorizedOUID,_inventory]; //was _uid,_inventory
-			} else {
-				_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
-			};
-			diag_log ("HIVE: WRITE: "+ str(_key));
-			_key call server_hiveWrite;
+	if (_object isKindOf "TrapItems") then {
+		_inventory = [_object getVariable ["armed", false]];
 	} else {
-		_inventory = [
-			getWeaponCargo _object,
-			getMagazineCargo _object,
-			getBackpackCargo _object
-		];
-		_previous = str(_object getVariable["lastInventory",[]]);
-		if (str(_inventory) != _previous) then {
-			_object setVariable["lastInventory",_inventory];
-			if (_objectID == "0") then {
-				_key = format["CHILD:309:%1:%2:",_uid,_inventory];
-			} else {
-				_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
+		if (typeOf(_object) in allbuildables_class) then
+		{
+			_inventory = _object getVariable ["AuthorizedUID", []]; //Shouldn't need to specify which array since it's all being updated here
+			_authorizedOUID = (_inventory select 0) select 0;
+			//diag_log ("5 server_updateObject what's about to be written to DB OUID" + str(_authorizedOUID));
+			//diag_log ("5 server_updateObject what's about to be written to DB inventory" + str(_inventory));
+		
+			//[[_authorizedUID],[_baseGuardProperties],[_other]];
+				if (_objectID == "0") then {
+					_key = format["CHILD:309:%1:%2:",_authorizedOUID,_inventory]; //was _uid,_inventory
+				} else {
+					_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
+				};
+				diag_log ("HIVE: WRITE: "+ str(_key));
+				_key call server_hiveWrite;
+		} else {
+			_inventory = [
+				getWeaponCargo _object,
+				getMagazineCargo _object,
+				getBackpackCargo _object
+			];
+			_previous = str(_object getVariable["lastInventory",[]]);
+			if (str(_inventory) != _previous) then {
+				_object setVariable["lastInventory",_inventory];
+				if (_objectID == "0") then {
+					_key = format["CHILD:309:%1:%2:",_uid,_inventory];
+				} else {
+					_key = format["CHILD:303:%1:%2:",_objectID,_inventory];
+				};
+				diag_log ("HIVE: WRITE: "+ str(_key));
+				_key call server_hiveWrite;
 			};
-			diag_log ("HIVE: WRITE: "+ str(_key));
-			_key call server_hiveWrite;
 		};
 	};
 };
@@ -138,7 +146,7 @@ _object_inventory = {
 Save and Close
 
 ****STEP 4 (Modifying init\server_functions.sqf)****
-
+**A**
 Find
 
 	if ((typeOf _object) in _allowedObjects) then {
@@ -147,6 +155,7 @@ Change that to
 
 	if ((typeOf _object) in _allowedObjects || (typeOf _object) in allbuildables_class) then {
 
+**B**
 Now, at the bottom of the file, add this
 
 //####----####----####---- Base Building 1.3 Start ----####----####----####
@@ -300,7 +309,7 @@ This Area is for extra arrays that need to be built, some using above arrays
 Save and Close
 
 ****STEP 5 (Modifying system\server_monitor.sqf)****
-
+**A**
 Find
 
 waitUntil{initialized}; //means all the functions are now defined
@@ -311,6 +320,7 @@ After that, add
 call build_baseBuilding_arrays; // build BB 1.2 arrays
 //####----####----####---- Base Building 1.3 End ----####----####----####
 
+**B**
 Now find
 
 				_object setdir _dir;
@@ -337,7 +347,8 @@ ABOVE that, add
 					//(_inventory select 0)
 				};
 				//####----####----####---- Base Building 1.3 End ----####----####----####
-				
+
+**C**				
 Again find
 
 				_object setdir _dir;
@@ -389,7 +400,8 @@ Now UNDER that, add
 				//gateKeypad = _object addaction ["Defuse", "\z\addons\dayz_server\compile\enterCode.sqf"];
 			};
 				//####----####----####---- Base Building 1.3 End ----####----####----####
-				
+
+**C**
 Lastyly, Find
 
 				if (!(_object isKindOf "TrapItems")) then {

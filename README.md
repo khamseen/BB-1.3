@@ -80,8 +80,8 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 - NOTE: Epoch version only requires an SQL update if you are updating from Base Building 1.2!!
 - In MYSQL Workbench (or whatever you use to manage DB): <br>
 - Set your default schema (the database you want to execute scripts on) <br>
-- If you are updating from Base Building 1.2, then select either 'updateInstall_reality_basebuilding.sql' or 'updateInstall_hive_basebuilding.sql' and execute it<br>
-- If you are doing a fresh install, select either 'newInstall_reality_basebuilding.sql' or 'newInstall_hive_basebuilding.sql' and execute it<br><br>
+- If you are updating from Base Building 1.2, then select either 'updateInstall_reality_basebuilding.sql' or 'updateInstall_hive_basebuilding.sql' depending on which database you use and execute it<br>
+- If you are doing a fresh install, select either 'newInstall_reality_basebuilding.sql' or 'newInstall_hive_basebuilding.sql' depending on which database you use and execute it<br><br>
 
 
 ###Enjoy Building your new base!

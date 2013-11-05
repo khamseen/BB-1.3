@@ -122,4 +122,9 @@ Find this and delete it
 //Custom Self Actions File
 fnc_usec_selfActions = compile preprocessFileLineNumbers "dayz_code\compile\fn_selfActions.sqf";
 
+****STEP 5 (player_build2.sqf)****
+If you would like base building to ignore combat checks and not place players into combat when they finish building, skip this step.
+
+If you would prefer base building to place players into combat upon completion or cancelling a build, delete player_build2.sqf and rename player_build2 - Combat System to player_build2.sqf
+
 ****Now refer to 1.8 DayZ_Server ReadMe.txt****

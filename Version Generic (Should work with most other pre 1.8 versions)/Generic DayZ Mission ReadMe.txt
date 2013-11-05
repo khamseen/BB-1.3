@@ -24,6 +24,7 @@ call compile preprocessFileLineNumbers "dayz_code\init\settings.sqf";							//In
 Save and close
 
 ****STEP 3 (Modifying description.ext)****
+**A**
 At the very top of the file, add
 
 //####----####---- Base Building Start ----####----####
@@ -32,6 +33,7 @@ At the very top of the file, add
 #include "build_recipe_list_dialog.hpp"
 //####----####---- Base Building End ----####----####
 
+**B**
 Then, remove ALL of this
 
 ###REMOVE START###
@@ -198,5 +200,10 @@ Add
 		};
 		
 Save and Close
+
+****STEP 6 (player_build2.sqf)****
+If you would like base building to ignore combat checks and not place players into combat when they finish building, skip this step.
+
+If you would prefer base building to place players into combat upon completion or cancelling a build, delete player_build2.sqf and rename player_build2 - Combat System to player_build2.sqf
 
 ****Now refer to Generic DayZ_Server ReadMe.txt****

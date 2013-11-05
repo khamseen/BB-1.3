@@ -3,7 +3,7 @@ All of these edits are to be made in the dayz_mission.pbo (mission file name may
 ****STEP 1 (Copying Files)****
 
 First, unpack your mission file.
-Now from the Base Building zip, copy over the following
+Now from the Base Building zip\dayz.mission\, copy over the following
 buildRecipeBook 				(Folder)
 dayz_code						(Folder)
 REsec							(Folder)

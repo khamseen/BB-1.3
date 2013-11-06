@@ -189,77 +189,45 @@ _playerCombat 	= player;
 	_requireFlag 	= _requirements select 14;
 	// Get _startPos for object
 	_location 		= player modeltoworld _startPos;
-	//One flag per base
+	//Make sure player isn't registered on more than 3 flags
 	if (_classname == "FlagCarrierBIS_EP1") then { 
 		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
-
-		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
-				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) exitWith {
-					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
-
-				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
-				   _flagMarker setMarkerTypeLocal "warning";
-				   _flagMarker setMarkerColorLocal("ColorBlack");
-				   _flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
-
-
-				   sleep 10;
-				   call _funcExitScriptCombat;
-				};
-			};
-
-		} foreach _allFlags;
-	};
-	//Dont allow players to build in others bases
-	if (_classname != "Grave") then {
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
-		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
-				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= 200) then {
-				 _okToBuild = true;	
-				};
-			};
-			if (_okToBuild) exitWIth {};
-			if (!_okToBuild && !_requireFlag && _x distance player <= _flagRadius) then {cutText [format["Build canceled for %1\nCannot build in other players bases, only Booby traps are allowed.",_text], "PLAIN DOWN"];call _funcExitScriptCombat;};
-		} foreach _allFlags;
-	};
-	
-	//Check Requirements
-	if (_requireFlag) then {
-
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
-
+		_flagcount = 0;
 		{
 			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
 				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) then {
-					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
-
-				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
-				   _flagMarker setMarkerTypeLocal "warning";
-				   _flagMarker setMarkerColorLocal("ColorBlack");
-				   _flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
-
-
-				   sleep 10;
-				   call _funcExitScriptCombat;
-				};
-				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
-					_flagNearby = true;
+					_flagcount = _flagcount + 1;
+					_flagMarker = createMarkerLocal ["Flag Position",position _x];       
+					_flagMarker setMarkerTypeLocal "warning";
+					_flagMarker setMarkerColorLocal("ColorBlack");
+					_flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
+					if (_flagcount >= 3) then {
+						cutText [format["Your playerUID is already registered to three flagpoles, you can only be added on upto three flag poles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
+						sleep 10;
+						call _funcExitScriptCombat;
+					};
 				};
 			};
-
 		} foreach _allFlags;
-
-		if (!_flagNearby) then {
-			cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land \nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScriptCombat;
-		};
+	};
+	//Don't allow players to build in other's bases
+	if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
+		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
+		{
+			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
+				_authorizedUID = _x getVariable ["AuthorizedUID", []];
+				_authorizedPUID = _authorizedUID select 1;
+				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
+					_flagNearby = true;
+					_okToBuild = true;	
+				};
+			};
+			if (_okToBuild) exitWIth {};
+			if (!_okToBuild && (!_requireFlag || _requireFlag) && _x distance player <= _flagRadius) then {cutText [format["Build canceled for %1\nCannot build in other player's bases, only Booby traps are allowed.",_text], "PLAIN DOWN"];call _funcExitScriptCombat;};
+			if (!_okToBuild && _requireFlag && !_flagNearby) then {cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land.\nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScriptCombat;};
+		} foreach _allFlags;
 	};
 	
 	if (_toolBox) then {
@@ -288,9 +256,9 @@ _playerCombat 	= player;
 		};
 	};
 
-	
+	//Check to make sure not building flag too near another base
 	_flagNearest = nearestObjects [player, ["FlagCarrierBIS_EP1"], (_flagRadius * 2)];
-	if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 0)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other bases build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];call _funcExitScriptCombat;};
+	if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 0)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];call _funcExitScriptCombat;};
 
 	// Begin building process
 	_buildCheck = false;
@@ -454,35 +422,29 @@ _playerCombat 	= player;
 					_object setDir (getDir player) + rotateDir;	
 			};
 
-			//Check if trying to build in other players bases
-			if (_classname != "Grave") then {
-				_okToBuild = true; //This might need removed, had to force it to true just to build a flag in empty territory
+			//Make sure players don't move into another players base, or outside their own flag radius
+			if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
 				_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
 				{
 					if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 						_authorizedUID = _x getVariable ["AuthorizedUID", []];
 						_authorizedPUID = _authorizedUID select 1;
-						if ((getPlayerUid player) in _authorizedPUID && _x distance player <= 200) then {
-						 _okToBuild = true;	//This is forced true because we couldn't build flags
+						if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius && _x distance _object <= _flagRadius) then {
+							_flagNearby = true;
+							_okToBuild = true;
+						} else {
+							_flagNearby = false;
+							_okToBuild = false;
 						};
 					};
 					if (_okToBuild) exitWIth {};
-					if (!_okToBuild && _x distance player <= _flagRadius) exitWith {cutText [format["Build canceled for %1\nCannot build in other players bases, only Booby traps are allowed.",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
+					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScriptCombat;};
 				} foreach _allFlags;
 			};
-			//Check if object requires flag and player is trying to walk it out from his flag radius
-			if (_requireFlag) then {
-				_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 600];
-				{
-					if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
-						_authorizedUID = _x getVariable ["AuthorizedUID", []];
-						_authorizedPUID = _authorizedUID select 1;
-						if ((getPlayerUid player in _authorizedPUID) && (_x distance player >= _flagRadius) || (_x distance _object >= _flagRadius)) then {
-							cutText [format["Build canceled for %1\nYou and or the object need to be within %2 meters of your flag to build.",_text, _flagRadius, _text], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScriptCombat;
-						};
-					};
-				} foreach _allFlags;
-			};
+			//Check to make sure not building flag too near another base
+			_flagNearest = nearestObjects [player, ["FlagCarrierBIS_EP1"], (_flagRadius * 2)];
+			if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScriptCombat;};
+			
 			// Cancel build if rules broken
 			if ((!(isNull _dialog) || (speed player >= 12 || speed player <= -9) || _isInCombat > 0) && (isPlayer _playerCombat) ) then {
 				detach _object;
@@ -505,7 +467,7 @@ _playerCombat 	= player;
 			_dir = _objectDir;//getDir _object;
 			cutText [format["AFTER RESTART: This is how the %1 object will look.",_text], "PLAIN DOWN"];
 			sleep 5;
-		} else { //This bit needs looked at still, non extendables should follow land contours
+		} else {
 			_objectDir = getDir _object;
 			detach _object;
 			_objectPos = getPosATL _object;

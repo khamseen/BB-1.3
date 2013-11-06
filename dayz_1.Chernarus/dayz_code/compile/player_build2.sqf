@@ -1,7 +1,7 @@
 /*
 Base Building DayZ by Daimyo
 */
-private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildables","_flagradius","_okToBuild","_allowedExtendedMode","_flagNearest","_flagNearby","_requireFlag","_funcExitScriptCombat","_funcExitScript","_playerCombat","_isSimulated","_isDestructable","_townRange","_longWloop","_medWloop","_smallWloop","_inTown","_inProgress","_modDir","_startPos","_tObjectPos","_buildable","_chosenRecipe","_cnt","_cntLoop","_dialog","_buildCheck","_isInCombat","_playerCombat","_check_town","_eTool","_toolBox","_town_pos","_town_name","_closestTown","_roadAllowed","_toolsNeeded","_inBuilding","_attachCoords","_requirements","_result","_alreadyBuilt","_uidDir","_p1","_p2","_uid","_worldspace","_panelNearest2","_staticObj","_onRoad","_itemL","_itemM","_itemG","_qtyL","_qtyM","_qtyG","_cntLoop","_finished","_checkComplete","_objectTemp","_locationPlayer","_object","_id","_isOk","_text","_mags","_hasEtool","_canDo","_hasToolbox","_inVehicle","_isWater","_onLadder","_building","_medWait","_longWait","_location","_isOk","_dir","_classname","_item","_itemT","_itemS","_itemW","_qtyT","_qtyS","_qtyW","_qtyE","_qtyCr","_qtyC","_qtyB","_qtySt","_qtyDT","_itemE","_itemCr","_itemC","_itemB","_itemSt","_itemDT","_authorizedPUID","_canUseFlag"];
+private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildables","_flagradius","_okToBuild","_allowedExtendedMode","_flagNearest","_flagNearby","_requireFlag","_funcExitScript","_playerCombat","_isSimulated","_isDestructable","_townRange","_longWloop","_medWloop","_smallWloop","_inTown","_inProgress","_modDir","_startPos","_tObjectPos","_buildable","_chosenRecipe","_cnt","_cntLoop","_dialog","_buildCheck","_isInCombat","_playerCombat","_check_town","_eTool","_toolBox","_town_pos","_town_name","_closestTown","_roadAllowed","_toolsNeeded","_inBuilding","_attachCoords","_requirements","_result","_alreadyBuilt","_uidDir","_p1","_p2","_uid","_worldspace","_panelNearest2","_staticObj","_onRoad","_itemL","_itemM","_itemG","_qtyL","_qtyM","_qtyG","_cntLoop","_finished","_checkComplete","_objectTemp","_locationPlayer","_object","_id","_isOk","_text","_mags","_hasEtool","_canDo","_hasToolbox","_inVehicle","_isWater","_onLadder","_building","_medWait","_longWait","_location","_isOk","_dir","_classname","_item","_itemT","_itemS","_itemW","_qtyT","_qtyS","_qtyW","_qtyE","_qtyCr","_qtyC","_qtyB","_qtySt","_qtyDT","_itemE","_itemCr","_itemC","_itemB","_itemSt","_itemDT","_authorizedPUID","_canUseFlag"];
 
 // Location placement declarations
 _locationPlayer = player modeltoworld [0,0,0];
@@ -69,15 +69,6 @@ _playerCombat 	= player;
 		procBuild = false;
 		breakOut "exit";
 	};
-	// Function to exit script with combat activate
-	_funcExitScriptCombat = {
-		player removeAction attachGroundAction;
-		player removeAction finishAction;
-		player removeAction restablishAction;
-		procBuild = false;
-		//_playerCombat setVariable["startcombattimer", 1, true]; //disabled for now to make testing easier
-		breakOut "exit";
-	};
 	// Do first checks to see if player can build before counting
 	if (procBuild) then {cutText ["You're already building!", "PLAIN DOWN"];call _funcExitScript;};
 	if(_isWater) then {cutText [localize "str_player_26", "PLAIN DOWN"];call _funcExitScript;};
@@ -90,7 +81,7 @@ _playerCombat 	= player;
 	//if (_item in (magazines player) ) then { // needs }; 
 	// Global variables for loop method, procBuild may not be needed if implemented in fn_selfactions.sqf
 		if (dayz_combat == 1) then {
-			cutText ["Your currently in combat, time reduced to 3 seconds. \nCanceling/escaping will set you back into combat", "PLAIN DOWN"];
+			cutText ["You're currently in combat, time reduced to 3 seconds. \nCanceling/escaping will set you back into combat", "PLAIN DOWN"];
 			sleep 3;
 			_playerCombat setVariable["combattimeout", 0, true];
 			dayz_combat = 0;
@@ -197,7 +188,7 @@ _playerCombat 	= player;
 			_buildable = [];
 		};
 	// Quit here if no proper recipe is acquired else set names properly
-	if (_classname == "") then {cutText ["You need the EXACT amount of whatever you are trying to build without extras.", "PLAIN DOWN"];call _funcExitScriptCombat;};
+	if (_classname == "") then {cutText ["You need the EXACT amount of whatever you are trying to build without extras.", "PLAIN DOWN"];call _funcExitScript;};
 	if (_classname == "Grave") then {_text = "Booby Trap";};
 	if (_classname == "Concrete_Wall_EP1") then {_text = "Gate Concrete Wall";};
 	if (_classname == "Infostand_2_EP1") then {_text = "Gate Panel Keypad Access";};
@@ -225,91 +216,59 @@ _playerCombat 	= player;
 	_requireFlag 	= _requirements select 14;
 	// Get _startPos for object
 	_location 		= player modeltoworld _startPos;
-	//One flag per base
+	//Make sure player isn't registered on more than 3 flags
 	if (_classname == "FlagCarrierBIS_EP1") then { 
 		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
-
-		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
-				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) exitWith {
-					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
-
-				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
-				   _flagMarker setMarkerTypeLocal "warning";
-				   _flagMarker setMarkerColorLocal("ColorBlack");
-				   _flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
-
-
-				   sleep 10;
-				   call _funcExitScriptCombat;
-				};
-			};
-
-		} foreach _allFlags;
-	};
-	//Dont allow players to build in others bases
-	if (_classname != "Grave") then {
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
-		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
-				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= 200) then {
-				 _okToBuild = true;	
-				};
-			};
-			if (_okToBuild) exitWIth {};
-			if (!_okToBuild && !_requireFlag && _x distance player <= _flagRadius) then {cutText [format["Build canceled for %1\nCannot build in other players bases, only Booby traps are allowed.",_text], "PLAIN DOWN"];call _funcExitScriptCombat;};
-		} foreach _allFlags;
-	};
-	
-	//Check Requirements
-	if (_requireFlag) then {
-
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
-
+		_flagcount = 0;
 		{
 			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
 				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) then {
-					cutText [format["Your playerUID is already registered to one flagpole, you can be added to up to 3 flagpoles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
-
-				   _flagMarker = createMarkerLocal ["Flag Position",position _x];       
-				   _flagMarker setMarkerTypeLocal "warning";
-				   _flagMarker setMarkerColorLocal("ColorBlack");
-				   _flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
-
-
-				   sleep 10;
-				   call _funcExitScriptCombat;
-				};
-				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
-					_flagNearby = true;
+					_flagcount = _flagcount + 1;
+					_flagMarker = createMarkerLocal ["Flag Position",position _x];       
+					_flagMarker setMarkerTypeLocal "warning";
+					_flagMarker setMarkerColorLocal("ColorBlack");
+					_flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
+					if (_flagcount >= 3) then {
+						cutText [format["Your playerUID is already registered to three flagpoles, you can only be added on upto three flag poles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
+						sleep 10;
+						call _funcExitScript;
+					};
 				};
 			};
-
 		} foreach _allFlags;
-
-		if (!_flagNearby) then {
-			cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land \nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScriptCombat;
-		};
+	};
+	//Don't allow players to build in other's bases
+	if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
+		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
+		{
+			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
+				_authorizedUID = _x getVariable ["AuthorizedUID", []];
+				_authorizedPUID = _authorizedUID select 1;
+				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
+					_flagNearby = true;
+					_okToBuild = true;	
+				};
+			};
+			if (_okToBuild) exitWIth {};
+			if (!_okToBuild && (!_requireFlag || _requireFlag) && _x distance player <= _flagRadius) then {cutText [format["Build canceled for %1\nCannot build in other player's bases, only Booby traps are allowed.",_text], "PLAIN DOWN"];call _funcExitScript;};
+			if (!_okToBuild && _requireFlag && !_flagNearby) then {cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land.\nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScript;};
+		} foreach _allFlags;
 	};
 	
 	if (_toolBox) then {
-		if (!_hasToolbox) then {cutText [format["You need a tool box to build %1",_text], "PLAIN DOWN"];call _funcExitScriptCombat; };
+		if (!_hasToolbox) then {cutText [format["You need a tool box to build %1",_text], "PLAIN DOWN"];call _funcExitScript; };
 	};
 	if (_eTool) then {
-		if (!_hasEtool) then {cutText [format["You need an entrenching tool to build %1",_text], "PLAIN DOWN"];call _funcExitScriptCombat; };
+		if (!_hasEtool) then {cutText [format["You need an entrenching tool to build %1",_text], "PLAIN DOWN"];call _funcExitScript; };
 	};
 	if (!_inBuilding) then {
-		if (_isOk) then {cutText [format["%1 cannot be built inside of buildings!",_text], "PLAIN DOWN"];call _funcExitScriptCombat; };
+		if (_isOk) then {cutText [format["%1 cannot be built inside of buildings!",_text], "PLAIN DOWN"];call _funcExitScript; };
 	};
 	if (!_roadAllowed) then { // Do another check for object being on road
 		_onRoad = isOnRoad _locationPlayer;
-		if(_onRoad) then {cutText [format["You cannot build %1 on the road",_text], "PLAIN DOWN"];call _funcExitScriptCombat;};
+		if(_onRoad) then {cutText [format["You cannot build %1 on the road",_text], "PLAIN DOWN"];call _funcExitScript;};
 	};
 	if (!_inTown) then {
 		for "_i" from 0 to ((count allbuild_notowns) - 1) do
@@ -318,15 +277,15 @@ _playerCombat 	= player;
 			if (_town_name == _check_town) then {
 				_townRange = (allbuild_notowns select _i) select _i - _i + 1;
 				if (_locationPlayer distance _town_pos <= _townRange) then {
-					cutText [format["You cannot build %1 within %2 meters of area %3",_text, _townRange, _town_name], "PLAIN DOWN"];call _funcExitScriptCombat;
+					cutText [format["You cannot build %1 within %2 meters of area %3",_text, _townRange, _town_name], "PLAIN DOWN"];call _funcExitScript;
 				};
 			};
 		};
 	};
 
-	
+	//Check to make sure not building flag too near another base
 	_flagNearest = nearestObjects [player, ["FlagCarrierBIS_EP1"], (_flagRadius * 2)];
-	if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 0)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other bases build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];call _funcExitScriptCombat;};
+	if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 0)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];call _funcExitScript;};
 
 	// Begin building process
 	_buildCheck = false;
@@ -482,48 +441,42 @@ _playerCombat 	= player;
 		_playerCombat = player;
 		_isInCombat = _playerCombat getVariable["startcombattimer",0];
 		_dialog = findDisplay 106;
-		//This section handles the placement section where you can change position etc
+		//This section handles the placement where you can change position etc
 			if ((speed player <= 12) && (speed player >= -9)) then {
                     _newAttachCoords = [];
                     _newAttachCoords = [(objectParallelDistance+(_attachCoords select 0)),(objectDistance + (_attachCoords select 1)),(objectHeight + (_attachCoords select 2))];
                     _object attachto [player, _newAttachCoords];
 					_object setDir (getDir player) + rotateDir;	
 			};
-
-			//Check if trying to build in other players bases
-			if (_classname != "Grave") then {
-				_okToBuild = true; //This might need removed, had to force it to true just to build a flag in empty territory
+			
+			//Make sure players don't move into another players base, or outside their own flag radius
+			if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
 				_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
 				{
 					if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 						_authorizedUID = _x getVariable ["AuthorizedUID", []];
 						_authorizedPUID = _authorizedUID select 1;
-						if ((getPlayerUid player) in _authorizedPUID && _x distance player <= 200) then {
-						 _okToBuild = true;	//This is forced true because we couldn't build flags
+						if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius && _x distance _object <= _flagRadius) then {
+							_flagNearby = true;
+							_okToBuild = true;
+						} else {
+							_flagNearby = false;
+							_okToBuild = false;
 						};
 					};
 					if (_okToBuild) exitWIth {};
-					if (!_okToBuild && _x distance player <= _flagRadius) exitWith {cutText [format["Build canceled for %1\nCannot build in other players bases, only Booby traps are allowed.",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
+					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
 				} foreach _allFlags;
 			};
-			//Check if object requires flag and player is trying to walk it out from his flag radius
-			if (_requireFlag) then {
-				_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 600];
-				{
-					if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
-						_authorizedUID = _x getVariable ["AuthorizedUID", []];
-						_authorizedPUID = _authorizedUID select 1;
-						if ((getPlayerUid player in _authorizedPUID) && (_x distance player >= _flagRadius) || (_x distance _object >= _flagRadius)) then {
-							cutText [format["Build canceled for %1\nYou and or the object need to be within %2 meters of your flag to build.",_text, _flagRadius, _text], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScriptCombat;
-						};
-					};
-				} foreach _allFlags;
-			};
+			//Check to make sure not building flag too near another base
+			_flagNearest = nearestObjects [player, ["FlagCarrierBIS_EP1"], (_flagRadius * 2)];
+			if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
+			
 			// Cancel build if rules broken
 			if ((!(isNull _dialog) || (speed player >= 12 || speed player <= -9) || _isInCombat > 0) && (isPlayer _playerCombat) ) then {
 				detach _object;
 				deletevehicle _object;
-				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;
+				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";call _funcExitScript;
 			};
 		sleep 0.03;
 	};
@@ -541,7 +494,7 @@ _playerCombat 	= player;
 			_dir = _objectDir;//getDir _object;
 			cutText [format["AFTER RESTART: This is how the %1 object will look.",_text], "PLAIN DOWN"];
 			sleep 5;
-		} else { //This bit needs looked at still, non extendables should follow land contours
+		} else { 
 			_objectDir = getDir _object;
 			detach _object;
 			_objectPos = getPosATL _object;
@@ -556,7 +509,7 @@ _playerCombat 	= player;
 			sleep 5;
 		};
 	cutText [format["Building beginning for %1.",_text], "PLAIN DOWN"];
-	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
+	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
 	// Begin Building
 	//Do quick check to see if player is not playing nice after placing object
 	_locationPlayer = player modeltoworld [0,0,0];
@@ -566,7 +519,7 @@ _playerCombat 	= player;
 	_inVehicle 		= (vehicle player != player);
 	_isOk = [player,_building] call fnc_isInsideBuilding;
 	if (!_inBuilding) then {
-		if (_isOk) then {deletevehicle _object; cutText [format["%1 cannot be built inside of buildings!",_text], "PLAIN DOWN"];call _funcExitScriptCombat; };
+		if (_isOk) then {deletevehicle _object; cutText [format["%1 cannot be built inside of buildings!",_text], "PLAIN DOWN"];call _funcExitScript; };
 	};
 	// Did player walk object into restricted town?
 	_closestTown = (nearestLocations [player,["NameCityCapital","NameCity","NameVillage"],25600]) select 0;
@@ -579,11 +532,11 @@ _playerCombat 	= player;
 			if (_town_name == _check_town) then {
 				_townRange = (allbuild_notowns select _i) select _i - _i + 1;
 				if (_locationPlayer distance _town_pos <= _townRange ||  _object distance _town_pos <= _townRange) then {
-					 deletevehicle _object; cutText [format["You cannot build %1 within %2 meters of area %3",_text, _townRange, _town_name], "PLAIN DOWN"];call _funcExitScriptCombat;
+					 deletevehicle _object; cutText [format["You cannot build %1 within %2 meters of area %3",_text, _townRange, _town_name], "PLAIN DOWN"];call _funcExitScript;
 				};
 				if (_classname == "FlagCarrierBIS_EP1") then {
 					if (_object distance _town_pos <= (_townRange + _flagRadius)) then {
-						 deletevehicle _object; cutText [format["You cannot build %1 within %2 meters of area %3\nWhen building a %1, you must consider the %4 meter radius around the %1 conflicting with town radius of %5 meters",_text, (_townRange + _flagRadius), _town_name, _flagRadius, _townRange], "PLAIN DOWN"];call _funcExitScriptCombat;
+						 deletevehicle _object; cutText [format["You cannot build %1 within %2 meters of area %3\nWhen building a %1, you must consider the %4 meter radius around the %1 conflicting with town radius of %5 meters",_text, (_townRange + _flagRadius), _town_name, _flagRadius, _townRange], "PLAIN DOWN"];call _funcExitScript;
 					};
 				};
 			};
@@ -603,8 +556,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _longWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -626,7 +579,7 @@ _playerCombat 	= player;
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
 					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";//added these to close control hint window if canceled 
-					procBuild = false;_playerCombat setVariable["startcombattimer", 1, true]; 
+					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
 				r_doLoop = true;
@@ -642,8 +595,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _medWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -664,7 +617,7 @@ _playerCombat 	= player;
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
 					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";
-					procBuild = false;_playerCombat setVariable["startcombattimer", 1, true]; 
+					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
 				r_doLoop = true;
@@ -680,8 +633,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _smallWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScriptCombat;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -702,7 +655,7 @@ _playerCombat 	= player;
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
 					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";
-					procBuild = false;_playerCombat setVariable["startcombattimer", 1, true]; 
+					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
 				r_doLoop = true;
@@ -713,7 +666,7 @@ _playerCombat 	= player;
 		};
 	};
 	
-	// Do last check to see if player attempted to remvoe buildables
+	// Do last check to see if player attempted to remove buildables
 	_mags = magazines player;
 	_buildables = []; // reset original buildables
 		if ("ItemTankTrap" in _mags) then {
@@ -822,7 +775,7 @@ _playerCombat 	= player;
 			};
 			case "FlagCarrierBIS_EP1":
 			{
-				cutText [format["You have constructed a %1\nYou can now build within a %3 radius around this area, add friends playerUIDs to allow them to build too.",_text,_flagRadius], "PLAIN DOWN"];
+				cutText [format["You have constructed a %1\nYou can now build within a %2 meter radius around this area, add friends playerUIDs to allow them to build too.",_text,_flagRadius], "PLAIN DOWN"];
 			};
 			default {
 				cutText [format["You have constructed a %1",_text,_uid], "PLAIN DOWN"];
@@ -919,7 +872,7 @@ _playerCombat 	= player;
 	} else {
 	detach _object;
 	deletevehicle _object; 
-	cutText ["You need the EXACT amount of whatever you are trying to build without extras.", "PLAIN DOWN"];call _funcExitScriptCombat;};
+	cutText ["You need the EXACT amount of whatever you are trying to build without extras.", "PLAIN DOWN"];call _funcExitScript;};
 	
 	player allowdamage true;
-	procBuild = false;_playerCombat setVariable["startcombattimer", 1, true];
+	procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true];

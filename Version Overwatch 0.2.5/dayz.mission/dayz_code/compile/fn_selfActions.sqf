@@ -45,13 +45,16 @@ _currentSkin = typeOf(player);
 		if (s_player_buildHelp < 0) then {
 			s_player_buildHelp = player addaction [("<t color=""#FF9500"">" + ("Base Building Help") +"</t>"),"dayz_code\actions\build_help.sqf","",5,false,true,"",""];
 		};
+		if (s_player_showFlags < 0) then {
+			s_player_showFlags = player addAction [("<t color=""#FF9500"">" + ("Show My Flags") +"</t>"),"dayz_code\actions\show_flag_markers.sqf","",5,false,true,"",""];
+		};
 	} else {
 		player removeAction s_player_buildHelp;
 		s_player_buildHelp = -1;
-		player removeAction s_player_generalRecipes;
-		s_player_generalRecipes = -1;
 		player removeAction s_player_recipeMenu;
 		s_player_recipeMenu = -1;
+		player removeAction s_player_showFlags;
+		s_player_showFlags = -1;
 	};
 
 	//Add in custom eventhandlers or whatever on skin change

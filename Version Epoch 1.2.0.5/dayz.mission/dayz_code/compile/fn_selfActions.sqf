@@ -77,23 +77,25 @@ _currentSkin = typeOf(player);
 	};	
 	
 		// FlagPole Access (more reliable than cursortarget)
+	if ((isNull cursorTarget) && !procBuild && player distance flag_basePole <= 10) then { //Changed this to stop client RPT spam when building flags
 		_authorizedUID = flag_basePole getVariable ["AuthorizedUID", []];
 		_authorizedPUID = _authorizedUID select 1;
 		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
-	if ((isNull cursorTarget) && _authorizedGateCodes && player distance flag_basePole <= 10) then { // && _validGateCodes 
-		//_lever = flag_basePole;
-		if (s_player_addFlagAuth < 0) then {
-			s_player_addFlagAuth = player addAction ["FlagPole: Add Player UIDs for Base Building Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", flag_basePole, 1, false, true, "", ""];
-		};
-		if (s_player_removeFlagAuth < 0) then {
-			s_player_removeFlagAuth = player addaction [("<t color=""#F01313"">" + ("FlagPole: Remove Player UIDs") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", flag_basePole, 1, false, true, "", ""];
-		};
-		if (s_player_removeFlag < 0) then {
-			s_player_removeFlag = player addaction [("<t color=""#F01313"">" + ("Permanently Remove Flag (restrictions apply)") +"</t>"),"dayz_code\actions\player_remove.sqf", flag_basePole,1,false,true,"",""];
-		};
-		if (AIGuards == 1) then {
-			if (s_player_guardToggle < 0) then {
-				s_player_guardToggle = player addaction [("<t color=""#FFFFFF"">" + ("Toggle Guards to Kill all non-base owners (default on)") +"</t>"),"dayz_code\actions\toggle_base_guards.sqf",flag_basePole,1,false,true,"",""];
+		if (_authorizedGateCodes) then {
+			//_lever = flag_basePole;
+			if (s_player_addFlagAuth < 0) then {
+				s_player_addFlagAuth = player addAction ["FlagPole: Add Player UIDs for Base Building Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", flag_basePole, 1, false, true, "", ""];
+			};
+			if (s_player_removeFlagAuth < 0) then {
+				s_player_removeFlagAuth = player addaction [("<t color=""#F01313"">" + ("FlagPole: Remove Player UIDs") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", flag_basePole, 1, false, true, "", ""];
+			};
+			if (s_player_removeFlag < 0) then {
+				s_player_removeFlag = player addaction [("<t color=""#F01313"">" + ("Permanently Remove Flag (restrictions apply)") +"</t>"),"dayz_code\actions\player_remove.sqf", flag_basePole,1,false,true,"",""];
+			};
+			if (AIGuards == 1) then {
+				if (s_player_guardToggle < 0) then {
+					s_player_guardToggle = player addaction [("<t color=""#FFFFFF"">" + ("Toggle Guards to Kill all non-base owners (default on)") +"</t>"),"dayz_code\actions\toggle_base_guards.sqf",flag_basePole,1,false,true,"",""];
+				};
 			};
 		};
 	} else {

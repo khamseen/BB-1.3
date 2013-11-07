@@ -7,6 +7,9 @@ Camo Net removal option not showing
 //Build List
 Finalise recipes and build items
 
+/ReadMe + Install Stuff
+Edit the ReadMe files to include not for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
+
 
 //------------------ Would Be Nice ------------------------
 

@@ -229,24 +229,33 @@ _playerCombat 	= player;
 	if (_classname == "FlagCarrierBIS_EP1") then { 
 		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
 		_flagcount = 0;
+		_flagMarkerArr = [];
 		{
 			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
 				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) then {
 					_flagcount = _flagcount + 1;
-					_flagMarker = createMarkerLocal ["Flag Position",position _x];       
-					_flagMarker setMarkerTypeLocal "warning";
-					_flagMarker setMarkerColorLocal("ColorBlack");
+					_flagname = format ["Flag_%1",_x];
+					_flagMarker = createMarkerLocal [_flagName,position _x];       
+					_flagMarker setMarkerTypeLocal "Town";
+					_flagMarker setMarkerColorLocal("ColorGreen");
 					_flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
+					_flagMarkerArr = _flagMarkerArr + [_flagMarker];
 					if (_flagcount >= 3) then {
-						cutText [format["Your playerUID is already registered to three flagpoles, you can only be added on upto three flag poles. Check Map for temporary flag marker! 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
+						cutText [format["Your playerUID is already registered to three flagpoles, you can only be added on upto three flag poles. Check Map for temporary flag markers, 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
 						sleep 10;
+						{
+							deleteMarkerLocal _x
+						} forEach _flagMarkerArr;
 						call _funcExitScriptCombat;
 					};
 				};
 			};
 		} foreach _allFlags;
+		{
+			deleteMarkerLocal _x
+		} forEach _flagMarkerArr;
 	};
 	//Don't allow players to build in other's bases
 	if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {

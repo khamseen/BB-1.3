@@ -10,9 +10,6 @@ Finalise recipes and build items
 
 //------------------ Would Be Nice ------------------------
 
-//Minor RPT Spam
-Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published
-
 //Sarge AI
 Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it)
 
@@ -78,3 +75,7 @@ Add replacements for old buildables: tank traps, sand bag walls, wire fences, (a
 
 //General
 Flag count check (Done)
+Fix Map Markers (Done)
+
+//Minor RPT Spam
+Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

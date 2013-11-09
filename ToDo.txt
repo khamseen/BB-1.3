@@ -1,6 +1,9 @@
 Things to Do
 //----------------------- Still Need Looked At --------------------
 
+//General
+Check extendables floating when loading from previous version
+
 //Build List
 Finalise recipes and build items
 

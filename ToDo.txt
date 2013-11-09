@@ -2,7 +2,8 @@ Things to Do
 //----------------------- Still Need Looked At --------------------
 
 //General
-Check extendables floating when loading from previous version
+Check extendables floating when loading from previous version (Don't think this can be fixed)
+Tidy up server_monitor.sqf
 
 //Build List
 Finalise recipes and build items

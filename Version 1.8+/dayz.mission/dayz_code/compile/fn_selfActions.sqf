@@ -21,7 +21,8 @@ if (!isNull _nearLight) then {
 _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 
 //####----####----####---- Base Building 1.3 Start ----####----####----####
-_currentSkin = typeOf(player);
+	_currentSkin = typeOf(player);
+	_hasToolbox = "ItemToolbox" in items player;
 			// Get closest camonet since we cannot target with crosshair Base Building Script
 			camoNetB_East = nearestObject [player, "Land_CamoNetB_EAST"];
 			camoNetVar_East = nearestObject [player, "Land_CamoNetVar_EAST"];
@@ -32,7 +33,7 @@ _currentSkin = typeOf(player);
 			flag_basePole = nearestObject [player, "FlagCarrierBIS_EP1"];
 	// Check mags in player inventory to show build recipe menu	
 	_mags = magazines player;
-	if ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags) then {
+	if ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags || "equip_scrapelectronics" in _mags || "ItemCamoNet" in _mags || "equip_crate" in _mags || "equip_brick" in _mags || "equip_string" in _mags || "equip_duct_tape" in _mags) then {
 		hasBuildItem = true;
 	} else { hasBuildItem = false;};
 	//Build Recipe Menu Action

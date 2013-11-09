@@ -21,7 +21,8 @@ if (!isNull _nearLight) then {
 _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 
 //####----####----####---- Base Building 1.3 Start ----####----####----####
-_currentSkin = typeOf(player);
+	_currentSkin = typeOf(player);
+	_hasToolbox = "ItemToolbox" in items player;
 			// Get closest camonet since we cannot target with crosshair Base Building Script
 			camoNetB_East = nearestObject [player, "Land_CamoNetB_EAST"];
 			camoNetVar_East = nearestObject [player, "Land_CamoNetVar_EAST"];

@@ -20,44 +20,26 @@ getNetting = {
 			case(camoNetB_East distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetB_East;
-				//_objectID = _obj getVariable["ObjectID","0"];
-				//_objectUID = _obj getVariable["ObjectUID","0"];
-				//_ownerID = _obj getVariable ["characterID","0"];
 			};
 			case(camoNetVar_East distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetVar_East;
-				//_objectID = _obj getVariable["ObjectID","0"];
-				//_objectUID = _obj getVariable["ObjectUID","0"];
-				//_ownerID = _obj getVariable ["characterID","0"];
 			};
 			case(camoNet_East distance player < 10 && isNull _obj):
 			{
 				_obj = camoNet_East;
-				//_objectID = _obj getVariable["ObjectID","0"];
-				//_objectUID = _obj getVariable["ObjectUID","0"];
-				//_ownerID = _obj getVariable ["characterID","0"];
 			};
 			case(camoNetB_Nato distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetB_Nato;
-				//_objectID = _obj getVariable["ObjectID","0"];
-				//_objectUID = _obj getVariable["ObjectUID","0"];
-				//_ownerID = _obj getVariable ["characterID","0"];
 			};
 			case(camoNetVar_Nato distance player < 10 && isNull _obj):
 			{
 				_obj = camoNetVar_Nato;
-				//_objectID = _obj getVariable["ObjectID","0"];
-				//_objectUID = _obj getVariable["ObjectUID","0"];
-				//_ownerID = _obj getVariable ["characterID","0"];
 			};
 			case(camoNet_Nato distance player < 10 && isNull _obj):
 			{
 				_obj = camoNet_Nato;
-				//_objectID = _obj getVariable["ObjectID","0"];
-				//_objectUID = _obj getVariable["ObjectUID","0"];
-				//_ownerID = _obj getVariable ["characterID","0"];
 			};
 		};
 	};

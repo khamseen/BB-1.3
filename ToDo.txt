@@ -1,14 +1,11 @@
 Things to Do
 //----------------------- Still Need Looked At --------------------
 
-//General
-Camo Net removal option not showing
-
 //Build List
 Finalise recipes and build items
 
 /ReadMe + Install Stuff
-Edit the ReadMe files to include not for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
+Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
 
 
 //------------------ Would Be Nice ------------------------
@@ -79,6 +76,7 @@ Add replacements for old buildables: tank traps, sand bag walls, wire fences, (a
 //General
 Flag count check (Done)
 Fix Map Markers (Done)
+Camo Net removal option not showing (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

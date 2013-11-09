@@ -6,6 +6,8 @@ player removeAction s_player_deleteBuild;
 s_player_deleteBuild = -1;
 player removeAction s_player_removeFlag;
 s_player_removeFlag = -1;
+player removeAction s_player_deleteLightTower;
+s_player_deleteLightTower = -1;
 _obj = objNull;
 _obj = _this select 3;
 if (isNull _obj) then {_obj = [] call getNetting;};

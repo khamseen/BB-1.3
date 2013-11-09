@@ -25,6 +25,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 			camoNetB_Nato = nearestObject [player, "Land_CamoNetB_NATO"];
 			camoNetVar_Nato = nearestObject [player, "Land_CamoNetVar_NATO"];
 			camoNet_Nato = nearestObject [player, "Land_CamoNet_NATO"];
+			light_tower = nearestObject [player, "Land_Ind_IlluminantTower"];
 			flag_basePole = nearestObject [player, "FlagCarrierBIS_EP1"];
 	// Check mags in player inventory to show build recipe menu	
 	_mags = magazines player;
@@ -70,11 +71,21 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 		camoNetVar_Nato distance player < 10 or 
 		camoNet_Nato distance player < 10)) then {
 		if (s_player_deleteCamoNet < 0) then {
-			s_player_deleteCamoNet = player addaction [("<t color=""#F01313"">" + ("Remove Netting") +"</t>"),"dayz_code\actions\player_remove.sqf",ObjNull,1,true,true,"",""];
+			s_player_deleteCamoNet = player addaction [("<t color=""#F01313"">" + ("Remove Netting") +"</t>"),"dayz_code\actions\player_remove.sqf",ObjNull,1,false,true,"",""];
 		};
 	} else {
 		player removeAction s_player_deleteCamoNet;
 		s_player_deleteCamoNet = -1;
+	};	
+	
+	// Remove Light Towers
+	if((isNull cursorTarget) && _hasToolbox && _canDo && !remProc && !procBuild && (light_tower distance player <= 11)) then {
+		if (s_player_deleteLightTower < 0) then {
+			s_player_deleteLightTower = player addaction [("<t color=""#F01313"">" + ("Remove Tower") +"</t>"),"dayz_code\actions\player_remove.sqf",light_tower,1,false,true,"",""];
+		};
+	} else {
+		player removeAction s_player_deleteLightTower;
+		s_player_deleteLightTower = -1;
 	};	
 	
 		// FlagPole Access (more reliable than cursortarget)

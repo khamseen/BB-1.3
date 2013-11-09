@@ -258,7 +258,7 @@ _playerCombat 	= player;
 	};
 	//Don't allow players to build in other's bases
 	if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
+		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
 		{
 			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
@@ -468,7 +468,7 @@ _playerCombat 	= player;
 
 			//Make sure players don't move into another players base, or outside their own flag radius
 			if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
-				_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 500];
+				_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
 				{
 					if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
 						_authorizedUID = _x getVariable ["AuthorizedUID", []];

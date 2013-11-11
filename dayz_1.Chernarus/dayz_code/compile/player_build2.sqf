@@ -216,7 +216,7 @@ _playerCombat 	= player;
 	_requireFlag 	= _requirements select 14;
 	// Get _startPos for object
 	_location 		= player modeltoworld _startPos;
-	//Make sure player isn't registered on more than 3 flags
+	//Make sure player isn't registered on more than allowed number of flags
 	if (_classname == "FlagCarrierBIS_EP1") then { 
 		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
 		_flagcount = 0;
@@ -233,8 +233,8 @@ _playerCombat 	= player;
 					_flagMarker setMarkerColorLocal("ColorGreen");
 					_flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
 					_flagMarkerArr = _flagMarkerArr + [_flagMarker];
-					if (_flagcount >= 3) then {
-						cutText [format["Your playerUID is already registered to three flagpoles, you can only be added on upto three flag poles. Check Map for temporary flag markers, 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
+					if (_flagcount >= MaxPlayerFlags) then {
+						cutText [format["Your playerUID is already registered to %1 flagpoles, you can only be added on upto %1 flag poles. Check Map for temporary flag markers, 10 seconds!\nBuild canceled for %2",MaxPlayerFlags,_text], "PLAIN DOWN"];
 						sleep 10;
 						{
 							deleteMarkerLocal _x

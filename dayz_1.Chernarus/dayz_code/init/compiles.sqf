@@ -204,5 +204,12 @@ getNetting = {
 			DZ_BB_Ri = true;
 			_handled = true;
 		};
+		//Debug Keybind
+		if (_dikCode == 0x44) then {
+        if (debugMonitor) then {
+            debugMonitor = false;
+            hintSilent "";
+        } else {[] spawn fnc_debug;};
+		};
 		_handled
 	};

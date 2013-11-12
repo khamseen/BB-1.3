@@ -19,6 +19,8 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 		<t align='center'>%2</t><br/><br/>
 		<t align='left'>Object UID:</t>	<t align='right'>%3</t><br/>
 		",(toString _convertInput), typeOf(_panel), str(keyCode)];
+		sleep 5;
+		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	};
 private ["_authorizedUID","_authorizedOUID","_authorizedPUID"]; //Reset here to prevent copying other object IDs
 	_flagCount = 0;
@@ -45,6 +47,8 @@ private ["_authorizedUID","_authorizedOUID","_authorizedPUID"]; //Reset here to 
 		<t align='center' color='#FF0000'>ERROR</t><br/><br/>
 		<t align='center'>Player UID %1 already used on %2 flags!</t><br/>
 		",(toString _convertInput),MaxPlayerFlags];
+		sleep 5;
+		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	};
 	_authorizedUID = _panel getVariable ["AuthorizedUID", []]; //Get's whole array stored for object
 	_authorizedOUID = _authorizedUID select 0; //Sets objectUID as first element
@@ -71,5 +75,6 @@ private ["_authorizedUID","_authorizedOUID","_authorizedPUID"]; //Reset here to 
 	",(toString _convertInput), typeOf(_panel), str(keyCode)];
 	sleep 10;
 	hint "";
+	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	//cuttext [format["PlayerUID %1 access granted to\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)],"PLAIN DOWN",1];
 	CODEINPUT = [];

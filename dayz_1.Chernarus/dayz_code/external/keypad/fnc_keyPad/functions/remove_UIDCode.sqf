@@ -12,14 +12,17 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	if (!((toString _convertInput) in _authorizedPUID)) exitWith 
 	{
 		CODEINPUT = [];
-		//cuttext [format["PlayerUID %1 not found in\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)],"PLAIN DOWN",1];
-		//hint format["PlayerUID %1  not found in\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)];
+		bbCDebug = call compile format ["%1",bbCustomDebug];
+		if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 		hintsilent parseText format ["
 		<t align='center' color='#FF0000'>ERROR</t><br/><br/>
 		<t align='center'>Player UID %1 not found in object</t><br/>
 		<t align='center'>%2</t><br/><br/>
 		<t align='left'>Object UID:</t>	<t align='right'>%3</t><br/>
 		",(toString _convertInput), typeOf(_panel), str(keyCode)];
+		sleep 5;
+		hint "";
+		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	};
 	_finalInput = (toString _convertInput);
 	//_authorizedUID = _panel getVariable ["AuthorizedUID", []]; //Get's whole array stored for object
@@ -35,14 +38,15 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	if (isServer) then {
 		PVDZ_veh_Save call server_updateObject;
 	};
-	//hint format["PlayerUID %1 access removed from\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)];
+	bbCDebug = call compile format ["%1",bbCustomDebug];
+	if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 	hintsilent parseText format ["
 	<t align='center' color='#00FF3C'>SUCCESS</t><br/><br/>
 	<t align='center'>Player UID %1 access removed from object</t><br/>
 	<t align='center'>%2</t><br/><br/>
 	<t align='left'>Object UID:</t>	<t align='right'>%3</t><br/>
 	",(toString _convertInput), typeOf(_panel), str(_authorizedOUID)];
-	//cuttext [format["PlayerUID %1 access removed from\nobject %2 with UID: %3", (toString _convertInput), typeOf(_panel), str(keyCode)],"PLAIN DOWN",1];
 	CODEINPUT = [];
 	sleep 10;
 	hint "";
+	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};

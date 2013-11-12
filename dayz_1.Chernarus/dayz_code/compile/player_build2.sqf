@@ -322,6 +322,8 @@ _playerCombat 	= player;
 	hint "";
 	//_startingPos = getPos player;  // used to restrict distance of build
 	while {!buildReady} do {
+	bbCDebug = call compile format ["%1",bbCustomDebug];
+	if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 	if (_allowedExtendedMode) then {
 	//Lets make a nice hint window to tell people the controls
 		hintsilent parseText format ["
@@ -474,18 +476,18 @@ _playerCombat 	= player;
 						};
 					};
 					if (_okToBuild) exitWIth {};
-					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
+					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};detach _object;deletevehicle _object;call _funcExitScript;};
 				} foreach _allFlags;
 			};
 			//Check to make sure not building flag too near another base
 			_flagNearest = nearestObjects [player, ["FlagCarrierBIS_EP1"], (_flagRadius * 2)];
-			if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
+			if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};detach _object;deletevehicle _object;call _funcExitScript;};
 			
 			// Cancel build if rules broken
 			if ((!(isNull _dialog) || (speed player >= 12 || speed player <= -9) || _isInCombat > 0) && (isPlayer _playerCombat) ) then {
 				detach _object;
 				deletevehicle _object;
-				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";call _funcExitScript;
+				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;
 			};
 		sleep 0.03;
 	};
@@ -518,7 +520,7 @@ _playerCombat 	= player;
 			sleep 5;
 		};
 	cutText [format["Building beginning for %1.",_text], "PLAIN DOWN"];
-	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 	// Begin Building
 	//Do quick check to see if player is not playing nice after placing object
 	_locationPlayer = player modeltoworld [0,0,0];
@@ -565,8 +567,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _longWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -587,7 +589,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";//added these to close control hint window if canceled 
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};//added these to close control hint window if canceled 
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
@@ -604,8 +606,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _medWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -625,7 +627,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
@@ -642,8 +644,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _smallWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -663,7 +665,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};

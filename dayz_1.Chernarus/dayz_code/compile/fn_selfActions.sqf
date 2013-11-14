@@ -31,7 +31,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 			camoNetVar_Nato = nearestObject [player, "Land_CamoNetVar_NATO"];
 			camoNet_Nato = nearestObject [player, "Land_CamoNet_NATO"];
 			light_tower = nearestObject [player, "Land_Ind_IlluminantTower"];
-			//camo_nets = nearestObject [player, "Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO"];
+			//camo_nets = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO"],0];
 			flag_basePole = nearestObject [player, "FlagCarrierBIS_EP1"];
 	// Check mags in player inventory to show build recipe menu	
 	_mags = magazines player;
@@ -69,17 +69,34 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 		empHit = player addMPEventHandler ["MPHit", {_this spawn fnc_plyrHit;}];
 	};
 		// Remove CamoNets, (Not effecient but works)
-	if((isNull cursorTarget) && _hasToolbox && _canDo && !remProc && !procBuild && 
-		(camoNetB_East distance player <= 10 or 
-		camoNetVar_East distance player <= 10 or 
-		camoNet_East distance player <= 10 or 
-		camoNetB_Nato distance player <= 10 or 
-		camoNetVar_Nato distance player <= 10 or 
-		camoNet_Nato distance player <= 10)) then {
-		if (s_player_deleteCamoNet < 0) then {
-			s_player_deleteCamoNet = player addaction [("<t color=""#F01313"">" + ("Remove Netting") +"</t>"),"dayz_code\actions\player_remove.sqf",ObjNull,1,false,true,"",""];
+		if((isNull cursorTarget) && _canDo && !remProc && !procBuild &&
+		(camoNetB_East distance player < 10 or 
+		camoNetVar_East distance player < 10 or 
+		camoNet_East distance player < 10 or 
+		camoNetB_Nato distance player < 10 or 
+		camoNetVar_Nato distance player < 10 or 
+		camoNet_Nato distance player < 10)) then {
+		if (s_player_camoBaseOwnerAccess < 0) then {
+			s_player_camoBaseOwnerAccess = player addAction ["Netting: Give all base owners (from flagpole) access", "dayz_code\external\keypad\fnc_keyPad\functions\give_gateAccess.sqf",ObjNull, 1, false, true, "", ""];
+		};
+		if (s_player_addCamoAuth < 0) then {
+			s_player_addCamoAuth = player addAction ["Netting: Add Player UIDs", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf",ObjNull, 1, false, true, "", ""];
+		};
+		if (s_player_removeCamoAuth < 0) then {
+			s_player_removeCamoAuth = player addAction [("<t color=""#F01313"">" + ("Netting: Remove Player UIDs") +"</t>"), "dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf",ObjNull, 1, false, true, "", ""];
+		};
+		if (_hasToolbox) then {
+			if (s_player_deleteCamoNet < 0) then {
+				s_player_deleteCamoNet = player addaction [("<t color=""#F01313"">" + ("Remove Netting") +"</t>"),"dayz_code\actions\player_remove.sqf",ObjNull,1,false,true,"",""];
+			};
 		};
 	} else {
+		player removeAction s_player_camoBaseOwnerAccess;
+		s_player_camoBaseOwnerAccess = -1;
+		player removeAction s_player_addCamoAuth;
+		s_player_addCamoAuth = -1;
+		player removeAction s_player_removeCamoAuth;
+		s_player_removeCamoAuth = -1;
 		player removeAction s_player_deleteCamoNet;
 		s_player_deleteCamoNet = -1;
 	};	
@@ -213,10 +230,11 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", "FlagCarrierBIS_EP1"];
 	_adminRemoval = ((getPlayerUID player) in adminSuperAccess);
 	//Checks for playerUIDs
+	//if ((typeOf(cursortarget) in allbuildables_class)  && !procBuild) then {
 	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
 		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
 		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
-
+	//};
 	
 	/*if (_isMan && _authorizedGateCodes && player distance flag_basePole <= 10) then {
 		if (s_player_getTargetUID < 0) then {
@@ -228,7 +246,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	};*/
 	
 	// Operate Gates AND Add Authorization to Gate
-	if ((typeOf(cursortarget) in _codePanels) && _authorizedGateCodes || ((typeOf(cursortarget) in allbuildables_class) && _authorizedGateCodes)) then { // && _validGateCodes 
+	if (((typeOf(cursortarget) in _codePanels) && _authorizedGateCodes) || ((typeOf(cursortarget) in allbuildables_class) && _authorizedGateCodes)) then { // && _validGateCodes 
 		_lever = cursorTarget;
 		_gates = nearestObjects [_lever, ["Concrete_Wall_EP1"], 15];
 		if (s_player_gateActions < 0) then {
@@ -249,7 +267,6 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 			s_player_addGateAuthorization = player addAction ["Add Player UIDs to Grant Gate/Object Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", _lever, 1, false, true, "", ""];
 		};
 		if (s_player_removeGateAuthorization < 0) then {
-				//s_player_removeGateAuthorization = player addAction ["Remove Player UIDs from Gate/Object Access", "dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
 				s_player_removeGateAuthorization = player addaction [("<t color=""#F01313"">" + ("Remove Player UIDs from Gate/Object Access") +"</t>"),"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
 		};
 	} else {
@@ -296,26 +313,53 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		s_player_deleteBuild = -1;
 	};
 
-	//INFLAME BARRELS
+	//Barrel + Tower Lighting
     if((typeOf(cursortarget) == "Infostand_2_EP1") && _authorizedGateCodes) then {
         _lever = cursortarget;
-        if (s_player_inflameBarrels < 0) then {
-            s_player_inflameBarrels = player addAction ["Lights ON", "dayz_code\actions\lights\inflameBarrels.sqf", _lever, 1, false, true, "", ""];
-        };
-    } else {
-        player removeAction s_player_inflameBarrels;
-        s_player_inflameBarrels = -1;
-    };
-    //DEFLAME BARRELS
-    if((typeOf(cursortarget) == "Infostand_2_EP1") && _authorizedGateCodes) then {
-        _lever = cursortarget;
-        if (s_player_deflameBarrels < 0) then {
-            s_player_deflameBarrels = player addAction ["Lights OFF", "dayz_code\actions\lights\deflameBarrels.sqf", _lever, 1, false, true, "", ""];
-        };
-    } else {
-        player removeAction s_player_deflameBarrels;
-        s_player_deflameBarrels = -1;
-    };
+		_nearestFlags = nearestObjects [_lever, ["FlagCarrierBIS_EP1"], 200];
+		_baseFlag = _nearestFlags select 0;
+		_barrels = nearestObjects [_baseFlag, ["Land_Fire_Barrel"], 200];
+		_towers = nearestObjects [_baseFlag, ["Land_Ind_IlluminantTower"], 200];
+		if (count _barrels > 0) then {
+			if (s_player_inflameBarrels < 0) then {
+				s_player_inflameBarrels = player addAction ["Barrel Lights ON", "dayz_code\actions\lights\barrelToggle.sqf", [_lever,true], 1, false, true, "", ""];
+			};
+			if (s_player_deflameBarrels < 0) then {
+				s_player_deflameBarrels = player addAction ["Barrel Lights OFF", "dayz_code\actions\lights\barrelToggle.sqf", [_lever,false], 1, false, true, "", ""];
+			};
+		} else {
+			if (s_player_inflameBarrels < 0) then {
+				s_player_inflameBarrels = player addAction ["No Barrel Lights In Range", "", _lever, 1, false, true, "", ""];
+			};
+			player removeAction s_player_deflameBarrels;
+			s_player_deflameBarrels = -1;
+		};
+		if (bbUseTowerLights == 1) then {
+			if (count _towers > 0) then {
+				if (s_player_towerLightsOn < 0) then {
+					s_player_towerLightsOn = player addAction ["Tower Lights ON", "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,true], 1, false, true, "", ""];
+				};
+				if (s_player_towerLightsOff < 0) then {
+					s_player_towerLightsOff = player addAction ["Tower Lights OFF", "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,false], 1, false, true, "", ""];
+				};
+			} else {
+				if (s_player_towerLightsOn < 0) then {
+					s_player_towerLightsOn = player addAction ["No Tower Lights In Range", "", _lever, 1, false, true, "", ""];
+				};
+				player removeAction s_player_towerLightsOff;
+				s_player_towerLightsOff = -1;
+			};
+		};
+	} else {
+		player removeAction s_player_inflameBarrels;
+		s_player_inflameBarrels = -1;
+		player removeAction s_player_deflameBarrels;
+		s_player_deflameBarrels = -1;
+		player removeAction s_player_towerLightsOn;
+		s_player_towerLightsOn = -1;
+		player removeAction s_player_towerLightsOff;
+		s_player_towerLightsOff = -1;
+	};
 //####----####----####---- Base Building 1.3 End ----####----####----####
 
 	//gather
@@ -510,12 +554,16 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	s_player_addGateAuthorization = -1;
 	player removeAction s_player_removeGateAuthorization;
 	s_player_removeGateAuthorization = -1;
-    player removeAction s_player_disarm;
-    s_player_disarm = -1;
+	player removeAction s_player_disarm;
+	s_player_disarm = -1;
 	player removeAction s_player_inflameBarrels;
-    s_player_inflameBarrels = -1;
-    player removeAction s_player_deflameBarrels;
-    s_player_deflameBarrels = -1;
+	s_player_inflameBarrels = -1;
+	player removeAction s_player_deflameBarrels;
+	s_player_deflameBarrels = -1;
+	player removeAction s_player_towerLightsOn;
+	s_player_towerLightsOn = -1;
+	player removeAction s_player_towerLightsOff;
+	s_player_towerLightsOff = -1;
 	player removeAction s_check_playerUIDs;
 	s_check_playerUIDs = -1;
 	player removeAction s_player_disarmBomb;

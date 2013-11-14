@@ -3,8 +3,9 @@
 
 //####----####----These Settings Can Be Edited ----####----####
 	adminSuperAccess = ["55893190","#####"]; //Replace with your admin playerUIDs for base building
-	MaxPlayerFlags = 1; //This sets how many flags a player can be added to, default is 3
+	MaxPlayerFlags = 3; //This sets how many flags a player can be added to, default is 3
 	AIGuards = 0; //Sarge AI Base Guard (Currently not working)/ 1 = Enabled // 0 = Disabled
+	bbUseTowerLights = 1; //Enable toggleable tower lighting/ 1 = Enabled // 0 = Disabled (If you run AxeMan's tower lighting on your server, you will need to disable this option as it conflicts)
 	bbCustomDebug = "debugMonitor"; //Change debugMonitor to whatever variable your custom debug uses, this allows Base Building to hide the debug monitor where needed
 	
 	//If you add items to the build list, you also need to add them to the SafeObjects array.

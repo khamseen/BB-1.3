@@ -19,7 +19,7 @@ addUIDCode = true;
 while {addUIDCode} do {
 //cuttext [format["All Current Player UID(s): %1\nEnter Player UID you would like to give access to\nobject: %2\nwith UID: %3",str(_authorizedPUID), typeOf(_obj), keyCode],"PLAIN DOWN",1];
 //hint format["All Current Player UID(s): %1\nEnter Player UID you would like to give access to object: %2\nwith UID: %3",str(_authorizedPUID), typeOf(_obj), str(keyCode)];
-bbCDebug = call compile format ["%1",bbCustomDebug];
+bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 hintsilent parseText format ["
 		<t align='center' color='#0074E8'>Current Player UID(s):</t><br/>

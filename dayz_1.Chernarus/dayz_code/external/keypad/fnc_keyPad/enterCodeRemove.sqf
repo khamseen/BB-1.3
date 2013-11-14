@@ -15,7 +15,7 @@ _displayok = createdialog "KeypadGate";
 removeUIDCode = true;
 //Show current UIDs until new UID is removed
 while {removeUIDCode} do {
-bbCDebug = call compile format ["%1",bbCustomDebug];
+bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 hintsilent parseText format ["
 		<t align='center' color='#0074E8'>Current Player UID(s):</t><br/>

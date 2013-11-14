@@ -12,7 +12,7 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	if (!((toString _convertInput) in _authorizedPUID)) exitWith 
 	{
 		CODEINPUT = [];
-		bbCDebug = call compile format ["%1",bbCustomDebug];
+		bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 		if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 		hintsilent parseText format ["
 		<t align='center' color='#FF0000'>ERROR</t><br/><br/>
@@ -38,7 +38,7 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	if (isServer) then {
 		PVDZ_veh_Save call server_updateObject;
 	};
-	bbCDebug = call compile format ["%1",bbCustomDebug];
+	bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 	if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 	hintsilent parseText format ["
 	<t align='center' color='#00FF3C'>SUCCESS</t><br/><br/>

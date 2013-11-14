@@ -30,7 +30,7 @@ _allFlags = nearestObjects [_obj, ["FlagCarrierBIS_EP1"], 500];
 						};
 					};
 					if (count _objAuth > 0) then {
-						bbCDebug = call compile format ["%1",bbCustomDebug];
+						bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 						if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 						hintsilent parseText format ["
 						<t align='center' color='#00FF3C'>SUCCESS</t><br/><br/>
@@ -41,7 +41,7 @@ _allFlags = nearestObjects [_obj, ["FlagCarrierBIS_EP1"], 500];
 						hint "";
 						if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 					} else {
-						bbCDebug = call compile format ["%1",bbCustomDebug];
+						bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 						if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 						cutText ["Everyone already has access to this object", "PLAIN DOWN"];
 						sleep 5;

@@ -16,7 +16,6 @@ _isWater = 		(surfaceIsWater (getPosATL player)) or dayz_isSwimming;
 if (_classname == "Wire_cat1" || _classname == "Hedgehog_DZ" || _classname == "Sandbag1_DZ" || _classname == "CamoNet_DZ") exitWith {
 	r_action_count = 0;
 	call player_build2;
-	//cutText [format["Please use base building options for this item."], "PLAIN DOWN"];
 };
 
 if(_isWater) exitWith {

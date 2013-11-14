@@ -322,7 +322,7 @@ _playerCombat 	= player;
 	hint "";
 	//_startingPos = getPos player;  // used to restrict distance of build
 	while {!buildReady} do {
-	bbCDebug = call compile format ["%1",bbCustomDebug];
+	bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 	if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 	if (_allowedExtendedMode) then {
 	//Lets make a nice hint window to tell people the controls

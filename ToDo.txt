@@ -2,41 +2,30 @@ Things to Do
 //----------------------- Still Need Looked At --------------------
 
 //General
-Check extendables floating when loading from previous version (Don't think this can be fixed)
 Tidy up server_monitor.sqf
+Provide more power for admins, like the ability to add/remove UIDs from objects they aren't assigned to
+Give option to add/remove UIDs from camonets?
+Overhaul system for items that can't be targetted.
 
 //Build List
 Finalise recipes and build items
 
-/ReadMe + Install Stuff
+//ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
-
 
 //------------------ Would Be Nice ------------------------
 
 //Sarge AI
-Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it)
-
-//Lighting
-Try to implement toggle tower lights with generator
-
+Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it
 
 //-------------------------- DONE --------------------------
 
-//enterCodeAdd.sqf
-Change the Hint window to something more appealing (Done)
-
-//enterCodeRemove.sqf
-Change the Hint window to something more appealing (Done)
-
-//add_UIDCode.sqf
-Change the Hint window to something more appealing (Done)
-
-//remove_UIDCode.sqf
-Change the Hint window to something more appealing (Done)
-
-//give_gateAccess.sqf
-Change the Hint window to something more appealing (Done)
+//Change hint windows to something more appealing
+enterCodeAdd.sqf (Done)
+enterCodeRemove.sqf (Done)
+add_UIDCode.sqf (Done)
+remove_UIDCode.sqf (Done)
+give_gateAccess.sqf (Done)
 
 //Player_build2.sqf
 May not need seperate sections for building placement section? (Done)
@@ -81,6 +70,12 @@ Add replacements for old buildables: tank traps, sand bag walls, wire fences, (a
 Flag count check (Done)
 Fix Map Markers (Done)
 Camo Net removal option not showing (Done)
+Check extendables floating when loading from previous version (Done)
+Possibly add a variable to alter the number of flags a person can have, just to make it easier for people to change (Done)
+Check for custom debug monitor and toggle it off/on before and after hint displays (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)
+
+//Lighting
+Try to implement toggle tower lights with generator (Done)

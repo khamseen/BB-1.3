@@ -1,13 +1,13 @@
-private["_authorizedUID","_authorizedPUID","_flagRaduis","_attackAllToggle","_tGuard","_isBaseGuard","_flag","_nearestGuards","_friendlyPlayers"];
+private["_authorizedUID","_authorizedPUID","_flagRadius","_attackAllToggle","_tGuard","_isBaseGuard","_flag","_nearestGuards","_friendlyPlayers"];
 _flag = _this select 3;
 _authorizedUID = _flag getVariable ["AuthorizedUID", []];
 _authorizedPUID = _authorizedUID select 1;
-_flagRaduis = 200;
+_flagRadius = BBFlagRadius;
 _isBaseGuard = false;
 if (!(isNull _flag)) then {
-	_nearestGuards = (getPosATL _flag) nearEntities [["AllVehicles","CAManBase"], _flagRaduis + 100];
+	_nearestGuards = (getPosATL _flag) nearEntities [["AllVehicles","CAManBase"], _flagRadius + 100];
 } else {
-	_nearestGuards = (getPosATL player) nearEntities [["AllVehicles","CAManBase"], _flagRaduis + 100];
+	_nearestGuards = (getPosATL player) nearEntities [["AllVehicles","CAManBase"], _flagRadius + 100];
 };
 if (count _nearestGuards > 0) then {
 	{

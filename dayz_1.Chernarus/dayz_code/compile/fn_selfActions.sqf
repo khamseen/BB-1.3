@@ -27,13 +27,15 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 	//Get objects that can't be targetted
 	_flagBasePole = nearestObject [player, "FlagCarrierBIS_EP1"];
 		//All untargetable objects (except Base Flag), searches a 10 meter radius, you can add any new objects you put in the build list that can't be targetted
-		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj"],10];
+		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit"],10];
 		_nearUntargetable = count _untargetableArray > 0; //Check if anything is in range
 		_closestUntargetable = if (_nearUntargetable) then {_untargetableArray select 0};//Selects the closest returned item
 		_nettingNames = ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO"]; //Used for menu options
+		_castleNames = ["Land_A_Castle_Bergfrit"];
 		_buildingNames = [];//Can add generic building names here
 		_displayName = "Base Build Object";//Default menu option name if none of the following match
 		if (typeOf(_closestUntargetable) in _nettingNames) then {_displayName = "Netting";};
+		if (typeOf(_closestUntargetable) in _castleNames) then {_displayName = "Castle";};
 		if (typeOf(_closestUntargetable) in _buildingNames) then {_displayName = "Building";};
 		if (typeOf(_closestUntargetable) == "Land_Ind_IlluminantTower") then {_displayName = "Tower";};
 
@@ -273,7 +275,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
 		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
 		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
-		_gates = nearestObjects [_lever, ["Land_Ind_Shed_01_main"], 200];
+		_gates = nearestObjects [_lever, ["Land_Ind_Shed_01_main"], BBFlagRadius];
 		if (_authorizedGateCodes || _baseBuildAdmin) then {
 			if (s_player_roofToggle < 0) then {
 				if (typeOf(cursortarget) == "Infostand_2_EP1") then {
@@ -304,10 +306,10 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
 		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
 		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
-		_nearestFlags = nearestObjects [_lever, ["FlagCarrierBIS_EP1"], 200];
+		_nearestFlags = nearestObjects [_lever, ["FlagCarrierBIS_EP1"], BBFlagRadius];
 		_baseFlag = _nearestFlags select 0;
-		_barrels = nearestObjects [_baseFlag, ["Land_Fire_Barrel"], 200];//Makes sure there are barrels in range of the flag
-		_towers = nearestObjects [_baseFlag, ["Land_Ind_IlluminantTower"], 200];//Makes sure there are towers in range of the flag
+		_barrels = nearestObjects [_baseFlag, ["Land_Fire_Barrel"], BBFlagRadius];//Makes sure there are barrels in range of the flag
+		_towers = nearestObjects [_baseFlag, ["Land_Ind_IlluminantTower"], BBFlagRadius];//Makes sure there are towers in range of the flag
 		if (_authorizedGateCodes || _baseBuildAdmin) then {
 			if (count _barrels > 0) then {
 				if (s_player_inflameBarrels < 0) then {

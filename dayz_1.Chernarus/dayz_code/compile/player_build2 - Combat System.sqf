@@ -47,7 +47,7 @@ _classname 		= "";
 _check_town		= "";
 
 // Other
-_flagRadius 	= 200; //Meters around flag that players can build
+_flagRadius 	= BBFlagRadius; //Meters around flag that players can build
 _cntLoop 		= 0;
 _chosenRecipe 	= [];
 _requirements 	= [];

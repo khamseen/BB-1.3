@@ -3,9 +3,9 @@ _id = _this select 2;
 _lever = _this select 3 select 0;
 _doLight = _this select 3 select 1;
 _lever removeAction _id;
-_getNearestBaseFlag = (nearestObjects [_lever, ["FlagCarrierBIS_EP1"], 200]);//Find the nearest base flag
+_getNearestBaseFlag = (nearestObjects [_lever, ["FlagCarrierBIS_EP1"], BBFlagRadius]);//Find the nearest base flag
 _nearestFlag = _getNearestBaseFlag select 0; //Selects the base flag from the returned array
-_nearestBarrels = nearestObjects [_nearestFlag, ["Land_Fire_Barrel"], 200];
+_nearestBarrels = nearestObjects [_nearestFlag, ["Land_Fire_Barrel"], BBFlagRadius];
 
 if (_doLight) then {
 {

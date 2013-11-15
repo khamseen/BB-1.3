@@ -13,9 +13,9 @@ _ndGen = true;//If true, a generator must be in range of the base flag for tower
 _genCls = "PowerGenerator_EP1";//Class name of generator (If you change this you'll need to add the new generator to the build list).
 //####----####----End Edit Values----####----####
 
-_getNearestBaseFlag = nearestObjects [_lever, ["FlagCarrierBIS_EP1"], 200];//Find the nearest base flag.
+_getNearestBaseFlag = nearestObjects [_lever, ["FlagCarrierBIS_EP1"], BBFlagRadius];//Find the nearest base flag.
 _nearestFlag = _getNearestBaseFlag select 0; //Selects the base flag from the returned array.
-_nearestLightTowers = nearestObjects [_nearestFlag, ["Land_Ind_IlluminantTower"], 200];//Finds all towers in range of that flag.
+_nearestLightTowers = nearestObjects [_nearestFlag, ["Land_Ind_IlluminantTower"], BBFlagRadius];//Finds all towers in range of that flag.
 
 _func_axeTL = {
 	_twr = _this select 0;
@@ -56,7 +56,7 @@ if (_doTowerLights) then {
 	{
 	_doLit=true;
 		if(_ndGen)then{
-		_nrGen = nearestObjects [_nearestFlag, ["FlagCarrierBIS_EP1"], 200];
+		_nrGen = nearestObjects [_nearestFlag, ["FlagCarrierBIS_EP1"], BBFlagRadius];
 		_gnCnt = count _nrGen;
 			if(_gnCnt < 1)then{
 			cutText ["You need to build a generator in range of the flag.","PLAIN DOWN"];

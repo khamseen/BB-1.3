@@ -3,12 +3,12 @@ Things to Do
 
 //General
 Tidy up server_monitor.sqf
-Provide more power for admins, like the ability to add/remove UIDs from objects they aren't assigned to
-Give option to add/remove UIDs from camonets?
-Overhaul system for items that can't be targetted.
+Look at give_gateAccess.sqf, it looks a bit strange, also need to allow Admins to use the function
+Check why hint windows sometimes close too fast
 
 //Build List
 Finalise recipes and build items
+Majority of items set to not be removable for some reason. 
 
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
@@ -73,6 +73,9 @@ Camo Net removal option not showing (Done)
 Check extendables floating when loading from previous version (Done)
 Possibly add a variable to alter the number of flags a person can have, just to make it easier for people to change (Done)
 Check for custom debug monitor and toggle it off/on before and after hint displays (Done)
+Provide more power for admins, like the ability to add/remove UIDs from objects they aren't assigned to (Done)
+Give option to add/remove UIDs from camonets? (Done)
+Overhaul system for items that can't be targeted. (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

@@ -1,6 +1,6 @@
- //Original Script created by Andrew Gregory aka axeman axeman@thefreezer.co.uk
- //Edited by Rosska85 for use with DayZ Base Building 1.3
- private ["_id","_lever","_doTowerLights","_nrTowers","_lCol","_lbrt","_lamb","_ndGen","_nrGen","_genCls","_doLit","_gnCnt","_getNearestBaseFlag","_nearestFlag","_nearestLightTowers","_twr","_twrPos","_rad","_oset","_nrTLs","_ang","_a","_b","_tl"];
+//Original Script created by Andrew Gregory aka axeman axeman@thefreezer.co.uk
+//Edited by Rosska85 for use with DayZ Base Building 1.3
+private ["_id","_lever","_doTowerLights","_nrTowers","_lCol","_lbrt","_lamb","_ndGen","_nrGen","_genCls","_doLit","_gnCnt","_getNearestBaseFlag","_nearestFlag","_nearestLightTowers","_twr","_twrPos","_rad","_oset","_nrTLs","_ang","_a","_b","_tl"];
 _id = _this select 2;
 _lever = _this select 3 select 0;
 _doTowerLights = _this select 3 select 1;
@@ -13,7 +13,7 @@ _ndGen = true;//If true, a generator must be in range of the base flag for tower
 _genCls = "PowerGenerator_EP1";//Class name of generator (If you change this you'll need to add the new generator to the build list).
 //####----####----End Edit Values----####----####
 
-_getNearestBaseFlag = (nearestObjects [_lever, ["FlagCarrierBIS_EP1"], 200]);//Find the nearest base flag.
+_getNearestBaseFlag = nearestObjects [_lever, ["FlagCarrierBIS_EP1"], 200];//Find the nearest base flag.
 _nearestFlag = _getNearestBaseFlag select 0; //Selects the base flag from the returned array.
 _nearestLightTowers = nearestObjects [_nearestFlag, ["Land_Ind_IlluminantTower"], 200];//Finds all towers in range of that flag.
 

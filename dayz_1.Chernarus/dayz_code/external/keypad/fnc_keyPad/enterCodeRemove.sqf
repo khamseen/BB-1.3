@@ -5,9 +5,7 @@ they may no longer use the object
 
 private ["_displayok","_obj","_authorizedPUID"];
 _obj = _this select 3;
-if (isNull _obj) then {_obj = [] call getNetting;};
 accessedObject = _obj;
-//globalAuthorizedUID = _obj getVariable ["AuthorizedUID", []];
 _authorizedUID = _obj getVariable ["AuthorizedUID", []];
 _authorizedPUID = _authorizedUID select 1;
 keyCode = _obj getVariable ["ObjectUID","0"];
@@ -23,7 +21,7 @@ hintsilent parseText format ["
 		<t align='center' color='#F5CF36'>Enter UID of player you would like to REMOVE access from object: %2</t><br/><br/>
 		<t align='left' color='#0074E8'>Object UID:</t>	<t align='right'>%3</t><br/>
 		",str(_authorizedPUID), typeOf(_obj), str(keyCode)];
-sleep 3;
-if (!removeUIDCode) exitwith {};
-};
+if (!removeUIDCode) exitwith {
+hint"";
+if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};};
 };

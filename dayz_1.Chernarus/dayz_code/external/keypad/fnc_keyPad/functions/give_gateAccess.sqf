@@ -2,8 +2,7 @@ private["_character","_id","_obj","_authorizedUID","_authorizedPUID","_allFlags"
 _character = _this select 1;
 _id = _this select 2;
 _obj = _this select 3;
-if (isNull _obj) then {_obj = call getNetting;};
-_allFlags = nearestObjects [_obj, ["FlagCarrierBIS_EP1"], 500];
+_allFlags = nearestObjects [_obj, ["FlagCarrierBIS_EP1"], 200];
 		{
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;

@@ -10,7 +10,6 @@ player removeAction s_player_deleteLightTower;
 s_player_deleteLightTower = -1;
 _obj = objNull;
 _obj = _this select 3;
-if (isNull _obj) then {_obj = [] call getNetting;};
 if (_obj isKindof "Grave") then {
 _text = "Bomb";
 cutText [format["You can only disarm %1 to remove it",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit";

@@ -5,7 +5,6 @@ so that they may use the object as well
 
 private ["_displayok","_obj","_authorizedUID","_atuhorizedOUID","_authorizedPUID"];
 _obj = _this select 3;
-if (isNull _obj) then {_obj = [] call getNetting;};
 //keyCode = _obj getVariable ["ObjectUID","0"];
 // globalAuthorizedUID is the playerUID that is being checked 
 _authorizedUID = _obj getVariable ["AuthorizedUID", []];
@@ -17,8 +16,6 @@ _displayok = createdialog "KeypadGate";
 addUIDCode = true;
 //Show current UIDs until new UID is added
 while {addUIDCode} do {
-//cuttext [format["All Current Player UID(s): %1\nEnter Player UID you would like to give access to\nobject: %2\nwith UID: %3",str(_authorizedPUID), typeOf(_obj), keyCode],"PLAIN DOWN",1];
-//hint format["All Current Player UID(s): %1\nEnter Player UID you would like to give access to object: %2\nwith UID: %3",str(_authorizedPUID), typeOf(_obj), str(keyCode)];
 bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 hintsilent parseText format ["
@@ -27,6 +24,7 @@ hintsilent parseText format ["
 		<t align='center' color='#F5CF36'>Enter UID of player you would like to ADD access to object: %2</t><br/><br/>
 		<t align='left' color='#0074E8'>Object UID:</t>	<t align='right'>%3</t><br/>
 		",str(_authorizedPUID), typeOf(_obj), str(keyCode)];
-sleep 3;
-if (!addUIDCode) exitwith {};
+if (!addUIDCode) exitwith {
+hint"";
+if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};};
 };

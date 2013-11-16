@@ -2,11 +2,11 @@ private["_character","_id","_obj","_authorizedUID","_authorizedPUID","_allFlags"
 _character = _this select 1;
 _id = _this select 2;
 _obj = _this select 3;
-_allFlags = nearestObjects [_obj, ["FlagCarrierBIS_EP1"], BBFlagRadius];
+_allFlags = nearestObjects [_obj, [BBTypeOfFlag], BBFlagRadius];
 		{
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid _character) in _authorizedPUID && typeOf(_x) == "FlagCarrierBIS_EP1") exitWith {
+				if ((getPlayerUid _character) in _authorizedPUID && typeOf(_x) == BBTypeOfFlag) exitWith {
 					_objAuthWhole = _obj getVariable ["AuthorizedUID", []];
 					_objAuth = _objAuthWhole select 1;
 						{

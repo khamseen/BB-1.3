@@ -14,9 +14,9 @@ fnc_debug = {
         _pic = (gettext (configFile >> 'CfgVehicles' >> (typeof vehicle player) >> 'picture'));
 		//####----####----BB 1.3 Flag Count----####----####
 		_flagCount = 0;
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
+		_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
 		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
+			if (typeOf(_x) == BBTypeOfFlag) then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
 				if ((getPlayerUid player) in _authorizedPUID) then {

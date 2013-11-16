@@ -25,7 +25,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 	_hasToolbox = "ItemToolbox" in items player;
 	_baseBuildAdmin = ((getPlayerUID player) in baseBuildAdminSuperAccess);
 	//Get objects that can't be targetted
-	_flagBasePole = nearestObject [player, "FlagCarrierBIS_EP1"];
+	_flagBasePole = nearestObject [player, BBTypeOfFlag];
 		//All untargetable objects (except Base Flag), searches a 10 meter radius, you can add any new objects you put in the build list that can't be targetted
 		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit"],10];
 		_nearUntargetable = count _untargetableArray > 0; //Check if anything is in range
@@ -230,6 +230,8 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		s_player_getTargetUID = -1;
 	};
 	
+	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
+	//_authorizedGateCodes = if (count _authorizedUID > 0) then {((getPlayerUID player) in (_authorizedUID select 1));};
 	// Operate Gates AND Add Authorization to Gate
 	if (((typeOf(cursortarget) in _codePanels) && !remProc && !procBuild) || ((typeOf(cursortarget) in allbuildables_class) && !remProc && !procBuild)) then {
 		_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];//Do this inside the IF statement to avoid RPT spam
@@ -306,7 +308,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
 		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
 		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
-		_nearestFlags = nearestObjects [_lever, ["FlagCarrierBIS_EP1"], BBFlagRadius];
+		_nearestFlags = nearestObjects [_lever, [BBTypeOfFlag], BBFlagRadius];
 		_baseFlag = _nearestFlags select 0;
 		_barrels = nearestObjects [_baseFlag, ["Land_Fire_Barrel"], BBFlagRadius];//Makes sure there are barrels in range of the flag
 		_towers = nearestObjects [_baseFlag, ["Land_Ind_IlluminantTower"], BBFlagRadius];//Makes sure there are towers in range of the flag

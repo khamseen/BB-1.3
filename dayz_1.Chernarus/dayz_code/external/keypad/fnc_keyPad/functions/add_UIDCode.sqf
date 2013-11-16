@@ -22,13 +22,13 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 	};
 private ["_authorizedUID","_authorizedOUID","_authorizedPUID"]; //Reset here to prevent copying other object IDs
 	_flagCount = 0;
-	_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
+	_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
 	{
-		if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
+		if (typeOf(_x) == BBTypeOfFlag) then {
 			_authorizedUID = _x getVariable ["AuthorizedUID", []];
 			_authorizedOUID = _authorizedUID select 0;
 			_authorizedPUID = _authorizedUID select 1;
-			if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == "FlagCarrierBIS_EP1")) then {
+			if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == BBTypeOfFlag)) then {
 				_flagCount = _flagCount + 1;
 			};
 		};

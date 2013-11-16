@@ -34,5 +34,5 @@ buildRecipeBook = _recipeBook;
 
 
 
-"[TankTrap, SandBags, Wires, Logs, Scrap Metal, Grenades, ScrapElectronics, SupplyCrate, CamoNet ,Brick, String, DuctTape]" hintC buildRecipeBook;
+"[TankTrap, SandBags, Wires, Logs, Scrap Metal, Grenades, ScrapElectronics, SupplyCrate, CamoNet, Brick, String, DuctTape]" hintC buildRecipeBook;
 //[] call BIS_fnc_GUIeditor;

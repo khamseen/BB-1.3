@@ -1,8 +1,8 @@
 private["_separator1","_txt"];
 cutText ["HOLD LEFT-CLICK ON TEXT AND DRAG UP AND DOWN, PRESS ESCAPE TO CLEAR OR CONTINUE ON BOTTOM!", "PLAIN DOWN"];
 sleep 1;
-"Base Building Help" hintC [
-															"*Some buildables require a flagpole, build one first to design base within 200 meters",
+"Base Building Help" hintC format [
+															"*Some buildables require a flagpole, build one first to design base within %1 meters"BBFlagRadius,
 															"*Removing a flagpole requires you to remove all buildables in the build radius",
 															"*Certain buildables can be elevated and youll get extended build options.",
 															"*Elevated buildables will shift after you select 'Finish Build', this is how it will look at server restart(cancel to adjust)",

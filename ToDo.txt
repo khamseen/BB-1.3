@@ -5,10 +5,12 @@ Things to Do
 Tidy up server_monitor.sqf
 Look at give_gateAccess.sqf, it looks a bit strange, also need to allow Admins to use the function
 Check why hint windows sometimes close too fast
+Can remove flag even when there are items in range
 
 //Build List
-Finalise recipes and build items
-Majority of items set to not be removable for some reason. 
+Finalise recipes and build items 
+Check attach coords for all items, some items are clipping into the ground or place too close to the player
+Some items move considerably after clicking finish
 
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
@@ -16,7 +18,7 @@ Edit the ReadMe files to include note for @Reality update scripts, people will n
 //------------------ Would Be Nice ------------------------
 
 //Sarge AI
-Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it
+Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it)
 
 //-------------------------- DONE --------------------------
 
@@ -39,9 +41,10 @@ Change flag to something less specific, since we're not all American (Done)
 
 //Build List
 Merge into file (Done)
+Majority of items set to not be removable for some reason. (Done)
 
 //player_build.sqf
-Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets. (Done)
+Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets with 1.8+. (Done)
 
 //Removal
 Address problem with removing extendable objects. You can't remove things unless you can target them with the cursor. (Think this is ok, since we have castle stairs and scaffolding to use for height)
@@ -67,7 +70,7 @@ Check all new 1.8 items as they don't seem to be registering (Done)
 Add replacements for old buildables: tank traps, sand bag walls, wire fences, (and CamoNets 1.8 only) (Done)
 
 //General
-Flag count check (Done)
+Fix Flag count check (Done)
 Fix Map Markers (Done)
 Camo Net removal option not showing (Done)
 Check extendables floating when loading from previous version (Done)
@@ -76,9 +79,13 @@ Check for custom debug monitor and toggle it off/on before and after hint displa
 Provide more power for admins, like the ability to add/remove UIDs from objects they aren't assigned to (Done)
 Give option to add/remove UIDs from camonets? (Done)
 Overhaul system for items that can't be targeted. (Done)
+Add a master variable for flag radius (Done)
+Remove option still exists whilst removing, may lead to duping (Done)
+Add Master Variable for flag type, we'll also need server_monitor to update any flag type to the current flag type to prevent issues (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)
+Client side RPT spam when building targetable objects for same reason (Done)
 
 //Lighting
 Try to implement toggle tower lights with generator (Done)

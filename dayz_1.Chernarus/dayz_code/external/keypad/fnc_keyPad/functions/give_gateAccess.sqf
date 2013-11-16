@@ -1,4 +1,4 @@
-private["_character","_id","_obj","_authorizedUID","_authorizedPUID","_allFlags","_objAuth"];
+private["_character","_id","_obj","_authorizedUID","_authorizedPUID","_authorizedOUID","_updatedAuthorizedUID","_allFlags","_objAuth","_objAuthWhole","_objAuth","_newAuth"];
 _character = _this select 1;
 _id = _this select 2;
 _obj = _this select 3;
@@ -6,21 +6,20 @@ _allFlags = nearestObjects [_obj, [BBTypeOfFlag], BBFlagRadius];
 		{
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid _character) in _authorizedPUID && typeOf(_x) == BBTypeOfFlag) exitWith {
+				if (((getPlayerUid _character) in _authorizedPUID && typeOf(_x) == BBTypeOfFlag) || (((getPlayerUID player) in baseBuildAdminSuperAccess) && typeOf(_x) == BBTypeOfFlag)) then {
 					_objAuthWhole = _obj getVariable ["AuthorizedUID", []];
+					_objAuthOUID = _objAuthWhole select 0;
 					_objAuth = _objAuthWhole select 1;
+					_newAuth = 0;
 						{
-							if (_x != (getPlayerUID player) && !(_x in _objAuth)) then {
+							if (!(_x in _objAuth)) then {
 								_objAuth set [count _objAuth, _x];
+								_newAuth = _newAuth + 1;
 							};
 						} forEach _authorizedPUID;
-					if (count _objAuth > 0) then {
-						private ["_authorizedUID","_authorizedOUID","_authorizedPUID","_updatedAuthorizedUID"]; //Reset here to avoid taking whole flag array to new object
-						_authorizedUID = _obj getvariable ["AuthorizedUID", []]; //Get object main array
-						_authorizedOUID = _authorizedUID select 0; //Select only the objectUID array
-						_updatedAuthorizedUID = ([_authorizedOUID] + [_objAuth]); //Combine objectUID array with new playerUIDs array
-						_obj setVariable ["AuthorizedUID", _updatedAuthorizedUID, true];
-						// Send to database
+					if (_newAuth > 0) then {
+						_obj setVariable ["AuthorizedUID", ([_objAuthOUID] + [_objAuth]), true];
+						//Send to database
 						PVDZ_veh_Save = [_obj,"gear"];
 						publicVariableServer "PVDZ_veh_Save";
 					
@@ -28,7 +27,7 @@ _allFlags = nearestObjects [_obj, [BBTypeOfFlag], BBFlagRadius];
 							PVDZ_veh_Save call server_updateObject;
 						};
 					};
-					if (count _objAuth > 0) then {
+					if (_newAuth > 0) then {
 						bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
 						if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 						hintsilent parseText format ["
@@ -49,6 +48,3 @@ _allFlags = nearestObjects [_obj, [BBTypeOfFlag], BBFlagRadius];
 					};
 				};
 		} foreach _allFlags;
-		sleep 10;
-		hint "";
-

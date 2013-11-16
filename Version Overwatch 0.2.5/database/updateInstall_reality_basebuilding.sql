@@ -38,7 +38,7 @@ WHERE deployable_id >= 6 and deployable_id <= 52;
 -- Copies Base Building items from the new table, to the original with the new array system
 --
 INSERT INTO `instance_deployable`(`id`, `unique_id`, `deployable_id`, `owner_id`, `instance_id`, `worldspace`, `inventory`, `last_updated`, `created`, `Hitpoints`, `Fuel`, `Damage`)
-SELECT d.id, d.unique_id, d.deployable_id, d.owner_id, d.instance_id, d.worldspace, CONCAT("[[""", d.unique_id, """],[""", s.unique_id, """]]" ), d.last_updated, d.created, d.Hitpoints, d.Fuel, d.Damage
+SELECT d.id, d.unique_id, d.deployable_id, d.owner_id, d.instance_id, CONCAT(SUBSTRING_INDEX(d.worldspace,',',3), ',0]]'), CONCAT("[[""", d.unique_id, """],[""", s.unique_id, """]]" ), d.last_updated, d.created, d.Hitpoints, d.Fuel, d.Damage
 FROM instance_deployable_old d
 INNER JOIN survivor s ON d.owner_id = s.id
 WHERE deployable_id >= 6 and deployable_id <= 52;
@@ -56,7 +56,15 @@ INSERT INTO `deployable` (`class_name`) VALUES
 ('Land_Shed_wooden'),
 ('Land_Barrack2'),
 ('Land_vez'),
+('FlagCarrierBAF'),
 ('FlagCarrierBIS_EP1'),
+('FlagCarrierBLUFOR_EP1'),
+('FlagCarrierCDF_EP1'),
+('FlagCarrierCDFEnsign_EP1'),
+('FlagCarrierCzechRepublic_EP1'),
+('FlagCarrierGermany_EP1'),
+('FlagCarrierINDFOR_EP1'),
+('FlagCarrierUSA_EP1'),
 ('Land_A_Minaret_Porto_EP1'),
 ('Land_Ind_Shed_01_main'),
 ('Land_Fire_barrel'),

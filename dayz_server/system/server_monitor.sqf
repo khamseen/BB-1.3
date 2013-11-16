@@ -126,16 +126,14 @@ if (isServer and isNil "sm_done") then {
                 _object setVariable ["CharacterID", _ownerID, true];
 				
 				//####----####----####---- Base Building 1.3 Start ----####----####----####
-				_object setVariable ["AuthorizedUID", _inventory, true]; // Give objects all custom UID
-				clearWeaponCargoGlobal  _object;
-				clearMagazineCargoGlobal  _object;
+				//Check to make sure all current flags match the set flag type, if not then change them
+				if ((typeOf(_object) in BBAllFlagTypes) && (typeOf(_object) != BBTypeOfFlag)) then {
+				deleteVehicle _object;
+				_object = createVehicle [BBTypeOfFlag, _pos, [], 0, "CAN_COLLIDE"];};
 				
-				if (_object isKindOf "TentStorage") then {
-					//_pos set [2,0];
-					_object setpos _pos;
-					_object addEventHandler ["HandleDamage", {false}];			
-					//_object addMPEventHandler ["MPKilled",{_this call vehicle_handleServerKilled;}];
-				};
+				// Give objects all custom UID
+				_object setVariable ["AuthorizedUID", _inventory, true];
+
 				if (typeOf(_object) == "Grave") then {
 					_object setVariable ["isBomb", 1, true];//this will be known as a bomb instead of checking with classnames in player_bomb
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), -0.12];
@@ -149,8 +147,10 @@ if (isServer and isNil "sm_done") then {
 				
 				//####----####----####---- Base Building 1.3 Start ----####----####----####
 				if (typeOf(_object) in allExtendables && typeOf(_object) != "Grave") then {
-					//_object setpos [(getposATL _object select 0),(getposATL _object select 1), (getposATL _object select 2)];
-					//_object setpos _pos; or try this, or just let it createvehicle
+					_object setposATL [(getposATL _object select 0),(getposATL _object select 1), (getposATL _object select 2)]; //This line needs looked at for old buildables floating
+					//_object setdir _dir;
+					//_object setpos _pos; //or try this, or just let it createvehicle
+					//_object setposATL _pos;
 					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
 				};
 				if (!(typeOf(_object) in allExtendables) && (_object isKindOf "Static") && !(_object isKindOf "TentStorage") && typeOf(_object) != "Grave") then {
@@ -161,7 +161,7 @@ if (isServer and isNil "sm_done") then {
 					//_object addEventHandler ["HandleDamage", {false}];	
 				};
 			//Set Variable
-			_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", "FlagCarrierBIS_EP1"];
+			_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", BBTypeOfFlag];
 			if (typeOf(_object) in _codePanels && (typeOf(_object) != "Infostand_1_EP1")) then {
 				//addaction
 				//_object setVariable ["ObjectUID", _worldspace call dayz_objectUID2, true];

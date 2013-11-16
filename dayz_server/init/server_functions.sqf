@@ -176,7 +176,7 @@ private["_isDestructable","_classname","_isSimulated","_disableSims","_objectSim
 //																	[_attachCoords, _startPos, _modDir, _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
 _buildlist = [
 //t, s, w, L, m, g, e, cr, c, b, s, d
-[[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1], "FlagCarrierBIS_EP1",  			[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, false]], //FlagCarrierUSA 	--1 
+[[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1], BBTypeOfFlag,  			[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, false]], //FlagCarrierUSA 	--1 
 [[0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0], "Grave", 						[[0,2.5,.1],[0,2,0], 	0, 	true, true, true, false, true, true, true, false, false, false, false, false]],//Booby Traps --2
 [[2, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0], "Concrete_Wall_EP1", 			[[0,5,1.75],[0,2,0], 	0, 	true, false, true, false, true, true, false, false, false, false, false, true]],//Gate Concrete Wall --3
 [[0, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 1], "Infostand_2_EP1",				[[0,2.5,.6],[0,2,0], 	0, 	true, false, true, false, true, false, false, false, false, false, false, true]],//Gate Panel w/ KeyPad --4
@@ -211,7 +211,7 @@ _buildlist = [
 [[0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_Ind_long",				[[0,5,.6], 	[-4,1.5,0], 0, 	true, false, true, false, true, false, false, true, false, true, true, true]], //Fence_Ind_long --33
 [[0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fort_RazorWire",				[[0,5,.8], 	[0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, true]],//Fort_RazorWire --34
 [[0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_Ind",  					[[0,4,.7], 	[0,2,0], 	0, 	true, false, false, false, true, false, true, true, false, true, true, true]], //Fence_Ind --35
-[[2, 1, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0], "Land_sara_hasic_zbroj",  		[[0,10,1], 	[0,12,0], 	0, 	true, true, true, true, false, false, false, true, true, false, false, true]], //Land_sara_hasic_zbroj --36
+[[2, 1, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0], "Land_sara_hasic_zbroj",  		[[0,10,2.4], [0,10,2.4], 	0, 	true, true, true, true, false, false, false, true, true, false, false, true]], //Land_sara_hasic_zbroj --36
 [[2, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 1], "Land_Shed_wooden",  			[[0,8,1], 	[0,10,0], 	0, 	true, true, true, true, true, false, false, true, true, false, false, true]], //Land_Shed_wooden --37
 [[1, 1, 1, 0, 0, 0, 0, 0, 1, 3, 1, 0], "Land_Barrack2",  				[[0,10,1], 	[0,12,0], 	0, 	true, true, true, true, false, false, false, true, true, false, false, true]], //Land_Barrack2 --38
 [[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1], "Land_vez",  					[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, true, false, false, true, true, false, false, true]], //Land_vez --39
@@ -241,7 +241,7 @@ allExtendables = ["Concrete_Wall_EP1","Infostand_2_EP1","Land_HBarrier_large","L
 					"Land_Misc_Cargo2E","Misc_Cargo1Bo_military","Ins_WarfareBContructionSite","Land_CncBlock","Misc_cargo_cont_small_EP1","Land_prebehlavka",
 					"Fence_corrugated_plate","Land_CamoNet_EAST","Land_CamoNet_NATO","Fence_Ind_long","Fort_RazorWire","Fence_Ind","Land_Shed_wooden","Land_vez",
 					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_Campfire","Land_ladder","Land_ladder_half",
-					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A","Land_A_Castle_Gate"];
+					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A","Land_A_Castle_Gate","Land_sara_hasic_zbroj"];
 
 // Build allremovables array for remove action
 for "_i" from 0 to ((count _buildlist) - 1) do
@@ -287,5 +287,4 @@ This Area is for extra arrays that need to be built, some using above arrays
 };
 //####----####----####---- BUILD LIST ARRAY SERVER SIDE End ----####----####----####
 //####----####----####---- Base Building 1.3 End ----####----####----####
-
 call compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\fa_hiveMaintenance.sqf";

@@ -25,8 +25,7 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	};
 	_finalInput = (toString _convertInput);
 	_authorizedPUID = _authorizedPUID - [_finalInput];
-	_updatedAuthorizedUID = ([_authorizedOUID] + [_authorizedPUID]); //Recombines the arrays
-	_panel setVariable ["AuthorizedUID", _updatedAuthorizedUID, true];
+	_panel setVariable ["AuthorizedUID", ([_authorizedOUID] + [_authorizedPUID]), true];
 	// Update to database
 	PVDZ_veh_Save = [_panel,"gear"];
 	publicVariableServer "PVDZ_veh_Save";

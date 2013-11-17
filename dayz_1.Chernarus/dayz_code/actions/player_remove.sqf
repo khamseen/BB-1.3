@@ -176,7 +176,7 @@ if (_adminRemoval) then {
 if (typeOf(_obj) == BBTypeOfFlag && (_authorizedGateCodes)) then {
 	_baseObjects = nearestObjects [_obj, allbuildables_class,  BBFlagRadius];
 	if (count _baseObjects > 1) then { //Flags count as an item so we have to check for >1
-		cutText [format["You need to remove all existing base objects in %1 meters in order to move your base and delete your bases flagpole",_flagRadius], "PLAIN DOWN",1];
+		cutText [format["You need to remove all existing base objects in %1 meters in order to move your base and delete your base flagpole",_flagRadius], "PLAIN DOWN",1];
 		remProc = false;
 		breakOut "exit";
 	};

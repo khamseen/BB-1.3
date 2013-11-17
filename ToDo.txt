@@ -12,10 +12,6 @@ Check attach coords for all items, some items are clipping into the ground or pl
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
 
-//ReadMe Optional Stuff
-Sarge AI addon instructions
-Custom Debug addon instructions
-
 //------------------ Would Be Nice ------------------------
 
 
@@ -68,6 +64,11 @@ Hive SQL scripts still need sorted (Done)
 Put together a readme for Overwatch (Done)
 Add new flag types to SQL scripts (Done)
 Force Z coordinate to 0 in SQL update scrips (Done)
+Configuration ReadMe with better breakdown of what each variable does (Done)
+
+//ReadMe Optional Stuff
+Sarge AI addon instructions (Done)
+Custom Debug addon instructions (Done)
 
 //Build List
 Check all new 1.8 items as they don't seem to be registering (Done)

@@ -7,6 +7,7 @@ dayZ_instance = 1; // The instance
 //dayZ_serverName = "UK1337"; // Servername (country code + server number)
 dayz_antihack = 0; // DayZ Antihack / 1 = enabled // 0 = disabled
 dayz_REsec = 0; // DayZ RE Security / 1 = enabled // 0 = disabled
+doSargeAI = 1; //Sarge AI / 1= Enabled // 0 = disabled
 
 //Game Settings
 dayz_spawnselection = 0; // DayZ Spawnselection / 1 = enabled // 0 = disabled, No current spawn limits.
@@ -139,11 +140,15 @@ if (dayz_REsec == 1) then {
 #include "REsec\REsec.sqf"
 };
 
-   // UPSMON
-   call compile preprocessFileLineNumbers "addons\UPSMON\scripts\Init_UPSMON.sqf";
-
-   // SHK 
-   call compile preprocessfile "addons\SHK_pos\shk_pos_init.sqf";
-
-   // run SAR_AI
-   [] execVM "addons\SARGE\SAR_AI_init.sqf";
+if (doSargeAI == 1) then {
+	// UPSMON
+	call compile preprocessFileLineNumbers "addons\UPSMON\scripts\Init_UPSMON.sqf";
+	// SHK 
+	call compile preprocessfile "addons\SHK_pos\shk_pos_init.sqf";
+	// run SAR_AI
+	[] execVM "addons\SARGE\SAR_AI_init.sqf";
+	if (BBAIGuards == 1) then {
+		//Base guards
+		[] execVM "addons\SARGE\SAR_init_Base_guards.sqf";
+	};
+};

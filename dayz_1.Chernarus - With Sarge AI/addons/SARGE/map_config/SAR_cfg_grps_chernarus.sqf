@@ -422,39 +422,5 @@ diag_log format["SAR_AI: Static Spawning for vehicle patrols started"];
 ] call SAR_AI_land;
 */
 diag_log format["SAR_AI: Static Spawning for vehicle patrols finished"];
-
-//Base patrols
-private["_marker","_markername","_tMark","_someMarker","_flagPoles","_cnt","_spawnPos","_tPosX","_tPosY"];
-_cnt = 0;
-_flagPoles = nearestObjects [(getMarkerPos "center"), [BBTypeOfFlag], 25000];
-
-	{
-
-		_spawnPos = (getPosATL _x);//[(getPosATL _x), 10, 50, 10, 0, 2000, 0] call BIS_fnc_findSafePos;
-		_tPosX = _spawnPos select 0;
-		_tPosY = _spawnPos select 1;
-
-		_markername = format["FLAG_BASE_%1", _cnt];		
-		_cnt = _cnt + 1;
-		_tMark = createMarker [_markername, [_tPosX, _tPosY]];
-		_tMark setMarkerShape "ELLIPSE";
-		_tMark setMarkeralpha 0;
-		_tMark setMarkerType "Flag";
-		_tMark setMarkerBrush "Solid";
-		_tMark setMarkerSize [200, 200];
-		_marker = _tMark;
-
-		
-		//_behaviors = ["patrol","ambush","fortify"];
-		//_behavior = _behaviors call BIS_fnc_selectRandom;
-		// 1 = type of group (1 = soldiers, 2 = survivors, 3 = bandits)
-		// 0 = amount of snipers in the group
-		// 1 = amount of rifleman in the group
-		[_x, _marker,1,1,3,"patrol", false, 5200] call SAR_AI_GUARDS;
-		//[_spawnPos,2,floor(random 2),floor(random 4),"patrol",false] call SAR_AI;
-		
-		diag_log "SPAWNING FLAGS END!";
-	} foreach _flagPoles;
-diag_log format["SAR_AI: Base guard spawns complete"];
 // ---- end of configuration area ----
 

@@ -1,4 +1,4 @@
-private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
+private ["_finalInput","_panel","_convertInput","_authorizedUID","_authorizedOUID","_authorizedPUID"];
 	
 	//[_panel, _convertInput, globalAuthorizedUID] call add_UIDCode;	
 	removeUIDCode = false;	
@@ -11,8 +11,8 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	if (!((toString _convertInput) in _authorizedPUID)) exitWith 
 	{
 		CODEINPUT = [];
-		bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
-		if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
+		bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
+		if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 		hintsilent parseText format ["
 		<t align='center' color='#FF0000'>ERROR</t><br/><br/>
 		<t align='center'>Player UID %1 not found in object</t><br/>
@@ -21,7 +21,7 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 		",(toString _convertInput), typeOf(_panel), str(keyCode)];
 		sleep 5;
 		hint "";
-		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	};
 	_finalInput = (toString _convertInput);
 	_authorizedPUID = _authorizedPUID - [_finalInput];
@@ -32,8 +32,8 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	if (isServer) then {
 		PVDZ_veh_Save call server_updateObject;
 	};
-	bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
-	if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
+	bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
+	if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 	hintsilent parseText format ["
 	<t align='center' color='#00FF3C'>SUCCESS</t><br/><br/>
 	<t align='center'>Player UID %1 access removed from object</t><br/>
@@ -43,4 +43,4 @@ private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
 	CODEINPUT = [];
 	sleep 10;
 	hint "";
-	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};

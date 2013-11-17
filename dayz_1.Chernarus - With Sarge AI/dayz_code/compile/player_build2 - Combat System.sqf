@@ -242,8 +242,8 @@ _playerCombat 	= player;
 					_flagMarker setMarkerColorLocal("ColorGreen");
 					_flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
 					_flagMarkerArr = _flagMarkerArr + [_flagMarker];
-					if (_flagcount >= MaxPlayerFlags) then {
-						cutText [format["Your playerUID is already registered to %1 flagpoles, you can only be added on upto %1 flag poles. Check Map for temporary flag markers, 10 seconds!\nBuild canceled for %2",MaxPlayerFlags,_text], "PLAIN DOWN"];
+					if (_flagcount >= BBMaxPlayerFlags) then {
+						cutText [format["Your playerUID is already registered to %1 flagpoles, you can only be added on upto %1 flag poles. Check Map for temporary flag markers, 10 seconds!\nBuild canceled for %2",BBMaxPlayerFlags,_text], "PLAIN DOWN"];
 						sleep 10;
 						{
 							deleteMarkerLocal _x

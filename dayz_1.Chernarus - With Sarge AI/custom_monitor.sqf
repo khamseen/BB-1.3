@@ -50,7 +50,7 @@ fnc_debug = {
         <t size='1'font='Bitstream'align='center' color='#ff8810' >Press F10 to toggle! </t><br/>
         <t size='1'font='Bitstream'align='center' color='#ff8810' >Holo Fed Community Server </t><br/>
  
-        ",dayz_playerName,r_player_blood,round _humanity,_killsH,_killsB,_kills,_headShots,count entities "zZombie_Base",{alive _x} count entities "zZombie_Base",_banditCount,_heroCount,_pic,_flagCount,MaxPlayerFlags];
+        ",dayz_playerName,r_player_blood,round _humanity,_killsH,_killsB,_kills,_headShots,count entities "zZombie_Base",{alive _x} count entities "zZombie_Base",_banditCount,_heroCount,_pic,_flagCount,BBMaxPlayerFlags];
     sleep 1;
     };
 };[] spawn fnc_debug;

@@ -1,4 +1,4 @@
-private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedUID","_authorizedOUID","_authorizedPUID"];
+private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedUID","_authorizedOUID","_authorizedPUID","_flagUID","_flagOUID","_flagPUID"];
 	_isOk = true;
 	//[_panel, _convertInput] call add_UIDCode;		
 	addUIDCode = false;
@@ -18,28 +18,28 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 		",(toString _convertInput), typeOf(_panel), str(keyCode)];
 		sleep 5;
 		hint "";
-		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	};
 	if (typeOf(_panel) == BBTypeOfFlag) then {
 	_flagCount = 0;
 	_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
 		{
 			if (typeOf(_x) == BBTypeOfFlag) then {
-				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedOUID = _authorizedUID select 0;
-				_authorizedPUID = _authorizedUID select 1;
+				_flagUID = _x getVariable ["AuthorizedUID", []];
+				_flagOUID = _authorizedUID select 0;
+				_flagPUID = _authorizedUID select 1;
 				if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == BBTypeOfFlag)) then {
 					_flagCount = _flagCount + 1;
 				};
 			};
 		} foreach _allFlags;
-		if (_flagCount >= MaxPlayerFlags) then {
+		if (_flagCount >= BBMaxPlayerFlags) then {
 			hintsilent parseText format ["
 			<t align='center' color='#FF0000'>ERROR</t><br/><br/>
 			<t align='center'>Player UID %1 already used on %2 flags!</t><br/>
-			",(toString _convertInput),MaxPlayerFlags];
+			",(toString _convertInput),BBMaxPlayerFlags];
 			sleep 5;
-			if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+			if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 			breakout "exit";
 		};
 	};
@@ -59,5 +59,5 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 	",(toString _convertInput), typeOf(_panel), str(keyCode)];
 	sleep 10;
 	hint "";
-	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	CODEINPUT = [];

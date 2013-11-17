@@ -23,7 +23,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 //####----####----####---- Base Building 1.3 Start ----####----####----####
 	_currentSkin = typeOf(player);
 	_hasToolbox = "ItemToolbox" in items player;
-	_baseBuildAdmin = ((getPlayerUID player) in baseBuildAdminSuperAccess);
+	_baseBuildAdmin = ((getPlayerUID player) in BBSuperAdminAccess);
 	//Get objects that can't be targetted
 	_flagBasePole = nearestObject [player, BBTypeOfFlag];
 		//All untargetable objects (except Base Flag), searches a 10 meter radius, you can add any new objects you put in the build list that can't be targetted
@@ -121,7 +121,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 			if (s_player_removeFlag < 0) then {
 				s_player_removeFlag = player addaction [format[("<t color=""#F01313"">" + ("%1Permanently Remove Flag (restrictions apply)") +"</t>"),_adminText],"dayz_code\actions\player_remove.sqf", _flagBasePole,1,false,true,"",""];
 			};
-			if (AIGuards == 1) then {
+			if (BBAIGuards == 1) then {
 				if (s_player_guardToggle < 0) then {
 					s_player_guardToggle = player addaction [format[("<t color=""#FFFFFF"">" + ("%1Toggle Guards to Kill all non-base owners (default on)") +"</t>"),_adminText],"dayz_code\actions\toggle_base_guards.sqf",_flagBasePole,1,false,true,"",""];
 				};
@@ -213,7 +213,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 //####----####----####---- Base Building 1.3 Start ----####----####----####
 	_lever = cursorTarget;
 	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate"];
-	_baseBuildAdmin = ((getPlayerUID player) in baseBuildAdminSuperAccess);
+	_baseBuildAdmin = ((getPlayerUID player) in BBSuperAdminAccess);
 	
 	if (_isMan && (_flagBasePole distance player < 10)) then {
 		_authorizedUID = _flagBasePole getVariable ["AuthorizedUID", []]; //Do this inside the IF statement to prevent RPT spam when building
@@ -222,7 +222,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
 		if (_authorizedGateCodes || _baseBuildAdmin) then {
 			if (s_player_getTargetUID < 0) then {
-				s_player_getTargetUID = player addAction [format["%1Get UID of Targeted Player",_adminText], "dayz_code\actions\get_target_UID.sqf", cursorTarget, 1, false, true, "", ""];
+				s_player_getTargetUID = player addAction [format["%1Get UID of Targeted Player",_adminText], "dayz_code\actions\get_player_UID.sqf", cursorTarget, 1, false, true, "", ""];
 			};
 		};
 	} else {
@@ -327,7 +327,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 				player removeAction s_player_deflameBarrels;
 				s_player_deflameBarrels = -1;
 			};
-			if (bbUseTowerLights == 1) then {
+			if (BBUseTowerLights == 1) then {
 				if (count _towers > 0) then {
 					if (s_player_towerLightsOn < 0) then {
 						s_player_towerLightsOn = player addAction [format["%1Tower Lights ON",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,true], 1, false, true, "", ""];

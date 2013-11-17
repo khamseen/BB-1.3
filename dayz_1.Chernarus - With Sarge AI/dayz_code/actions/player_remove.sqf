@@ -44,7 +44,7 @@ _hasEtool 		= 	"ItemEtool" in weapons player;
 _authorizedUID = _obj getVariable ["AuthorizedUID", []];
 _authorizedPUID = _authorizedUID select 1; //Defines only the second element of the array which contains playerUIDs
 _authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
-_adminRemoval = ((getPlayerUID player) in baseBuildAdminSuperAccess);	
+_adminRemoval = ((getPlayerUID player) in BBSuperAdminAccess);	
 _flagRadius 	= BBFlagRadius;
 	
 //Booleans

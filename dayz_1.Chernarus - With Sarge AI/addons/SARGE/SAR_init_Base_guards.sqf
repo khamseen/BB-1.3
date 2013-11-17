@@ -1,15 +1,15 @@
 
 //Base patrols
 private["_sizeX","_sizeY","_snipers","_rifleMen","_sizeOfBase","_marker","_markername","_tMark","_someMarker","_flagPoles","_cnt","_spawnPos","_tPosX","_tPosY"];
-if (hasInterface || isServer || isDedicated) exitWith{};
-sleep 120;
+//if (hasInterface || isServer || isDedicated) exitWith{};//Headless client maybe? 
+sleep 60;//120
 _cnt = 0;
 _flagPoles = nearestObjects [(getMarkerPos "center"), [BBTypeOfFlag], 25000];
 diag_log "SAR_INIT_BASE_GUARDS CALLED";
 diag_log format["_flagPoles: %1", str(_flagPoles)];
 diag_log format["count _flagPoles: %1", (count _flagPoles)];
 	{
-		_sizeOfBase = nearestObjects [_x, ["allbuildables_class"], 200];
+		_sizeOfBase = nearestObjects [_x, allbuildables_class, 200];
 		//Spawn guard amount based on base size
 		_rifleMen = 1; 
 		_snipers = 1;
@@ -22,18 +22,16 @@ diag_log format["count _flagPoles: %1", (count _flagPoles)];
 		_spawnPos = (getPosATL _x);//[(getPosATL _x), 10, 50, 10, 0, 2000, 0] call BIS_fnc_findSafePos;
 		_tPosX = _spawnPos select 0;
 		_tPosY = _spawnPos select 1;
-
-		_markername = format["FLAG_BASE_%1", _cnt];		
-		_cnt = _cnt + 1;
-		_tMark = createMarker [_markername, [_tPosX, _tPosY]];
+		
+		_markername = format["FLAG_BASE_%1", _x];//Changed to _x because _cnt wasn't working, it never generated a name so they never spawned in
+		//_cnt = _cnt + 1;
+		_tMark = createMarker [_markername, position _x];
 		_tMark setMarkerShape "ELLIPSE";
 		_tMark setMarkeralpha 0;
 		_tMark setMarkerType "Flag";
 		_tMark setMarkerBrush "Solid";
 		_tMark setMarkerSize [_sizeX, _sizeY];
 		_marker = _tMark;
-		
-
 		
 		//_behaviors = ["patrol","ambush","fortify"];
 		//_behavior = _behaviors call BIS_fnc_selectRandom;

@@ -17,24 +17,23 @@
 // ---------------------------------------------------------------------------------------------------------
 
 private ["_baseOwner","_dynamicZombieAggro","_zombieAggro","_attackAll","_friendlyPlayers","_zombie_detectRange","_ai","_entity_array","_humanity","_humanitylimit","_sleeptime","_detectrange"];
-if (hasInterface || isServer || isDedicated) exitWith{};
-
+//if (hasInterface || isServer || isDedicated) exitWith{}; //May be for headless client
 
 _ai = _this select 0;
 _friendlyPlayers = [];
 _friendlyPlayers = _ai getVariable ["SAR_FLAG_FRIENDLY", []];
 _attackAll 	=  _ai getVariable ["ATTACK_ALL", true];
 _detectrange = SAR_DETECT_HOSTILE;
-_zombie_detectRange = 50;
+//_zombie_detectRange = 50;
 _humanitylimit=SAR_HUMANITY_HOSTILE_LIMIT;
 _humanity = 0;
 _baseOwner = 0;
 _sleeptime = 3; //SAR_DETECT_INTERVAL;
- _zombieAggro = 40;   
+//_zombieAggro = 40;   
 while {alive _ai || !isNull _ai} do {
-     if (hasInterface || isServer || isDedicated) exitWith{};
+     //if (hasInterface || isServer || isDedicated) exitWith{}; //May be for headless client? 
 	 
-    _entity_array = (getPosATL _ai) nearEntities ["zZombie_Base",_zombie_detectRange];
+    /*_entity_array = (getPosATL _ai) nearEntities ["zZombie_Base",_zombie_detectRange];
 	
 		{
 			_dynamicZombieAggro = (floor(random _zombieAggro) + _zombieAggro);
@@ -62,7 +61,7 @@ while {alive _ai || !isNull _ai} do {
 					};
 				};
 			};
-		} forEach _entity_array;
+		} forEach _entity_array;*///Think this section is all for zombie agro which default sarge doesn't have
 		
 		_friendlyPlayers = _ai getVariable ["SAR_FLAG_FRIENDLY", []]; // Check dynamically if friendlies added
 		_attackAll 	= _ai getVariable ["ATTACK_ALL", true];  // Check dynamically attack all changes

@@ -14,10 +14,10 @@ _flagMarkerArr = [];
 				_flagMarker setMarkerColorLocal("ColorGreen");
 				_flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
 				_flagMarkerArr = _flagMarkerArr + [_flagMarker];
-				if (_flagCount < MaxPlayerFlags) then {
+				if (_flagCount < BBMaxPlayerFlags) then {
 				cutText ["Check your map for flag locations. These will clear after 10 seconds.", "PLAIN DOWN"];
 				} else {
-				cutText [format ["You are registered to the maximum number of flags (%1). Check your map for flag locations. These will clear after 10 seconds.",MaxPlayerFlags], "PLAIN DOWN"];
+				cutText [format ["You are registered to the maximum number of flags (%1). Check your map for flag locations. These will clear after 10 seconds.",BBMaxPlayerFlags], "PLAIN DOWN"];
 				};
 			};
 		};

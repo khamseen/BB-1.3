@@ -13,8 +13,8 @@ _displayok = createdialog "KeypadGate";
 removeUIDCode = true;
 //Show current UIDs until new UID is removed
 while {removeUIDCode} do {
-bbCDebug = missionNameSpace getVariable [format["%1",bbCustomDebug],false];
-if (bbCDebug) then {missionNameSpace setVariable [format["%1",bbCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
+bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
+if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 hintsilent parseText format ["
 		<t align='center' color='#0074E8'>Current Player UID(s):</t><br/>
 		<t align='center'>%1</t><br/><br/>
@@ -23,5 +23,5 @@ hintsilent parseText format ["
 		",str(_authorizedPUID), typeOf(_obj), str(keyCode)];
 if (!removeUIDCode) exitwith {
 hint"";
-if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};};
+if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};};
 };

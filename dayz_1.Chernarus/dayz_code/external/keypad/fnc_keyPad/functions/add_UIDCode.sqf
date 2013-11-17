@@ -18,7 +18,7 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 		",(toString _convertInput), typeOf(_panel), str(keyCode)];
 		sleep 5;
 		hint "";
-		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	};
 	if (typeOf(_panel) == BBTypeOfFlag) then {
 	_flagCount = 0;
@@ -33,13 +33,13 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 				};
 			};
 		} foreach _allFlags;
-		if (_flagCount >= MaxPlayerFlags) then {
+		if (_flagCount >= BBMaxPlayerFlags) then {
 			hintsilent parseText format ["
 			<t align='center' color='#FF0000'>ERROR</t><br/><br/>
 			<t align='center'>Player UID %1 already used on %2 flags!</t><br/>
-			",(toString _convertInput),MaxPlayerFlags];
+			",(toString _convertInput),BBMaxPlayerFlags];
 			sleep 5;
-			if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+			if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 			breakout "exit";
 		};
 	};
@@ -59,5 +59,5 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 	",(toString _convertInput), typeOf(_panel), str(keyCode)];
 	sleep 10;
 	hint "";
-	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",bbCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 	CODEINPUT = [];

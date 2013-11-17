@@ -1,5 +1,6 @@
 private["_playerPos","_adminRemoval","_authorizedGateCodes","_authorizedUID","_authorizedOUID","_authorizedPUID","_playerNearby","_func_ownerRemove","_qtyE","_qtyCr","_qtyC","_qtyB","_qtySt","_qtyDT","_qtyS","_qtyW","_qtyL","_qtyM","_qtyG","_qtyT","_removable","_eTool","_result","_building","_dialog","_classname","_requirements","_objectID","_objectUID","_obj","_cnt","_id","_tblProb","_locationPlayer","_randNum2","_smallWloop","_medWloop","_longWloop","_wait","_longWait","_medWait","_highP","_medP","_lowP","_failRemove","_canRemove","_randNum","_text","_dir","_pos","_isWater","_inVehicle","_onLadder","_hasToolbox","_canDo","_hasEtool"];
 disableserialization;
+remProc = true;
 player removeAction s_player_deleteCamoNet;
 s_player_deleteCamoNet = -1;
 player removeAction s_player_deleteBuild;
@@ -10,7 +11,6 @@ player removeAction s_player_deleteLightTower;
 s_player_deleteLightTower = -1;
 _obj = objNull;
 _obj = _this select 3;
-if (isNull _obj) then {_obj = [] call getNetting;};
 if (_obj isKindof "Grave") then {
 _text = "Bomb";
 cutText [format["You can only disarm %1 to remove it",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit";
@@ -26,6 +26,7 @@ _playerNearby = (nearestObjects [player, ["AllPlayers","CAManBase"], 12] select 
 if (!isNull _playerNearby && _playerNearby distance player <= 10 && _playerNearby != player && isPlayer _playerNearby && alive _playerNearby) exitwith 
 {
 	cutText ["Other players need to be > 10 meters away to remove object", "PLAIN DOWN"];	
+	remProc = false;
 };
 _ownerID = _obj getVariable ["characterID","0"];
 // Pre-Checks
@@ -43,7 +44,8 @@ _hasEtool 		= 	"ItemEtool" in weapons player;
 _authorizedUID = _obj getVariable ["AuthorizedUID", []];
 _authorizedPUID = _authorizedUID select 1; //Defines only the second element of the array which contains playerUIDs
 _authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
-_adminRemoval = ((getPlayerUID player) in adminSuperAccess);	
+_adminRemoval = ((getPlayerUID player) in BBSuperAdminAccess);	
+_flagRadius 	= BBFlagRadius;
 	
 //Booleans
 _canRemove 		= false;
@@ -71,7 +73,7 @@ _qtyM = 0;
 _qtyG = 0;
 _qtyE = 0;
 _qtyCr = 0;
-_qtyC = _0;
+_qtyC = 0;
 _qtyB = 0;
 _qtySt = 0;
 _qtyDT = 0;	
@@ -80,9 +82,9 @@ _randNum = round(random 100);
 _randNum2 = round(random 100);
 
 //Others
-if(_isWater) then {cutText [localize "str_player_26", "PLAIN DOWN"];breakOut "exit";};
-if(_onLadder) then {cutText [localize "str_player_21", "PLAIN DOWN"];breakOut "exit";};
-if (_inVehicle) then {cutText [localize "Can't do this in vehicle", "PLAIN DOWN"];breakOut "exit";};
+if(_isWater) then {cutText [localize "str_player_26", "PLAIN DOWN"];remProc = false;breakOut "exit";};
+if(_onLadder) then {cutText [localize "str_player_21", "PLAIN DOWN"];remProc = false;breakOut "exit";};
+if (_inVehicle) then {cutText [localize "Can't do this in vehicle", "PLAIN DOWN"];remProc = false;breakOut "exit";};
 
 // This function is for owner removal either by code (line 109) or by ownerID (line 112)
 _func_ownerRemove = {
@@ -130,10 +132,10 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 		for "_i" from 1 to _qtyE do { _result = [player,"equip_scrapelectronics"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyCr > 0) then {
-		for "_i" from 1 to _qtyCr do { _result = [player,"ItemCamoNet"] call BIS_fnc_invAdd;  };
+		for "_i" from 1 to _qtyCr do { _result = [player,"equip_crate"] call BIS_fnc_invAdd;  };
 	};
 	if (_qtyC > 0) then {
-		for "_i" from 1 to _qtyC do { _result = [player,"equip_crate"] call BIS_fnc_invAdd;  };
+		for "_i" from 1 to _qtyC do { _result = [player,"ItemCamoNet"] call BIS_fnc_invAdd;  };
 	};	
 	if (_qtyB > 0) then {
 		for "_i" from 1 to _qtyB do { _result = [player,"equip_brick"] call BIS_fnc_invAdd;  };
@@ -150,9 +152,9 @@ for "_i" from 0 to ((count allbuildables) - 1) do
 	if (isServer) then { 
 		PVDZ_obj_Delete call server_deleteObj; 
 	};
-		deletevehicle _obj; 
+		deletevehicle _obj;
+		remProc = false;
 		breakout "exit";
-
 };
 
 
@@ -171,18 +173,17 @@ if (_adminRemoval) then {
 };
 
 // Flag removal special
-//if (typeOf(_obj) == "FlagCarrierBIS_EP1" && (_ownerID == dayz_characterID || _authorizedGateCodes)) then {
-if (typeOf(_obj) == "FlagCarrierBIS_EP1" && (_authorizedGateCodes)) then {
-	_baseObjects = nearestObjects [_obj, ["allbuildables_class"],  200];
-	if (count _baseObjects > 0) then {
-		cutText [format["You need to remove all existing base objects in %1 meters in order to move your base and delete your bases flagpole",_flagRaduis], "PLAIN DOWN",1];
+if (typeOf(_obj) == BBTypeOfFlag && (_authorizedGateCodes)) then {
+	_baseObjects = nearestObjects [_obj, allbuildables_class,  BBFlagRadius];
+	if (count _baseObjects > 1) then { //Flags count as an item so we have to check for >1
+		cutText [format["You need to remove all existing base objects in %1 meters in order to move your base and delete your base flagpole",_flagRadius], "PLAIN DOWN",1];
+		remProc = false;
 		breakOut "exit";
 	};
 };
 
 //Owner ID or PlayerUID removal
 _playerPos = getPosATL player;
-//if ( _ownerID == dayz_characterID || _authorizedGateCodes && typeof(_obj) != "FlagCarrierBIS_EP1") then { 
 if (_authorizedGateCodes) then { 
 	_cnt = 5;
 	while {true} do {
@@ -190,6 +191,7 @@ if (_authorizedGateCodes) then {
 
 		if ((getposATL player) distance _playerPos > 1) exitWith {
 			cutText [format["You moved and canceled build for %1", typeOf(_obj)], "PLAIN DOWN",1];
+			remProc = false;
 			breakOut "exit";
 		};
 		if (_cnt <= 0) exitwith {call _func_ownerRemove;};

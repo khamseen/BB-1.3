@@ -16,7 +16,6 @@ keyCode = _this select 0;
 		_inputCode = _this select 1;
 		_convertInput =+ _inputCode;
 		[_panel, _convertInput] spawn add_UIDCode;	
-		diag_log ("1 Code Compare Complete" + str(_authorizedUID));
 	};
 	if (removeUIDCode) exitWith 
 	{

@@ -47,7 +47,7 @@ _classname 		= "";
 _check_town		= "";
 
 // Other
-_flagRadius 	= 200; //Meters around flag that players can build
+_flagRadius 	= BBFlagRadius; //Meters around flag that players can build
 _cntLoop 		= 0;
 _chosenRecipe 	= [];
 _requirements 	= [];
@@ -216,16 +216,16 @@ _playerCombat 	= player;
 	_requireFlag 	= _requirements select 14;
 	// Get _startPos for object
 	_location 		= player modeltoworld _startPos;
-	//Make sure player isn't registered on more than 3 flags
-	if (_classname == "FlagCarrierBIS_EP1") then { 
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
+	//Make sure player isn't registered on more than allowed number of flags
+	if (_classname == BBTypeOfFlag) then { 
+		_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
 		_flagcount = 0;
 		_flagMarkerArr = [];
 		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
+			if (typeOf(_x) == BBTypeOfFlag) then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
-				if ((getPlayerUid player) in _authorizedPUID && (_classname == "FlagCarrierBIS_EP1")) then {
+				if ((getPlayerUid player) in _authorizedPUID && (_classname == BBTypeOfFlag)) then {
 					_flagcount = _flagcount + 1;
 					_flagname = format ["Flag_%1",_x];
 					_flagMarker = createMarkerLocal [_flagName,position _x];       
@@ -233,8 +233,8 @@ _playerCombat 	= player;
 					_flagMarker setMarkerColorLocal("ColorGreen");
 					_flagMarker setMarkerTextLocal format ["%1's Flag", (name player)];
 					_flagMarkerArr = _flagMarkerArr + [_flagMarker];
-					if (_flagcount >= 3) then {
-						cutText [format["Your playerUID is already registered to three flagpoles, you can only be added on upto three flag poles. Check Map for temporary flag markers, 10 seconds!\nBuild canceled for %1",_text], "PLAIN DOWN"];
+					if (_flagcount >= BBMaxPlayerFlags) then {
+						cutText [format["Your playerUID is already registered to %1 flagpoles, you can only be added on upto %1 flag poles. Check Map for temporary flag markers, 10 seconds!\nBuild canceled for %2",BBMaxPlayerFlags,_text], "PLAIN DOWN"];
 						sleep 10;
 						{
 							deleteMarkerLocal _x
@@ -249,10 +249,10 @@ _playerCombat 	= player;
 		} forEach _flagMarkerArr;
 	};
 	//Don't allow players to build in other's bases
-	if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
-		_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
+	if (_classname != "Grave" && _classname != BBTypeOfFlag) then {
+		_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
 		{
-			if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
+			if (typeOf(_x) == BBTypeOfFlag) then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
 				_authorizedPUID = _authorizedUID select 1;
 				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
@@ -293,8 +293,8 @@ _playerCombat 	= player;
 	};
 
 	//Check to make sure not building flag too near another base
-	_flagNearest = nearestObjects [player, ["FlagCarrierBIS_EP1"], (_flagRadius * 2)];
-	if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 0)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];call _funcExitScript;};
+	_flagNearest = nearestObjects [player, [BBTypeOfFlag], (_flagRadius * 2)];
+	if (_classname == BBTypeOfFlag && (count _flagNearest > 0)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];call _funcExitScript;};
 
 	// Begin building process
 	_buildCheck = false;
@@ -322,6 +322,8 @@ _playerCombat 	= player;
 	hint "";
 	//_startingPos = getPos player;  // used to restrict distance of build
 	while {!buildReady} do {
+	bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
+	if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 	if (_allowedExtendedMode) then {
 	//Lets make a nice hint window to tell people the controls
 		hintsilent parseText format ["
@@ -459,10 +461,10 @@ _playerCombat 	= player;
 			};
 			
 			//Make sure players don't move into another players base, or outside their own flag radius
-			if (_classname != "Grave" && _classname != "FlagCarrierBIS_EP1") then {
-				_allFlags = nearestObjects [player, ["FlagCarrierBIS_EP1"], 25000];
+			if (_classname != "Grave" && _classname != BBTypeOfFlag) then {
+				_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
 				{
-					if (typeOf(_x) == "FlagCarrierBIS_EP1") then {
+					if (typeOf(_x) == BBTypeOfFlag) then {
 						_authorizedUID = _x getVariable ["AuthorizedUID", []];
 						_authorizedPUID = _authorizedUID select 1;
 						if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius && _x distance _object <= _flagRadius) then {
@@ -474,18 +476,18 @@ _playerCombat 	= player;
 						};
 					};
 					if (_okToBuild) exitWIth {};
-					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
+					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};detach _object;deletevehicle _object;call _funcExitScript;};
 				} foreach _allFlags;
 			};
 			//Check to make sure not building flag too near another base
-			_flagNearest = nearestObjects [player, ["FlagCarrierBIS_EP1"], (_flagRadius * 2)];
-			if (_classname == "FlagCarrierBIS_EP1" && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
+			_flagNearest = nearestObjects [player, [BBTypeOfFlag], (_flagRadius * 2)];
+			if (_classname == BBTypeOfFlag && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};detach _object;deletevehicle _object;call _funcExitScript;};
 			
 			// Cancel build if rules broken
 			if ((!(isNull _dialog) || (speed player >= 12 || speed player <= -9) || _isInCombat > 0) && (isPlayer _playerCombat) ) then {
 				detach _object;
 				deletevehicle _object;
-				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";call _funcExitScript;
+				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;
 			};
 		sleep 0.03;
 	};
@@ -518,7 +520,7 @@ _playerCombat 	= player;
 			sleep 5;
 		};
 	cutText [format["Building beginning for %1.",_text], "PLAIN DOWN"];
-	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 	// Begin Building
 	//Do quick check to see if player is not playing nice after placing object
 	_locationPlayer = player modeltoworld [0,0,0];
@@ -543,7 +545,7 @@ _playerCombat 	= player;
 				if (_locationPlayer distance _town_pos <= _townRange ||  _object distance _town_pos <= _townRange) then {
 					 deletevehicle _object; cutText [format["You cannot build %1 within %2 meters of area %3",_text, _townRange, _town_name], "PLAIN DOWN"];call _funcExitScript;
 				};
-				if (_classname == "FlagCarrierBIS_EP1") then {
+				if (_classname == BBTypeOfFlag) then {
 					if (_object distance _town_pos <= (_townRange + _flagRadius)) then {
 						 deletevehicle _object; cutText [format["You cannot build %1 within %2 meters of area %3\nWhen building a %1, you must consider the %4 meter radius around the %1 conflicting with town radius of %5 meters",_text, (_townRange + _flagRadius), _town_name, _flagRadius, _townRange], "PLAIN DOWN"];call _funcExitScript;
 					};
@@ -565,8 +567,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _longWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -587,7 +589,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";//added these to close control hint window if canceled 
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};//added these to close control hint window if canceled 
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
@@ -604,8 +606,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _medWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -625,7 +627,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
@@ -642,8 +644,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _smallWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -663,7 +665,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
@@ -782,7 +784,7 @@ _playerCombat 	= player;
 			{
 				cutText [format["You have constructed a %1\nBuild one outside as well. Look at Object to give base owners access as well!",_text,_uid], "PLAIN DOWN"];
 			};
-			case "FlagCarrierBIS_EP1":
+			case BBTypeOfFlag:
 			{
 				cutText [format["You have constructed a %1\nYou can now build within a %2 meter radius around this area, add friends playerUIDs to allow them to build too.",_text,_flagRadius], "PLAIN DOWN"];
 			};

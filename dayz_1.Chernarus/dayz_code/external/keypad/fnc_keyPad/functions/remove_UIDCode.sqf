@@ -1,4 +1,4 @@
-private ["_finalInput","_panel","_convertInput","_authorizedPUID"];
+private ["_finalInput","_panel","_convertInput","_authorizedUID","_authorizedOUID","_authorizedPUID"];
 	
 	//[_panel, _convertInput, globalAuthorizedUID] call add_UIDCode;	
 	removeUIDCode = false;	

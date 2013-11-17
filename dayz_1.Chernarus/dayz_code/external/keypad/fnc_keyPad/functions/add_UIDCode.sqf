@@ -1,4 +1,4 @@
-private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedUID","_authorizedOUID","_authorizedPUID"];
+private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedUID","_authorizedOUID","_authorizedPUID","_flagUID","_flagOUID","_flagPUID"];
 	_isOk = true;
 	//[_panel, _convertInput] call add_UIDCode;		
 	addUIDCode = false;
@@ -25,9 +25,9 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 	_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
 		{
 			if (typeOf(_x) == BBTypeOfFlag) then {
-				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedOUID = _authorizedUID select 0;
-				_authorizedPUID = _authorizedUID select 1;
+				_flagUID = _x getVariable ["AuthorizedUID", []];
+				_flagOUID = _authorizedUID select 0;
+				_flagPUID = _authorizedUID select 1;
 				if ((toString _convertInput) in _authorizedPUID && (typeOf(_x) == BBTypeOfFlag)) then {
 					_flagCount = _flagCount + 1;
 				};

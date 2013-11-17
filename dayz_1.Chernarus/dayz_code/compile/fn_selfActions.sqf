@@ -222,7 +222,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
 		if (_authorizedGateCodes || _baseBuildAdmin) then {
 			if (s_player_getTargetUID < 0) then {
-				s_player_getTargetUID = player addAction [format["%1Get UID of Targeted Player",_adminText], "dayz_code\actions\get_target_UID.sqf", cursorTarget, 1, false, true, "", ""];
+				s_player_getTargetUID = player addAction [format["%1Get UID of Targeted Player",_adminText], "dayz_code\actions\get_player_UID.sqf", cursorTarget, 1, false, true, "", ""];
 			};
 		};
 	} else {

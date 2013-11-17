@@ -12,10 +12,13 @@ Check attach coords for all items, some items are clipping into the ground or pl
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
 
+//ReadMe Optional Stuff
+Sarge AI addon instructions
+Custom Debug addon instructions
+
 //------------------ Would Be Nice ------------------------
 
-//Sarge AI
-Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it)
+
 
 //-------------------------- DONE --------------------------
 
@@ -52,6 +55,7 @@ Create duplicate files and change public variables, build list requirements etc 
 
 //Sarge AI
 Setup a master variable to enable/disable all AI functionality and control options (Done)
+Test with new array system to make sure it still works as intended (Daimyo's Sarge install is very customized, can't make heads or tails of it) (DONE!!!!)
 
 //ReadMe + Install Stuff
 Put together a readme for 1.8 (Done)

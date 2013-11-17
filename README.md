@@ -24,14 +24,16 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 
 - Optimizations to code and functionality<br>
 - Enhanced building placement mechanic<br>
-- Expanded build recipe menu (new item requirements, 1.8+ only!)<br>
+- Expanded build recipe menu (new item requirements)<br>
 - No more entering codes, they've been replaced by a one time entry of player UIDs<br>
 - No more broken removals (we now store the object UID in an array, so they can always be removed)<br>
 - Booby Traps work! They will now only detonate with players who aren't marked as friendly<br>
 - Base Flags, build a flag and you and your friends can build within a 200 metre radius<br>
-- Shared ownership, you can share the stored flag player UIDs with any base building item you own, your friends can then use/remove that item as if it was theirs<br>
+- Shared ownership, you can share the stored flag player UIDS with any base building item you own, your friends can then use/remove that item as if it was theirs<br>
 - Roofs! There is now a roof option to build, these can be toggled on/off like the gates<br>
 - Lights! Place barrels around your base and toggle them on/off to light it up at night<br>
+- More Lights! Thanks to a modified version of AxeMan's tower lighting script, players can build and toggle tower lighting around their base!<br>
+- Optional AI Base Guards (Requires Sarge AI, only tested with v1.5.0 no support will be given for older versions)<br>
 <br><br>
 
 ### RECOMMENDED TO GET STARTED ###
@@ -56,7 +58,7 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 6. Now youll have **YOUR server file** and **YOURWORLD mission file** unpbo'd<br>
 
 ##Part 1 - The Basics:
-- Download the master branch from [https://github.com/khamseen/BlargHonk/archive/master.zip](https://github.com/khamseen/BlargHonk/archive/master.zip)<br>
+- Download the master branch from [https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip](https://github.com/Daimyo21/BaseBuilding-DayZ/archive/master.zip)<br>
 
 - Extract to folder of your choice.<br>
 
@@ -80,8 +82,8 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 - NOTE: Epoch version only requires an SQL update if you are updating from Base Building 1.2!!
 - In MYSQL Workbench (or whatever you use to manage DB): <br>
 - Set your default schema (the database you want to execute scripts on) <br>
-- If you are updating from Base Building 1.2, then select either 'updateInstall_reality_basebuilding.sql' or 'updateInstall_hive_basebuilding.sql' depending on which database you use and execute it<br>
-- If you are doing a fresh install, select either 'newInstall_reality_basebuilding.sql' or 'newInstall_hive_basebuilding.sql' depending on which database you use and execute it<br><br>
+- If you are updating from Base Building 1.2, then select either 'updateInstall_reality_basebuilding.sql' or 'updateInstall_hive_basebuilding.sql' and execute it<br>
+- If you are doing a fresh install, select either 'newInstall_reality_basebuilding.sql' or 'newInstall_hive_basebuilding.sql' and execute it<br><br>
 
 
 ###Enjoy Building your new base!
@@ -147,6 +149,7 @@ I recommend not modifying this and you must have permission from [**W4rGo**](htt
 - Operational Gates by Humbleuk and Killzone Kid modified <br>
 - DayZ Code from “Rocket” Dean Hall and DayZ community team<br>
 - Code conversion algorithm for keypanel access by Xeno<br>
+- AxeMan for his original Tower Lighting script<br>
 - Killzone Kid, Humbleuk and Ashfor for all their work/inspiration and any code utilized in this - release.<br>
 - Ayan4m1/Bliss team Server Package and support<br>
 - Entire DayZ community that help with coding and custom hooks/scripts/server support<br>

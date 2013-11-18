@@ -14,8 +14,10 @@ while {true} do {
 		_bombList = nearestObjects [player, ["Grave"],18];
 	if (count _bombList > 0) then {
 		{	
+			if ((_x getVariable ["characterID", "0"]) != "0") then {
 				_bomb = _x;
 				_authorizedUID = _bomb getVariable ["AuthorizedUID", []];
+				_authorizedOUID = (_authorizedUID select 0) select 0;
 				_authorizedPUID = _authorizedUID select 1;
 				_isBomb = _bomb getVariable ["isBomb", 0];
 			if (!procBuild && _isBomb == 1 && !((getplayerUID player) in _authorizedPUID)) then {
@@ -42,7 +44,7 @@ while {true} do {
 						};
 					};
 					sleep .8;
-				PVDZ_obj_Delete = [_objectID,_objectUID];
+				PVDZ_obj_Delete = [_objectID,_authorizedOUID];
 				publicVariableServer "PVDZ_obj_Delete";
 				if (isServer) then {
 					PVDZ_obj_Delete call local_deleteObj;
@@ -51,6 +53,7 @@ while {true} do {
 						deleteVehicle _bomb;
 					};
 				};
+			};
 			};
 		} forEach _bombList;
 	};

@@ -39,6 +39,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 		if (typeOf(_closestUntargetable) in _buildingNames) then {_displayName = "Building";};
 		if (typeOf(_closestUntargetable) == "Land_Ind_IlluminantTower") then {_displayName = "Tower";};
 
+
 	// Check mags in player inventory to show build recipe menu	
 	_mags = magazines player;
 	if ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags || "equip_scrapelectronics" in _mags || "ItemCamoNet" in _mags || "equip_crate" in _mags || "equip_brick" in _mags || "equip_string" in _mags || "equip_duct_tape" in _mags) then {
@@ -72,13 +73,14 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 		ehWall = player addEventHandler ["AnimChanged", { player call antiWall; }];
 		empHit = player addMPEventHandler ["MPHit", {_this spawn fnc_plyrHit;}];
 	};
+
 	//General Untargetable Objects
 	if((isNull cursorTarget) && _canDo && !remProc && !procBuild && _nearUntargetable) then {
-		_authorizedUID = _closestUntargetable getVariable ["AuthorizedUID", []];//Do this inside the IF statement to prevent RPT spam when building
-		_authorizedPUID = _authorizedUID select 1;
-		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
-		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
-		if (_authorizedGateCodes || _baseBuildAdmin) then {//Allow admins access even if they aren't registered
+	_ownerUnT = _closestUntargetable getVariable ["characterID", "0"]; //Checks owner IDs of untargetable objects, simply to avoid RPT spam with map objects
+	_unTauthUID = _closestUntargetable getVariable ["AuthorizedUID", []]; //Gets master AuthUID from untargetable objects
+	_unTauthGateCodes = if (_ownerUnT != "0") then {((getPlayerUID player) in (_unTauthUID select 1));}; //Checks for player access to untargetable objects
+	_adminText = if (!_unTauthGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
+		if (_unTauthGateCodes || _baseBuildAdmin) then {
 			if (s_player_camoBaseOwnerAccess < 0) then {
 				s_player_camoBaseOwnerAccess = player addAction [format["%2%1: Give all base owners (from flagpole) access",_displayName,_adminText], "dayz_code\external\keypad\fnc_keyPad\functions\give_gateAccess.sqf",_closestUntargetable, 1, false, true, "", ""];
 			};
@@ -107,11 +109,11 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 
 	// FlagPole Access (more reliable than cursortarget)
 	if ((isNull cursorTarget) && _canDo && !remProc && !procBuild && (_flagBasePole distance player < 10)) then {
-		_authorizedUID = _flagBasePole getVariable ["AuthorizedUID", []]; //Do this inside the IF statement to prevent RPT spam when building
-		_authorizedPUID = _authorizedUID select 1;
-		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
-		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
-		if (_authorizedGateCodes || _baseBuildAdmin) then {
+	_ownerFlag = _flagBasePole getVariable ["characterID", "0"]; //Checks owner IDs of flags, simply to avoid RPT spam with map objects
+	_flagAuthUID = _flagBasePole getVariable ["AuthorizedUID", []]; //Gets master AuthUID from 
+	_flagAuthGateCodes = if (_ownerFlag != "0") then {((getPlayerUID player) in (_flagAuthUID select 1));}; //Checks if player has access to flag
+	_adminText = if (!_flagAuthGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
+		if (_flagAuthGateCodes || _baseBuildAdmin) then {
 			if (s_player_addFlagAuth < 0) then {
 				s_player_addFlagAuth = player addAction [format["%1FlagPole: Add Player UIDs for Base Building Access",_adminText], "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", _flagBasePole, 1, false, true, "", ""];
 			};
@@ -214,13 +216,17 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	_lever = cursorTarget;
 	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate"];
 	_baseBuildAdmin = ((getPlayerUID player) in BBSuperAdminAccess);
+	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
+	_authorizedGateCodes = if (_ownerID != "0") then {((getPlayerUID player) in (_authorizedUID select 1));}; //Check it's not a map object/unbuilt object to avoid RPT spam
+	_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
 	
+	//Let players check the UID of other players when near their flags
 	if (_isMan && (_flagBasePole distance player < 10)) then {
-		_authorizedUID = _flagBasePole getVariable ["AuthorizedUID", []]; //Do this inside the IF statement to prevent RPT spam when building
-		_authorizedPUID = _authorizedUID select 1;
-		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID);
-		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
-		if (_authorizedGateCodes || _baseBuildAdmin) then {
+	_ownerFlag = _flagBasePole getVariable ["characterID", "0"]; //Checks owner IDs of flags, simply to avoid RPT spam with map objects
+	_flagAuthUID = _flagBasePole getVariable ["AuthorizedUID", []]; //Gets master AuthUID from 
+	_flagAuthGateCodes = if (_ownerFlag != "0") then {((getPlayerUID player) in (_flagAuthUID select 1));}; //Checks if player has access to flag
+	_adminText = if (!_flagAuthGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
+		if (_flagAuthGateCodes || _baseBuildAdmin) then {
 			if (s_player_getTargetUID < 0) then {
 				s_player_getTargetUID = player addAction [format["%1Get UID of Targeted Player",_adminText], "dayz_code\actions\get_player_UID.sqf", cursorTarget, 1, false, true, "", ""];
 			};
@@ -230,36 +236,28 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		s_player_getTargetUID = -1;
 	};
 	
-	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
-	//_authorizedGateCodes = if (count _authorizedUID > 0) then {((getPlayerUID player) in (_authorizedUID select 1));};
 	// Operate Gates AND Add Authorization to Gate
-	if (((typeOf(cursortarget) in _codePanels) && !remProc && !procBuild) || ((typeOf(cursortarget) in allbuildables_class) && !remProc && !procBuild)) then {
-		_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];//Do this inside the IF statement to avoid RPT spam
-		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
-		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
-		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
+	if (((typeOf(cursortarget) in _codePanels) && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) || ((typeOf(cursortarget) in allbuildables_class) && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild)) then {
 		_gates = nearestObjects [_lever, ["Concrete_Wall_EP1"], 15];
-		if (_authorizedGateCodes || _baseBuildAdmin) then {
-			if (s_player_gateActions < 0) then {
-				if (typeOf(cursortarget) == "Fence_corrugated_plate") then {
-						s_player_gateActions = player addAction [format["%1Operate Single Metal Gate",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 1, false, true, "", ""];
-				} else {
-					if (typeOf(cursortarget) == "Infostand_2_EP1") then {
-						if (count _gates > 0) then {
-							s_player_gateActions = player addAction [format["%1Operate Nearest Concrete Gates Within 15 meters",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 1, false, true, "", ""];
-						} else {s_player_gateActions = player addAction [format["%1No gates around to operate",_adminText], "", _lever, 1, false, true, "", ""];};
-					};
+		if (s_player_gateActions < 0) then {
+			if (typeOf(cursortarget) == "Fence_corrugated_plate") then {
+					s_player_gateActions = player addAction [format["%1Operate Single Metal Gate",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 1, false, true, "", ""];
+			} else {
+				if (typeOf(cursortarget) == "Infostand_2_EP1") then {
+					if (count _gates > 0) then {
+						s_player_gateActions = player addAction [format["%1Operate Nearest Concrete Gates Within 15 meters",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 1, false, true, "", ""];
+					} else {s_player_gateActions = player addAction [format["%1No gates around to operate",_adminText], "", _lever, 1, false, true, "", ""];};
 				};
 			};
-			if (s_player_giveBaseOwnerAccess < 0) then {
-				s_player_giveBaseOwnerAccess = player addAction [format["%1Give all base owners (from flagpole) access to object/gate",_adminText], "dayz_code\external\keypad\fnc_keyPad\functions\give_gateAccess.sqf", _lever, 1, false, true, "", ""];
-			};
-			if (s_player_addGateAuthorization < 0) then {
-				s_player_addGateAuthorization = player addAction [format["%1Add Player UIDs to Grant Gate/Object Access",_adminText], "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", _lever, 1, false, true, "", ""];
-			};
-			if (s_player_removeGateAuthorization < 0) then {
-					s_player_removeGateAuthorization = player addaction [format[("<t color=""#F01313"">" + ("%1Remove Player UIDs from Gate/Object Access") +"</t>"),_adminText],"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
-			};
+		};
+		if (s_player_giveBaseOwnerAccess < 0) then {
+			s_player_giveBaseOwnerAccess = player addAction [format["%1Give all base owners (from flagpole) access to object/gate",_adminText], "dayz_code\external\keypad\fnc_keyPad\functions\give_gateAccess.sqf", _lever, 1, false, true, "", ""];
+		};
+		if (s_player_addGateAuthorization < 0) then {
+			s_player_addGateAuthorization = player addAction [format["%1Add Player UIDs to Grant Gate/Object Access",_adminText], "dayz_code\external\keypad\fnc_keyPad\enterCodeAdd.sqf", _lever, 1, false, true, "", ""];
+		};
+		if (s_player_removeGateAuthorization < 0) then {
+				s_player_removeGateAuthorization = player addaction [format[("<t color=""#F01313"">" + ("%1Remove Player UIDs from Gate/Object Access") +"</t>"),_adminText],"dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf", _lever, 1, false, true, "", ""];
 		};
 	} else {
 		player removeAction s_player_giveBaseOwnerAccess;
@@ -272,19 +270,13 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		s_player_removeGateAuthorization = -1;
 	};
 	// Operate ROOFS
-	if ((typeOf(cursortarget) in _codePanels) && !remProc && !procBuild) then {
-		_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];//Do this inside the IF statement to avoid RPT spam
-		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
-		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
-		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
+	if ((typeOf(cursortarget) in _codePanels) && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
 		_gates = nearestObjects [_lever, ["Land_Ind_Shed_01_main"], BBFlagRadius];
-		if (_authorizedGateCodes || _baseBuildAdmin) then {
-			if (s_player_roofToggle < 0) then {
-				if (typeOf(cursortarget) == "Infostand_2_EP1") then {
-					if (count _gates > 0) then {
-						s_player_roofToggle = player addAction [format["%1Operate Roof Covers",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_roofs.sqf", _lever, 1, false, true, "", ""];
-					} else {s_player_roofToggle = player addAction [format["%1No roof covers around to operate",_adminText], "", _lever, 1, false, true, "", ""];};
-				};
+		if (s_player_roofToggle < 0) then {
+			if (typeOf(cursortarget) == "Infostand_2_EP1") then {
+				if (count _gates > 0) then {
+					s_player_roofToggle = player addAction [format["%1Operate Roof Covers",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_roofs.sqf", _lever, 1, false, true, "", ""];
+				} else {s_player_roofToggle = player addAction [format["%1No roof covers around to operate",_adminText], "", _lever, 1, false, true, "", ""];};
 			};
 		};
 	} else {
@@ -303,45 +295,39 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	};
 
 	//Barrel + Tower Lighting
-    if((typeOf(cursortarget) == "Infostand_2_EP1") && !remProc && !procBuild) then {
-		_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];//Do this inside the IF statement to avoid RPT spam
-		_authorizedPUID = _authorizedUID select 1; //selects only the second element of the array
-		_authorizedGateCodes = ((getPlayerUid player) in _authorizedPUID); //checks for playerUID in second element of array
-		_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
+    if((typeOf(cursortarget) == "Infostand_2_EP1") && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
 		_nearestFlags = nearestObjects [_lever, [BBTypeOfFlag], BBFlagRadius];
 		_baseFlag = _nearestFlags select 0;
 		_barrels = nearestObjects [_baseFlag, ["Land_Fire_Barrel"], BBFlagRadius];//Makes sure there are barrels in range of the flag
 		_towers = nearestObjects [_baseFlag, ["Land_Ind_IlluminantTower"], BBFlagRadius];//Makes sure there are towers in range of the flag
-		if (_authorizedGateCodes || _baseBuildAdmin) then {
-			if (count _barrels > 0) then {
-				if (s_player_inflameBarrels < 0) then {
-					s_player_inflameBarrels = player addAction [format["%1Barrel Lights ON",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,true], 1, false, true, "", ""];
+		if (count _barrels > 0) then {
+			if (s_player_inflameBarrels < 0) then {
+				s_player_inflameBarrels = player addAction [format["%1Barrel Lights ON",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,true], 1, false, true, "", ""];
+			};
+			if (s_player_deflameBarrels < 0) then {
+				s_player_deflameBarrels = player addAction [format["%1Barrel Lights OFF",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,false], 1, false, true, "", ""];
+			};
+		} else {
+			if (s_player_inflameBarrels < 0) then {
+				s_player_inflameBarrels = player addAction [format["%1No Barrel Lights In Range",_adminText], "", _lever, 1, false, true, "", ""];
+			};
+			player removeAction s_player_deflameBarrels;
+			s_player_deflameBarrels = -1;
+		};
+		if (BBUseTowerLights == 1) then {
+			if (count _towers > 0) then {
+				if (s_player_towerLightsOn < 0) then {
+					s_player_towerLightsOn = player addAction [format["%1Tower Lights ON",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,true], 1, false, true, "", ""];
 				};
-				if (s_player_deflameBarrels < 0) then {
-					s_player_deflameBarrels = player addAction [format["%1Barrel Lights OFF",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,false], 1, false, true, "", ""];
+				if (s_player_towerLightsOff < 0) then {
+					s_player_towerLightsOff = player addAction [format["%1Tower Lights OFF",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,false], 1, false, true, "", ""];
 				};
 			} else {
-				if (s_player_inflameBarrels < 0) then {
-					s_player_inflameBarrels = player addAction [format["%1No Barrel Lights In Range",_adminText], "", _lever, 1, false, true, "", ""];
+				if (s_player_towerLightsOn < 0) then {
+					s_player_towerLightsOn = player addAction [format["%1No Tower Lights In Range",_adminText], "", _lever, 1, false, true, "", ""];
 				};
-				player removeAction s_player_deflameBarrels;
-				s_player_deflameBarrels = -1;
-			};
-			if (BBUseTowerLights == 1) then {
-				if (count _towers > 0) then {
-					if (s_player_towerLightsOn < 0) then {
-						s_player_towerLightsOn = player addAction [format["%1Tower Lights ON",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,true], 1, false, true, "", ""];
-					};
-					if (s_player_towerLightsOff < 0) then {
-						s_player_towerLightsOff = player addAction [format["%1Tower Lights OFF",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,false], 1, false, true, "", ""];
-					};
-				} else {
-					if (s_player_towerLightsOn < 0) then {
-						s_player_towerLightsOn = player addAction [format["%1No Tower Lights In Range",_adminText], "", _lever, 1, false, true, "", ""];
-					};
-					player removeAction s_player_towerLightsOff;
-					s_player_towerLightsOff = -1;
-				};
+				player removeAction s_player_towerLightsOff;
+				s_player_towerLightsOff = -1;
 			};
 		};
 	} else {

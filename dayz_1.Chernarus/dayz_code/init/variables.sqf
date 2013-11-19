@@ -29,19 +29,15 @@
 	keyCode 			= [];
 	globalAuthorizedUID = [];
 	//Booleans
-//	logoutReady 		= false;
-//	logoutActive 		= false;
-	haloProc			= false;
 	remProc 			= false;
-	hasBuildItem 		= false;
-	rem_procPart 		= false;
-	procChop 			= false;
-	repProc 			= false;
-	keyValid 			= false;
 	procBuild 			= false;
+	hasBuildItem 		= false;
+	keyValid 			= false;
 	removeObject		= false;
 	addUIDCode			= false;
 	removeUIDCode		= false;
+	buildReposition		= false;
+	//Other
 	currentBuildRecipe 	= 0;
 	bbCDBReload			= 0; //This is used to reload custom debug monitors where needed
 
@@ -60,7 +56,7 @@
         maxObjectDistance=6;
         minObjectDistance=-1;
 		
-// Base Building Keybinds
+//Base Building Keybinds
 	DZ_BB_E  = false; //Elevate
 	DZ_BB_L  = false; //Lower
 	DZ_BB_Es = false; //Elevate Small

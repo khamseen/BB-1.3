@@ -1,6 +1,6 @@
-	player removeAction attachGroundAction;
-    player removeAction finishAction;
-    player removeAction restablishAction;
-	hint "";
-	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
-buildReady=true;
+	//Completes a build from preview stage
+	builderChooses = true;
+	player removeAction repositionAction;
+	player removeAction finishAction;
+	repositionAction = -1;
+	finishAction = -1;

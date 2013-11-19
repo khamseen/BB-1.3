@@ -3,6 +3,16 @@ Base Building DayZ by Daimyo
 */
 private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildables","_flagradius","_okToBuild","_allowedExtendedMode","_flagNearest","_flagNearby","_requireFlag","_funcExitScript","_playerCombat","_isSimulated","_isDestructable","_townRange","_longWloop","_medWloop","_smallWloop","_inTown","_inProgress","_modDir","_startPos","_tObjectPos","_buildable","_chosenRecipe","_cnt","_cntLoop","_dialog","_buildCheck","_isInCombat","_playerCombat","_check_town","_eTool","_toolBox","_town_pos","_town_name","_closestTown","_roadAllowed","_toolsNeeded","_inBuilding","_attachCoords","_requirements","_result","_alreadyBuilt","_uidDir","_p1","_p2","_uid","_worldspace","_panelNearest2","_staticObj","_onRoad","_itemL","_itemM","_itemG","_qtyL","_qtyM","_qtyG","_cntLoop","_finished","_checkComplete","_objectTemp","_locationPlayer","_object","_id","_isOk","_text","_mags","_hasEtool","_canDo","_hasToolbox","_inVehicle","_isWater","_onLadder","_building","_medWait","_longWait","_location","_isOk","_dir","_classname","_item","_itemT","_itemS","_itemW","_qtyT","_qtyS","_qtyW","_qtyE","_qtyCr","_qtyC","_qtyB","_qtySt","_qtyDT","_itemE","_itemCr","_itemC","_itemB","_itemSt","_itemDT","_authorizedPUID","_canUseFlag"];
 
+//Used for repositioning later
+builderChooses	= false;
+if (buildReposition) then {
+_repoObjectPos	= _this select 0;
+_repoObjectDirR	= _this select 1;
+} else {
+_repoObjectPos	= [];
+_repoObjectDirR	= 0;
+};
+
 // Location placement declarations
 _locationPlayer = player modeltoworld [0,0,0];
 _location 		= player modeltoworld [0,0,0]; // Used for object start location and to keep track of object position throughout
@@ -59,14 +69,13 @@ _smallWloop 	= 0;
 _cnt 			= 0;
 _playerCombat 	= player;
 
-
-
 	// Function to exit script without combat activate
 	_funcExitScript = {
 		player removeAction attachGroundAction;
-		player removeAction finishAction;
+		player removeAction previewAction;
 		player removeAction restablishAction;
 		procBuild = false;
+		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};//Reload Debug Monitor if it was active before
 		breakOut "exit";
 	};
 	// Do first checks to see if player can build before counting
@@ -300,24 +309,36 @@ _playerCombat 	= player;
 	_buildCheck = false;
 	buildReady = false;
 	player allowdamage false;
-	_object = createVehicle [_classname, _location, [], 0, "NONE"]; //Changed to NONE to avoid breaking legs or killing people whilst placing
+	if (buildReposition) then {
+	_object = createVehicle [_classname, _repoObjectPos, [], 0, "NONE"]; //Restore previous position if repositioning
+	_repoObjectPos = [];
+	} else {
+	_object = createVehicle [_classname, _location, [], 0, "NONE"];
 	_object setDir (getDir player);
+	};
 	if (_modDir > 0) then {
 	_object setDir (getDir player) + _modDir;
 	};
 	_allowedExtendedMode = (typeOf(_object) in allExtendables);
 	_allBuildables = (typeof(_object) in allbuildables_class);
 	player removeAction attachGroundAction;
-	player removeAction finishAction;
+	player removeAction previewAction;
 	player removeAction restablishAction;
+	player removeAction repositionAction;
+	player removeAction finishAction;
 		
     if(_allBuildables)then {
-		finishAction 		= player addAction ["Finish building!", "dayz_code\actions\buildActions\finishBuild.sqf",_object, 6, true, true, "", ""];
+		previewAction 		= player addAction ["Preview (do this to complete)!", "dayz_code\actions\buildActions\previewBuild.sqf",_object, 6, true, true, "", ""];
         restablishAction 	= player addAction ["Restablish", "dayz_code\actions\buildActions\restablishObject.sqf",_object, 6, true, true, "", ""];
         attachGroundAction 	= player addAction ["Attach to ground", "dayz_code\actions\buildActions\attachGroundObject.sqf",_object, 6, true, true, "", ""];
     };
-     
+	if (buildReposition) then {
+	rotateDir = _repoObjectDirR; //Restore previous rotation direction if repositioning
+	_repoObjectDirR = 0;
+	buildReposition = false;
+	} else {
     rotateDir = _modDir;
+	};
 	player allowdamage true;
 	hint "";
 	//_startingPos = getPos player;  // used to restrict distance of build
@@ -335,7 +356,7 @@ _playerCombat 	= player;
 		<t align='left' color='#85E67E'>Left/Right</t>		<t align='right' color='#E7F5E6'>2 + 3</t><br/>
 		<t align='left' color='#85E67E'>Elevate/Lower</t>	<t align='right' color='#E7F5E6'>8 + 5</t><br/>
 		<t align='center' color='#F5CF36'>You can hold SHIFT for slower rotation/elevation</t><br/><br/>
-		<t align='center' color='#85E67E'>Select 'finish building' when ready</t><br/>
+		<t align='center' color='#85E67E'>Select 'Preview' when ready</t><br/>
 		"];
 	} else {
 	//Non extendables can't be elevated/lowered so we need a slightly different list
@@ -347,7 +368,7 @@ _playerCombat 	= player;
 		<t align='left' color='#85E67E'>Push/Pull</t>		<t align='right' color='#E7F5E6'>4 + 1</t><br/>
 		<t align='left' color='#85E67E'>Left/Right</t>		<t align='right' color='#E7F5E6'>2 + 3</t><br/>
 		<t align='center' color='#F5CF36'>You can hold SHIFT for slower rotation</t><br/><br/>
-		<t align='center' color='#85E67E'>Select 'finish building' when ready</t><br/>
+		<t align='center' color='#85E67E'>Select 'Preview' when ready</t><br/>
 		"];
 	};	
 		if(_allBuildables) then {
@@ -476,24 +497,24 @@ _playerCombat 	= player;
 						};
 					};
 					if (_okToBuild) exitWIth {};
-					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};detach _object;deletevehicle _object;call _funcExitScript;};
+					if (!_okToBuild && !_flagNearby) then {cutText [format["Build canceled for %1\nYou and the Object need to stay within %2 meters of your flag to build.",_text, _flagRadius], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
 				} foreach _allFlags;
 			};
 			//Check to make sure not building flag too near another base
 			_flagNearest = nearestObjects [player, [BBTypeOfFlag], (_flagRadius * 2)];
-			if (_classname == BBTypeOfFlag && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};detach _object;deletevehicle _object;call _funcExitScript;};
+			if (_classname == BBTypeOfFlag && (count _flagNearest > 1)) then {cutText [format["Only 1 flagpole per base in a %1 meter radius! Remember, this includes the other base's build radius as well.",(_flagRadius * 2)], "PLAIN DOWN"];hint "";detach _object;deletevehicle _object;call _funcExitScript;};
 			
 			// Cancel build if rules broken
 			if ((!(isNull _dialog) || (speed player >= 12 || speed player <= -9) || _isInCombat > 0) && (isPlayer _playerCombat) ) then {
 				detach _object;
 				deletevehicle _object;
-				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;
+				cutText [format["Build canceled for %1. Player moving too fast, in combat, or opened gear.",_text], "PLAIN DOWN"];hint "";call _funcExitScript;
 			};
 		sleep 0.03;
 	};
-	//This section triggers when you select finish building
+	
+	//This section triggers when you select preview
 	if (buildReady) then {
-	    if(_allowedExtendedMode) then {
 			_objectDir = getDir _object;
 			detach _object;
 			_objectPos = getPosATL _object;
@@ -503,24 +524,18 @@ _playerCombat 	= player;
 			buildReady=false;
 			_location = _objectPos;//getposATL _object;
 			_dir = _objectDir;//getDir _object;
-			cutText [format["AFTER RESTART: This is how the %1 object will look.",_text], "PLAIN DOWN"];
-			sleep 5;
-		} else { 
-			_objectDir = getDir _object;
-			detach _object;
-			_objectPos = getPosATL _object;
-			deletevehicle _object;
-			_object = createVehicle [_classname, _objectPos, [], 0, "CAN_COLLIDE"];
-			_object setDir _objectDir;
-			buildReady=false;
-			_location = _objectPos;//getposATL _object;
-			_dir = _objectDir;//getDir _object;
-			_object setpos [(getposATL _object select 0),(getposATL _object select 1), if (typeOf(_object) == "Grave") then {-0.12}else{0}]; //Sets non extendables to follow land contours, tells graves to sink slightly into the ground
-			cutText [format["AFTER RESTART: This is how the %1 object will look.",_text], "PLAIN DOWN"];
-			sleep 5;
-		};
-	cutText [format["Building beginning for %1.",_text], "PLAIN DOWN"];
-	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+			if (!(_allowedExtendedMode)) then {//Handle only non extendables
+				_object setpos [(getposATL _object select 0),(getposATL _object select 1), if (typeOf(_object) == "Grave") then {-0.12}else{0}]; //Sets non extendables to follow land contours, tells graves to sink slightly into the ground
+			};
+			cutText [format["AFTER RESTART: This is how the %1 object will look.\nYou can reposition the object, or complete the build.",_text], "PLAIN DOWN"];
+			finishAction = player addAction ["Finish Build", "dayz_code\actions\buildActions\finishBuild.sqf", "", 6, true, true, "", ""];
+			repositionAction = player addAction ["Reposition", "dayz_code\actions\buildActions\repositionObject.sqf", [_object,_objectPos,rotateDir], 6, true, true, "", ""];
+			waitUntil {builderChooses}; //Let player decide if they want to reposition, or build as is.
+				if (buildReposition) then {
+				call _funcExitScript
+				};
+	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+
 	// Begin Building
 	//Do quick check to see if player is not playing nice after placing object
 	_locationPlayer = player modeltoworld [0,0,0];
@@ -567,8 +582,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _longWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -589,7 +604,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};//added these to close control hint window if canceled 
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
@@ -606,8 +621,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _medWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -627,7 +642,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};
@@ -644,8 +659,8 @@ _playerCombat 	= player;
 			for "_i" from 0 to _smallWloop do
 			{
 				cutText [format["Building %1.  %2 seconds left.\nMove from current position to cancel",_text,_cnt + 10], "PLAIN DOWN"];
-				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
-				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};call _funcExitScript;};
+				if (player distance _locationPlayer > 1) then {deletevehicle _object; cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
+				if (!_canDo || _onLadder || _inVehicle || _isWater) then {deletevehicle _object; cutText [format["Build canceled for %1, player is unable to continue",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};
 				sleep 1;
 				[player,"repair",0,false] call dayz_zombieSpeak;
 				_id = [player,50,true,(getPosATL player)] spawn player_alertZombies;
@@ -665,7 +680,7 @@ _playerCombat 	= player;
 					deletevehicle _object; 
 					[objNull, player, rSwitchMove,""] call RE;
 					player playActionNow "stop";
-					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];hint "";if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+					cutText [format["Build canceled for %1, position of player moved",_text], "PLAIN DOWN"];
 					procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true]; 
 					breakOut "exit";
 				};

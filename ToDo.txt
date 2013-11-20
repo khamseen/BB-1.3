@@ -9,7 +9,7 @@ AntiHack blocks rHideObject
 
 //Build List
 Finalise recipes and build items 
-Check attach coords for all items, some items are clipping into the ground or place too close to the player
+Check attach coords for all items, some items are clipping into the ground or place too close to the player (Not really required)
 
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
@@ -30,6 +30,17 @@ give_gateAccess.sqf (Done)
 //Player_build2.sqf
 May not need seperate sections for building placement section? (Done)
 Loop the animation so people are aware they are still building. (Done)
+
+//Excessive Movement on some objects, add individual placement handlers
+Land_sara_hasic_zbroj (Done)
+warfareBCamp (Changed stating direction as it only moves when facing one direction relative to player)
+Land_fort_rampart_EP1 (Changed stating direction as it only moves when facing one direction relative to player)
+ZavoraAnim (Changed stating direction as it only moves when facing one direction relative to player)
+Fence_Ind_Long (Done)
+Fort_razorWire (Done)
+Land_shed_wooden (Done)
+Land_vez (Done)
+Land_Misc_Scaffolding (Done)
 
 //fn_selfActions.sqf
 Revise some of the options so they are neater (Done)
@@ -92,6 +103,7 @@ Add Master Variable for flag type, we'll also need server_monitor to update any 
 Can remove flag even when there are items in range (Done)
 Tidy up server_monitor.sqf (Done)
 Look at give_gateAccess.sqf, it looks a bit strange, also need to allow Admins to use the function (Done)
+Add option to reposition object after selecting finish (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)
@@ -99,3 +111,4 @@ Client side RPT spam when building targetable objects for same reason (Done)
 
 //Lighting
 Try to implement toggle tower lights with generator (Done)
+Make toggle function only work with lights that are owned by somebody (not map lights) (Done)

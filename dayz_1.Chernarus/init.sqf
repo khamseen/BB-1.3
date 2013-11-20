@@ -112,6 +112,8 @@ if (isServer) then {
 };
 
 if (!isDedicated) then {
+//TowerLights
+[] execVM "lights\tower_lights.sqf";
 [] execVM "custom_monitor.sqf"; //Custom Monitor
 	//Conduct map operations
 	waitUntil {!isNil "dayz_loadScreenMsg"};

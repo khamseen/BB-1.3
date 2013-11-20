@@ -182,11 +182,11 @@ _buildlist = [
 [[0, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 1], "Infostand_2_EP1",				[[0,2.5,.6],[0,2,0], 	0, 	true, false, true, false, true, false, false, false, false, false, false, true]],//Gate Panel w/ KeyPad --4
 [[3, 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "WarfareBDepot",					[[0,18,2], 	[0,15,0], 	90, true, true, false, true, false, false, false, true, true, false, false, true]],//WarfareBDepot --5
 [[4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Base_WarfareBBarrier10xTall", 	[[0,10,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, true, false, false, false, true]],//Base_WarfareBBarrier10xTall --6 
-[[2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "WarfareBCamp",					[[0,12,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, true, true, false, false, true]],//WarfareBCamp --7
+[[2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0], "WarfareBCamp",					[[0,12,1], 	[0,10,0], 	180, 	true, true, false, true, false, false, false, true, true, false, false, true]],//WarfareBCamp --7
 [[2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Base_WarfareBBarrier10x", 		[[0,10,.6], [0,10,0], 	0, 	true, true, false, true, false, false, false, true, false, false, false, true]],//Base_WarfareBBarrier10x --8
 [[2, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fortified_nest_big", 		[[0,12,1], 	[2,8,0], 	180,true, true, false, true, false, false, false, true, true, false, false, true]],//Land_fortified_nest_big --9
 [[2, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_Fort_Watchtower",			[[0,10,2.2],[0,8,0], 	90, true, true, false, true, false, false, false, true, true, false, false, true]],//Land_Fort_Watchtower --10
-[[1, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fort_rampart_EP1", 		[[0,7,.2], 	[0,8,0], 	0, 	true, true, false, true, true, false, false, true, false, false, false, true]],//Land_fort_rampart_EP1 --11
+[[1, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fort_rampart_EP1", 		[[0,7,.2], 	[0,8,0], 	180, 	true, true, false, true, true, false, false, true, false, false, false, true]],//Land_fort_rampart_EP1 --11
 [[2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_HBarrier_large", 			[[0,7,1], 	[0,4,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]],//Land_HBarrier_large --12
 [[2, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], "Land_fortified_nest_small",		[[0,7,1], 	[0,3,0], 	90, true, true, true, false, true, false, false, true, true, false, false, true]],//Land_fortified_nest_small --13
 [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_BagFenceRound",			[[0,4,.5], 	[0,2,0], 	180,true, true, false, false, true, false, false, true, false, false, false, true]],//Land_BagFenceRound --14
@@ -200,7 +200,7 @@ _buildlist = [
 [[1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Misc_cargo_cont_small_EP1",		[[0,5,1.3], [0,4,0], 	90, true, false, false, false, true, false, false, true, false, false, false, true]],//Misc_cargo_cont_small_EP1 --22
 [[1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_prebehlavka",				[[0,6,.7], 	[0,3,0], 	90, true, false, false, false, true, false, false, true, false, true, true, true]],//Land_prebehlavka(Ramp) --23
 [[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_corrugated_plate",		[[0,4,.6], 	[0,3,0], 	0,	true, true, true, false, true, false, false, false, false, false, false, true]],//Fence_corrugated_plate --24
-[[2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ZavoraAnim", 					[[0,5,4.0], [0,5,0], 	0, 	true, false, false, false, false, true, false, true, false, true, true, true]],//ZavoraAnim --25
+[[2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ZavoraAnim", 					[[0,5,4.0], [0,5,0], 	180, 	true, false, false, false, false, true, false, true, false, true, true, true]],//ZavoraAnim --25
 [[0, 0, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0], "Land_tent_east", 				[[0,8,1.7], [0,6,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_tent_east --26
 [[0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0], "Land_CamoNetB_EAST",			[[0,10,2], 	[0,10,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_CamoNetB_EAST --27
 [[0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 1, 0], "Land_CamoNetB_NATO", 			[[0,10,2], 	[0,10,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_CamoNetB_NATO --28

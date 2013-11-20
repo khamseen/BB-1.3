@@ -5,6 +5,7 @@ private["_authorizedUID","_allFlags","_newAttachCoords","_startingPos","_buildab
 
 //Used for repositioning later
 builderChooses	= false;
+buildCancel		= false;
 if (buildReposition) then {
 _repoObjectPos	= _this select 0;
 _repoObjectDirR	= _this select 1;
@@ -74,6 +75,9 @@ _playerCombat 	= player;
 		player removeAction attachGroundAction;
 		player removeAction previewAction;
 		player removeAction restablishAction;
+		player removeAction repositionAction;
+		player removeAction finishAction;
+		player removeAction cancelAction;
 		procBuild = false;
 		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};//Reload Debug Monitor if it was active before
 		breakOut "exit";
@@ -326,6 +330,7 @@ _playerCombat 	= player;
 	player removeAction restablishAction;
 	player removeAction repositionAction;
 	player removeAction finishAction;
+	player removeAction cancelAction;
 		
     if(_allBuildables)then {
 		previewAction 		= player addAction ["Preview (do this to complete)!", "dayz_code\actions\buildActions\previewBuild.sqf",_object, 6, true, true, "", ""];
@@ -527,11 +532,30 @@ _playerCombat 	= player;
 			if (!(_allowedExtendedMode)) then {//Handle only non extendables
 				_object setpos [(getposATL _object select 0),(getposATL _object select 1), if (typeOf(_object) == "Grave") then {-0.12}else{0}]; //Sets non extendables to follow land contours, tells graves to sink slightly into the ground
 			};
+			/*******************************************This Section Handles Objects Which Move Excessively During the Build Process***********************************************/
+			/*******************************If added build objects move excessively, you can add a condition for them here and adjust as needed!***********************************/
+			if (typeOf(_object) == "Land_sara_hasic_zbroj") then {
+				_object setPosATL [((getPosATL _object select 0)+5.5),((getPosATL _object select 1)-1),(getPosATL _object select 2)];
+			};
+			if (typeOf(_object) == "Fence_Ind_long") then {
+				_object setPosATL [((getPosATL _object select 0)-3.5),((getPosATL _object select 1)-0),(getPosATL _object select 2)];
+			};
+			if (typeOf(_object) == "Fort_RazorWire" || typeOf(_object) == "Land_Shed_wooden") then {
+				_object setPosATL [((getPosATL _object select 0)-1.5),((getPosATL _object select 1)-0.5),(getPosATL _object select 2)];
+			};
+			if (typeOf(_object) == "Land_vez") then {
+				_object setPosATL [((getPosATL _object select 0)-3.5),((getPosATL _object select 1)+1.5),(getPosATL _object select 2)];
+			};
+			if (typeOf(_object) == "Land_Misc_Scaffolding") then {
+				_object setPosATL [((getPosATL _object select 0)-0.5),((getPosATL _object select 1)+3),(getPosATL _object select 2)];
+			};
+			/**************************************************************End of Excessive Movement Section***********************************************************************/
 			cutText [format["AFTER RESTART: This is how the %1 object will look.\nYou can reposition the object, or complete the build.",_text], "PLAIN DOWN"];
 			finishAction = player addAction ["Finish Build", "dayz_code\actions\buildActions\finishBuild.sqf", "", 6, true, true, "", ""];
 			repositionAction = player addAction ["Reposition", "dayz_code\actions\buildActions\repositionObject.sqf", [_object,_objectPos,rotateDir], 6, true, true, "", ""];
+			cancelAction = player addAction ["Cancel Build", "dayz_code\actions\buildActions\cancelBuild.sqf", [_object,_text], 6, true, true, "", ""];
 			waitUntil {builderChooses}; //Let player decide if they want to reposition, or build as is.
-				if (buildReposition) then {
+				if (buildReposition || buildCancel) then {
 				call _funcExitScript
 				};
 	} else {cutText [format["Build canceled for %1. Something went wrong!",_text], "PLAIN DOWN"];hint "";call _funcExitScript;};

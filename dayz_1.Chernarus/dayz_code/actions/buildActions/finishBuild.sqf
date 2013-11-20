@@ -2,5 +2,7 @@
 	builderChooses = true;
 	player removeAction repositionAction;
 	player removeAction finishAction;
-	repositionAction = -1;
-	finishAction = -1;
+	player removeAction cancelAction;
+	repositionAction	= -1;
+	finishAction		= -1;
+	cancelAction		= -1;

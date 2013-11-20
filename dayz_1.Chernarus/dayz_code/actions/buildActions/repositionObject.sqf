@@ -5,8 +5,10 @@
 	_repoObjectDirR= _this select 3 select 2;
 	player removeAction repositionAction;
 	player removeAction finishAction;
-	repositionAction = -1;
-	finishAction = -1;
+	player removeAction cancelAction;
+	repositionAction	= -1;
+	finishAction		= -1;
+	cancelAction		= -1;
 	builderChooses = true;
 	buildReposition = true;
 	sleep 0.5; //Give player_build enough time to exit before calling it again

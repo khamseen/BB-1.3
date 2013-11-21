@@ -80,7 +80,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 	if((isNull cursorTarget) && _canDo && !remProc && !procBuild && _nearUntargetable) then {
 	_ownerUnT = _closestUntargetable getVariable ["characterID", "0"]; //Checks owner IDs of untargetable objects, simply to avoid RPT spam with map objects
 	_unTauthUID = _closestUntargetable getVariable ["AuthorizedUID", []]; //Gets master AuthUID from untargetable objects
-	_unTauthGateCodes = if (_ownerUnT != "0") then {((getPlayerUID player) in (_unTauthUID select 1));}; //Checks for player access to untargetable objects
+	_unTauthGateCodes = if ((_ownerUnT != "0") && (count _unTauthUID > 0)) then {((getPlayerUID player) in (_unTauthUID select 1));}; //Checks for player access to untargetable objects
 	_adminText = if (!_unTauthGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
 		if (_unTauthGateCodes || _baseBuildAdmin) then {
 			if (s_player_camoBaseOwnerAccess < 0) then {
@@ -113,7 +113,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 	if ((isNull cursorTarget) && _canDo && !remProc && !procBuild && (_flagBasePole distance player < 10)) then {
 	_ownerFlag = _flagBasePole getVariable ["characterID", "0"]; //Checks owner IDs of flags, simply to avoid RPT spam with map objects
 	_flagAuthUID = _flagBasePole getVariable ["AuthorizedUID", []]; //Gets master AuthUID from 
-	_flagAuthGateCodes = if (_ownerFlag != "0") then {((getPlayerUID player) in (_flagAuthUID select 1));}; //Checks if player has access to flag
+	_flagAuthGateCodes = if ((_ownerFlag != "0") && (count _flagAuthUID > 0)) then {((getPlayerUID player) in (_flagAuthUID select 1));}; //Checks if player has access to flag
 	_adminText = if (!_flagAuthGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
 		if (_flagAuthGateCodes || _baseBuildAdmin) then {
 			if (s_player_addFlagAuth < 0) then {
@@ -219,7 +219,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate"];
 	_baseBuildAdmin = ((getPlayerUID player) in BBSuperAdminAccess);
 	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
-	_authorizedGateCodes = if (_ownerID != "0") then {((getPlayerUID player) in (_authorizedUID select 1));}; //Check it's not a map object/unbuilt object to avoid RPT spam
+	_authorizedGateCodes = if ((_ownerID != "0") && (count _authorizedUID > 0)) then {((getPlayerUID player) in (_authorizedUID select 1));}; //Check it's not a map object/unbuilt object to avoid RPT spam
 	_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
 	
 	//Let players check the UID of other players when near their flags

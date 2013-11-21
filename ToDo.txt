@@ -5,6 +5,7 @@ Things to Do
 Check why hint windows sometimes close too fast ALSO some hint windows don't appear to be displaying and the script is ignoring sleep commands, notably addUID
 Build_help hintC format is unfamiliar and we want to replace 200 with BBFlagRadius variable
 Graves don't appear to damage the player but it does damage other surrounding items
+Prevent lost items if people remove a build with a full inventory
 
 //Build List
 Finalise recipes and build items 

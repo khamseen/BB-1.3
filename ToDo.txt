@@ -3,13 +3,11 @@ Things to Do
 
 //General
 Check why hint windows sometimes close too fast ALSO some hint windows don't appear to be displaying and the script is ignoring sleep commands, notably addUID
-Build_help hintC format is unfamiliar and we need to replace 200 with BBFlagRadius variable
+Build_help hintC format is unfamiliar and we want to replace 200 with BBFlagRadius variable
 Graves don't appear to damage the player but it does damage other surrounding items
-AntiHack blocks rHideObject
 
 //Build List
 Finalise recipes and build items 
-Check attach coords for all items, some items are clipping into the ground or place too close to the player (Not really required)
 
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
@@ -51,7 +49,8 @@ Change flag to something less specific, since we're not all American (Done)
 //Build List
 Merge into file (Done)
 Majority of items set to not be removable for some reason. (Done)
-Some items move considerably after clicking finish (Not much that can be done, it's a game problem not a script problem)
+Some items move considerably after clicking finish (Added fixes for the worst culprits)
+Check attach coords for all items, some items are clipping into the ground or place too close to the player (Not really required)
 
 //player_build.sqf
 Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets with 1.8+. (Done)
@@ -104,6 +103,7 @@ Can remove flag even when there are items in range (Done)
 Tidy up server_monitor.sqf (Done)
 Look at give_gateAccess.sqf, it looks a bit strange, also need to allow Admins to use the function (Done)
 Add option to reposition object after selecting finish (Done)
+AntiHack blocks rHideObject (Sorted)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

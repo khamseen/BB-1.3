@@ -2,11 +2,11 @@ Things to Do
 //----------------------- Still Need Looked At --------------------
 
 //General
-Graves don't appear to damage the player but it does damage other surrounding items
 Prevent lost items if people remove a build with a full inventory
 
 //Build List
 Finalise recipes and build items 
+Castle walls!!!!
 
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
@@ -105,6 +105,7 @@ Look at give_gateAccess.sqf, it looks a bit strange, also need to allow Admins t
 Add option to reposition object after selecting finish (Done)
 AntiHack blocks rHideObject (Sorted)
 Check why hint windows sometimes close too fast ALSO some hint windows don't appear to be displaying and the script is ignoring sleep commands, notably addUID (Done)
+Graves don't appear to damage the player but it does damage other surrounding items (Done, May need reverted for previous versions of DayZ)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

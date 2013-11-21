@@ -2,8 +2,6 @@ Things to Do
 //----------------------- Still Need Looked At --------------------
 
 //General
-Check why hint windows sometimes close too fast ALSO some hint windows don't appear to be displaying and the script is ignoring sleep commands, notably addUID
-Build_help hintC format is unfamiliar and we want to replace 200 with BBFlagRadius variable
 Graves don't appear to damage the player but it does damage other surrounding items
 Prevent lost items if people remove a build with a full inventory
 
@@ -15,7 +13,8 @@ Edit the ReadMe files to include note for @Reality update scripts, people will n
 
 //------------------ Would Be Nice ------------------------
 
-
+//General
+Build_help hintC format is unfamiliar and we want to replace 200 with BBFlagRadius variable (Currently cheated and just said "flag radius" instead of an actual distance)
 
 //-------------------------- DONE --------------------------
 
@@ -105,6 +104,7 @@ Tidy up server_monitor.sqf (Done)
 Look at give_gateAccess.sqf, it looks a bit strange, also need to allow Admins to use the function (Done)
 Add option to reposition object after selecting finish (Done)
 AntiHack blocks rHideObject (Sorted)
+Check why hint windows sometimes close too fast ALSO some hint windows don't appear to be displaying and the script is ignoring sleep commands, notably addUID (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

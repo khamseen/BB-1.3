@@ -140,7 +140,7 @@ if (isServer and isNil "sm_done") then {
 				if (typeOf(_object) == "Grave") then {
 					_object setVariable ["isBomb", 1, true];//this will be known as a bomb instead of checking with classnames in player_bomb
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), -0.12];
-					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
+					_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
 					_object addEventHandler ["HandleDamage", {false}];
 				};
 				//####----####----####---- Base Building 1.3 End ----####----####----####
@@ -150,16 +150,18 @@ if (isServer and isNil "sm_done") then {
 				//####----####----####---- Base Building 1.3 Start ----####----####----####
 				if (typeOf(_object) in allExtendables && typeOf(_object) != "Grave") then {
 					_object setposATL [(getposATL _object select 0),(getposATL _object select 1), (getposATL _object select 2)];
-					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
+					_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
 				};
 				if (!(typeOf(_object) in allExtendables) && (_object isKindOf "Static") && !(_object isKindOf "TentStorage") && typeOf(_object) != "Grave") then {
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
-					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
+					_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
+					//_objectUID = _object getVariable ["ObjectUID", "0"];
+					//diag_log format ["_object is %1, _ObjectUID is %2",_type, _objectUID];
 				};
 				//Set Variable
 				_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", BBTypeOfFlag];
 				if (typeOf(_object) in _codePanels && (typeOf(_object) != "Infostand_1_EP1")) then {
-					_object setVariable ["ObjectUID", str(_inventory select 0), true]; //Sets Object UID using array value
+					_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
 					_object addEventHandler ["HandleDamage", {false}];
 				};
 				

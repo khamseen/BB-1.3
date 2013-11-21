@@ -2,6 +2,7 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 	_isOk = true;
 	//[_panel, _convertInput] call add_UIDCode;		
 	addUIDCode = false;
+	sleep 0.2; //Give it time to close the last script to avoid issues with hint windows closing too fast or not displaying at all
 	_panel 			= _this select 0;
 	_convertInput 	= _this select 1;
 	_authorizedUID = _panel getVariable ["AuthorizedUID", []];
@@ -10,6 +11,8 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 	for "_i" from 0 to (count _convertInput - 1) do {_convertInput set [_i, (_convertInput select _i) + 48]};
 	if ((toString _convertInput) in _authorizedPUID) then {
 		CODEINPUT = [];
+		bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
+		if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 		hintsilent parseText format ["
 		<t align='center' color='#FF0000'>ERROR</t><br/><br/>
 		<t align='center'>Player UID %1 already has access to object</t><br/>
@@ -19,6 +22,7 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 		sleep 5;
 		hint "";
 		if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
+		breakout "exit";
 	};
 	if (typeOf(_panel) == BBTypeOfFlag) then {
 	_flagCount = 0;
@@ -34,6 +38,9 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 			};
 		} foreach _allFlags;
 		if (_flagCount >= BBMaxPlayerFlags) then {
+			CODEINPUT = [];
+			bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
+			if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 			hintsilent parseText format ["
 			<t align='center' color='#FF0000'>ERROR</t><br/><br/>
 			<t align='center'>Player UID %1 already used on %2 flags!</t><br/>
@@ -44,20 +51,23 @@ private ["_flagCount","_isOk","_allFlags","_panel","_convertInput","_authorizedU
 		};
 	};
 	_authorizedPUID set [count _authorizedPUID, (toString _convertInput)]; //Updates playerUID element with new code
-	_panel setVariable ["AuthorizedUID", ([_authorizedOUID] + [_authorizedPUID]), true]; //Writes the updates arrays to the variable for passing to server_updateObject
+	_panel setVariable ["AuthorizedUID", ([_authorizedOUID] + [_authorizedPUID]), true]; //Writes the updated arrays to the object variable
 	// Update to database
 	PVDZ_veh_Save = [_panel,"gear"];
 	publicVariableServer "PVDZ_veh_Save";
 	if (isServer) then {
 		PVDZ_veh_Save call server_updateObject;
 	};
+	bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
+	if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 	hintsilent parseText format ["
 	<t align='center' color='#00FF3C'>SUCCESS</t><br/><br/>
 	<t align='center'>Player UID %1 access granted to object</t>
 	<t align='center'>%2</t><br/><br/><br/>
 	<t align='left'>Object UID:</t>	<t align='right'>%3</t><br/>
 	",(toString _convertInput), typeOf(_panel), str(keyCode)];
+	CODEINPUT = [];
 	sleep 10;
 	hint "";
 	if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
-	CODEINPUT = [];
+	

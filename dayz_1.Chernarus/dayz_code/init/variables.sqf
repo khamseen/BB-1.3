@@ -39,7 +39,7 @@
 	buildReposition		= false;
 	//Other
 	currentBuildRecipe 	= 0;
-	bbCDBReload			= 0; //This is used to reload custom debug monitors where needed
+	bbCDReload			= 0; //This is used to reload custom debug monitors where needed
 
 //EXTENDED BASE BUILDING
         baseBuildingExtended=true;

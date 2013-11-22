@@ -59,8 +59,12 @@ _buildlist = [
 [[2, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 0], "PowerGenerator_EP1",  			[[0,5,0.9], [0,5,0.9], 	90, true, true, true, true, false, false, false, true, true, false, false, true]], //PowerGenerator_EP1 --44 
 [[1, 0, 0, 0, 3, 0, 2, 0, 0, 0, 0, 0], "Land_Ind_IlluminantTower",  	[[0,10,9.6], [0,10,9.6], 0, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_Ind_IlluminantTower --45 
 [[0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 2, 2], "Land_A_Castle_Stairs_A",  		[[-5,10,3.5], [-5,10,3.5],90, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_A_Castle_Stairs_A --46 
-[[7, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Land_A_Castle_Bergfrit",		[[0,20,16.6], [0,20,16.6], 0, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_House_C_9_EP1         --48 
-[[2, 0, 0, 2, 0, 0, 0, 0, 0, 6, 0, 0], "Land_A_Castle_Gate",  			[[0,20,6], [0,20,6], 	0, 	true, true, true, true, false, false, false, true, true, false, false, true]], //Land_A_Castle_Gate --47 
+[[3, 2, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0], "Land_A_Castle_Bergfrit",		[[0,20,15], [0,20,15], -90, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_House_C_9_EP1         --48 
+[[3, 3, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0], "Land_A_Castle_Bastion",			[[0,16,10], [0,16,10], 180, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_House_C_9_EP1         --48 
+[[2, 2, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0], "Land_A_Castle_Wall1_20",		[[0,16,10], [0,16,10], 180, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_House_C_9_EP1         --48 
+[[2, 2, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0], "Land_A_Castle_Wall1_20_Turn",	[[0,16,10], [0,16,10], 180, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_House_C_9_EP1         --48 
+[[3, 2, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0], "Land_A_Castle_Wall2_30",		[[0,16,10], [0,16,10], 180, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_House_C_9_EP1         --48 
+[[2, 0, 0, 2, 0, 0, 0, 0, 0, 6, 0, 0], "Land_A_Castle_Gate",  			[[0,17,6], [0,17,6], 	0, 	true, true, true, true, false, false, false, true, true, false, false, true]], //Land_A_Castle_Gate --47 
 [[1, 1, 1, 1, 0, 0, 0, 1, 0, 4, 1, 1], "Land_House_L_1_EP1",  			[[0,20,2], [0,20,2], 	0, 	true, true, true, true, false, false, false, true, true, false, false, true]], //Land_House_L_1_EP1 --48 
 [[5, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Land_ConcreteRamp",  			[[0,12,0.5],[0,12,0], 	0, 	true, true, true, true, false, true, false, true, false, false, false, true]], //Land_ConcreteRamp --49 
 [[3, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "RampConcrete",  				[[0,10,0.5],[0,10,0], 	0, 	true, true, true, false, false, true, false, true, false, false, false, true]], //RampConcrete --50
@@ -71,14 +75,18 @@ _buildlist = [
 [[2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1], "Land_ladder_half",  			[[0,5,1], 	[0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder_half --55 
 [[0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 3], "Land_Misc_Scaffolding",  		[[0,12,0.5],[0,12,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]], //Land_Misc_Scaffolding --56
 [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Hedgehog_DZ",  					[[0,2,0.4],[0,2,0.4], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
-];																					// _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
+[[2, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0], "CDF_WarfareBUAVterminal",  					[[0,2,0.4],[0,2,0.4], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
+];
+//t, s, w, L, m, g, e, cr, c, b, s, d														// _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
 
-
+//Extendable object have the option to elevate/lower when positioning. They DO NOT follow ground contours and will always remain perfectly vertical.
 allExtendables = ["Concrete_Wall_EP1","Infostand_2_EP1","Land_HBarrier_large","Land_fortified_nest_small","Land_BagFenceRound","Land_fort_bagfence_long",
 					"Land_Misc_Cargo2E","Misc_Cargo1Bo_military","Ins_WarfareBContructionSite","Land_CncBlock","Misc_cargo_cont_small_EP1","Land_prebehlavka",
 					"Fence_corrugated_plate","Land_CamoNet_EAST","Land_CamoNet_NATO","Fence_Ind_long","Fort_RazorWire","Fence_Ind","Land_Shed_wooden","Land_vez",
 					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_Campfire","Land_ladder","Land_ladder_half",
-					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A","Land_A_Castle_Gate","Land_sara_hasic_zbroj"];
+					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A",
+					"Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","Land_sara_hasic_zbroj",
+					"CDF_WarfareBUAVterminal"];
 
 // Build allremovables array for remove action
 for "_i" from 0 to ((count _buildlist) - 1) do
@@ -103,6 +111,36 @@ Notice lines 47 and 62
 // Towns to restrict from building in. (Type exact name as shown on map, NOT Case-Sensitive but spaces important)
 // ["Classname", range restriction];
 _build_townsrestrict = [
+["Chernogorsk", 700],
+["Elektrozavodsk", 700],
+["Solnichniy", 700],
+["Berezino", 700],
+["Krasnostav", 300],
+["Stary Sobor", 700],
+["Balota", 300],
+["Orlovets", 300],
+["Gvozdno", 300],
+["Staroye", 300],
+["Sosnovka", 300],
+["Komarovo", 300],
+["Tulga", 300],
+["Nizhnoye", 300],
+["Devils Castle", 300],
+["Novy Sobor", 300],
+["International Airfield", 300],
+["Zub Castle", 300],
+["Vybor", 300],
+["Msta", 300],
+["Polana", 300],
+["Olsha", 300],
+["Kamenka", 300],
+["Krutoy Cap", 500],
+["Otmel", 300],
+["Drakon", 300],
+["Kamyshovo", 300],
+["Gorka", 300],
+["Zub", 300],
+["Rog", 300]
 /*["Lubjansk", 200],
 ["Northern army base", 150],
 ["Alakit", 125],

@@ -26,12 +26,12 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 	_baseBuildAdmin = ((getPlayerUID player) in BBSuperAdminAccess);
 	//Get objects that can't be targetted
 	_flagBasePole = nearestObject [player, BBTypeOfFlag];
-		//All untargetable objects (except Base Flag), searches a 10 meter radius, you can add any new objects you put in the build list that can't be targetted
-		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit","HeliH","HeliHCivil"],10];
+		//All untargetable objects (except Base Flag), searches a 12 meter radius, you can add any new objects you put in the build list that can't be targetted
+		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","HeliH","HeliHCivil"],12];//The number at the end is the range to look for items, if you have issues with some items try increasing it by one or two at a time.
 		_nearUntargetable = count _untargetableArray > 0; //Check if anything is in range
 		_closestUntargetable = if (_nearUntargetable) then {_untargetableArray select 0};//Selects the closest returned item
 		_nettingNames = ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO"]; //Used for menu options
-		_castleNames = ["Land_A_Castle_Bergfrit"];
+		_castleNames = ["Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30"];
 		_heliPadNames = ["HeliH","HeliHCivil"];
 		_buildingNames = [];//Can add generic building names here
 		_displayName = "Base Build Object";//Default menu option name if none of the following match
@@ -93,7 +93,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 				s_player_removeCamoAuth = player addAction [format[("<t color=""#F01313"">" + ("%2%1: Remove Player UIDs") +"</t>"),_displayName,_adminText], "dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf",_closestUntargetable, 1, false, true, "", ""];
 			};
 		};
-		if (_hasToolbox || _baseBuildAdmin) then {
+		if (_ownerUnT != "0" && (_hasToolbox || _baseBuildAdmin)) then {
 			if (s_player_deleteCamoNet < 0) then {
 				s_player_deleteCamoNet = player addaction [format[("<t color=""#F01313"">" + ("Remove %1") +"</t>"),_displayName,_adminText],"dayz_code\actions\player_remove.sqf",_closestUntargetable,1,false,true,"",""];
 			};
@@ -287,7 +287,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	};
 
 	// Remove Object
-	if((typeOf(cursortarget) in allremovables) && (_hasToolbox || _baseBuildAdmin) && _canDo && !remProc && !procBuild && !removeObject) then {
+	if((typeOf(cursortarget) in allremovables)&& (_ownerID != "0") && (_hasToolbox || _baseBuildAdmin) && _canDo && !remProc && !procBuild && !removeObject) then {
 		if (s_player_deleteBuild < 0) then {
 			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "dayz_code\actions\player_remove.sqf",cursorTarget, 1, false, true, "", ""];
 		};

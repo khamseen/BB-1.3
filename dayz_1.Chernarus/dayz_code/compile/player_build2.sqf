@@ -205,9 +205,11 @@ _playerCombat 	= player;
 	if (_classname == "Grave") then {_text = "Booby Trap";};
 	if (_classname == "Concrete_Wall_EP1") then {_text = "Gate Concrete Wall";};
 	if (_classname == "Infostand_2_EP1") then {_text = "Gate Panel Keypad Access";};
+	if (_classname == BBTypeOfZShield) then {_text = "Zombie Shield Generator";};
 	if (_classname != "Infostand_2_EP1" && 
 		_classname != "Concrete_Wall_EP1" &&  
-		_classname != "Grave") then {
+		_classname != "Grave" &&
+		_classname != BBTypeOfZShield) then {
 	//_text = _classname;
 	_text = getText (configFile >> "CfgVehicles" >> _classname >> "displayName");				
 	};
@@ -229,6 +231,8 @@ _playerCombat 	= player;
 	_requireFlag 	= _requirements select 14;
 	// Get _startPos for object
 	_location 		= player modeltoworld _startPos;
+	//Set flag radius for zombie shield generator, reduce by generator radius to avoid players building them on the edge of their flag radius
+	if (_classname == BBTypeOfZShield) then {_flagRadius = _flagRadius-BBZShieldRadius};
 	//Make sure player isn't registered on more than allowed number of flags
 	if (_classname == BBTypeOfFlag) then { 
 		_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
@@ -261,6 +265,26 @@ _playerCombat 	= player;
 			deleteMarkerLocal _x
 		} forEach _flagMarkerArr;
 	};
+	//Special check for zombie shields
+	if (_classname == BBTypeOfZShield) then {
+		_allShields = nearestObjects [player, [BBTypeOfZShield], 25000];
+		_shieldCount = 0;
+		{
+			if (typeOf(_x) == BBTypeOfZShield) then {
+				_authorizedUID = _x getVariable ["AuthorizedUID", []];
+				_authorizedPUID = _authorizedUID select 1;
+				if ((getPlayerUID player) in _authorizedPUID && (_classname == BBTypeOfZShield)) then {
+					_shieldCount = _shieldCount + 1;
+					if (_shieldCount >= BBMaxZShields) then {
+						cutText [format["Your playerUID is already registered to %1 zombie shield generators, you can only be added on upto %1 zombie shield generators.\nBuild canceled for %2",BBMaxZShields,_text], "PLAIN DOWN"];
+						sleep 1;
+						call _funcExitScript;
+					};
+				};
+			};
+		} forEach _allShields;
+	};
+		
 	//Don't allow players to build in other's bases
 	if (_classname != "Grave" && _classname != BBTypeOfFlag) then {
 		_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
@@ -271,9 +295,12 @@ _playerCombat 	= player;
 				if ((getPlayerUid player) in _authorizedPUID && _x distance player <= _flagRadius) then {
 					_flagNearby = true;
 					_okToBuild = true;	
+				} else { //TEST THIS
+					_flagNearby = false;
+					_okToBuild = false;
 				};
 			};
-			if (_okToBuild) exitWIth {};
+			if (_okToBuild) exitWith {};
 			if (!_okToBuild && (!_requireFlag || _requireFlag) && _x distance player <= _flagRadius) then {cutText [format["Build canceled for %1\nCannot build in other player's bases, only Booby traps are allowed.",_text], "PLAIN DOWN"];call _funcExitScript;};
 			if (!_okToBuild && _requireFlag && !_flagNearby) then {cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land.\nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScript;};
 		} foreach _allFlags;

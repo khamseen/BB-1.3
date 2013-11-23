@@ -342,6 +342,29 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		player removeAction s_player_towerLightsOff;
 		s_player_towerLightsOff = -1;
 	};
+	
+	//Zombie Shield
+	if ((typeOf(cursorTarget) == BBTypeOfZShield) &&(_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
+		if (BBEnableZShield == 1) then {
+			if (s_player_bbZombieShield_on < 0) then {
+				s_player_bbZombieShield_on = player addAction ["Zombie Shield On", "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, true], 1, false, true, "", ""];
+			};
+			if (s_player_bbZombieShield_off < 0) then {
+				s_player_bbZombieShield_off = player addAction ["Zombie Shield Off", "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, false], 1, false, true, "", ""];
+			};
+		} else {
+			if (s_player_bbZombieShield_on < 0) then {
+				s_player_bbZombieShield_on = player addAction ["Zombie Shields are disabled on this server", "", [], 1, false, true, "", ""];
+			};
+			player removeAction s_player_bbZombieShield_off;
+			s_player_bbZombieShield_off = -1;
+		};
+	} else {
+		player removeAction s_player_bbZombieShield_on;
+		s_player_bbZombieShield_on = -1;
+		player removeAction s_player_bbZombieShield_off;
+		s_player_bbZombieShield_off = -1;
+	};
 //####----####----####---- Base Building 1.3 End ----####----####----####
 
 	//gather
@@ -556,6 +579,10 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	s_player_codeObject = -1;
 	player removeAction s_player_enterCode;
 	s_player_enterCode = -1;
+	player removeAction s_player_bbZombieShield_on;
+	s_player_bbZombieShield_on = -1;
+	player removeAction s_player_bbZombieShield_off;
+	s_player_bbZombieShield_off = -1;
 //####----####----####---- Base Building 1.3 End ----####----####----####
 	//Others
 	player removeAction s_player_forceSave;

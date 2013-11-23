@@ -238,7 +238,7 @@ _buildlist = [
 [[2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1], "Land_ladder_half",  			[[0,5,1], 	[0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder_half --55 
 [[0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 3], "Land_Misc_Scaffolding",  		[[0,12,0.5],[0,12,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]], //Land_Misc_Scaffolding --56
 [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Hedgehog_DZ",  					[[0,2,0.4],[0,2,0.4], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]], //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
-[[2, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0], "CDF_WarfareBUAVterminal",  					[[0,2,0.4],[0,2,0.4], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
+[[2, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0], BBTypeOfZShield,  				[[0,4.5,2],[0,4.5,2], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
 ];
 //t, s, w, L, m, g, e, cr, c, b, s, d														// _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
 			
@@ -248,7 +248,8 @@ allExtendables = ["Concrete_Wall_EP1","Infostand_2_EP1","Land_HBarrier_large","L
 					"Fence_corrugated_plate","Land_CamoNet_EAST","Land_CamoNet_NATO","Fence_Ind_long","Fort_RazorWire","Fence_Ind","Land_Shed_wooden","Land_vez",
 					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_Campfire","Land_ladder","Land_ladder_half",
 					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A",
-					"Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","Land_sara_hasic_zbroj"];
+					"Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","Land_sara_hasic_zbroj",
+					BBTypeOfZShield];
 
 // Build allremovables array for remove action
 for "_i" from 0 to ((count _buildlist) - 1) do

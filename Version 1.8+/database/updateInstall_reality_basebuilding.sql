@@ -51,7 +51,7 @@ DROP TABLE instance_deployable_old;
 --
 -- Adds New BB Objects to Database
 --
-INSERT INTO `deployable` (`class_name`) VALUES
+INSERT IGNORE INTO `deployable` (`class_name`) VALUES
 ('Land_sara_hasic_zbroj'),
 ('Land_Shed_wooden'),
 ('Land_Barrack2'),

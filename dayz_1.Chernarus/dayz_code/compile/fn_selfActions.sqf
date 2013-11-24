@@ -27,17 +27,19 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 	//Get objects that can't be targetted
 	_flagBasePole = nearestObject [player, BBTypeOfFlag];
 		//All untargetable objects (except Base Flag), searches a 12 meter radius, you can add any new objects you put in the build list that can't be targetted
-		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","HeliH","HeliHCivil"],12];//The number at the end is the range to look for items, if you have issues with some items try increasing it by one or two at a time.
+		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","HeliH","HeliHCivil","Land_Ind_Shed_01_main","RampConcrete"],12];//The number at the end is the range to look for items, if you have issues with some items try increasing it by one or two at a time.
 		_nearUntargetable = count _untargetableArray > 0; //Check if anything is in range
 		_closestUntargetable = if (_nearUntargetable) then {_untargetableArray select 0};//Selects the closest returned item
 		_nettingNames = ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO"]; //Used for menu options
 		_castleNames = ["Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30"];
 		_heliPadNames = ["HeliH","HeliHCivil"];
+		_roofNames = ["Land_Ind_Shed_01_main","RampConcrete"];
 		_buildingNames = [];//Can add generic building names here
 		_displayName = "Base Build Object";//Default menu option name if none of the following match
 		if (typeOf(_closestUntargetable) in _nettingNames) then {_displayName = "Netting";};
 		if (typeOf(_closestUntargetable) in _castleNames) then {_displayName = "Castle";};
 		if (typeOf(_closestUntargetable) in _heliPadNames) then {_displayName = "HeliPad";};
+		if (typeOf(_closestUntargetable) in _roofNames) then {_displayName = "Roof";};
 		if (typeOf(_closestUntargetable) in _buildingNames) then {_displayName = "Building";};
 		if (typeOf(_closestUntargetable) == "Land_Ind_IlluminantTower") then {_displayName = "Tower";};
 
@@ -345,16 +347,20 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	
 	//Zombie Shield
 	if ((typeOf(cursorTarget) == BBTypeOfZShield) &&(_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
+		if (s_player_giveBaseOwnerAccess > 0) then { //Temp fix to prevent players having more than the max allowed number of shield gens
+		player removeAction s_player_giveBaseOwnerAccess;
+		s_player_giveBaseOwnerAccess = -1;
+		};
 		if (BBEnableZShield == 1) then {
 			if (s_player_bbZombieShield_on < 0) then {
-				s_player_bbZombieShield_on = player addAction ["Zombie Shield On", "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, true], 1, false, true, "", ""];
+				s_player_bbZombieShield_on = player addAction [format["%1Zombie Shield On",_adminText], "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, true], 1, false, true, "", ""];
 			};
 			if (s_player_bbZombieShield_off < 0) then {
-				s_player_bbZombieShield_off = player addAction ["Zombie Shield Off", "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, false], 1, false, true, "", ""];
+				s_player_bbZombieShield_off = player addAction [format["%1Zombie Shield Off",_adminText], "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, false], 1, false, true, "", ""];
 			};
 		} else {
 			if (s_player_bbZombieShield_on < 0) then {
-				s_player_bbZombieShield_on = player addAction ["Zombie Shields are disabled on this server", "", [], 1, false, true, "", ""];
+				s_player_bbZombieShield_on = player addAction [format["%1Zombie Shields are disabled on this server",_adminText], "", [], 1, false, true, "", ""];
 			};
 			player removeAction s_player_bbZombieShield_off;
 			s_player_bbZombieShield_off = -1;

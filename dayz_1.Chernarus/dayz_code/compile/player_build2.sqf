@@ -232,7 +232,7 @@ _playerCombat 	= player;
 	// Get _startPos for object
 	_location 		= player modeltoworld _startPos;
 	//Set flag radius for zombie shield generator, reduce by generator radius to avoid players building them on the edge of their flag radius
-	if (_classname == BBTypeOfZShield) then {_flagRadius = _flagRadius-BBZShieldRadius};
+	if (BBZShieldDis == 1 && _classname == BBTypeOfZShield) then {_flagRadius = _flagRadius-BBZShieldRadius};
 	//Make sure player isn't registered on more than allowed number of flags
 	if (_classname == BBTypeOfFlag) then { 
 		_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];

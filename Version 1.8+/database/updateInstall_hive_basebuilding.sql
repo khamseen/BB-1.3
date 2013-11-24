@@ -51,7 +51,7 @@ DROP TABLE object_data_old;
 --
 -- Adds New BB Objects to Database
 --
-INSERT INTO 'object_classes'('Classname', 'Type') VALUES
+INSERT IGNORE INTO `object_classes` (`Classname`, `Type`) VALUES
 ('Land_sara_hasic_zbroj','Land_sara_hasic_zbroj'),
 ('Land_Shed_wooden','Land_Shed_wooden'),
 ('Land_Barrack2','Land_Barrack2'),

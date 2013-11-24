@@ -70,7 +70,6 @@ _buildlist = [
 [[3, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "RampConcrete",  				[[0,10,0.5],[0,10,0], 	0, 	true, true, true, false, false, true, false, true, false, false, false, true]], //RampConcrete --50
 [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3], "HeliH",  						[[0,8,0.5], [0,8,0], 	0, 	false, false, false, false, true, false, false, true, false, true, false, true]], //HeliH --51 
 [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3], "HeliHCivil",  					[[0,8,0.5], [0,8,0], 	0, 	false, false, false, false, true, false, false, true, false, true, false, true]], //HeliHCivil --52 
-[[0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 1, 0], "Land_Campfire",  				[[0,5,0.5], [0,5,0], 	0, 	false, false, false, false, true, false, true, true, false, false, false, false]], //Land_Campfire --53 
 [[1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2], "Land_ladder",  					[[0,5,0.8], [0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder --54 
 [[2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1], "Land_ladder_half",  			[[0,5,1], 	[0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder_half --55 
 [[0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 3], "Land_Misc_Scaffolding",  		[[0,12,0.5],[0,12,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]], //Land_Misc_Scaffolding --56
@@ -83,7 +82,7 @@ _buildlist = [
 allExtendables = ["Concrete_Wall_EP1","Infostand_2_EP1","Land_HBarrier_large","Land_fortified_nest_small","Land_BagFenceRound","Land_fort_bagfence_long",
 					"Land_Misc_Cargo2E","Misc_Cargo1Bo_military","Ins_WarfareBContructionSite","Land_CncBlock","Misc_cargo_cont_small_EP1","Land_prebehlavka",
 					"Fence_corrugated_plate","Land_CamoNet_EAST","Land_CamoNet_NATO","Fence_Ind_long","Fort_RazorWire","Fence_Ind","Land_Shed_wooden","Land_vez",
-					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_Campfire","Land_ladder","Land_ladder_half",
+					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_ladder","Land_ladder_half",
 					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A",
 					"Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","Land_sara_hasic_zbroj",
 					BBTypeOfZShield];

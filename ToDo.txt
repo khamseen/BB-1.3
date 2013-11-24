@@ -6,7 +6,7 @@ Prevent lost items if people remove a build with a full inventory
 
 //Build List
 Finalise recipes and build items 
-Castle walls!!!!
+Town restrictions for Chernarus
 
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
@@ -15,6 +15,7 @@ Edit the ReadMe files to include note for @Reality update scripts, people will n
 
 //General
 Build_help hintC format is unfamiliar and we want to replace 200 with BBFlagRadius variable (Currently cheated and just said "flag radius" instead of an actual distance)
+Master handler for custom debug spawner
 
 //-------------------------- DONE --------------------------
 
@@ -42,6 +43,7 @@ Land_Misc_Scaffolding (Done)
 
 //fn_selfActions.sqf
 Revise some of the options so they are neater (Done)
+Prevent removal options showing for map objects, otherwise these could be used for item farming (Done)
 
 //Flag change
 Change flag to something less specific, since we're not all American (Done)
@@ -51,6 +53,7 @@ Merge into file (Done)
 Majority of items set to not be removable for some reason. (Done)
 Some items move considerably after clicking finish (Added fixes for the worst culprits)
 Check attach coords for all items, some items are clipping into the ground or place too close to the player (Not really required)
+Castle walls!!!! (Done)
 
 //player_build.sqf
 Stop people being able to build standard tank traps, sand bag walls, wire fences, or camo nets with 1.8+. (Done)
@@ -58,7 +61,7 @@ Stop people being able to build standard tank traps, sand bag walls, wire fences
 //Removal
 Address problem with removing extendable objects. You can't remove things unless you can target them with the cursor. (Think this is ok, since we have castle stairs and scaffolding to use for height)
 
-//Backwards Compatability
+//Backwards Compatibility
 Create duplicate files and change public variables, build list requirements etc to pre 1.8 (Done, Generic Version)
 
 //Sarge AI
@@ -106,6 +109,8 @@ Add option to reposition object after selecting finish (Done)
 AntiHack blocks rHideObject (Sorted)
 Check why hint windows sometimes close too fast ALSO some hint windows don't appear to be displaying and the script is ignoring sleep commands, notably addUID (Done)
 Graves don't appear to damage the player but it does damage other surrounding items (Done, May need reverted for previous versions of DayZ)
+Set up a toggleable zombie shield (Range 50 meters, set special build rule to restrict it to (flagradius - 50), also create a master variable to allow admins to disable the functionality) (Done)
+Tidy up editable settings in variables.sqf (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

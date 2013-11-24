@@ -10,6 +10,7 @@ Town restrictions for Chernarus
 
 //ReadMe + Install Stuff
 Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
+Add optional readme for IF statement in player_spawnCheck.sqf to disable loot (or both loot and zombie) spawns at base build objects
 
 //------------------ Would Be Nice ------------------------
 

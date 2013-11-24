@@ -20,6 +20,9 @@ publicvariable.txt
 
 	//5 !="remExField"
 		!"dayz_updateNearbyObjects"
+	
+	//5 "remExFP"
+		Set to a 1 for now
 		
 publicvariableval.txt
 
@@ -37,7 +40,7 @@ setpos.txt
 setvariable.txt
 
 	//5 !"USEC_"
-		!"startcombattimer" !"authorizeduid" !"inmotion" !"gatelowered" !"rooflowered" !"isbomb"
+		!"startcombattimer" !"authorizeduid" !"inmotion" !"gatelowered" !"rooflowered" !"isbomb" !"bbzombieshield"
 
 mpeventhandler.txt
 		

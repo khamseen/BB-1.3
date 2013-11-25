@@ -54,6 +54,7 @@ _func_axeTL = {
 _nrTowers = _nearestLightTowers;
 if (_doTowerLights) then {
 	{
+	if ((_x getVariable ["characterID", "0"]) != "0") then {
 	_doLit=true;
 		if(_ndGen)then{
 		_nrGen = nearestObjects [_nearestFlag, [BBTypeOfFlag], BBFlagRadius];
@@ -64,6 +65,7 @@ if (_doTowerLights) then {
 			};
 		};
 	[_x] call _func_axeTl;
+	};
 	}forEach _nrTowers;
 } else {
 	{

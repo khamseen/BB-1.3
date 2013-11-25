@@ -39,11 +39,8 @@ _allFlags = nearestObjects [_obj, [BBTypeOfFlag], BBFlagRadius];
 						hint "";
 						if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 					} else {
-						bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
-						if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
 						cutText ["Everyone already has access to this object", "PLAIN DOWN"];
 						sleep 5;
-						hint "";
 						if(bbCDReload == 1)then{missionNameSpace setVariable [format["%1",BBCustomDebug],true];[] spawn fnc_debug;bbCDReload=0;};
 					};
 				};

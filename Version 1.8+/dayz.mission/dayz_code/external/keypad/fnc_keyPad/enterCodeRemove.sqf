@@ -7,8 +7,9 @@ private ["_displayok","_obj","_authorizedPUID"];
 _obj = _this select 3;
 accessedObject = _obj;
 _authorizedUID = _obj getVariable ["AuthorizedUID", []];
+//keyCode = _obj getVariable ["ObjectUID","0"];
+keyCode = (_authorizedUID select 0) select 0;
 _authorizedPUID = _authorizedUID select 1;
-keyCode = _obj getVariable ["ObjectUID","0"];
 _displayok = createdialog "KeypadGate";
 removeUIDCode = true;
 //Show current UIDs until new UID is removed

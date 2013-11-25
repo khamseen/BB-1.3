@@ -1,13 +1,19 @@
-	
+	//Allows player to reposition object from preview stage
+	//[_object,_objectPos,rotateDir]	
 	_object = _this select 3 select 0;
-	_className = _this select 3 select 1;
-	_objectPos = _this select 3 select 2;
-	_objectDir = _this select 3 select 3;
+	_repoObjectPos = _this select 3 select 1;
+	_repoObjectDirR= _this select 3 select 2;
 	player removeAction repositionAction;
-	buildReady=false;
+	player removeAction finishAction;
+	player removeAction cancelAction;
+	repositionAction	= -1;
+	finishAction		= -1;
+	cancelAction		= -1;
+	builderChooses = true;
+	buildReposition = true;
+	sleep 0.5; //Give player_build enough time to exit before calling it again
+	buildReady = false;
+	procBuild = false;
 	deleteVehicle _object;
-	_object = createVehicle [_classname, _objectPos, [], 0, "NONE"]; //Changed to NONE to avoid breaking legs or killing people whilst placing
-	_object setDir _objectDir;
-	call player_build2;
-	bbCDebug = missionNameSpace getVariable [format["%1",BBCustomDebug],false];
-	if (bbCDebug) then {missionNameSpace setVariable [format["%1",BBCustomDebug],false]; hintSilent ""; bbCDReload = 1;};
+	//diag_log format ["REPOSITION OBJECT _repoObjectPos is %1, _repoObjectDirR is %2",_repoObjectPos, _repoObjectDirR];
+	[_repoObjectPos,_repoObjectDirR] call player_build2;

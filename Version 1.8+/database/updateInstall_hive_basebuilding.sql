@@ -51,7 +51,7 @@ DROP TABLE object_data_old;
 --
 -- Adds New BB Objects to Database
 --
-INSERT IGNORE INTO `object_classes` (`Classname`, `Type`) VALUES
+INSERT IGNORE INTO 'object_classes'('Classname', 'Type') VALUES
 ('Land_sara_hasic_zbroj','Land_sara_hasic_zbroj'),
 ('Land_Shed_wooden','Land_Shed_wooden'),
 ('Land_Barrack2','Land_Barrack2'),
@@ -65,31 +65,14 @@ INSERT IGNORE INTO `object_classes` (`Classname`, `Type`) VALUES
 ('FlagCarrierGermany_EP1','FlagCarrierGermany_EP1'),
 ('FlagCarrierINDFOR_EP1','FlagCarrierINDFOR_EP1'),
 ('FlagCarrierUSA_EP1','FlagCarrierUSA_EP1'),
-('Land_A_Minaret_Porto_EP1','Land_A_Minaret_Porto_EP1'),
 ('Land_Ind_Shed_01_main','Land_Ind_Shed_01_main'),
 ('Land_Fire_barrel','Land_Fire_barrel'),
 ('Land_WoodenRamp','Land_WoodenRamp'),
-('Land_House_C_4_EP1','Land_House_C_4_EP1'),
-('Land_House_C_11_EP1','Land_House_C_11_EP1'),
-('Land_House_K_6_EP1','Land_House_K_6_EP1'),
-('Land_House_K_7_EP1','Land_House_K_7_EP1'),
-('Land_House_C_9_EP1','Land_House_C_9_EP1'),
-('Land_House_C_10_EP1','Land_House_C_10_EP1'),
-('Land_House_C_12_EP1','Land_House_C_12_EP1'),
-('Land_House_C_5_V3_EP1','Land_House_C_5_V3_EP1'),
-('Land_House_C_3_EP1','Land_House_C_3_EP1'),
-('Land_House_L_4_EP1','Land_House_L_4_EP1'),
-('Land_House_L_6_EP1','Land_House_L_6_EP1'),
-('Land_House_L_7_EP1','Land_House_L_7_EP1'),
-('Land_House_L_8_EP1','Land_House_L_8_EP1'),
 ('Land_House_L_1_EP1','Land_House_L_1_EP1'),
-('Land_House_C_5_EP1','Land_House_C_5_EP1'),
-('Land_House_C_2_EP1','Land_House_C_2_EP1'),
 ('Land_ConcreteRamp','Land_ConcreteRamp'),
 ('RampConcrete','RampConcrete'),
 ('HeliH','HeliH'),
 ('HeliHCivil','HeliHCivil'),
-('Land_Campfire','Land_Campfire'),
 ('Land_ladder','Land_ladder'),
 ('Land_ladder_half','Land_ladder_half'),
 ('Land_Misc_Scaffolding','Land_Misc_Scaffolding'),
@@ -97,4 +80,10 @@ INSERT IGNORE INTO `object_classes` (`Classname`, `Type`) VALUES
 ('PowerGenerator_EP1','PowerGenerator_EP1'),
 ('Land_Ind_IlluminantTower','Land_Ind_IlluminantTower'),
 ('Land_A_Castle_Bergfrit','Land_A_Castle_Bergfrit'),
-('Land_A_Castle_Stairs_A','Land_A_Castle_Stairs_A');
+('Land_A_Castle_Stairs_A','Land_A_Castle_Stairs_A'),
+('Land_A_Castle_Bastion','Land_A_Castle_Bastion'),
+('Land_A_Castle_Wall1_20','Land_A_Castle_Wall1_20'),
+('Land_A_Castle_Wall1_20_Turn','Land_A_Castle_Wall1_20_Turn'),
+('Land_A_Castle_Wall2_30','Land_A_Castle_Wall2_30'),
+('Land_A_Castle_Gate','Land_A_Castle_Gate'),
+('CDF_WarfareBUAVterminal'),('CDF_WarfareBUAVterminal');

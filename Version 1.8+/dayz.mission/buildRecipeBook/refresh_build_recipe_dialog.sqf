@@ -81,17 +81,17 @@ if ("equip_scrapelectronics" in _mags) then {
 	_itemE = "equip_scrapelectronics";
 } else { _qtyE = 0; _buildables set [count _buildables, _qtyE]; };
 
-if ("ItemCamoNet" in _mags) then {
-	_qtyC = {_x == "ItemCamoNet"} count magazines player;
-	_buildables set [count _buildables, _qtyC]; 
-	_itemC = "ItemCamoNet";
-} else { _qtyC = 0; _buildables set [count _buildables, _qtyC]; };
-
 if ("equip_crate" in _mags) then {
 	_qtyCr = {_x == "equip_crate"} count magazines player;
 	_buildables set [count _buildables, _qtyCr]; 
 	_itemCr = "equip_crate";
 } else { _qtyCr = 0; _buildables set [count _buildables, _qtyCr]; };
+
+if ("ItemCamoNet" in _mags) then {
+	_qtyC = {_x == "ItemCamoNet"} count magazines player;
+	_buildables set [count _buildables, _qtyC]; 
+	_itemC = "ItemCamoNet";
+} else { _qtyC = 0; _buildables set [count _buildables, _qtyC]; };
 
 if ("equip_brick" in _mags) then {
 	_qtyB = {_x == "equip_brick"} count magazines player;

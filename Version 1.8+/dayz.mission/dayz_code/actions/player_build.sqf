@@ -70,8 +70,8 @@ _sfx = switch true do {
 	default {"repair"};
 };
 
-_actionBuild = player addAction [localize "str_player_build_complete", "\z\addons\dayz_code\actions\object_build.sqf", [_object, _item, _classname, _text, true, 20, _sfx], 1, true, true, "", "!isNull (_target getVariable [""constructionObject"", objNull])"];
-_actionCancel = player addAction [localize "str_player_build_cancel", "\z\addons\dayz_code\actions\object_build.sqf", [_object, _item, _classname, _text, false, 0, "none"], 1, true, true, "", "!isNull (_target getVariable [""constructionObject"", objNull])"];
+s_player_tent_build = player addAction [localize "str_player_build_complete", "\z\addons\dayz_code\actions\object_build.sqf", [_object, _item, _classname, _text, true, 20, _sfx], 1, true, true, "", "!isNull (_target getVariable [""constructionObject"", objNull])"];
+s_player_tent_cancel = player addAction [localize "str_player_build_cancel", "\z\addons\dayz_code\actions\object_build.sqf", [_object, _item, _classname, _text, false, 0, "none"], 1, true, true, "", "!isNull (_target getVariable [""constructionObject"", objNull])"];
 
 _position = [0,0,0];
 while {!isNull (player getVariable "constructionObject")} do {
@@ -96,5 +96,5 @@ while {!isNull (player getVariable "constructionObject")} do {
 	};
 };
 
-player removeAction _actionBuild;
-player removeAction _actionCancel;
+player removeAction s_player_tent_build;
+player removeAction s_player_tent_cancel;

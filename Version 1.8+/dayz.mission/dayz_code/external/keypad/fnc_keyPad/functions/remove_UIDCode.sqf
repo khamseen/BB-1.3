@@ -2,6 +2,7 @@ private ["_finalInput","_panel","_convertInput","_authorizedUID","_authorizedOUI
 	
 	//[_panel, _convertInput, globalAuthorizedUID] call add_UIDCode;	
 	removeUIDCode = false;	
+	sleep 0.2; //Give it time to close the last script to avoid issues with hint windows closing too fast or not displaying at all
 	_panel 			= _this select 0;
 	_convertInput 	= _this select 1;
 	_authorizedUID = _panel getVariable ["AuthorizedUID", []]; //Get's whole array stored for object

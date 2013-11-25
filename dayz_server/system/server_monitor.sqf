@@ -124,6 +124,8 @@ if (isServer and isNil "sm_done") then {
                     _object setVariable ["ObjectUID", _worldspace call dayz_objectUID2, true];
                 };
                 _object setVariable ["CharacterID", _ownerID, true];
+				_object setdir _dir;
+				_object setDamage _damage;
 				
 				//####----####----####---- Base Building 1.3 Start ----####----####----####
 				//Check to make sure all current flags match the set flag type, if not then change them
@@ -132,6 +134,7 @@ if (isServer and isNil "sm_done") then {
 				_object = createVehicle [BBTypeOfFlag, _pos, [], 0, "CAN_COLLIDE"];
 				_object setVariable ["CharacterID", _ownerID, true];
 				};
+				
 				//Check to make sure all current shield generators match the set shield generator type, if not then change them
 				if ((typeOf(_object) in BBAllZShieldTypes) && (typeOf(_object) != BBTypeOfZShield)) then {
 				deleteVehicle _object;
@@ -149,26 +152,21 @@ if (isServer and isNil "sm_done") then {
 				if (typeOf(_object) == "Grave") then {
 					_object setVariable ["isBomb", 1, true];//this will be known as a bomb instead of checking with classnames in player_bomb
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), -0.12];
-					//_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
 					_object addEventHandler ["HandleDamage", {false}];
 				};
-				//####----####----####---- Base Building 1.3 End ----####----####----####
-                _object setdir _dir;
-                _object setDamage _damage;
 				
-				//####----####----####---- Base Building 1.3 Start ----####----####----####
+				//Restore extendable objects to whatever their position is supposed to be
 				if (typeOf(_object) in allExtendables && typeOf(_object) != "Grave") then {
 					_object setposATL [(getposATL _object select 0),(getposATL _object select 1), (getposATL _object select 2)];
-					//_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
 				};
+				
+				//Restore non extendable objects and make sure they follow the land contours
 				if (!(typeOf(_object) in allExtendables) && (_object isKindOf "Static") && !(_object isKindOf "TentStorage") && typeOf(_object) != "Grave") then {
 					_object setpos [(getposATL _object select 0),(getposATL _object select 1), 0];
-					//_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
 				};
 				//Set Variable
 				_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate", BBTypeOfFlag];
 				if (typeOf(_object) in _codePanels && (typeOf(_object) != "Infostand_1_EP1")) then {
-					//_object setVariable ["ObjectUID", ((_inventory select 0) select 0), true]; //Sets Object UID using array value
 					_object addEventHandler ["HandleDamage", {false}];
 				};
 				
@@ -210,7 +208,7 @@ if (isServer and isNil "sm_done") then {
 					};
 				};
 				//####----####----####---- Base Building 1.3 End ----####----####----####
-				
+
 				//Dont add inventory for traps.
 				if (!(_object isKindOf "TrapItems") && !(typeOf(_object) in allbuildables_class)) then { //##Base Building 1.3 correction added exception to ignore base building items since we store UIDs in Inventory
 					_cargo = _inventory;

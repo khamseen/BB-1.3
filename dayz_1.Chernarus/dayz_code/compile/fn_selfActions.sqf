@@ -24,6 +24,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 	_currentSkin = typeOf(player);
 	_hasToolbox = "ItemToolbox" in items player;
 	_baseBuildAdmin = ((getPlayerUID player) in BBSuperAdminAccess);
+	_baseBuildLAdmin = ((getPlayerUID player) in BBLowerAdminAccess);
 	//Get objects that can't be targetted
 	_flagBasePole = nearestObject [player, BBTypeOfFlag];
 		//All untargetable objects (except Base Flag), searches a 12 meter radius, you can add any new objects you put in the build list that can't be targetted
@@ -95,7 +96,7 @@ _canDo = (!r_drag_sqf and !r_player_unconscious and !_onLadder);
 				s_player_removeCamoAuth = player addAction [format[("<t color=""#F01313"">" + ("%2%1: Remove Player UIDs") +"</t>"),_displayName,_adminText], "dayz_code\external\keypad\fnc_keyPad\enterCodeRemove.sqf",_closestUntargetable, 1, false, true, "", ""];
 			};
 		};
-		if (_ownerUnT != "0" && (_hasToolbox || _baseBuildAdmin)) then {
+		if (_ownerUnT != "0" && (_hasToolbox || _baseBuildAdmin || _baseBuildLAdmin)) then {
 			if (s_player_deleteCamoNet < 0) then {
 				s_player_deleteCamoNet = player addaction [format[("<t color=""#F01313"">" + ("Remove %1") +"</t>"),_displayName,_adminText],"dayz_code\actions\player_remove.sqf",_closestUntargetable,1,false,true,"",""];
 			};
@@ -220,6 +221,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	_lever = cursorTarget;
 	_codePanels = ["Infostand_2_EP1", "Fence_corrugated_plate"];
 	_baseBuildAdmin = ((getPlayerUID player) in BBSuperAdminAccess);
+	_baseBuildLAdmin = ((getPlayerUID player) in BBLowerAdminAccess);
 	_authorizedUID = cursorTarget getVariable ["AuthorizedUID", []];
 	_authorizedGateCodes = if ((_ownerID != "0") && (count _authorizedUID > 0)) then {((getPlayerUID player) in (_authorizedUID select 1));}; //Check it's not a map object/unbuilt object to avoid RPT spam
 	_adminText = if (!_authorizedGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
@@ -289,7 +291,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	};
 
 	// Remove Object
-	if((typeOf(cursortarget) in allremovables)&& (_ownerID != "0") && (_hasToolbox || _baseBuildAdmin) && _canDo && !remProc && !procBuild && !removeObject) then {
+	if((typeOf(cursortarget) in allremovables)&& (_ownerID != "0") && (_hasToolbox || _baseBuildAdmin || _baseBuildLAdmin) && _canDo && !remProc && !procBuild && !removeObject) then {
 		if (s_player_deleteBuild < 0) then {
 			s_player_deleteBuild = player addAction [format[localize "str_actions_delete",_text], "dayz_code\actions\player_remove.sqf",cursorTarget, 1, false, true, "", ""];
 		};
@@ -298,7 +300,7 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		s_player_deleteBuild = -1;
 	};
 	// Disarm Booby Trap Action
-	if((cursortarget iskindof "Grave" && cursortarget distance player < 2.5) && (_ownerID != "0") && (_hasToolbox || _baseBuildAdmin) && _canDo && !remProc && !procBuild) then {
+	if((cursortarget iskindof "Grave" && cursortarget distance player < 2.5) && (_ownerID != "0") && (_hasToolbox || _baseBuildAdmin || _baseBuildLAdmin) && _canDo && !remProc && !procBuild) then {
 		if (s_player_disarmBomb < 0) then {
 			s_player_disarmBomb = player addaction [format[("<t color=""#F01313"">" + ("%1Disarm Bomb") +"</t>"),_adminText],"dayz_code\actions\player_disarmBomb.sqf","",1,true,true,"", ""];
 		};

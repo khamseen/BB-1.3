@@ -33,7 +33,10 @@ _wait = 10;
 if(_isWater) then {cutText [localize "str_player_26", "PLAIN DOWN"];breakOut "exit";};
 if(_onLadder) then {cutText [localize "str_player_21", "PLAIN DOWN"];breakOut "exit";};
 if (_inVehicle) then {cutText [localize "Can't do this in vehicle", "PLAIN DOWN"];breakOut "exit";};
-remProc = false;
+_adminDisarm = ((getPlayerUID player) in BBSuperAdminAccess || (getPlayerUID player) in BBLowerAdminAccess);
+adminChooses 	= false;
+adminDisarm 	= false;
+remProc = true;
 _randNum = round(random 100);
 _randNum2 = round(random 100);
 
@@ -56,11 +59,36 @@ switch (_classname) do
 	};
 		default {
 		cutText ["You didnt select a bomb!", "PLAIN DOWN"];
-		remProc = true; breakOut "exit";
+		remProc = false; breakOut "exit";
 	};
 };
-cutText [format["You need an entrenching tool to remove %1",_classname], "PLAIN DOWN",1];
+//cutText [format["You need an entrenching tool to remove %1",_classname], "PLAIN DOWN",1];
 
+//Admin remove option
+if (_adminDisarm) then {
+	s_admin_disarm	= player addAction ["ADMIN: Disarm(Logged)", "dayz_code\actions\adminActions\admin_disarm.sqf",_obj, 1, true, true, "", ""];
+	s_normal_disarm 	= player addAction ["ADMIN: Normal Disarm", "dayz_code\actions\adminActions\normal_disarm.sqf",_obj, 1, true, true, "", ""];
+	waitUntil {adminChooses};
+	player removeaction s_normal_disarm;
+	player removeaction s_admin_disarm;
+	s_normal_disarm = -1;
+	s_admin_disarm = -1;
+	if (adminDisarm) then {
+		//Admin removes object successfully
+		cutText [format["You disarmed the %1 successfully!",_text], "PLAIN DOWN"];
+		PVDZ_obj_Delete = [_objectID,_objectUID];
+		publicVariableServer "PVDZ_obj_Delete";
+		if (isServer) then {
+			PVDZ_obj_Delete call server_deleteObj;
+		};
+		sleep .1;
+		if (!isNull _bomb) then {
+			deleteVehicle _bomb;
+		};
+		remProc = false;
+		breakout "exit";
+	};
+};
 
 if (_longWait && _canRemove) then {
 	_cnt = _longWloop;
@@ -68,8 +96,8 @@ if (_longWait && _canRemove) then {
 	for "_i" from 0 to _longWloop do
 	{
 		cutText [format["Attempting to disarm %1  %2 seconds left.  Move from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
-		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
-		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
+		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
+		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
 		player playActionNow "Medic";
 		sleep 1;
 		[player,"repair",0,false] call dayz_zombieSpeak;
@@ -86,8 +114,8 @@ if (_medWait && _canRemove) then {
 	for "_i" from 0 to _medWloop do
 	{
 		cutText [format["Attempting to disarm %1  %2 seconds left.  Move from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
-		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
-		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
+		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
+		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
 		player playActionNow "Medic";
 		sleep 1;
 		[player,"repair",0,false] call dayz_zombieSpeak;
@@ -104,8 +132,8 @@ if (_smallWait && _canRemove) then {
 	for "_i" from 0 to _smallWloop do
 	{
 		cutText [format["Attempting to disarm %1  %2 seconds left.  Move from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
-		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
-		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
+		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
+		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
 		player playActionNow "Medic";
 		sleep 1;
 		[player,"repair",0,false] call dayz_zombieSpeak;
@@ -125,8 +153,8 @@ if (_longWait && _failRemove) then {
 	for "_i" from 0 to _longWloop do
 	{
 		cutText [format["Attempting to disarm %1  %2 seconds left.  Move from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
-		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
-		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
+		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
+		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
 		player playActionNow "Medic";
 		sleep 1;
 		[player,"repair",0,false] call dayz_zombieSpeak;
@@ -136,7 +164,7 @@ if (_longWait && _failRemove) then {
 	};
 		if (!isNull _bomb && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 		sleep 1.5;
-		cutText [format["You failed to disarm %1!",_text], "PLAIN DOWN",6]; remProc = true; _kaBoom = true;
+		cutText [format["You failed to disarm %1!",_text], "PLAIN DOWN",6]; remProc = false; _kaBoom = true;
 } else {
 if (_medWait && _failRemove) then {
 	_cnt = _medWloop;
@@ -144,8 +172,8 @@ if (_medWait && _failRemove) then {
 	for "_i" from 0 to _medWloop do
 	{
 		cutText [format["Attempting to disarm %1  %2 seconds left.  Move from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
-		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
-		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
+		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
+		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
 		player playActionNow "Medic";
 		sleep 1;
 		[player,"repair",0,false] call dayz_zombieSpeak;
@@ -155,7 +183,7 @@ if (_medWait && _failRemove) then {
 	};
 		if (!isNull _bomb && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 		sleep 1.5;
-		cutText [format["You failed to disarm %1!",_text], "PLAIN DOWN",6]; remProc = true; _kaBoom = true;
+		cutText [format["You failed to disarm %1!",_text], "PLAIN DOWN",6]; remProc = false; _kaBoom = true;
 } else {
 if (_smallWait && _failRemove) then {
 	_cnt = _smallWloop;
@@ -163,8 +191,8 @@ if (_smallWait && _failRemove) then {
 	for "_i" from 0 to _smallWloop do
 	{
 		cutText [format["Attempting to disarm %1  %2 seconds left.  Move from current position to cancel",_text,_cnt], "PLAIN DOWN",1];
-		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
-		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = true; breakOut "exit";};
+		if (player distance _locationPlayer > 0.2) then {cutText [format["Removal canceled for %1, position of player moved",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
+		if (!_canDo || _onLadder || _inVehicle) then {cutText [format["Removal canceled for %1, player is unable to continue",_text], "PLAIN DOWN",1]; remProc = false; breakOut "exit";};
 		player playActionNow "Medic";
 		sleep 1;
 		[player,"repair",0,false] call dayz_zombieSpeak;
@@ -174,7 +202,7 @@ if (_smallWait && _failRemove) then {
 	};
 		if (!isNull _bomb && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 		sleep 1.5;
-		cutText [format["You failed to disarm %1!",_text], "PLAIN DOWN",6]; remProc = true; _kaBoom = true;
+		cutText [format["You failed to disarm %1!",_text], "PLAIN DOWN",6]; remProc = false; _kaBoom = true;
 };
 };
 };
@@ -204,4 +232,4 @@ sleep .1;
 if (!isNull _bomb) then {
 deleteVehicle _bomb;
 };
-remProc = true;
+remProc = false;

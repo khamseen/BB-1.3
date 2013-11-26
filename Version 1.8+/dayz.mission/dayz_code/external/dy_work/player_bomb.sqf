@@ -36,10 +36,10 @@ while {true} do {
 							[nil,_bomb,rSAY,["trap_bear_0",60]] call RE;
 							sleep .1;
 							if ((player distance _bomb < 5 && (speed player > 4 || speed player < -3)) || (_vehiclePlayer distance _bomb < 5 && (_inVehicle && speed _vehiclePlayer > 0 || _inVehicle && speed _vehiclePlayer < -0))) then {
-								_detonate = "grenade" createVehicle _pos; /*createVehicle ["GrenadeHandTimedWest_DZ", _pos, [], 0, "CAN_COLLIDE"];*/
+								_detonate = createVehicle ["GrenadeHandTimedWest_DZ", _pos, [], 0, "CAN_COLLIDE"];	//"grenade" createVehicle _pos;
 							} else {
 								sleep .7;
-								_detonate = "grenade" createVehicle _pos; /*createVehicle ["GrenadeHandTimedWest_DZ", _pos, [], 0, "CAN_COLLIDE"];*/
+								_detonate = createVehicle ["GrenadeHandTimedWest_DZ", _pos, [], 0, "CAN_COLLIDE"];	//"grenade" createVehicle _pos;
 							};
 						};
 						sleep .8;

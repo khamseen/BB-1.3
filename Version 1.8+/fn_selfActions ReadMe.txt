@@ -220,6 +220,15 @@ After that, add
 		player removeAction s_player_deleteBuild;
 		s_player_deleteBuild = -1;
 	};
+	// Disarm Booby Trap Action
+	if((cursortarget iskindof "Grave" && cursortarget distance player < 2.5) && (_ownerID != "0") && (_hasToolbox || _baseBuildAdmin) && _canDo && !remProc && !procBuild) then {
+		if (s_player_disarmBomb < 0) then {
+			s_player_disarmBomb = player addaction [format[("<t color=""#F01313"">" + ("%1Disarm Bomb") +"</t>"),_adminText],"dayz_code\actions\player_disarmBomb.sqf","",1,true,true,"", ""];
+		};
+	} else {
+		player removeAction s_player_disarmBomb;
+		s_player_disarmBomb = -1;
+	};
 
 	//Barrel + Tower Lighting
     if((typeOf(cursortarget) == "Infostand_2_EP1") && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {

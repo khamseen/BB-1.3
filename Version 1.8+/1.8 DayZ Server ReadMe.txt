@@ -11,7 +11,6 @@ _class = 		_this select 3;
 
 After that, add
 
-//####----####----####---- Base Building 1.3 Start ----####----####----####
 _inventory = 	[];
 _fuel = [];
 if (count _this > 4) then {
@@ -22,7 +21,6 @@ if (count _this > 4) then {
 		_inventory = [];
 	};
 };
-//####----####----####---- Base Building 1.3 End ----####----####----####
 
 **B**
 Now Find
@@ -50,7 +48,6 @@ _key call server_hiveWrite;
 
 Change that to
 
-//####----####----####---- Base Building 1.3 Start ----####----####----####
 if (_object isKindOf "TrapItems") then {
 	_key = format["CHILD:308:%1:%2:%3:%4:%5:%6:%7:%8:%9:",dayZ_instance, _class, 0 , _charID, _worldspace, [_object getVariable ["armed", false]], [], 0,_uid];
 } else {
@@ -67,7 +64,6 @@ if (typeOf(_object) in allbuildables_class) then { //Forces the variable to be u
 	_updatedAuthorizedUID = ([[_uid],_inventory]);
 	_object setVariable ["AuthorizedUID", _updatedAuthorizedUID, true]; //sets variable with full useable array
 };
-//####----####----####---- Base Building 1.3 End ----####----####----####
 	
 Save and Close	
 
@@ -82,16 +78,6 @@ Change that to
 private["_pos","_object","_isBuildable"];
 
 **B**
-Then find
-_pos = _this select 0;
-
-And change that to
-
-_pos = _this select 0;
-_object = _this select 1;
-_isBuildable = _this select 2;
-
-**C**
 Then, at the bottom of the file, add this
 
 //####----####----####---- Base Building 1.3 Start ----####----####----####

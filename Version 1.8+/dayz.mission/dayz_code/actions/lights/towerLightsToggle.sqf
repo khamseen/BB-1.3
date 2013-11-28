@@ -57,7 +57,7 @@ if (_doTowerLights) then {
 	if ((_x getVariable ["characterID", "0"]) != "0") then {
 	_doLit=true;
 		if(_ndGen)then{
-		_nrGen = nearestObjects [_nearestFlag, [BBTypeOfFlag], BBFlagRadius];
+		_nrGen = nearestObjects [_nearestFlag, [_genCls], BBFlagRadius];
 		_gnCnt = count _nrGen;
 			if(_gnCnt < 1)then{
 			cutText ["You need to build a generator in range of the flag.","PLAIN DOWN"];

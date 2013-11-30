@@ -15,15 +15,23 @@ defines.hpp						(File)
 **A**
 Find
 
+progressLoadingScreen 0.1;
+
+Directly ABOVE that, add (This is VERY important, it has to be loaded at this point or you will not be able to join the server)
+
+call compile preprocessFileLineNumbers "dayz_code\init\variables.sqf";							//Initializes custom variables
+
+**B**
+Find
+
 progressLoadingScreen 1.0;
 	
 Directly ABOVE that, add
-call compile preprocessFileLineNumbers "dayz_code\init\variables.sqf";							//Initializes custom variables
 call compile preprocessFileLineNumbers "dayz_code\init\compiles.sqf";							//Compile custom compiles
 call compile preprocessFileLineNumbers "dayz_code\init\settings.sqf";							//Initialize custom clientside settings
 
-**B**
-If you use RESec find (if you don't use it, you can skip this step)
+**C**
+If you use RESec find (if you don't use it, you can skip this step and delete the REsec folder)
 
 if (dayz_REsec == 1) then {
 #include "\z\addons\dayz_code\system\REsec.sqf"

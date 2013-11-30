@@ -4,7 +4,6 @@ private ["_displayok","_lever"];
 //_lever removeAction _id;
 _lever = objNull;
 _lever = _this select 3;
-if (isNull _lever) then {_lever = [] call getNetting;};
 accessedObject = _lever;
 
 

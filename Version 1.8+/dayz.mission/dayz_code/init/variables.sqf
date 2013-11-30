@@ -4,11 +4,11 @@
 /****************************************************** These Settings Can Be Edited ******************************************************/
 /********************************** For more information on these settings, view 'Configuration ReadMe' ***********************************/
 /***************************************************************** Admins *****************************************************************/
-	BBSuperAdminAccess			= ["55893190","#####"]; //Replace with your high level admin playerUIDs for base building (High level admins have access to all functions of all BB items, even if they don't belong to them)
+	BBSuperAdminAccess			= ["####","#####"]; //Replace with your high level admin playerUIDs for base building (High level admins have access to all functions of all BB items, even if they don't belong to them)
 	BBLowerAdminAccess			= ["####","####"]; //Replace with your lower level admin playerUIDs for base building (Low level admins can only remove items that don't belong to them)
 
 /************************************************************* Flag Settings **************************************************************/
-	BBTypeOfFlag				= "FlagCarrierBAF"; //Type of flag Base Building 1.3 will use, you can select any of the flags from the BBAllFlagTypes array (default is FlagCarrierBIS_EP1)
+	BBTypeOfFlag				= "FlagCarrierBIS_EP1"; //Type of flag Base Building 1.3 will use, you can select any of the flags from the BBAllFlagTypes array (default is FlagCarrierBIS_EP1)
 	BBAllFlagTypes				= ["FlagCarrierBAF","FlagCarrierBIS_EP1","FlagCarrierBLUFOR_EP1","FlagCarrierCDF_EP1","FlagCarrierCDFEnsign_EP1","FlagCarrierCzechRepublic_EP1","FlagCarrierGermany_EP1","FlagCarrierINDFOR_EP1","FlagCarrierUSA_EP1"];//DO NOT REMOVE ITEMS FROM THIS ARRAY, you can ADD a flag type if you want a different flag, you will also need to add a picture for it to missionFolder\buildRecipeBook\images\buildable\! You will also need to add it to the safeObjects array below and to your database!
 	BBMaxPlayerFlags			= 3; //This sets how many flags a player can be added to, default is 3
 	BBFlagRadius				= 200; //This sets the build radius around a flag, default is 200

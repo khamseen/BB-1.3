@@ -15,7 +15,7 @@ _buildlist = [
 //t, s, w, L, m, g, e, cr, c, b, s, d
 [[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1], BBTypeOfFlag,  			[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, false, false, false, false, true, false, false, false]], //FlagCarrierUSA 	--1 
 [[0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0], "Grave", 						[[0,2.5,.1],[0,2,0], 	0, 	true, true, true, false, true, true, true, false, false, false, false, false]],//Booby Traps --2
-[[2, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0], "Concrete_Wall_EP1", 			[[0,5,1.75],[0,2,0], 	0, 	true, false, true, false, true, true, false, false, false, false, false, true]],//Gate Concrete Wall --3
+[[2, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0], "Concrete_Wall_EP1", 			[[0,5,1.75],[0,2,0], 	0, 	true, false, true, false, true, true, false, true, false, false, false, true]],//Gate Concrete Wall --3
 [[0, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 1], "Infostand_2_EP1",				[[0,2.5,.6],[0,2,0], 	0, 	true, false, true, false, true, false, false, false, false, false, false, true]],//Gate Panel w/ KeyPad --4
 [[3, 3, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "WarfareBDepot",					[[0,18,2], 	[0,15,0], 	90, true, true, false, true, false, false, false, true, true, false, false, true]],//WarfareBDepot --5
 [[4, 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Base_WarfareBBarrier10xTall", 	[[0,10,1], 	[0,10,0], 	0, 	true, true, false, true, false, false, false, true, false, false, false, true]],//Base_WarfareBBarrier10xTall --6 
@@ -73,8 +73,8 @@ _buildlist = [
 [[1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2], "Land_ladder",  					[[0,5,0.8], [0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder --54 
 [[2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1], "Land_ladder_half",  			[[0,5,1], 	[0,5,0], 	0, 	true, false, true, false, true, false, false, true, false, false, false, true]], //Land_ladder_half --55 
 [[0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 1, 3], "Land_Misc_Scaffolding",  		[[0,12,0.5],[0,12,0], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]], //Land_Misc_Scaffolding --56
-[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Hedgehog_DZ",  					[[0,2,0.4],[0,2,0.4], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]], //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
-[[2, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0], BBTypeOfZShield,  				[[0,4.5,2],[0,4.5,2], 	0, 	true, true, true, false, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
+[[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Hedgehog_DZ",  					[[0,2,0.4],[0,2,0.4], 	0, 	true, true, false, false, true, false, false, true, false, false, false, true]], //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
+[[2, 0, 2, 1, 2, 0, 0, 0, 0, 0, 0, 0], BBTypeOfZShield,  				[[0,4.5,2],[0,4.5,2], 	0, 	true, true, true, true, true, false, false, true, false, false, false, true]] //Land_Misc_Scaffolding --57 *** Remember that the last element in array does not get comma ***
 ];
 //t, s, w, L, m, g, e, cr, c, b, s, d														// _toolBox, _eTool, _medWait, _longWait, _inBuilding, _roadAllowed, _inTown, _removable, _isStructure, _isSimulated, _isDestructable, _requireFlag];
 

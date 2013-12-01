@@ -14,7 +14,7 @@ Under where the other variables are calculated, you need to add
 		{
 			if (typeOf(_x) == BBTypeOfFlag) then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];
-				_authorizedPUID = if (count _authorizedUID > 0) then {_authorizedUID select 1;};
+				_authorizedPUID = _authorizedUID select 1;
 				if ((getPlayerUid player) in _authorizedPUID) then {
 					_flagCount = _flagCount + 1;
 				};

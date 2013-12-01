@@ -1,22 +1,13 @@
 Things to Do
 //----------------------- Still Need Looked At --------------------
 
-//General
-Prevent lost items if people remove a build with a full inventory
-
-//Build List
-Finalise recipes and build items 
-Town restrictions for Chernarus
-
-//ReadMe + Install Stuff
-Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. 
-Add optional readme for IF statement in player_spawnCheck.sqf to disable loot (or both loot and zombie) spawns at base build objects
 
 //------------------ Would Be Nice ------------------------
 
 //General
 Build_help hintC format is unfamiliar and we want to replace 200 with BBFlagRadius variable (Currently cheated and just said "flag radius" instead of an actual distance)
 Master handler for custom debug spawner
+Prevent lost items if people remove a build with a full inventory
 
 //-------------------------- DONE --------------------------
 
@@ -81,14 +72,18 @@ Put together a readme for Overwatch (Done)
 Add new flag types to SQL scripts (Done)
 Force Z coordinate to 0 in SQL update scrips (Done)
 Configuration ReadMe with better breakdown of what each variable does (Done)
+Edit the ReadMe files to include note for @Reality update scripts, people will need to check deployable ID range matches. Also, @Hive users will need to edit classnames if they've edited the build list. (Done)
 
 //ReadMe Optional Stuff
 Sarge AI addon instructions (Done)
 Custom Debug addon instructions (Done)
+Add optional readme for IF statement in player_spawnCheck.sqf to disable loot (or both loot and zombie) spawns at base build objects (Done)
 
 //Build List
 Check all new 1.8 items as they don't seem to be registering (Done)
 Add replacements for old buildables: tank traps, sand bag walls, wire fences, (and CamoNets 1.8 only) (Done)
+Finalise recipes and build items (Done)
+Town restrictions for Chernarus (Done)
 
 //General
 Fix Flag count check (Done)
@@ -112,6 +107,9 @@ Check why hint windows sometimes close too fast ALSO some hint windows don't app
 Graves don't appear to damage the player but it does damage other surrounding items (Done, May need reverted for previous versions of DayZ)
 Set up a toggleable zombie shield (Range 50 meters, set special build rule to restrict it to (flagradius - 50), also create a master variable to allow admins to disable the functionality) (Done)
 Tidy up editable settings in variables.sqf (Done)
+Disarm option for graves? (Done)
+Build Help is only displaying first line (Fixed)
+Tower lighting working without generator nearby (Fixed)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

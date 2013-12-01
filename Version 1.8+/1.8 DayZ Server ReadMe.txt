@@ -78,6 +78,16 @@ Change that to
 private["_pos","_object","_isBuildable"];
 
 **B**
+Now find
+
+_pos = _this select 0;
+
+After that, add
+
+_object = _this select 1;
+_isBuildable = _this select 2;
+
+**C**
 Then, at the bottom of the file, add this
 
 //####----####----####---- Base Building 1.3 Start ----####----####----####
@@ -427,7 +437,7 @@ Now, Find
 				
 Change that to
 
-				if (!(_object isKindOf "TrapItems") && !(typeOf(_entity) in allbuildables_class) && !(typeOf(_entity) in BBAllFlagTypes) && !(typeOf(_entity) in BBAllZShieldTypes)) then {
+				if (!(_object isKindOf "TrapItems") && !(typeOf(_object) in allbuildables_class) && !(typeOf(_object) in BBAllFlagTypes) && !(typeOf(_object) in BBAllZShieldTypes)) then {
 				
 Save and Close
 

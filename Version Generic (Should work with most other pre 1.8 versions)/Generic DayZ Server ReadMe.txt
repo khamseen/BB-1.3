@@ -149,9 +149,6 @@ Now, at the bottom of the file, add this
 //####----####----####---- Base Building 1.3 Start ----####----####----####
 build_baseBuilding_arrays = {
 
-//####----####----####---- Base Building 1.3 Start ----####----####----####
-build_baseBuilding_arrays = {
-
 //####----####----####---- BUILD LIST ARRAY SERVER SIDE Start ----####----####----####
 /*
 Build list by Daimyo for SERVER side
@@ -235,8 +232,10 @@ _buildlist = [
 allExtendables = ["Concrete_Wall_EP1","Infostand_2_EP1","Land_HBarrier_large","Land_fortified_nest_small","Land_BagFenceRound","Land_fort_bagfence_long",
 					"Land_Misc_Cargo2E","Misc_Cargo1Bo_military","Ins_WarfareBContructionSite","Land_CncBlock","Misc_cargo_cont_small_EP1","Land_prebehlavka",
 					"Fence_corrugated_plate","Land_CamoNet_EAST","Land_CamoNet_NATO","Fence_Ind_long","Fort_RazorWire","Fence_Ind","Land_Shed_wooden","Land_vez",
-					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_Campfire","Land_ladder","Land_ladder_half",
-					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A","Land_A_Castle_Gate"];
+					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_ladder","Land_ladder_half",
+					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A",
+					"Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","Land_sara_hasic_zbroj",
+					BBTypeOfZShield];
 
 // Build allremovables array for remove action
 for "_i" from 0 to ((count _buildlist) - 1) do
@@ -394,7 +393,7 @@ Now, Find
 				
 Change that to
 
-				if ((count _intentory > 0) && !(typeOf(_entity) in allbuildables_class) && !(typeOf(_entity) in BBAllFlagTypes) && !(typeOf(_entity) in BBAllZShieldTypes)) then {
+				if ((count _intentory > 0) && !(typeOf(_object) in allbuildables_class) && !(typeOf(_object) in BBAllFlagTypes) && !(typeOf(_object) in BBAllZShieldTypes)) then {
 				
 Save and Close
 

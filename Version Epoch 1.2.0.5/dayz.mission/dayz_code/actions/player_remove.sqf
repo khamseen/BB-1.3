@@ -58,10 +58,10 @@ adminRemoval 	= false;
 _longWloop 		= 6; // time to remove object * 10 = time in seconds.  6 = 60 seconds
 _medWloop 		= 4;
 _smallWloop 	= 3;
-_tblProb 		= 30;
-_lowP 			= 35;
-_medP 			= 70;
-_highP 			= 95;
+_tblProb 		= BBtblProb;
+_lowP 			= BBlowP;
+_medP 			= BBmedP;
+_highP 			= BBhighP;
 _cnt 			= 0;
 _wait 			= 10;
 

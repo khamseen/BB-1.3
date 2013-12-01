@@ -12,6 +12,12 @@
 	BBAllFlagTypes				= ["FlagCarrierBAF","FlagCarrierBIS_EP1","FlagCarrierBLUFOR_EP1","FlagCarrierCDF_EP1","FlagCarrierCDFEnsign_EP1","FlagCarrierCzechRepublic_EP1","FlagCarrierGermany_EP1","FlagCarrierINDFOR_EP1","FlagCarrierUSA_EP1"];//DO NOT REMOVE ITEMS FROM THIS ARRAY, you can ADD a flag type if you want a different flag, you will also need to add a picture for it to missionFolder\buildRecipeBook\images\buildable\! You will also need to add it to the safeObjects array below and to your database!
 	BBMaxPlayerFlags			= 3; //This sets how many flags a player can be added to, default is 3
 	BBFlagRadius				= 200; //This sets the build radius around a flag, default is 200
+
+/********************************************************* Removal Chance Settings ********************************************************/
+	BBtblProb					= 30; //Base chance level for loosing toolbox
+	BBlowP						= 35; //Base lower chance level for failing to remove item
+	BBmedP						= 70; //Base medium chance level for failing to remove item
+	BBhighP						= 95; //Base high chance level for failing to remove item
 	
 /**************************************************** Zombie Shield Generator Settings ****************************************************/
 	BBEnableZShield				= 1; //Enable toggleable zombie shield generator/ 1 = Enabled // 0 = Disabled (If disabled, players can still build shield generators, they just wont do anything)

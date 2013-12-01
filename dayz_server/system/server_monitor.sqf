@@ -210,7 +210,7 @@ if (isServer and isNil "sm_done") then {
 				//####----####----####---- Base Building 1.3 End ----####----####----####
 
 				//Dont add inventory for traps.
-				if (!(_object isKindOf "TrapItems") && !(typeOf(_object) in allbuildables_class)) then { //##Base Building 1.3 correction added exception to ignore base building items since we store UIDs in Inventory
+				if (!(_object isKindOf "TrapItems") && !(typeOf(_object) in allbuildables_class) && !(typeOf(_object) in BBAllFlagTypes) && !(typeOf(_object) in BBAllZShieldTypes)) then {//##Base Building 1.3 correction added exception to ignore base building items since we store UIDs in Inventory
 					_cargo = _inventory;
 					clearWeaponCargoGlobal  _object;
 					clearMagazineCargoGlobal  _object;

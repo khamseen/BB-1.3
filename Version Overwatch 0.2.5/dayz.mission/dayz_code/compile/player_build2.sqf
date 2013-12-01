@@ -288,6 +288,11 @@ _playerCombat 	= player;
 	//Don't allow players to build in other's bases
 	if (_classname != "Grave" && _classname != BBTypeOfFlag) then {
 		_allFlags = nearestObjects [player, [BBTypeOfFlag], 25000];
+		if (count _allFlags <= 0) then {
+			_flagNearby = false;
+			_okToBuild = false;
+			if (!_okToBuild && _requireFlag && !_flagNearby) then {cutText [format["Either no flag is within %1 meters or you have not built a flag pole and claimed your land.\nBuild canceled for %2",_flagRadius, _text], "PLAIN DOWN"];call _funcExitScript;};
+		};
 		{
 			if (typeOf(_x) == BBTypeOfFlag) then {
 				_authorizedUID = _x getVariable ["AuthorizedUID", []];

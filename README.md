@@ -34,7 +34,8 @@ Base Building DayZ Project.  This adds a building function in DayZ mod regardles
 - Lights! Place barrels around your base and toggle them on/off to light it up at night<br>
 - More Lights! Thanks to a modified version of AxeMan's tower lighting script, players can build and toggle tower lighting around their base!<br>
 - Optional AI Base Guards (Requires Sarge AI, only tested with v1.5.0 no support will be given for older versions)<br>
-- Zombie Shield. Tired of pesky zombies spawning in your base? No problem! Build a zombie shield generator, supply it with power from a generator and activate for peace of mind, and flesh. 
+- Zombie Shield. Tired of pesky zombies spawning in your base? No problem! Build a zombie shield generator, supply it with power from a generator and activate for peace of mind, and flesh.<br>
+- Customisation is key. For server admins we've made use of master variables for a lot of options to make customising BB for your server much easier and these can all be found in one file! 
 <br><br>
 
 ### RECOMMENDED TO GET STARTED ###

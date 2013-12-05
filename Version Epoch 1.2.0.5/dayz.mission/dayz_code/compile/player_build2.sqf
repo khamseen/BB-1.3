@@ -142,7 +142,7 @@ _playerCombat 	= player;
 			_buildables set [count _buildables, _qtyG]; 
 			_itemG = "HandGrenade_West";
 		} else { _qtyG = 0; _buildables set [count _buildables, _qtyG]; };
-	
+
 	/*-- Add another item for recipe here by changing _qtyI, "Item_Classname", and add recipe into build_list.sqf array!
 		Dont forget to add recipe to recipelist so your players can know how to make object via recipe
 	//		if ("Item_Classname" in _mags) then {
@@ -312,9 +312,19 @@ _playerCombat 	= player;
 	if (buildReposition) then {
 	_object = createVehicle [_classname, _repoObjectPos, [], 0, "NONE"]; //Restore previous position if repositioning
 	_repoObjectPos = [];
+		if (_classname != "grave") then {
+		_object setVariable ["characterID",dayz_characterID,true]; //Do this to prevent loot spawning during build process but not for bombs
+		};
 	} else {
 	_object = createVehicle [_classname, _location, [], 0, "NONE"];
 	_object setDir (getDir player);
+		if (_classname != "grave") then {
+			_object setVariable ["characterID",dayz_characterID,true]; //DO this to prevent loot spawning during build process but not for bombs
+		} else {
+			objectHeight=0;
+			objectDistance=0;
+			objectParallelDistance=0;
+		};
 	};
 	if (_modDir > 0) then {
 	_object setDir (getDir player) + _modDir;
@@ -360,17 +370,30 @@ _playerCombat 	= player;
 		<t align='center' color='#85E67E'>Select 'Preview' when ready</t><br/>
 		"];
 	} else {
-	//Non extendables can't be elevated/lowered so we need a slightly different list
-		hintsilent parseText format ["
-		<t align='center' color='#0074E8'>Build process started</t><br/>
-		<t align='center' color='#0074E8'>Move around to re-position</t><br/><br/>
-		<t align='left' color='#F5CF36'>Controls</t>		<t align='right' color='#F5CF36'>NumPad</t><br/>
-		<t align='left' color='#85E67E'>Rotate</t>			<t align='right' color='#E7F5E6'>7 + 9</t><br/>
-		<t align='left' color='#85E67E'>Push/Pull</t>		<t align='right' color='#E7F5E6'>4 + 1</t><br/>
-		<t align='left' color='#85E67E'>Left/Right</t>		<t align='right' color='#E7F5E6'>2 + 3</t><br/>
-		<t align='center' color='#F5CF36'>You can hold SHIFT for slower rotation</t><br/><br/>
-		<t align='center' color='#85E67E'>Select 'Preview' when ready</t><br/>
-		"];
+		if (_classname != "Grave") then {
+			//Non extendables can't be elevated/lowered so we need a slightly different list
+			hintsilent parseText format ["
+			<t align='center' color='#0074E8'>Build process started</t><br/>
+			<t align='center' color='#0074E8'>Move around to re-position</t><br/><br/>
+			<t align='left' color='#F5CF36'>Controls</t>		<t align='right' color='#F5CF36'>NumPad</t><br/>
+			<t align='left' color='#85E67E'>Rotate</t>			<t align='right' color='#E7F5E6'>7 + 9</t><br/>
+			<t align='left' color='#85E67E'>Push/Pull</t>		<t align='right' color='#E7F5E6'>4 + 1</t><br/>
+			<t align='left' color='#85E67E'>Left/Right</t>		<t align='right' color='#E7F5E6'>2 + 3</t><br/>
+			<t align='center' color='#F5CF36'>You can hold SHIFT for slower rotation</t><br/><br/>
+			<t align='center' color='#85E67E'>Select 'Preview' when ready</t><br/>
+			"];
+		} else {
+			//We don't want graves to have push/pull, or left/right
+			hintsilent parseText format ["
+			<t align='center' color='#0074E8'>Build process started</t><br/>
+			<t align='center' color='#0074E8'>Move around to re-position</t><br/>
+			<t align='center' color='#0074E8'>If grave is floating, use 'Attach to Ground' option</t><br/><br/>
+			<t align='left' color='#F5CF36'>Controls</t>		<t align='right' color='#F5CF36'>NumPad</t><br/>
+			<t align='left' color='#85E67E'>Rotate</t>			<t align='right' color='#E7F5E6'>7 + 9</t><br/>
+			<t align='center' color='#F5CF36'>You can hold SHIFT for slower rotation</t><br/><br/>
+			<t align='center' color='#85E67E'>Select 'Preview' when ready</t><br/>
+			"];
+		};
 	};	
 		if(_allBuildables) then {
 		//Rotations + Push Pull + Move Left or Right set to keys
@@ -410,32 +433,34 @@ _playerCombat 	= player;
 				};
 				_object setDir (getDir player) + rotateDir ;
 			};
-			//Push Away
-			if (DZ_BB_A) then {
-				DZ_BB_A = false;
-				if(objectDistance<maxObjectDistance) then {
-					objectDistance= objectDistance + 0.5;
+			if (_classname != "Grave") then {
+				//Push Away
+				if (DZ_BB_A) then {
+					DZ_BB_A = false;
+					if(objectDistance<maxObjectDistance) then {
+						objectDistance= objectDistance + 0.5;
+					};
 				};
-			};
-			//Pull Near
-			if (DZ_BB_N) then {
-				DZ_BB_N = false;
-				if(objectDistance>minObjectDistance) then {
-					objectDistance= objectDistance - 0.3;
+				//Pull Near
+				if (DZ_BB_N) then {
+					DZ_BB_N = false;
+					if(objectDistance>minObjectDistance) then {
+						objectDistance= objectDistance - 0.3;
+					};
 				};
-			};
-			//Move Right
-			if (DZ_BB_Le) then {
-				DZ_BB_Le = false;
-				if(objectParallelDistance>minObjectDistance) then {
-					objectParallelDistance= objectParallelDistance - 0.5;
+				//Move Right
+				if (DZ_BB_Le) then {
+					DZ_BB_Le = false;
+					if(objectParallelDistance>minObjectDistance) then {
+						objectParallelDistance= objectParallelDistance - 0.5;
+					};
 				};
-			};
-			//Move Left
-			if (DZ_BB_Ri) then {
-				DZ_BB_Ri = false;
-				if(objectParallelDistance<maxObjectDistance) then {
-					objectParallelDistance= objectParallelDistance + 0.5;
+				//Move Left
+				if (DZ_BB_Ri) then {
+					DZ_BB_Ri = false;
+					if(objectParallelDistance<maxObjectDistance) then {
+						objectParallelDistance= objectParallelDistance + 0.5;
+					};
 				};
 			};
 		};
@@ -522,6 +547,9 @@ _playerCombat 	= player;
 			deletevehicle _object;
 			_object = createVehicle [_classname, _objectPos, [], 0, "CAN_COLLIDE"];
 			_object setDir _objectDir;
+			if (_classname != "grave") then {
+				_object setVariable ["characterID",dayz_characterID,true]; //Do this to prevent loot spawning during build process but not for bombs
+			};
 			buildReady=false;
 			_location = _objectPos;//getposATL _object;
 			_dir = _objectDir;//getDir _object;
@@ -745,12 +773,11 @@ _playerCombat 	= player;
 			_buildables set [count _buildables, _qtyG]; 
 		} else { _qtyG = 0; _buildables set [count _buildables, _qtyG]; };
 
-		
+	
 	// Check if it matches again
 	disableUserInput true;
 	cutText ["Keyboard disabled while confirm recipes\n -Anti-Dupe", "PLAIN DOWN"];
 	_result = [_buildables,_chosenRecipe] call BIS_fnc_areEqual;
-	disableUserInput false;
 	if (_result) then {
 	//Build final product!
 
@@ -829,7 +856,7 @@ _playerCombat 	= player;
 			{
 				player removeMagazine _itemM;
 			};
-		};		
+		};
 		//Grenade only is needed when building booby trap
 		if (_qtyG > 0 && _classname == "Grave") then {
 			for "_i" from 0 to _qtyG do
@@ -837,6 +864,8 @@ _playerCombat 	= player;
 				player removeMagazine _itemG;
 			};
 		};
+	sleep 0.5; //Give it time to remove items
+	disableUserInput false; //Allow gear access now items have been removed
 	_playerUID = [];
 	_playerUID set [count _playerUID, (getPlayerUID player)];
 	_object setVariable ["AuthorizedUID", _playerUID , true];

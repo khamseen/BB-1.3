@@ -13,13 +13,13 @@ AFTER that, add
 	//Get objects that can't be targetted
 	_flagBasePole = nearestObject [player, BBTypeOfFlag];
 		//All untargetable objects (except Base Flag), searches a 12 meter radius, you can add any new objects you put in the build list that can't be targetted
-		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","HeliH","HeliHCivil","Land_Ind_Shed_01_main","RampConcrete"],12];//The number at the end is the range to look for items, if you have issues with some items try increasing it by one or two at a time.
+		_untargetableArray = nearestObjects [player, ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO","Land_Ind_IlluminantTower","Land_sara_hasic_zbroj","Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","HeliH","HeliHCivil","Land_Ind_Shed_01_main","RampConcrete","Land_Ind_Shed_01_end","Land_Ind_SawMillPen"],12];//The number at the end is the range to look for items, if you have issues with some items try increasing it by one or two at a time.
 		_nearUntargetable = count _untargetableArray > 0; //Check if anything is in range
 		_closestUntargetable = if (_nearUntargetable) then {_untargetableArray select 0};//Selects the closest returned item
 		_nettingNames = ["Land_CamoNetB_EAST","Land_CamoNetVar_EAST","Land_CamoNet_EAST","Land_CamoNetB_NATO","Land_CamoNetVar_NATO","Land_CamoNet_NATO"]; //Used for menu options
 		_castleNames = ["Land_A_Castle_Bergfrit","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30"];
 		_heliPadNames = ["HeliH","HeliHCivil"];
-		_roofNames = ["Land_Ind_Shed_01_main","RampConcrete"];
+		_roofNames = ["Land_Ind_Shed_01_main","Land_Ind_Shed_01_end","Land_Ind_SawMillPen"];
 		_buildingNames = [];//Can add generic building names here
 		_displayName = "Base Build Object";//Default menu option name if none of the following match
 		if (typeOf(_closestUntargetable) in _nettingNames) then {_displayName = "Netting";};
@@ -32,7 +32,7 @@ AFTER that, add
 
 	// Check mags in player inventory to show build recipe menu	
 	_mags = magazines player;
-	if ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags || "equip_scrapelectronics" in _mags || "ItemCamoNet" in _mags || "equip_crate" in _mags || "equip_brick" in _mags || "equip_string" in _mags || "equip_duct_tape" in _mags) then {
+	if ((isNull cursorTarget) && ("ItemTankTrap" in _mags || "ItemSandbag" in _mags || "ItemWire" in _mags || "PartWoodPile" in _mags || "PartGeneric" in _mags || "equip_scrapelectronics" in _mags || "ItemCamoNet" in _mags || "equip_crate" in _mags || "equip_brick" in _mags || "equip_string" in _mags || "equip_duct_tape" in _mags)) then {
 		hasBuildItem = true;
 	} else { hasBuildItem = false;};
 	//Build Recipe Menu Action
@@ -162,7 +162,7 @@ Replace that with
 	_adminText = if (!_flagAuthGateCodes && _baseBuildAdmin) then {"ADMIN:";}else{"";};//Let admins know they aren't registered
 		if (_flagAuthGateCodes || _baseBuildAdmin) then {
 			if (s_player_getTargetUID < 0) then {
-				s_player_getTargetUID = player addAction [format["%1Get UID of Targeted Player",_adminText], "dayz_code\actions\get_player_UID.sqf", cursorTarget, 1, false, true, "", ""];
+				s_player_getTargetUID = player addAction [format["%1Get UID of Targeted Player",_adminText], "dayz_code\actions\get_player_UID.sqf", cursorTarget, 4, false, true, "", ""];
 			};
 		};
 	} else {
@@ -175,12 +175,12 @@ Replace that with
 		_gates = nearestObjects [_lever, ["Concrete_Wall_EP1"], 15];
 		if (s_player_gateActions < 0) then {
 			if (typeOf(cursortarget) == "Fence_corrugated_plate") then {
-					s_player_gateActions = player addAction [format["%1Operate Single Metal Gate",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 1, false, true, "", ""];
+					s_player_gateActions = player addAction [format[("<t color=""#FFF700"">" + ("%1Operate Single Metal Gate") +"</t>"),_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 6, true, true, "", ""];
 			} else {
 				if (typeOf(cursortarget) == "Infostand_2_EP1") then {
 					if (count _gates > 0) then {
-						s_player_gateActions = player addAction [format["%1Operate Nearest Concrete Gates Within 15 meters",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 1, false, true, "", ""];
-					} else {s_player_gateActions = player addAction [format["%1No gates around to operate",_adminText], "", _lever, 1, false, true, "", ""];};
+						s_player_gateActions = player addAction [format[("<t color=""#FFF700"">" + ("%1Operate Nearest Concrete Gates Within 15 meters") +"</t>"),_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_gates.sqf", _lever, 6, true, true, "", ""];
+					} else {s_player_gateActions = player addAction [format[("<t color=""#FFF700"">" + ("%1No gates around to operate") +"</t>"),_adminText], "", _lever, 6, false, true, "", ""];};
 				};
 			};
 		};
@@ -205,12 +205,12 @@ Replace that with
 	};
 	// Operate ROOFS
 	if ((typeOf(cursortarget) in _codePanels) && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
-		_gates = nearestObjects [_lever, ["Land_Ind_Shed_01_main"], BBFlagRadius];
+		_gates = nearestObjects [_lever, ["Land_Ind_Shed_01_main","Land_Ind_Shed_01_end","Land_Ind_SawMillPen"], BBFlagRadius];
 		if (s_player_roofToggle < 0) then {
 			if (typeOf(cursortarget) == "Infostand_2_EP1") then {
 				if (count _gates > 0) then {
-					s_player_roofToggle = player addAction [format["%1Operate Roof Covers",_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_roofs.sqf", _lever, 1, false, true, "", ""];
-				} else {s_player_roofToggle = player addAction [format["%1No roof covers around to operate",_adminText], "", _lever, 1, false, true, "", ""];};
+					s_player_roofToggle = player addAction [format[("<t color=""#FFF700"">" + ("%1Operate Roof Covers") +"</t>"),_adminText], "dayz_code\external\keypad\fnc_keyPad\operate_roofs.sqf", _lever, 6, false, true, "", ""];
+				} else {s_player_roofToggle = player addAction [format[("<t color=""#FFF700"">" + ("%1No roof covers around to operate") +"</t>"),_adminText], "", _lever, 6, false, true, "", ""];};
 			};
 		};
 	} else {
@@ -236,54 +236,27 @@ Replace that with
 		player removeAction s_player_disarmBomb;
 		s_player_disarmBomb = -1;
 	};
-
-	//Barrel + Tower Lighting
-    if((typeOf(cursortarget) == "Infostand_2_EP1") && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
+	
+	//Light Menu
+	if((typeOf(cursortarget) == "Infostand_2_EP1") && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
 		_nearestFlags = nearestObjects [_lever, [BBTypeOfFlag], BBFlagRadius];
 		_baseFlag = _nearestFlags select 0;
 		_barrels = nearestObjects [_baseFlag, ["Land_Fire_Barrel"], BBFlagRadius];//Makes sure there are barrels in range of the flag
 		_towers = nearestObjects [_baseFlag, ["Land_Ind_IlluminantTower"], BBFlagRadius];//Makes sure there are towers in range of the flag
-		if (count _barrels > 0) then {
-			if (s_player_inflameBarrels < 0) then {
-				s_player_inflameBarrels = player addAction [format["%1Barrel Lights ON",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,true], 1, false, true, "", ""];
-			};
-			if (s_player_deflameBarrels < 0) then {
-				s_player_deflameBarrels = player addAction [format["%1Barrel Lights OFF",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,false], 1, false, true, "", ""];
+		if (count _barrels > 0 || count _towers >0) then {
+			if (s_player_bbLightMenu < 0) then {
+				s_player_bbLightMenu = player addAction [format[("<t color=""#4FF795"">" + ("%1Light Options") +"</t>"),_adminText], "dayz_code\actions\lights\lightMenu.sqf", _lever, 5, false, false, "", ""];
 			};
 		} else {
-			if (s_player_inflameBarrels < 0) then {
-				s_player_inflameBarrels = player addAction [format["%1No Barrel Lights In Range",_adminText], "", _lever, 1, false, true, "", ""];
-			};
-			player removeAction s_player_deflameBarrels;
-			s_player_deflameBarrels = -1;
-		};
-		if (BBUseTowerLights == 1) then {
-			if (count _towers > 0) then {
-				if (s_player_towerLightsOn < 0) then {
-					s_player_towerLightsOn = player addAction [format["%1Tower Lights ON",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,true], 1, false, true, "", ""];
-				};
-				if (s_player_towerLightsOff < 0) then {
-					s_player_towerLightsOff = player addAction [format["%1Tower Lights OFF",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,false], 1, false, true, "", ""];
-				};
-			} else {
-				if (s_player_towerLightsOn < 0) then {
-					s_player_towerLightsOn = player addAction [format["%1No Tower Lights In Range",_adminText], "", _lever, 1, false, true, "", ""];
-				};
-				player removeAction s_player_towerLightsOff;
-				s_player_towerLightsOff = -1;
+			if (s_player_bbLightMenu < 0) then {
+				s_player_bbLightMenu = player addAction [format[("<t color=""#4FF795"">" + ("%1No Barrel/Tower Lights in Range of Flag") +"</t>"),_adminText], "", _lever, 5, false, true, "", ""];
 			};
 		};
 	} else {
-		player removeAction s_player_inflameBarrels;
-		s_player_inflameBarrels = -1;
-		player removeAction s_player_deflameBarrels;
-		s_player_deflameBarrels = -1;
-		player removeAction s_player_towerLightsOn;
-		s_player_towerLightsOn = -1;
-		player removeAction s_player_towerLightsOff;
-		s_player_towerLightsOff = -1;
+		player removeAction s_player_bbLightMenu;
+		s_player_bbLightMenu = -1;
 	};
-	
+
 	//Zombie Shield
 	if ((typeOf(cursorTarget) == BBTypeOfZShield) &&(_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
 		if (s_player_giveBaseOwnerAccess > 0) then { //Temp fix to prevent players having more than the max allowed number of shield gens
@@ -292,14 +265,14 @@ Replace that with
 		};
 		if (BBEnableZShield == 1) then {
 			if (s_player_bbZombieShield_on < 0) then {
-				s_player_bbZombieShield_on = player addAction [format["%1Zombie Shield On",_adminText], "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, true], 1, false, true, "", ""];
+				s_player_bbZombieShield_on = player addAction [format[("<t color=""#FFF700"">" + ("%1Zombie Shield On") +"</t>"),_adminText], "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, true], 6, true, true, "", ""];
 			};
 			if (s_player_bbZombieShield_off < 0) then {
-				s_player_bbZombieShield_off = player addAction [format["%1Zombie Shield Off",_adminText], "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, false], 1, false, true, "", ""];
+				s_player_bbZombieShield_off = player addAction [format[("<t color=""#FFF700"">" + ("%1Zombie Shield Off") +"</t>"),_adminText], "dayz_code\actions\shield\bbZombieShield.sqf", [_lever, false], 6, false, true, "", ""];
 			};
 		} else {
 			if (s_player_bbZombieShield_on < 0) then {
-				s_player_bbZombieShield_on = player addAction [format["%1Zombie Shields are disabled on this server",_adminText], "", [], 1, false, true, "", ""];
+				s_player_bbZombieShield_on = player addAction [format[("<t color=""#FFF700"">" + ("%1Zombie Shields are disabled on this server") +"</t>"),_adminText], "", [], 6, false, true, "", ""];
 			};
 			player removeAction s_player_bbZombieShield_off;
 			s_player_bbZombieShield_off = -1;
@@ -333,20 +306,14 @@ After that, add
 	s_player_addGateAuthorization = -1;
 	player removeAction s_player_removeGateAuthorization;
 	s_player_removeGateAuthorization = -1;
-	player removeAction s_player_inflameBarrels;
-	s_player_inflameBarrels = -1;
-	player removeAction s_player_deflameBarrels;
-	s_player_deflameBarrels = -1;
-	player removeAction s_player_towerLightsOn;
-	s_player_towerLightsOn = -1;
-	player removeAction s_player_towerLightsOff;
-	s_player_towerLightsOff = -1;
 	player removeAction s_player_disarmBomb;
 	s_player_disarmBomb = -1;
 	player removeAction s_player_bbZombieShield_on;
 	s_player_bbZombieShield_on = -1;
 	player removeAction s_player_bbZombieShield_off;
 	s_player_bbZombieShield_off = -1;
+	player removeAction s_player_bbLightMenu;
+	s_player_bbLightMenu = -1;
 //####----####----####---- Base Building 1.3 End ----####----####----####
 
 Save and close!

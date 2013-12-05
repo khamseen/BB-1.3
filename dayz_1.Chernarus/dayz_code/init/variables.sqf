@@ -13,6 +13,12 @@
 	BBMaxPlayerFlags			= 3; //This sets how many flags a player can be added to, default is 3
 	BBFlagRadius				= 200; //This sets the build radius around a flag, default is 200
 	
+/********************************************************* Removal Chance Settings ********************************************************/
+	BBtblProb					= 30; //Base chance level for loosing toolbox
+	BBlowP						= 35; //Base lower chance level for failing to remove item
+	BBmedP						= 70; //Base medium chance level for failing to remove item
+	BBhighP						= 95; //Base high chance level for failing to remove item
+	
 /**************************************************** Zombie Shield Generator Settings ****************************************************/
 	BBEnableZShield				= 1; //Enable toggleable zombie shield generator/ 1 = Enabled // 0 = Disabled (If disabled, players can still build shield generators, they just wont do anything)
 	BBTypeOfZShield				= "CDF_WarfareBUAVterminal"; //Type of object used for Zombie Shield, included this only in case some maps have this object banned

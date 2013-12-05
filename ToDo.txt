@@ -1,12 +1,12 @@
 Things to Do
 //----------------------- Still Need Looked At --------------------
 
-
 //------------------ Would Be Nice ------------------------
 
 //General
 Master handler for custom debug spawner
 Prevent lost items if people remove a build with a full inventory
+Display radius for item controls on menu options
 
 //-------------------------- DONE --------------------------
 
@@ -20,6 +20,8 @@ give_gateAccess.sqf (Done)
 //Player_build2.sqf
 May not need seperate sections for building placement section? (Done)
 Loop the animation so people are aware they are still building. (Done)
+Restrict placement for traps (Done)
+Restrict gear access until items are removed from inventory (Done)
 
 //Excessive Movement on some objects, add individual placement handlers
 Land_sara_hasic_zbroj (Done)
@@ -110,6 +112,10 @@ Disarm option for graves? (Done)
 Build Help is only displaying first line (Fixed)
 Tower lighting working without generator nearby (Fixed)
 Build_help hintC format is unfamiliar and we want to replace 200 with BBFlagRadius variable (Currently cheated and just said "flag radius" instead of an actual distance) (Done)
+Operate single gate, priority 6 colour yellow, auto highlight (Done)
+Options for gates toggle, roof toggle etc set to 6 and yellow (Done)
+Lights sub menu (Done)
+Buildings generate loot during the build process. Perhaps assign an owner ID when it's created just to prevent that. (Done)
 
 //Minor RPT Spam
 Client side RPT spam when building flags, due to it knowing you're in range of a flag, but it can't find the inventory array as the object hasn't been published (Done)

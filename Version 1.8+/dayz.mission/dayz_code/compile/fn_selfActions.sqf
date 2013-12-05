@@ -328,54 +328,6 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 		player removeAction s_player_bbLightMenu;
 		s_player_bbLightMenu = -1;
 	};
-/*
-	//Barrel + Tower Lighting
-    if((typeOf(cursortarget) == "Infostand_2_EP1") && (_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
-		_nearestFlags = nearestObjects [_lever, [BBTypeOfFlag], BBFlagRadius];
-		_baseFlag = _nearestFlags select 0;
-		_barrels = nearestObjects [_baseFlag, ["Land_Fire_Barrel"], BBFlagRadius];//Makes sure there are barrels in range of the flag
-		_towers = nearestObjects [_baseFlag, ["Land_Ind_IlluminantTower"], BBFlagRadius];//Makes sure there are towers in range of the flag
-		if (count _barrels > 0) then {
-			if (s_player_inflameBarrels < 0) then {
-				s_player_inflameBarrels = player addAction [format["%1Barrel Lights ON",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,true], 5, false, true, "", ""];
-			};
-			if (s_player_deflameBarrels < 0) then {
-				s_player_deflameBarrels = player addAction [format["%1Barrel Lights OFF",_adminText], "dayz_code\actions\lights\barrelToggle.sqf", [_lever,false], 5, false, true, "", ""];
-			};
-		} else {
-			if (s_player_inflameBarrels < 0) then {
-				s_player_inflameBarrels = player addAction [format["%1No Barrel Lights In Range",_adminText], "", _lever, 5, false, true, "", ""];
-			};
-			player removeAction s_player_deflameBarrels;
-			s_player_deflameBarrels = -1;
-		};
-		if (BBUseTowerLights == 1) then {
-			if (count _towers > 0) then {
-				if (s_player_towerLightsOn < 0) then {
-					s_player_towerLightsOn = player addAction [format["%1Tower Lights ON",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,true], 5, false, true, "", ""];
-				};
-				if (s_player_towerLightsOff < 0) then {
-					s_player_towerLightsOff = player addAction [format["%1Tower Lights OFF",_adminText], "dayz_code\actions\lights\towerLightsToggle.sqf", [_lever,false], 5, false, true, "", ""];
-				};
-			} else {
-				if (s_player_towerLightsOn < 0) then {
-					s_player_towerLightsOn = player addAction [format["%1No Tower Lights In Range",_adminText], "", _lever, 5, false, true, "", ""];
-				};
-				player removeAction s_player_towerLightsOff;
-				s_player_towerLightsOff = -1;
-			};
-		};
-	} else {
-		player removeAction s_player_inflameBarrels;
-		s_player_inflameBarrels = -1;
-		player removeAction s_player_deflameBarrels;
-		s_player_deflameBarrels = -1;
-		player removeAction s_player_towerLightsOn;
-		s_player_towerLightsOn = -1;
-		player removeAction s_player_towerLightsOff;
-		s_player_towerLightsOff = -1;
-	};*/
-	
 	//Zombie Shield
 	if ((typeOf(cursorTarget) == BBTypeOfZShield) &&(_authorizedGateCodes || _baseBuildAdmin) && !remProc && !procBuild) then {
 		if (s_player_giveBaseOwnerAccess > 0) then { //Temp fix to prevent players having more than the max allowed number of shield gens
@@ -598,6 +550,12 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	s_player_addGateAuthorization = -1;
 	player removeAction s_player_removeGateAuthorization;
 	s_player_removeGateAuthorization = -1;
+	player removeAction s_player_disarmBomb;
+	s_player_disarmBomb = -1;
+	player removeAction s_player_bbZombieShield_on;
+	s_player_bbZombieShield_on = -1;
+	player removeAction s_player_bbZombieShield_off;
+	s_player_bbZombieShield_off = -1;
 	player removeAction s_player_inflameBarrels;
 	s_player_inflameBarrels = -1;
 	player removeAction s_player_deflameBarrels;
@@ -606,12 +564,6 @@ if (!isNull _cursorTarget and !_inVehicle and (player distance _cursorTarget < 4
 	s_player_towerLightsOn = -1;
 	player removeAction s_player_towerLightsOff;
 	s_player_towerLightsOff = -1;
-	player removeAction s_player_disarmBomb;
-	s_player_disarmBomb = -1;
-	player removeAction s_player_bbZombieShield_on;
-	s_player_bbZombieShield_on = -1;
-	player removeAction s_player_bbZombieShield_off;
-	s_player_bbZombieShield_off = -1;
 	player removeAction s_player_bbLightMenu;
 	s_player_bbLightMenu = -1;
 //####----####----####---- Base Building 1.3 End ----####----####----####

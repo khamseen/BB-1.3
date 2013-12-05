@@ -1011,6 +1011,14 @@ if (!isNull cursorTarget and !_inVehicle and !_isPZombie and (player distance cu
 	s_player_bbZombieShield_on = -1;
 	player removeAction s_player_bbZombieShield_off;
 	s_player_bbZombieShield_off = -1;
+	player removeAction s_player_inflameBarrels;
+	s_player_inflameBarrels = -1;
+	player removeAction s_player_deflameBarrels;
+	s_player_deflameBarrels = -1;
+	player removeAction s_player_towerLightsOn;
+	s_player_towerLightsOn = -1;
+	player removeAction s_player_towerLightsOff;
+	s_player_towerLightsOff = -1;
 	player removeAction s_player_bbLightMenu;
 	s_player_bbLightMenu = -1;
 //####----####----####---- Base Building 1.3 End ----####----####----####

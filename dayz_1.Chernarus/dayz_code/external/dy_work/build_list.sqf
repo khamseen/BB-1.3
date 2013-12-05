@@ -36,7 +36,7 @@ _buildlist = [
 [[2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], "Hhedgehog_concrete",			[[0,5,.6], 	[0,4,0], 	0, 	true, true, false, true, false, true, false, true, false, false, false, true]],//Hhedgehog_concrete --21
 [[1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0], "Misc_cargo_cont_small_EP1",		[[0,5,1.3], [0,4,0], 	90, true, false, false, false, true, false, false, true, false, false, false, true]],//Misc_cargo_cont_small_EP1 --22
 [[1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_prebehlavka",				[[0,6,.7], 	[0,3,0], 	90, true, false, false, false, true, false, false, true, false, true, true, true]],//Land_prebehlavka(Ramp) --23
-[[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_corrugated_plate",		[[0,4,.6], 	[0,3,0], 	0,	true, true, true, false, true, false, false, false, false, false, false, true]],//Fence_corrugated_plate --24
+[[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "Fence_corrugated_plate",		[[0,4,.6], 	[0,3,0], 	0,	true, true, true, false, true, false, false, true, false, false, false, true]],//Fence_corrugated_plate --24
 [[2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ZavoraAnim", 					[[0,5,4.0], [0,5,0], 	180, 	true, false, false, false, false, true, false, true, false, true, true, true]],//ZavoraAnim --25
 [[0, 0, 3, 1, 1, 0, 0, 0, 0, 0, 0, 0], "Land_tent_east", 				[[0,8,1.7], [0,6,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_tent_east --26
 [[0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0], "Land_CamoNetB_EAST",			[[0,10,2], 	[0,10,0], 	0, 	true, false, false, true, false, false, false, true, true, true, true, true]],//Land_CamoNetB_EAST --27
@@ -52,7 +52,9 @@ _buildlist = [
 [[2, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 1], "Land_Shed_wooden",  			[[0,8,1], 	[0,10,0], 	0, 	true, true, true, true, true, false, false, true, true, false, false, true]], //Land_Shed_wooden --37
 [[1, 1, 1, 0, 0, 0, 0, 0, 1, 3, 1, 0], "Land_Barrack2",  				[[0,10,1], 	[0,12,0], 	0, 	true, true, true, true, false, false, false, true, true, false, false, true]], //Land_Barrack2 --38
 [[2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1], "Land_vez",  					[[0,6,1], 	[0,8,0], 	0, 	true, true, true, true, true, false, false, true, true, false, false, true]], //Land_vez --39
-[[4, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0], "Land_Ind_Shed_01_main",  		[[0,10,1], 	[0,10,0], 	0, 	true, false, false, true, true, false, false, false, false, false, false, true]], //Land_Ind_Shed_01_main --40
+[[3, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0], "Land_Ind_Shed_01_main",  		[[0,10,1], 	[0,10,0], 	0, 	true, false, false, true, true, false, false, true, false, false, false, true]], //Land_Ind_Shed_01_main --40
+[[2, 0, 0, 0, 1, 0, 0, 2, 0, 0, 0, 0], "Land_Ind_Shed_01_end",  		[[0,10,1], 	[0,10,0], 	0, 	true, false, false, false, true, false, false, true, false, false, false, true]], //Land_Ind_Shed_01_main --40
+[[4, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0], "Land_Ind_SawMillPen",  			[[0,10,1], 	[0,10,0], 	0, 	true, false, false, true, true, false, false, true, false, false, false, true]], //Land_Ind_Shed_01_main --40
 [[1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0], "Land_Fire_barrel",  			[[0,3,0.6], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, true, true, true]], //Land_Fire_barrel --41 
 [[0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "Land_WoodenRamp",  				[[0,5,0.4], [0,4,0], 	0, 	true, false, false, false, true, false, false, true, false, false, false, true]], //Land_WoodenRamp --42 
 [[2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0, 0], "Land_Ind_TankSmall2_EP1",  		[[0,6,1.3], [0,5,1.3], 	90, true, true, true, true, false, false, false, true, true, false, false, true]], //Land_Ind_TankSmall2_EP1 --43 
@@ -82,10 +84,10 @@ _buildlist = [
 allExtendables = ["Concrete_Wall_EP1","Infostand_2_EP1","Land_HBarrier_large","Land_fortified_nest_small","Land_BagFenceRound","Land_fort_bagfence_long",
 					"Land_Misc_Cargo2E","Misc_Cargo1Bo_military","Ins_WarfareBContructionSite","Land_CncBlock","Misc_cargo_cont_small_EP1","Land_prebehlavka",
 					"Fence_corrugated_plate","Land_CamoNet_EAST","Land_CamoNet_NATO","Fence_Ind_long","Fort_RazorWire","Fence_Ind","Land_Shed_wooden","Land_vez",
-					"Land_Ind_Shed_01_main","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete","Land_ladder","Land_ladder_half",
-					"Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower","Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A",
-					"Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn","Land_A_Castle_Wall2_30","Land_sara_hasic_zbroj",
-					BBTypeOfZShield];
+					"Land_Ind_Shed_01_main","Land_Ind_Shed_01_end","Land_Ind_SawMillPen","Land_Fire_barrel","Land_WoodenRamp","Land_ConcreteRamp","RampConcrete",
+					"Land_ladder","Land_ladder_half","Land_Misc_Scaffolding","Land_Ind_TankSmall2_EP1","PowerGenerator_EP1","Land_Ind_IlluminantTower",
+					"Land_A_Castle_Bergfrit","Land_A_Castle_Stairs_A","Land_A_Castle_Gate","Land_A_Castle_Bastion","Land_A_Castle_Wall1_20","Land_A_Castle_Wall1_20_Turn",
+					"Land_A_Castle_Wall2_30","Land_sara_hasic_zbroj",BBTypeOfZShield];
 
 // Build allremovables array for remove action
 for "_i" from 0 to ((count _buildlist) - 1) do

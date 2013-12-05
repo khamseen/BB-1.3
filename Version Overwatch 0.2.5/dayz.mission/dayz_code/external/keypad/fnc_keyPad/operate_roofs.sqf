@@ -6,7 +6,7 @@ _isBuildable = true;
 _charPos = getposATL _character;
 _inMotion = _lever getVariable ["inMotion",0];
 _lever removeAction _id;
-_nearestGates = nearestObjects [_lever, ["Land_Ind_Shed_01_main"], BBFlagRadius];
+_nearestGates = nearestObjects [_lever, ["Land_Ind_Shed_01_main","Land_Ind_Shed_01_end","Land_Ind_SawMillPen"], BBFlagRadius];
 //dayz_updateNearbyObjects = [_charPos, _isBuildable];
 //publicVariableServer "dayz_updateNearbyObjects";
 //	if (isServer) then {

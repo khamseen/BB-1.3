@@ -31,6 +31,7 @@
 /********************************************************* Miscellaneous Settings *********************************************************/
 	BBAIGuards					= 0; //Sarge AI Base Guards/ 1 = Enabled // 0 = Disabled (Requires Sarge AI)
 	BBUseTowerLights			= 1; //Enable toggleable tower lighting/ 1 = Enabled // 0 = Disabled (If you run AxeMan's tower lighting on your server, read the instructions on how to modify it)
+	BBTowerLightsNGen			= true; //Require generator for base building tower lighting?
 	BBCustomDebug				= "debugMonitor"; //Change debugMonitor to whatever variable your custom debug uses, this allows Base Building to hide the debug monitor where needed
 	//BBCustomDebugS				= [] spawn fnc_debug; //Change to whatever your debug monitor uses to activate, this allows Base Building to restore the debug monitor if it closed it
 	

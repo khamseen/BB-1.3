@@ -4,11 +4,18 @@ This script prevents players from exiting vehicles into a wall and glitching
 through the wall in order to get into a player made base.
 */
 
-private["_inBase","_wallRange","_wallType","_inVehicle","_walltypes","_wall","_vehPos","_nearestVeh","_nearestVehs","_isVehicle","_authorizedPUID"];
+private["_inBase","_airVehicle","_wallRange","_wallType","_inVehicle","_walltypes","_wall","_vehPos","_nearestVeh","_nearestVehs","_isVehicle","_authorizedPUID"];
 if (animationstate player == "acrgpknlmstpsnonwnondnon_amovpercmstpsnonwnondnon_getoutlow" || animationstate player == "acrgpknlmstpsnonwnondnon_amovpercmstpsraswrfldnon_getoutlow" || animationstate player == "acrgpknlmstpsnonwnondnon_amovpercmstpsraswpstdnon_getoutlow") then {
 _inVehicle = (vehicle player != player);
 _isVehicle = (vehicle player);
 _inBase = false;
+_airVehicle = false;
+_nearestHelis = nearestObjects [player, ["Air"], 10];
+_nearestHeli = _nearestHelis select 0;
+
+if (count _nearestHelis > 0)  then {
+	_airVehicle = true;
+};
 _wallRange = 10;
 //_nearBool = true;
 		//Check objects from global wallarray via build_list.sqf
@@ -24,7 +31,7 @@ _wallRange = 10;
 			} foreach _flagPoles;
 		};
 		_walltypes = nearestObjects [player, wallarray, 30];
-		if (count _walltypes > 0 && !_inBase) then {
+		if (count _walltypes > 0 && !_inBase && !_airVehicle) then {
 				_wall = _walltypes select 0;//[_walltypes, player] call BIS_fnc_nearestPosition;
 				if (_wall in structures) then {_wallRange = 25};
 				if (player distance _wall < _wallRange) then {

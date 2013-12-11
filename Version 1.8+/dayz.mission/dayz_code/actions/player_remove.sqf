@@ -222,6 +222,7 @@ _removable 		= _requirements select 10;
 if (!_removable) then {cutText [format["%1 is not allowed to be removed!",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit"; };
 switch (true) do
 {
+	player setVariable["startcombattimer", 1];  // Makes it harder for them to relog and keep their toolbox
 	case(_longWait):
 	{
 		if (_eTool) then {
@@ -300,7 +301,7 @@ switch (true) do
 	};
 			_hasToolbox = 	"ItemToolbox" in items player;
 			if (!_hasToolbox) then {cutText [format["You need a tool box to remove %1",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit"; };
-			if (!isNull _obj && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
+			if (!isNull _obj && _randNum2 < _tblProb) then { player setVariable["startcombattimer", 1]; player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 			sleep 1.5;
 	};
 	case((!_medWait && !_longWait) && _canRemove):
@@ -325,7 +326,7 @@ switch (true) do
 		};
 			_hasToolbox = 	"ItemToolbox" in items player;
 			if (!_hasToolbox) then {cutText [format["You need a tool box to remove %1",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit"; };
-			if (!isNull _obj && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
+			if (!isNull _obj && _randNum2 < _tblProb) then { player setVariable["startcombattimer", 1]; player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 			sleep 1.5;
 	};
 	case(_longWait && _failRemove):
@@ -350,7 +351,7 @@ switch (true) do
 		};
 			_hasToolbox = 	"ItemToolbox" in items player;
 			if (!_hasToolbox) then {cutText [format["You need a tool box to remove %1",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit"; };
-			if (!isNull _obj && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
+			if (!isNull _obj && _randNum2 < _tblProb) then { player setVariable["startcombattimer", 1];  player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 			sleep 1.5;
 			cutText [format["You failed to remove %1!",_text], "PLAIN DOWN",6]; remProc = false; breakOut "exit";
 	};
@@ -376,7 +377,7 @@ switch (true) do
 		};
 			_hasToolbox = 	"ItemToolbox" in items player;
 			if (!_hasToolbox) then {cutText [format["You need a tool box to remove %1",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit"; };
-			if (!isNull _obj && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
+			if (!isNull _obj && _randNum2 < _tblProb) then {  player setVariable["startcombattimer", 1];  player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 			sleep 1.5;
 			cutText [format["You failed to remove %1!",_text], "PLAIN DOWN",6]; remProc = false; breakOut "exit";
 	};
@@ -402,7 +403,7 @@ switch (true) do
 		};
 			_hasToolbox = 	"ItemToolbox" in items player;
 			if (!_hasToolbox) then {cutText [format["You need a tool box to remove %1",_text], "PLAIN DOWN",1];remProc = false; breakOut "exit"; };
-			if (!isNull _obj && _randNum2 < _tblProb) then {player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
+			if (!isNull _obj && _randNum2 < _tblProb) then {  player setVariable["startcombattimer", 1];  player removeWeapon "ItemToolbox"; cutText ["Your toolbox was used up!", "PLAIN DOWN"];};
 			sleep 1.5;
 			cutText [format["You failed to remove %1!",_text], "PLAIN DOWN",6]; remProc = false; breakOut "exit";
 	};
@@ -417,7 +418,7 @@ cutText [format["You removed a %1 successfully!",_text], "PLAIN DOWN"];
 if (isServer) then { 
 	PVDZ_obj_Delete call server_deleteObj; 
 };
-
+player setVariable["startcombattimer", 1]; 
 sleep .1;
 deleteVehicle _obj;
 };

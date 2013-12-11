@@ -969,6 +969,7 @@ _playerCombat 	= player;
 			};
 		};
 	sleep 0.5; //Give it time to remove items
+	player setVariable["startcombattimer", 1];  //Make it harder for them to logout and dupe
 	disableUserInput false; //Allow gear access now items have been removed
 	_playerUID = [];
 	_playerUID set [count _playerUID, (getPlayerUID player)];
@@ -980,6 +981,7 @@ _playerCombat 	= player;
 		if (isServer) then {
 			PVDZ_obj_Publish call server_publishObj;
 		};
+	player setVariable["startcombattimer", 1]; 		
 	} else {
 	detach _object;
 	deletevehicle _object; 
@@ -987,3 +989,5 @@ _playerCombat 	= player;
 	
 	player allowdamage true;
 	procBuild = false;//_playerCombat setVariable["startcombattimer", 1, true];
+
+

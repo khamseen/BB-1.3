@@ -30,7 +30,6 @@ if (!isNull _playerNearby && _playerNearby distance player <= 10 && _playerNearb
 };
 
 _theServerUptime = round(restarttime-(serverTime/60));
-
 if ( _theServerUptime <= 5 ) exitwith {
 	cutText ["You cannot remove items this close to a server restart", "PLAIN DOWN"];	
 	remProc = false;

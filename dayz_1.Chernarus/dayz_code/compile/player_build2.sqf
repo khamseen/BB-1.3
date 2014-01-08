@@ -87,6 +87,15 @@ _playerCombat 	= player;
 	if(_isWater) then {cutText [localize "str_player_26", "PLAIN DOWN"];call _funcExitScript;};
 	if(_onLadder) then {cutText [localize "str_player_21", "PLAIN DOWN"];call _funcExitScript;};
 	if (_inVehicle) then {cutText ["Can't do this in vehicle", "PLAIN DOWN"];call _funcExitScript;};
+	
+	
+	_theServerUptime = round(restarttime-(serverTime/60));
+
+	if ( _theServerUptime <= 5 ) then {
+		cutText ["You cannot build items this close to a server restart", "PLAIN DOWN"];	
+		call _funcExitScript;
+	};
+	
 	disableSerialization;
 	closedialog 1;
 	// Ashfor Fix: Did player try to drop mag and keep action active (not really needed but leave here just in case)
